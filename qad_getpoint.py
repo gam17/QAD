@@ -116,7 +116,6 @@ class QadGetPoint(QgsMapTool):
 
       self.__QadSnapper = QadSnapper()
       self.__QadSnapper.setSnapMode(QadSnapModeEnum.ONE_RESULT) # Viene restituito solo il punto più vicino
-      self.__QadSnapper.setSnapLayers(qad_utils.getVisibleVectorLayers(self.canvas)) # Tutti i layer vettoriali visibili
       self.__QadSnapper.setProgressDistance(QadVariables.get(QadMsg.translate("Environment variables", "OSPROGRDISTANCE")))
       self.setSnapType(QadVariables.get(QadMsg.translate("Environment variables", "OSMODE")))
             

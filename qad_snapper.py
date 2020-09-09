@@ -115,6 +115,8 @@ class QadSnapper():
                                     # altrimenti nearest vincerebbe sempre
       self.tmpGeometries = [] # lista di geometrie qad non ancora esistenti ma da contare per i punti di osnap (in map coordinates)
 
+      self.setSnapLayersFromQgis() # initialise the layers to be snaped to from QGIS settings
+      qgis.utils.iface.mapCanvas().snappingUtils().configChanged.connect(self.setSnapLayersFromQgis) # update snap layers whenever QGIS snap settings change
 
    #============================================================================
    # SnapType
@@ -227,6 +229,11 @@ class QadSnapper():
       Imposta i layer da considerare nello snapping
       """      
       self.__snapLayers = snapLayers
+   def setSnapLayersFromQgis(self):
+      """
+      Sets the layers to be snapped to from QGIS's settings
+      """
+      self.setSnapLayers(qad_utils.getVisibleVectorLayers(qgis.utils.iface.mapCanvas()))
    def getSnapLayers(self):
       """
       Restituisce la lista dei layer da considerare per lo snapping

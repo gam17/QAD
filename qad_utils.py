@@ -894,8 +894,16 @@ def getFeatureRequest(fetchAttributes = [], fetchGeometry = True, \
 # getVisibleVectorLayers
 #===============================================================================
 def getVisibleVectorLayers(canvas):
-   # Tutti i layer vettoriali visibili
-   layers = canvas.layers()
+   enabled = canvas.snappingUtils().config().enabled()
+   mode = canvas.snappingUtils().config().mode()
+
+   if enabled and mode == QgsSnappingConfig.ActiveLayer:
+      layers = [qgis.utils.iface.activeLayer()]
+   elif enabled and mode == QgsSnappingConfig.AdvancedConfiguration:
+      layers = list(cfg.layer for cfg in canvas.snappingUtils().layers())
+   else: # mode == QgsSnappingConfig.AllLayers:
+      layers = canvas.layers()
+
    for i in range(len(layers) - 1, -1, -1):
       # se il layer non è vettoriale o non è visibile a questa scala
       if layers[i].type() != QgsMapLayer.VectorLayer or \
