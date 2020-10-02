@@ -966,6 +966,10 @@ def fromQgsGeomToQadGeom(QgsGeom, crs = None):
    la funzione ritorna una geometria di QAD da una geometria di QGIS e il suo sistema di coordinate.
    Le coordinate della geometria di QAD sono quelle del canvas per lavorare con coordinate piane xy
    """
+   
+   QgsMessageLog.logMessage('fromQgsGeomToQadGeom', "DEBUG_QAD")  
+
+
    g = QgsGeometry(QgsGeom)
    
    if crs is None:
@@ -980,25 +984,26 @@ def fromQgsGeomToQadGeom(QgsGeom, crs = None):
    # commentato perchè se ho un poligono e lo divido in 2 parti diventa non valido ma lo si vuole gestire comunque
    # a volte la trasformazione di coordinate genera oggetti non validi
    #if g.isGeosValid() == False: return None
-   wkbType = g.wkbType()
+   baseType = QgsWkbTypes.geometryType(g.wkbType())
+   isMulti = QgsWkbTypes.isMultiType(g.wkbType())
 
-   if wkbType == QgsWkbTypes.Point or wkbType == QgsWkbTypes.Point25D:
+   if baseType == QgsWkbTypes.PointGeometry and not isMulti:
       qadGeom = QadPoint()
       if qadGeom.fromGeom(g): return qadGeom
-   elif wkbType == QgsWkbTypes.MultiPoint or wkbType == QgsWkbTypes.MultiPoint25D:
+   elif baseType == QgsWkbTypes.PointGeometry and isMulti:
       qadGeom = QadMultiPoint()
       if qadGeom.fromGeom(g): return qadGeom
          
-   elif wkbType == QgsWkbTypes.LineString or wkbType == QgsWkbTypes.LineString25D:
+   elif baseType == QgsWkbTypes.LineGeometry and not isMulti:
       return QadLinearObject.fromGeom(g)
-   elif wkbType == QgsWkbTypes.MultiLineString or wkbType == QgsWkbTypes.MultiLineString25D:
+   elif baseType == QgsWkbTypes.LineGeometry and isMulti:
       qadGeom = QadMultiLinearObject()
       if qadGeom.fromGeom(g): return qadGeom
          
-   elif wkbType == QgsWkbTypes.Polygon or wkbType == QgsWkbTypes.Polygon25D:
+   elif baseType == QgsWkbTypes.PolygonGeometry and not isMulti:
       qadGeom = QadPolygon()
       if qadGeom.fromGeom(g): return qadGeom
-   elif wkbType == QgsWkbTypes.MultiPolygon or wkbType == QgsWkbTypes.MultiPolygon25D:
+   elif baseType == QgsWkbTypes.PolygonGeometry and isMulti:
       qadGeom = QadMultiPolygon()
       if qadGeom.fromGeom(g): return qadGeom
    
