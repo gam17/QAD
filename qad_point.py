@@ -96,6 +96,11 @@ class QadPoint(QgsPointXY):
       return QgsRectangle(self.x(), self.y(), self.x(), self.y())
 
 
+   def equals(self, pt):
+      # uguali geometricamente
+      return self.__eq__(pt)
+
+
    def copy(self):
       # obbligatoria
       return QadPoint(self)

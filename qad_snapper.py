@@ -852,6 +852,8 @@ class QadSnapper():
             # fetchAttributes, fetchGeometry, rectangle, useIntersect             
             for feature in iLayer.getFeatures(qad_utils.getFeatureRequest([], True, iLayerBoundingBox, True)):
                g2 = fromQgsGeomToQadGeom(feature.geometry(), iLayerCRS) # ottengo una geometria di qad
+               if geom.whatIs() == g2.whatIs() and geom.equals(g2): continue # salta se stessa
+               
                intersectionPoints = QadIntersections.twoGeomObjects(g2, geom, geomBoundingBoxCache)
                for point in intersectionPoints:
                   self.__appendUniquePoint(result, point) # senza duplicazione

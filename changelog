@@ -1,6 +1,7 @@
 version 3.0.6
 ---------------------------
 
+* 2024-05-27 Fixed calculation to find intersections between 2 ellipses and between a circle and an ellipse
 * 2024-05-16 Fixed bug on draw a line from tangent to tangent
 * 2024-05-16 Fixed bug on dimension (reported by em-rezende)
 * 2024-05-16 Full support for curved type layer (compoundCurve, multiCurve, curvePolygon, multiSurface)

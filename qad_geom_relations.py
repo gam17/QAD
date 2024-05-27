@@ -32,7 +32,11 @@ from qgis.gui import *
 
 import math
 import sys
+import numpy as np
+from scipy.optimize import fsolve, minimize
+
 from .qad_line import QadLine
+from .qad_ellipse import QadEllipse
 
 try:
    import numpy
@@ -455,6 +459,51 @@ class QadIntersections():
 
 
    #===============================================================================
+   # generate_initial_guesses 
+   # Funzione per generare i guess iniziali per i calcoli di intersezione cerchio con ellisse (chatgpt)
+   #===============================================================================
+   def generate_initial_guesses(h, k, a, b, theta, num_points=20):
+      t = np.linspace(0, 2 * np.pi, num_points)
+      x_ellipse = a * np.cos(t)
+      y_ellipse = b * np.sin(t)
+      
+      initial_guesses = []
+      for x_e, y_e in zip(x_ellipse, y_ellipse):
+          x_rotated = h + (x_e * np.cos(theta) - y_e * np.sin(theta))
+          y_rotated = k + (x_e * np.sin(theta) + y_e * np.cos(theta))
+          initial_guesses.append((x_rotated, y_rotated))
+      
+      return initial_guesses
+
+
+   #===============================================================================
+   # rotate 
+   # Funzione per la trasformazione di coordinate per i calcoli di intersezione cerchio con ellisse (chatgpt)
+   #===============================================================================
+   def rotate(x, y, theta):
+      x_prime = x * np.cos(theta) + y * np.sin(theta)
+      y_prime = -x * np.sin(theta) + y * np.cos(theta)
+      return x_prime, y_prime
+   
+
+#============================================================================
+   # getEquationForIntCicleEllipse
+   # Definisce un sistema di equazioni non lineari per i calcoli di intersezione cerchio con ellisse (chatgpt)
+   # x e y: centro
+   # a e b: i semiassi dell'ellisse
+   # theta: l'angolo di rotazione dell'ellisse
+   # h e k: le traslazioni dell'ellisse rispetto all'origine.
+   #============================================================================
+   @staticmethod
+   def getEquationForIntCicleEllipse(xy, circle, ellipse):
+      x, y = xy
+      
+      circle_eq = (x - circle.center.x())**2 + (y - circle.center.y())**2 - circle.radius**2
+         
+      return [circle_eq, QadIntersections.getEquationForEllipse(xy, ellipse)]      
+
+
+   #===============================================================================
    # circleWithEllipse
    #===============================================================================
    @staticmethod
@@ -462,68 +511,96 @@ class QadIntersections():
       """
       La funzione ritorna i punti di intersezione tra un cerchio ed una ellisse.
       """
-      # http://it.scienza.matematica.narkive.com/cTzzSW1r/intersezione-tra-ellisse-e-circonferenza
+      # Calcola la lunghezza dell'asse maggiore (a)
+      a = qad_utils.getDistance(ellipse.center, ellipse.majorAxisFinalPt)
+      # Calcola la lunghezza dell'asse minore (b)
+      b = a * ellipse.axisRatio      
+      # theta: l'angolo di rotazione dell'ellisse.
+      theta = ellipse.getRotation()
+      # h e k: le traslazioni dell'ellisse rispetto all'origine, coordinate centro
+      h = ellipse.center.x()
+      k = ellipse.center.y()
+
+      args = (circle, ellipse)
+      
+      # Generiamo i guess iniziali
+      initial_guesses = QadIntersections.generate_initial_guesses(h, k, a, b, theta)
+      
+      # Risoluzione del sistema di equazioni
+      intersections = []
+      for guess in initial_guesses:
+          sol = fsolve(QadIntersections.getEquationForIntCicleEllipse, guess, args)
+          if not any(np.isclose(sol, x).all() for x in intersections):
+              intersections.append(sol)
+      
       result = []
-
-      # traslo e ruoto il centro del cerchio per confrontarlo con l'ellisse con centro in 0,0 e con rotazione = 0
-      myCircle = QadCircle(circle)
-      myCircle.center = ellipse.translateAndRotatePtForNormalEllipse(circle.center, False)
-
-      a = qad_utils.getDistance(ellipse.center, ellipse.majorAxisFinalPt) # semiasse maggiore
-      b = a * ellipse.axisRatio # semiasse minore
-      
-      a2 = a * a # a al quadrato
-      a4 = a2 * a2 # a alla quarta
-      b2 = b * b # b al quadrato
-      c2 = (a / b) * (a / b)
-      c4 = c2 * c2
-      r = myCircle.radius
-      r2 = r * r
-      xc = myCircle.center.x() # x del centro del cerchio
-      xc2 = xc * xc # x cerchio al quadrato
-      yc = myCircle.center.y() # y del centro del cerchio
-      yc2 = yc * yc # y cerchio al quadrato
-      a2_b2 = a2 - b2
-
-#       [a^4+(p^2+q^2-r^2)^2-2a^2(p^2-q^2+r^2] +
-#       y [4q(r^2-a^2-p^2-q^2)] +
-#       y^2 [2a^2-2a^2c^2+2p^2+2c^2p^2+6q^2-2c^2q^2-2r^2+2c^2r^2] +
-#       y^3 [4c^2q-4q]+
-#       y^4 [1-2c^2+c^4] = 0
-      
-      z0 = a4 + (xc2 + yc2 - r2) * (xc2 + yc2 - r2) - (2 * a2) * (xc2 - yc2 + r2)
-      z1 = (4 * yc2) * (r2 - a2 - xc2 - yc2)
-      z2 = (2 * a2) - (2 * a2 * c2) + 2 *xc2 + (2 * c2 * xc2) + (6 * yc2) - (2 *c2 * yc2) - (2 * r2) + (2 * c2 * r2)
-      z3 = (4 * c2 * yc) - (4 * yc)
-      z4 = 1 - (2 * c2) + c4
-
-      y_result = numpy.roots([z4, z3, z2, z1, z0])
-      for y in y_result:
-         y = float(y)
-         n = (1.0 - y * y / b2) * a2 # data la Y calcolo la X
-         if qad_utils.doubleNear(n, 0): n = 0 # per problemi di precisione di calcolo (es. se x = 10 , n = -1.11022302463e-14 !)
-         if n >= 0:
-            x = math.sqrt(n)
-            p = QgsPointXY(x, y)
-            # verifico se il punto va bene
-            dist = qad_utils.getDistance(p, myCircle.center)
-            # se la distanza coincide con il raggio del cerchio
-            if qad_utils.doubleNear(dist, myCircle.radius, 1.e-1): # lo so che fa schifo ma l'approssimazione dei calcoli...
-               # traslo e ruoto il punto per riportarlo nella posizione originale (con il centro e la rotazione dell'ellisse originale)
-               p = ellipse.translateAndRotatePtForNormalEllipse(p, True)
-               qad_utils.appendUniquePointToList(result, p)
+      for intersection in intersections:
+         result.append(QgsPointXY(intersection[0], intersection[1]))
                
-            # verifico l'altra coordinata x
-            p = QgsPointXY(-x, y)
-            # verifico se il punto va bene
-            dist = qad_utils.getDistance(p, myCircle.center)
-            # se la distanza coincide con il raggio del cerchio
-            if qad_utils.doubleNear(dist, myCircle.radius, 1.e-1): # lo so che fa schifo ma l'approssimazione dei calcoli...
-               # traslo e ruoto il punto per riportarlo nella posizione originale (con il centro e la rotazione dell'ellisse originale)
-               p = ellipse.translateAndRotatePtForNormalEllipse(p, True)
-               qad_utils.appendUniquePointToList(result, p)
-
       return result
+   
+#       # http://it.scienza.matematica.narkive.com/cTzzSW1r/intersezione-tra-ellisse-e-circonferenza
+#       result = []
+# 
+#       # traslo e ruoto il centro del cerchio per confrontarlo con l'ellisse con centro in 0,0 e con rotazione = 0
+#       myCircle = QadCircle(circle)
+#       myCircle.center = ellipse.translateAndRotatePtForNormalEllipse(circle.center, False)
+# 
+#       a = qad_utils.getDistance(ellipse.center, ellipse.majorAxisFinalPt) # semiasse maggiore
+#       b = a * ellipse.axisRatio # semiasse minore
+#       
+#       a2 = a * a # a al quadrato
+#       a4 = a2 * a2 # a alla quarta
+#       b2 = b * b # b al quadrato
+#       c2 = (a / b) * (a / b)
+#       c4 = c2 * c2
+#       r = myCircle.radius
+#       r2 = r * r
+#       xc = myCircle.center.x() # x del centro del cerchio
+#       xc2 = xc * xc # x cerchio al quadrato
+#       yc = myCircle.center.y() # y del centro del cerchio
+#       yc2 = yc * yc # y cerchio al quadrato
+#       a2_b2 = a2 - b2
+# 
+# #       [a^4+(p^2+q^2-r^2)^2-2a^2(p^2-q^2+r^2] +
+# #       y [4q(r^2-a^2-p^2-q^2)] +
+# #       y^2 [2a^2-2a^2c^2+2p^2+2c^2p^2+6q^2-2c^2q^2-2r^2+2c^2r^2] +
+# #       y^3 [4c^2q-4q]+
+# #       y^4 [1-2c^2+c^4] = 0
+#       
+#       z0 = a4 + (xc2 + yc2 - r2) * (xc2 + yc2 - r2) - (2 * a2) * (xc2 - yc2 + r2)
+#       z1 = (4 * yc2) * (r2 - a2 - xc2 - yc2)
+#       z2 = (2 * a2) - (2 * a2 * c2) + 2 *xc2 + (2 * c2 * xc2) + (6 * yc2) - (2 *c2 * yc2) - (2 * r2) + (2 * c2 * r2)
+#       z3 = (4 * c2 * yc) - (4 * yc)
+#       z4 = 1 - (2 * c2) + c4
+# 
+#       y_result = numpy.roots([z4, z3, z2, z1, z0])
+#       for y in y_result:
+#          y = float(y)
+#          n = (1.0 - y * y / b2) * a2 # data la Y calcolo la X
+#          if qad_utils.doubleNear(n, 0): n = 0 # per problemi di precisione di calcolo (es. se x = 10 , n = -1.11022302463e-14 !)
+#          if n >= 0:
+#             x = math.sqrt(n)
+#             p = QgsPointXY(x, y)
+#             # verifico se il punto va bene
+#             dist = qad_utils.getDistance(p, myCircle.center)
+#             # se la distanza coincide con il raggio del cerchio
+#             if qad_utils.doubleNear(dist, myCircle.radius, 1.e-1): # lo so che fa schifo ma l'approssimazione dei calcoli...
+#                # traslo e ruoto il punto per riportarlo nella posizione originale (con il centro e la rotazione dell'ellisse originale)
+#                p = ellipse.translateAndRotatePtForNormalEllipse(p, True)
+#                qad_utils.appendUniquePointToList(result, p)
+#                
+#             # verifico l'altra coordinata x
+#             p = QgsPointXY(-x, y)
+#             # verifico se il punto va bene
+#             dist = qad_utils.getDistance(p, myCircle.center)
+#             # se la distanza coincide con il raggio del cerchio
+#             if qad_utils.doubleNear(dist, myCircle.radius, 1.e-1): # lo so che fa schifo ma l'approssimazione dei calcoli...
+#                # traslo e ruoto il punto per riportarlo nella posizione originale (con il centro e la rotazione dell'ellisse originale)
+#                p = ellipse.translateAndRotatePtForNormalEllipse(p, True)
+#                qad_utils.appendUniquePointToList(result, p)
+# 
+#       return result
 
 
    #===============================================================================
@@ -591,6 +668,39 @@ class QadIntersections():
    # metodi per le ellissi - inizio
    #===============================================================================
 
+  
+   #============================================================================
+   # getEquationForEllipse
+   # Definisce una funzione che rappresenta un'ellisse ruotata e traslata
+   # x e y: centro
+   # a e b: i semiassi dell'ellisse
+   # theta: l'angolo di rotazione dell'ellisse
+   # h e k: le traslazioni dell'ellisse rispetto all'origine.
+   #============================================================================
+   @staticmethod
+   def getEquationForEllipse(xy, ellipse):
+      x, y = xy
+      # Calcola la lunghezza dell'asse maggiore (a)
+      a = qad_utils.getDistance(ellipse.center, ellipse.majorAxisFinalPt)
+      # Calcola la lunghezza dell'asse minore (b)
+      b = a * ellipse.axisRatio      
+      # theta: l'angolo di rotazione dell'ellisse.
+      theta = ellipse.getRotation()
+      # h e k: le traslazioni dell'ellisse rispetto all'origine, coordinate centro
+      h = ellipse.center.x()
+      k = ellipse.center.y()
+
+      cos_t = np.cos(theta)
+      sin_t = np.sin(theta)
+      term1 = ((x - h) * cos_t + (y - k) * sin_t) ** 2 / a ** 2
+      term2 = ((x - h) * sin_t - (y - k) * cos_t) ** 2 / b ** 2
+      return term1 + term2 - 1
+
+   
+   @staticmethod
+   def sistema(xy, ellipse1, ellipse2):
+      return [QadIntersections.getEquationForEllipse(xy, ellipse1), QadIntersections.getEquationForEllipse(xy, ellipse2)]
+
    
    #===============================================================================
    # twoEllipses
@@ -598,10 +708,54 @@ class QadIntersections():
    @staticmethod
    def twoEllipses(ellipse1, ellipse2):
       """
-      La funzione ritorna i punti di intersezione tra 2 ellissi.
+      La funzione ritorna i punti di intersezione tra 2 ellissi (chatGPT)
       """
+#             
+#       # test
+#       center = QgsPointXY(2, 1)
+#       a = 5
+#       b = 3
+#       axisRatio = b / a
+#       theta = math.pi / 6
+#       ellipse1 = QadEllipse()
+#       majorAxisFinalPt = qad_utils.getPolarPointByPtAngle(center, theta, a)
+#       ellipse1.set(center, majorAxisFinalPt, axisRatio)
+#       
+#       center = QgsPointXY(-1, -2)
+#       a = 4
+#       b = 2
+#       axisRatio = b / a
+#       theta = math.pi / 4
+#       ellipse2 = QadEllipse()
+#       majorAxisFinalPt = qad_utils.getPolarPointByPtAngle(center, theta, a)
+#       ellipse2.set(center, majorAxisFinalPt, axisRatio)
+
+      
+      args = (ellipse1, ellipse2)
+      # Genera stime iniziali in una griglia intorno ai centri delle ellissi
+      x_vals = np.linspace(-10, 10, 10)
+      y_vals = np.linspace(-10, 10, 10)
+      stima_iniziali = np.array(np.meshgrid(x_vals, y_vals)).T.reshape(-1, 2)
+            
+      # Trova le intersezioni utilizzando fsolve da diverse stime iniziali
+      soluzioni = []
+      for stima in stima_iniziali:
+          soluzione = fsolve(QadIntersections.sistema, stima, args)
+          if QadIntersections.sistema(soluzione, ellipse1, ellipse2)[0] < 1e-6 and QadIntersections.sistema(soluzione, ellipse1, ellipse2)[1] < 1e-6:
+              soluzioni.append(soluzione)
+      
+      # Rimuovi soluzioni duplicate (vicine)
+      tolleranza = 1e-4
+      soluzioni_uniche = []
+      for sol in soluzioni:
+          if not any(np.linalg.norm(sol - s) < tolleranza for s in soluzioni_uniche):
+              soluzioni_uniche.append(sol)
+      
       result = []
-      return result # da fare
+      for sol in soluzioni_uniche:
+         result.append(QgsPointXY(sol[0], sol[1]))
+      
+      return result
 
 
    #===============================================================================
@@ -615,7 +769,7 @@ class QadIntersections():
       result = []
       circle = QadCircle()
       circle.set(arc.center, arc.radius)
-      intPtList = QadIntersections.circleWithEllipse(ellipse, circle)
+      intPtList = QadIntersections.circleWithEllipse(circle, ellipse)
       for intPt in intPtList:
          if arc.isPtOnArcOnlyByAngle(intPt):
             result.append(intPt)
@@ -804,7 +958,7 @@ class QadIntersections():
          elif object2.whatIs() == "ELLIPSE_ARC":
             ellipse = QadEllipse()
             ellipse.set(object2.center, object2.majorAxisFinalPt, object2.axisRatio)
-            return QadIntersections.ellipseWithEllipse(object1, ellipse)
+            return QadIntersections.twoEllipses(object1, ellipse)
 
       elif object1.whatIs() == "ELLIPSE_ARC":
          ellipse = QadEllipse()
@@ -1674,16 +1828,83 @@ class QadMinDistance():
          return [res2[0], res2[1], arc.getEndPt()]
 
 
+   @staticmethod
+   def distanza_quadratica(params, px, py, dx, dy, a, b, theta, h, k):
+      t, phi = params
+      # Parametri della retta: punto sulla retta (px, py) e vettore direzione (dx, dy)
+      # Parametri dell'ellisse: semiassi a, b, angolo di rotazione theta, centro (h, k)
+      # px, py, a, b, theta, h, k = line_ellipse
+      # Punto sulla retta
+      x_retta = px + t * dx
+      y_retta = py + t * dy
+      # Punto sull'ellisse (parametrizzato da phi)
+      x_ellisse = h + a * np.cos(phi) * np.cos(theta) - b * np.sin(phi) * np.sin(theta)
+      y_ellisse = k + a * np.cos(phi) * np.sin(theta) + b * np.sin(phi) * np.cos(theta)
+      # Distanza quadratica
+      distanza2 = (x_retta - x_ellisse)**2 + (y_retta - y_ellisse)**2
+      return distanza2
+
+
    #===============================================================================
-   # fromInfinityLineToEllipse
+   # fromInfinityLineToEllipse chatgpt
    #===============================================================================
-   @staticmethod   
+   @staticmethod
    def fromInfinityLineToEllipse(line, ellipse):
       """
       la funzione ritorna la distanza minima e i punti di distanza minima tra una linea infinita ed un'ellisse
       (<distanza minima><punto di distanza minima su linea infinita><punto di distanza minima su ellisse>)
       """
-      pass # da fare
+      
+      # test
+#       line = QadLine()
+#       line.set(QgsPointXY(1,1), QgsPointXY(2, 1))
+# 
+#       ellipse = QadEllipse()      
+#       center = QgsPointXY(2, 1)
+#       angle = np.pi / 6  # 30 gradi
+#       a = 5
+#       b = 3
+#       majorAxisFinalPt = qad_utils.getPolarPointByPtAngle(center, angle, a)
+#       ellipse.set(center, majorAxisFinalPt, b / a)
+      
+      
+      
+      # Parametri della retta: punto sulla retta (px, py) e vettore direzione (dx, dy)
+      px, py = line.getStartPt().x(), line.getStartPt().y()
+      dx, dy = line.getEndPt().x() - px, line.getEndPt().y() - py
+      
+      # Calcola la lunghezza dell'asse maggiore (a)
+      a = qad_utils.getDistance(ellipse.center, ellipse.majorAxisFinalPt)
+      # Calcola la lunghezza dell'asse minore (b)
+      b = a * ellipse.axisRatio      
+      # theta: l'angolo di rotazione dell'ellisse.
+      theta = ellipse.getRotation()
+      # h e k: le traslazioni dell'ellisse rispetto all'origine, coordinate centro
+      h = ellipse.center.x()
+      k = ellipse.center.y()      
+
+      args = (px, py,  dx, dy, a, b, theta, h, k)
+      
+      # Stima iniziale per t e phi
+      stima_iniziale = [0, 0]
+
+      # Minimizzazione della funzione di distanza quadratica
+      risultato = minimize(QadMinDistance.distanza_quadratica, stima_iniziale, args, method='Nelder-Mead')
+
+      # Estrazione dei risultati
+      t_min, phi_min = risultato.x
+      
+      # Calcolo dei punti di minima distanza
+      x_retta_min = px + t_min * dx
+      y_retta_min = py + t_min * dy
+      x_ellisse_min = h + a * np.cos(phi_min) * np.cos(theta) - b * np.sin(phi_min) * np.sin(theta)
+      y_ellisse_min = k + a * np.cos(phi_min) * np.sin(theta) + b * np.sin(phi_min) * np.cos(theta)
+      
+      ptRetta = QgsPointXY(x_retta_min, y_retta_min)
+      ptEllisse = QgsPointXY(x_ellisse_min, y_ellisse_min)
+      
+      return qad_utils.getDistance(ptRetta, ptEllisse), ptRetta, ptEllisse
+
 
 
    #===============================================================================
@@ -3019,7 +3240,7 @@ class QadTangency():
       arco, arco di ellisse, cerchio, ellisse.
       tanPt1 = punto di selezione geometria 1 di tangenza
       tanPt2 = punto di selezione geometria 2 di tangenza
-      """
+      """     
       if object1.whatIs() == "CIRCLE":
          if object2.whatIs() == "CIRCLE":
             return getLineWithStartEndPtsClosestToPts(QadTangency.twoCircles(object1, object2), tanPt1, tanPt2)
@@ -4666,4 +4887,6 @@ def appendPtOnTheSameTanDirectionOnly(line, pts, resultList):
       if qad_utils.ptNear(pt, line.pt1) or \
          qad_utils.doubleNear(angle, qad_utils.getAngleBy2Pts(line.pt1, pt)):
          resultList.append(pt)
+
+
 

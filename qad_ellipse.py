@@ -30,6 +30,7 @@ from qgis.gui import *
 
 import math
 import sys
+import numpy as np
 from copy import deepcopy
 
 try:
@@ -149,12 +150,12 @@ class QadEllipse():
       angle = self.getRotation()
       a = qad_utils.getDistance(self.center, self.majorAxisFinalPt) # semiasse maggiore
       b = a * self.axisRatio # semiasse minore
-
+ 
       pt1 = qad_utils.getPolarPointByPtAngle(self.majorAxisFinalPt, angle - math.pi / 2, b)
       pt2 = qad_utils.getPolarPointByPtAngle(self.majorAxisFinalPt, angle + math.pi / 2, b)
       pt3 = qad_utils.getPolarPointByPtAngle(pt1, angle + math.pi, 2 * a)
       pt4 = qad_utils.getPolarPointByPtAngle(pt2, angle + math.pi, 2 * a)
-      
+       
       xMin = pt1.x()
       yMin = pt1.y()
       xMax = pt1.x()
@@ -163,8 +164,8 @@ class QadEllipse():
          if pt.x() < xMin: xMin = pt.x()
          if pt.y() < yMin: yMin = pt.y()
          if pt.x() > xMax: xMax = pt.x()
-         if pt.y() > xMax: yMax = pt.y()
-         
+         if pt.y() > yMax: yMax = pt.y()
+          
       return QgsRectangle(xMin, yMin, xMax, yMax)
 
 
@@ -902,8 +903,6 @@ class QadEllipse():
       b = area / (math.pi * dist)
       return self.fromAxis1FinalPtsAxis2Len(axis1FinalPt1, axis1FinalPt2, b)
 
-  
- 
    
     
 # adopted from ArcheEngine.py from ArchoCAD plugin 
