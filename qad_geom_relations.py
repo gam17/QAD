@@ -32,16 +32,21 @@ from qgis.gui import *
 
 import math
 import sys
-import numpy as np
-from scipy.optimize import fsolve, minimize
+
+try:
+   import numpy as np
+except:
+   raise Exception("Need to have numpy installed")
+
+try:
+   from scipy.optimize import fsolve, minimize
+   NO_SCIPY = False
+except:
+   NO_SCIPY = True
+   # raise Exception("Need to have scipy installed")
 
 from .qad_line import QadLine
 from .qad_ellipse import QadEllipse
-
-try:
-   import numpy
-except:
-   raise Exception("Need to have numpy installed")
 
 from . import qad_utils
 from .qad_multi_geom import *
@@ -511,6 +516,8 @@ class QadIntersections():
       """
       La funzione ritorna i punti di intersezione tra un cerchio ed una ellisse.
       """
+      if NO_SCIPY == True: return []
+      
       # Calcola la lunghezza dell'asse maggiore (a)
       a = qad_utils.getDistance(ellipse.center, ellipse.majorAxisFinalPt)
       # Calcola la lunghezza dell'asse minore (b)
@@ -574,7 +581,7 @@ class QadIntersections():
 #       z3 = (4 * c2 * yc) - (4 * yc)
 #       z4 = 1 - (2 * c2) + c4
 # 
-#       y_result = numpy.roots([z4, z3, z2, z1, z0])
+#       y_result = np.roots([z4, z3, z2, z1, z0])
 #       for y in y_result:
 #          y = float(y)
 #          n = (1.0 - y * y / b2) * a2 # data la Y calcolo la X
@@ -710,6 +717,7 @@ class QadIntersections():
       """
       La funzione ritorna i punti di intersezione tra 2 ellissi (chatGPT)
       """
+      if NO_SCIPY == True: return []
 #             
 #       # test
 #       center = QgsPointXY(2, 1)
@@ -1583,7 +1591,7 @@ class QadPerpendicularity():
       c1 = 2 * a2 * a2 * xp * a2_b2
       c0 = -1 * (a2 * a2 * a2) * xp2
       
-      x_result = numpy.roots([c4, c3, c2, c1, c0])
+      x_result = np.roots([c4, c3, c2, c1, c0])
       for x in x_result:
          n = (1.0 - x * x / a2) * b2 # data la X calcolo la Y
          if qad_utils.doubleNear(n, 0): n = 0 # per problemi di precisione di calcolo (es. se x = 10 , n = -1.11022302463e-14 !)
@@ -1854,6 +1862,7 @@ class QadMinDistance():
       la funzione ritorna la distanza minima e i punti di distanza minima tra una linea infinita ed un'ellisse
       (<distanza minima><punto di distanza minima su linea infinita><punto di distanza minima su ellisse>)
       """
+      if NO_SCIPY == True: return []
       
       # test
 #       line = QadLine()
@@ -2150,7 +2159,39 @@ class QadMinDistance():
       la funzione ritorna la distanza minima e i punti di distanza minima tra 2 cerchi
       (<distanza minima><punto di distanza minima su cerchio1><punto di distanza minima su cerchio2>)
       """
-      pass # da fare
+      intersections = QadIntersections.twoCircles(circle1, circle2)
+      if len(intersections) > 0:
+         return [0.0, intersections[0], intersections[0]]
+      
+      angle = qad_utils.getAngleBy2Pts(circle1.center, circle2.center)
+      pt1Circle1 = qad_utils.getPolarPointByPtAngle(circle1.center, angle, circle1.radius)
+      pt2Circle1 = qad_utils.getPolarPointByPtAngle(circle1.center, angle, -circle1.radius)
+      pt1Circle2 = qad_utils.getPolarPointByPtAngle(circle2.center, angle, circle2.radius)
+      pt2Circle2 = qad_utils.getPolarPointByPtAngle(circle2.center, angle, -circle2.radius)
+      
+      minDistance = qad_utils.getDistance(pt1Circle1, pt1Circle2)
+      ptMinDistanceCircle1 = pt1Circle1
+      ptMinDistanceCircle2 = pt1Circle2
+
+      dist = qad_utils.getDistance(pt1Circle1, pt2Circle2)
+      if dist < minDistance:
+         minDistance = dist
+         ptMinDistanceCircle1 = pt1Circle1
+         ptMinDistanceCircle2 = pt2Circle2
+         
+      dist = qad_utils.getDistance(pt2Circle1, pt1Circle2)
+      if dist < minDistance:
+         minDistance = dist
+         ptMinDistanceCircle1 = pt2Circle1
+         ptMinDistanceCircle2 = pt1Circle2
+         
+      dist = qad_utils.getDistance(pt2Circle1, pt2Circle2)
+      if dist < minDistance:
+         minDistance = dist
+         ptMinDistanceCircle1 = pt2Circle1
+         ptMinDistanceCircle2 = pt2Circle2
+
+      return [minDistance, ptMinDistanceCircle1, ptMinDistanceCircle2]
 
 
    #===============================================================================
@@ -2162,7 +2203,40 @@ class QadMinDistance():
       la funzione ritorna la distanza minima e i punti di distanza minima tra un cerchio ed un arco
       (<distanza minima><punto di distanza minima su cerchio><punto di distanza minima su arco>)
       """
-      pass # da fare
+      intersections = QadIntersections.circleWithArc(circle, arc)
+      if len(intersections) > 0:
+         return [0.0, intersections[0], intersections[0]]
+
+      pt1Arc = arc.getStartPt()
+      pt2Arc = arc.getEndPt()
+      
+      angle = qad_utils.getAngleBy2Pts(circle.center, pt1Arc)
+      ptCircle = qad_utils.getPolarPointByPtAngle(circle.center, angle, circle.radius)
+      minDistance = qad_utils.getDistance(ptCircle, pt1Arc)
+      ptMinDistanceCircle = ptCircle
+      ptMinDistanceArc = pt1Arc      
+
+      angle = qad_utils.getAngleBy2Pts(circle.center, pt2Arc)
+      ptCircle = qad_utils.getPolarPointByPtAngle(circle.center, angle, circle.radius)
+      dist = qad_utils.getDistance(ptCircle, pt2Arc)
+      if dist < minDistance:
+         minDistance = dist
+         ptMinDistanceCircle = ptCircle
+         ptMinDistanceArc = pt2Arc
+                
+      line = qadLine()
+      line.set(circle.center, arc.center)
+      intersections = QadIntersections.infinityLineWithArc(qadLine, arc)
+      if len(intersections) > 0:
+         angle = qad_utils.getAngleBy2Pts(circle.center, arc.center)
+         ptCircle = qad_utils.getPolarPointByPtAngle(circle.center, angle, circle.radius)
+         dist = qad_utils.getDistance(ptCircle, intersections[0])
+         if dist < minDistance:
+            minDistance = dist
+            ptMinDistanceCircle = ptCircle
+            ptMinDistanceArc = intersections[0]
+      
+      return [minDistance, ptMinDistanceCircle, ptMinDistanceArc]
 
 
    #===============================================================================

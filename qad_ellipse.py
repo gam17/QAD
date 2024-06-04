@@ -30,13 +30,7 @@ from qgis.gui import *
 
 import math
 import sys
-import numpy as np
 from copy import deepcopy
-
-try:
-   import numpy
-except:
-   raise Exception("Need to have numpy installed")
 
 from . import qad_utils
 from .qad_variables import QadVariables
