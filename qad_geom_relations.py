@@ -46,7 +46,10 @@ except:
    # raise Exception("Need to have scipy installed")
 
 from .qad_line import QadLine
+from .qad_circle import QadCircle
+from .qad_arc import QadArc
 from .qad_ellipse import QadEllipse
+from .qad_ellipse_arc import QadEllipseArc
 
 from . import qad_utils
 from .qad_multi_geom import *
@@ -718,16 +721,22 @@ class QadIntersections():
       La funzione ritorna i punti di intersezione tra 2 ellissi (chatGPT)
       """
       if NO_SCIPY == True: return []
-#             
-#       # test
-#       center = QgsPointXY(2, 1)
-#       a = 5
-#       b = 3
+      
+      # test
+#       l1 = QadLine()
+#       l1.set(QgsPointXY(1, 2), QgsPointXY(3, 4))
+#       
+#       center = QgsPointXY(0, 0)
+#       a = 2
+#       b = 1
 #       axisRatio = b / a
-#       theta = math.pi / 6
+#       theta = math.pi / 4
 #       ellipse1 = QadEllipse()
 #       majorAxisFinalPt = qad_utils.getPolarPointByPtAngle(center, theta, a)
 #       ellipse1.set(center, majorAxisFinalPt, axisRatio)
+#       QadMinDistance.fromLineToEllipse(l1, ellipse1)
+      
+#             
 #       
 #       center = QgsPointXY(-1, -2)
 #       a = 4
@@ -1837,7 +1846,7 @@ class QadMinDistance():
 
 
    @staticmethod
-   def distanza_quadratica(params, px, py, dx, dy, a, b, theta, h, k):
+   def distanza_infinityLine_ellipse(params, px, py, dx, dy, a, b, theta, h, k):
       t, phi = params
       # Parametri della retta: punto sulla retta (px, py) e vettore direzione (dx, dy)
       # Parametri dell'ellisse: semiassi a, b, angolo di rotazione theta, centro (h, k)
@@ -1898,7 +1907,7 @@ class QadMinDistance():
       stima_iniziale = [0, 0]
 
       # Minimizzazione della funzione di distanza quadratica
-      risultato = minimize(QadMinDistance.distanza_quadratica, stima_iniziale, args, method='Nelder-Mead')
+      risultato = minimize(QadMinDistance.distanza_infinityLine_ellipse, stima_iniziale, args, method='Nelder-Mead')
 
       # Estrazione dei risultati
       t_min, phi_min = risultato.x
@@ -2105,8 +2114,21 @@ class QadMinDistance():
          return bestResult # (<distanza minima><punto di distanza minima su linea><punto di distanza minima su arco>)
 
 
+   @staticmethod
+   def distanza_line_ellipse(params, line, ellipse):
+      t, theta = params
+      x_segment = (1 - t) * line.getStartPt().x() + t * line.getEndPt().x()
+      y_segment = (1 - t) * line.getStartPt().y() + t * line.getEndPt().y()
+      
+      pt_ellipse = ellipse.getPointAtAngle(theta)
+      x_ellipse = pt_ellipse.x()
+      y_ellipse = pt_ellipse.y()
+        
+      return np.sqrt((x_segment - x_ellipse) ** 2 + (y_segment - y_ellipse) ** 2)
+   
+
    #===============================================================================
-   # fromLineToEllipse
+   # fromLineToEllipse chatgpt
    #===============================================================================
    @staticmethod
    def fromLineToEllipse(line, ellipse):
@@ -2114,9 +2136,31 @@ class QadMinDistance():
       la funzione ritorna la distanza minima e i punti di distanza minima tra un segmento ed un'ellisse
       (<distanza minima><punto di distanza minima su linea><punto di distanza minima su ellisse>)
       """
-      pass # da fare
+      if NO_SCIPY == True: return []
+      
+      initial_guess = [0.5, 0]
+      bounds = [(0, 1), (0, 2 * np.pi)]
+    
+      args = (line, ellipse)
+      
+      result = minimize(QadMinDistance.distanza_line_ellipse, initial_guess, args, bounds=bounds)
+      
+      if result.success:
+        t_opt, theta_opt = result.x
+        x_segment_opt = (1 - t_opt) * line.getStartPt().x() + t_opt * line.getEndPt().x()
+        y_segment_opt = (1 - t_opt) * line.getStartPt().y() + t_opt * line.getEndPt().y()
+        
+        pt_ellipse = ellipse.getPointAtAngle(theta_opt)
+        x_ellipse_opt = pt_ellipse.x()
+        y_ellipse_opt = pt_ellipse.y()
+        
+        min_distance = result.fun
+        
+        return [min_distance, QgsPointXY(x_segment_opt, y_segment_opt), QgsPointXY(x_ellipse_opt, y_ellipse_opt)]
+      else:
+         raise []     
 
-
+     
    #===============================================================================
    # fromLineToEllipseArc
    #===============================================================================
@@ -2126,6 +2170,7 @@ class QadMinDistance():
       la funzione ritorna la distanza minima e i punti di distanza minima tra un segmento ed un arco di ellisse
       (<distanza minima><punto di distanza minima su linea><punto di distanza minima su arco di ellisse>)
       """
+    
       pass # da fare
 
 
@@ -2224,9 +2269,9 @@ class QadMinDistance():
          ptMinDistanceCircle = ptCircle
          ptMinDistanceArc = pt2Arc
                 
-      line = qadLine()
+      line = QadLine()
       line.set(circle.center, arc.center)
-      intersections = QadIntersections.infinityLineWithArc(qadLine, arc)
+      intersections = QadIntersections.infinityLineWithArc(line, arc)
       if len(intersections) > 0:
          angle = qad_utils.getAngleBy2Pts(circle.center, arc.center)
          ptCircle = qad_utils.getPolarPointByPtAngle(circle.center, angle, circle.radius)

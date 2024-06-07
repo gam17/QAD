@@ -35,6 +35,7 @@ from copy import deepcopy
 from . import qad_utils
 from .qad_variables import QadVariables
 from .qad_msg import QadMsg
+from .qad_point import QadPoint
 
 
 #===============================================================================
@@ -446,6 +447,35 @@ class QadEllipse():
                    
       return QgsPointXY(x, y)
    
+
+   #============================================================================
+   # getPointAtAngle
+   #============================================================================
+   def getPointAtAngle(self, angle):
+      """
+      Trova il punto sull'ellisse
+      n.b. La funzione non tiene conto se si tratta di un arco di ellisse
+      """
+      axis_a = qad_utils.getDistance(self.center, self.majorAxisFinalPt)
+      axis_b = axis_a * self.axisRatio
+      rot = qad_utils.getAngleBy2Pts(self.center, self.majorAxisFinalPt)
+      
+      x = axis_a * math.cos(rot)
+      y = axis_b * math.sin(rot)
+      
+      cos_angle = math.cos(angle)
+      sin_angle = math.sin(angle)
+      
+      x_new = x * cos_angle - y * sin_angle
+      y_new = x * sin_angle + y * cos_angle      
+      
+      pt = QadPoint()
+      pt.setX(x_new)
+      pt.setY(y_new)
+      pt.move(self.center.x(), self.center.y())
+                   
+      return pt
+
 
    #============================================================================
    # getNextParamPt
