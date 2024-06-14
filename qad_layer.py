@@ -109,52 +109,57 @@ def addPointToLayer(plugIn, layer, point, transform = True, refresh = True, chec
    nel sistema di coordinate del layer allora non va trasformato se invece é nel
    sistema map-coordinate allora transform deve essere = True
    """
-   if len(points) < 2:
-      return False
-     
-   f = QgsFeature()
-   
    if transform:
       transformedPoint = plugIn.canvas.mapSettings().mapToLayerCoordinates(layer, point)
       g = QgsGeometry.fromPointXY(transformedPoint)
    else:
       g = QgsGeometry.fromPointXY(point)
 
-   if check_validity:
-      if not g.isGeosValid():
-         return False
-      
-   f.setGeometry(g)
+   return addGeomToLayer(plugIn, layer, g, None, refresh, check_validity, openForm)
    
-   # Add attributefields to feature.
-   fields = layer.fields()
-   f.setFields(fields)
-
-   # assegno i valori di default
-   provider = layer.dataProvider()
-   for field in fields.toList():
-      i = fields.indexFromName(field.name())
-      f[field.name()] = provider.defaultValue(i)
-
-   if openForm == True:
-      if get_Disable_enter_attribute_values_dialog() == False:
-         if plugIn.iface.openFeatureForm(layer, f, True) == False:
-            return False
-
-   if refresh == True:
-      plugIn.beginEditCommand("Feature added", layer)
-
-   if layer.addFeature(f):
-      if refresh == True:
-         plugIn.endEditCommand()
-      plugIn.setLastEntity(layer, f.id())
-      result = True
-   else:
-      if refresh == True:
-         plugIn.destroyEditCommand()
-      result = False
-      
-   return result
+#    f = QgsFeature()
+#    
+#    if transform:
+#       transformedPoint = plugIn.canvas.mapSettings().mapToLayerCoordinates(layer, point)
+#       g = QgsGeometry.fromPointXY(transformedPoint)
+#    else:
+#       g = QgsGeometry.fromPointXY(point)
+# 
+#    if check_validity:
+#       if not g.isGeosValid():
+#          return False
+#       
+#    f.setGeometry(g)
+#    
+#    # Add attributefields to feature.
+#    fields = layer.fields()
+#    f.setFields(fields)
+# 
+#    # assegno i valori di default
+#    provider = layer.dataProvider()
+#    for field in fields.toList():
+#       i = fields.indexFromName(field.name())
+#       f[field.name()] = provider.defaultValue(i)
+# 
+#    if openForm == True:
+#       if get_Disable_enter_attribute_values_dialog() == False:
+#          if plugIn.iface.openFeatureForm(layer, f, True) == False:
+#             return False
+# 
+#    if refresh == True:
+#       plugIn.beginEditCommand("Feature added", layer)
+# 
+#    if layer.addFeature(f):
+#       if refresh == True:
+#          plugIn.endEditCommand()
+#       plugIn.setLastEntity(layer, f.id())
+#       result = True
+#    else:
+#       if refresh == True:
+#          plugIn.destroyEditCommand()
+#       result = False
+#       
+#    return result
 
 
 #===============================================================================
@@ -168,8 +173,6 @@ def addLineToLayer(plugIn, layer, points, transform = True, refresh = True, chec
    """
    if len(points) < 2: # almeno 2 punti
       return False
-     
-   f = QgsFeature()
    
    if transform:
       layerPoints = []
@@ -179,42 +182,58 @@ def addLineToLayer(plugIn, layer, points, transform = True, refresh = True, chec
       g = QgsGeometry.fromPolylineXY(layerPoints)
    else:
       g = QgsGeometry.fromPolylineXY(points)
-
-   if check_validity:
-      if not g.isGeosValid():
-         return False
-      
-   f.setGeometry(g)
    
-   # Add attributefields to feature.
-   fields = layer.fields()
-   f.setFields(fields)
-
-   # assegno i valori di default
-   provider = layer.dataProvider()
-   for field in fields.toList():
-      i = fields.indexFromName(field.name())
-      f[field.name()] = provider.defaultValue(i)
-
-   if openForm == True:
-      if get_Disable_enter_attribute_values_dialog() == False:
-         if plugIn.iface.openFeatureForm(layer, f, True) == False:
-            return False
-      
-   if refresh == True:
-      plugIn.beginEditCommand("Feature added", layer)
-
-   if layer.addFeature(f):
-      if refresh == True:
-         plugIn.endEditCommand()
-      plugIn.setLastEntity(layer, f.id())
-      result = True
-   else:
-      if refresh == True:
-         plugIn.destroyEditCommand()
-      result = False
-      
-   return result
+   return addGeomToLayer(plugIn, layer, g, None, refresh, check_validity, openForm)
+   
+#    if len(points) < 2: # almeno 2 punti
+#       return False
+#      
+#    f = QgsFeature()
+#    
+#    if transform:
+#       layerPoints = []
+#       for point in points:
+#          transformedPoint = plugIn.canvas.mapSettings().mapToLayerCoordinates(layer, point)
+#          layerPoints.append(transformedPoint)    
+#       g = QgsGeometry.fromPolylineXY(layerPoints)
+#    else:
+#       g = QgsGeometry.fromPolylineXY(points)
+# 
+#    if check_validity:
+#       if not g.isGeosValid():
+#          return False
+#       
+#    f.setGeometry(g)
+#    
+#    # Add attributefields to feature.
+#    fields = layer.fields()
+#    f.setFields(fields)
+# 
+#    # assegno i valori di default
+#    provider = layer.dataProvider()
+#    for field in fields.toList():
+#       i = fields.indexFromName(field.name())
+#       f[field.name()] = provider.defaultValue(i)
+# 
+#    if openForm == True:
+#       if get_Disable_enter_attribute_values_dialog() == False:
+#          if plugIn.iface.openFeatureForm(layer, f, True) == False:
+#             return False
+#       
+#    if refresh == True:
+#       plugIn.beginEditCommand("Feature added", layer)
+# 
+#    if layer.addFeature(f):
+#       if refresh == True:
+#          plugIn.endEditCommand()
+#       plugIn.setLastEntity(layer, f.id())
+#       result = True
+#    else:
+#       if refresh == True:
+#          plugIn.destroyEditCommand()
+#       result = False
+#       
+#    return result
 
 
 #===============================================================================
@@ -228,9 +247,7 @@ def addPolygonToLayer(plugIn, layer, points, transform = True, refresh = True, c
    """
    if len(points) < 3: # almeno 4 punti (il primo e l'ultimo sono uguali)
       return False
-     
-   f = QgsFeature()
-   
+          
    if transform:
       layerPoints = []
       for point in points:
@@ -240,41 +257,57 @@ def addPolygonToLayer(plugIn, layer, points, transform = True, refresh = True, c
    else:
       g = QgsGeometry.fromPolygonXY([points])
 
-   if check_validity:
-      if not g.isGeosValid():
-         return False
-         
-   f.setGeometry(g)
+   return addGeomToLayer(plugIn, layer, g, None, refresh, check_validity, openForm)
    
-   # Add attributefields to feature.
-   fields = layer.fields()
-   f.setFields(fields)
-
-   # assegno i valori di default
-   provider = layer.dataProvider()
-   for field in fields.toList():
-      i = fields.indexFromName(field.name())
-      f[field.name()] = provider.defaultValue(i)
-
-   if openForm == True:
-      if get_Disable_enter_attribute_values_dialog() == False:
-         if plugIn.iface.openFeatureForm(layer, f, True) == False:
-            return False
-
-   if refresh == True:
-      plugIn.beginEditCommand("Feature added", layer)
-
-   if layer.addFeature(f):
-      if refresh == True:
-         plugIn.endEditCommand()
-      plugIn.setLastEntity(layer, f.id())
-      result = True
-   else:
-      if refresh == True:
-         plugIn.destroyEditCommand()
-      result = False
-      
-   return result
+#    if len(points) < 3: # almeno 4 punti (il primo e l'ultimo sono uguali)
+#       return False
+#      
+#    f = QgsFeature()
+#    
+#    if transform:
+#       layerPoints = []
+#       for point in points:
+#          transformedPoint = plugIn.canvas.mapSettings().mapToLayerCoordinates(layer, point)
+#          layerPoints.append(transformedPoint)      
+#       g = QgsGeometry.fromPolygonXY([layerPoints])
+#    else:
+#       g = QgsGeometry.fromPolygonXY([points])
+# 
+#    if check_validity:
+#       if not g.isGeosValid():
+#          return False
+#          
+#    f.setGeometry(g)
+#    
+#    # Add attributefields to feature.
+#    fields = layer.fields()
+#    f.setFields(fields)
+# 
+#    # assegno i valori di default
+#    provider = layer.dataProvider()
+#    for field in fields.toList():
+#       i = fields.indexFromName(field.name())
+#       f[field.name()] = provider.defaultValue(i)
+# 
+#    if openForm == True:
+#       if get_Disable_enter_attribute_values_dialog() == False:
+#          if plugIn.iface.openFeatureForm(layer, f, True) == False:
+#             return False
+# 
+#    if refresh == True:
+#       plugIn.beginEditCommand("Feature added", layer)
+# 
+#    if layer.addFeature(f):
+#       if refresh == True:
+#          plugIn.endEditCommand()
+#       plugIn.setLastEntity(layer, f.id())
+#       result = True
+#    else:
+#       if refresh == True:
+#          plugIn.destroyEditCommand()
+#       result = False
+#       
+#    return result
 
 
 #===============================================================================
@@ -286,8 +319,6 @@ def addGeomToLayer(plugIn, layer, geom, coordTransform = None, refresh = True, c
    deve essere passato il parametro <coordTransform> di tipo QgsCoordinateTransform.
    refresh controlla la transazione del comando e il refresh del canvas
    """     
-   f = QgsFeature()
-   
    g = QgsGeometry(geom)
    if coordTransform is not None:
       g.transform(coordTransform)            
@@ -295,39 +326,68 @@ def addGeomToLayer(plugIn, layer, geom, coordTransform = None, refresh = True, c
    if check_validity:
       if not g.isGeosValid():
          return False
-      
-   f.setGeometry(g)
    
-   # Add attributefields to feature.
-   fields = layer.fields()
-   f.setFields(fields)
-
-   # assegno i valori di default
-   provider = layer.dataProvider()
-   for field in fields.toList():
-      i = fields.indexFromName(field.name())
-      f[field.name()] = provider.defaultValue(i)
-
+   f = QgsVectorLayerUtils.createFeature(layer, g, {}, layer.createExpressionContext())
+   if refresh == True: plugIn.beginEditCommand("Feature added", layer)
+   if layer.addFeature(f) == False: 
+      if refresh == True: plugIn.destroyEditCommand()
+      return False
+    
    if openForm == True:
       if get_Disable_enter_attribute_values_dialog() == False:
-         if plugIn.iface.openFeatureForm(layer, f, True) == False:
+         if plugIn.iface.openFeatureForm(layer, f) == False:
+            if refresh == True: plugIn.destroyEditCommand()
+            re = layer.deleteFeature(f.id())
             return False
 
-   if refresh == True:
-      plugIn.beginEditCommand("Feature added", layer)
-
-   if layer.addFeature(f):
-      if refresh == True:
-         plugIn.endEditCommand()
-      plugIn.setLastEntity(layer, f.id())
-      result = True
-   else:
-      if refresh == True:
-         plugIn.destroyEditCommand()
-      result = False
+   if refresh == True: plugIn.endEditCommand()
+   plugIn.setLastEntity(layer, f.id())
       
-   return result
+   return True
 
+#    f = QgsFeature()
+#    
+#    g = QgsGeometry(geom)
+#    if coordTransform is not None:
+#       g.transform(coordTransform)            
+# 
+#    if check_validity:
+#       if not g.isGeosValid():
+#          return False
+#       
+#    f.setGeometry(g)
+#    
+#    # Add attribute fields to feature.
+#    fields = layer.fields()
+#    f.setFields(fields)
+# 
+#    # assegno i valori di default
+#    provider = layer.dataProvider()
+#    for field in fields.toList():
+#       i = fields.indexFromName(field.name())
+#       f[field.name()] = provider.defaultValue(i)
+#   
+#    f = QgsVectorLayerUtils.createFeature(layer, g, {}, layer.createExpressionContext())
+#     
+#    if openForm == True:
+#       if get_Disable_enter_attribute_values_dialog() == False:
+#          if plugIn.iface.openFeatureForm(layer, f) == False:
+#             return False
+# 
+#    if refresh == True:
+#       plugIn.beginEditCommand("Feature added", layer)
+# 
+#    if layer.addFeature(f):
+#       if refresh == True:
+#          plugIn.endEditCommand()
+#       plugIn.setLastEntity(layer, f.id())
+#       result = True
+#    else:
+#       if refresh == True:
+#          plugIn.destroyEditCommand()
+#       result = False
+#       
+#    return result
 
 #===============================================================================
 # addGeomsToLayer

@@ -593,11 +593,16 @@ class QadArc(QadCircle):
    #===============================================================================
    # asCircularString
    #===============================================================================
-   def asCircularString(self):
+   def asCircularString(self, forcedStartPt = None):
       """
       la funzione ritorna l'arco in forma di circularString.
+      Quando l'arco fa parte di una polilinea è necessario che il suo punto iniziale coincida con quello finale della parte precedente
+      percui il punto iniziale viene forzato.
       """
-      return QgsCircularString(QgsPoint(self.getStartPt()), QgsPoint(self.getMiddlePt()), QgsPoint(self.getEndPt()))
+      if forcedStartPt is None:
+         return QgsCircularString(QgsPoint(self.getStartPt()), QgsPoint(self.getMiddlePt()), QgsPoint(self.getEndPt()))
+      else:
+         return QgsCircularString(QgsPoint(forcedStartPt), QgsPoint(self.getMiddlePt()), QgsPoint(self.getEndPt()))
 
 
    #===============================================================================
@@ -1077,7 +1082,7 @@ class QadArc(QadCircle):
       secondPt = qad_utils.mirrorPoint(self.getMiddlePt(), mirrorPt, mirrorAngle)
       endPt = qad_utils.mirrorPoint(self.getEndPt(), mirrorPt, mirrorAngle)
       self.fromStartSecondEndPts(startPt, secondPt, endPt)
-      self.reversed = not self.reversed  # cambio la direzione dell'arco
+      #self.reversed = not self.reversed  # cambio la direzione dell'arco
 
 
    #===============================================================================

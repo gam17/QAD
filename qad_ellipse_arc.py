@@ -498,11 +498,16 @@ class QadEllipseArc(QadEllipse):
    #===============================================================================
    # asLineString
    #===============================================================================
-   def asLineString(self, tolerance2ApproxCurve = None, atLeastNSegment = None):
+   def asLineString(self, tolerance2ApproxCurve = None, atLeastNSegment = None, forcedStartPt = None):
       """
       la funzione ritorna l'ellisse in forma di lineString.
+      Quando l'arco di ellisse fa parte di una polilinea è necessario che il suo punto iniziale coincida con quello finale della parte precedente
+      percui il punto iniziale viene forzato.
       """
-      return QgsLineString(self.asPolyline(tolerance2ApproxCurve, atLeastNSegment))
+      pts = self.asPolyline(tolerance2ApproxCurve, atLeastNSegment)
+      if forcedStartPt is not None:
+         pts[0] = QgsPointXY(forcedStartPt)
+      return QgsLineString(pts)
 
 
    #===============================================================================

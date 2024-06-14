@@ -555,13 +555,18 @@ class QadLine():
    #===============================================================================
    # asLineString
    #===============================================================================
-   def asLineString(self, tolerance2ApproxCurve = None, atLeastNSegment = None):
+   def asLineString(self, tolerance2ApproxCurve = None, atLeastNSegment = None, forcedStartPt = None):
       """
       la funzione ritorna la linea in forma di lineString.
       tolerance2ApproxCurve e atLeastNSegment sono usati solo per compatibilità
+      Quando la linea fa parte di una polilinea è necessario che il suo punto iniziale coincida con quello finale della parte precedente
+      percui il punto iniziale viene forzato.      
       """
-      return QgsLineString(QgsPoint(self.getStartPt()), QgsPoint(self.getEndPt()))
-
+      if forcedStartPt is None:
+         return QgsLineString(QgsPoint(self.getStartPt()), QgsPoint(self.getEndPt()))
+      else:
+         return QgsLineString(QgsPoint(forcedStartPt), QgsPoint(self.getEndPt()))
+      
 
    #===============================================================================
    # asAbstractGeom

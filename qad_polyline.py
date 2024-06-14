@@ -483,11 +483,14 @@ class QadPolyline():
       la funzione ritorna la polilinea in forma di compoundString.
       """
       compoundCurve = QgsCompoundCurve()
+      lastPt = None
       for linearObject in self.defList:
          if linearObject.whatIs() == "ARC":
-            compoundCurve.addCurve(linearObject.asCircularString())
+            compoundCurve.addCurve(linearObject.asCircularString(lastPt))
          else:
-            compoundCurve.addCurve(linearObject.asLineString(tolerance2ApproxCurve, atLeastNSegment))              
+            compoundCurve.addCurve(linearObject.asLineString(tolerance2ApproxCurve, atLeastNSegment, lastPt))
+         lastPt = linearObject.getEndPt()
+               
       return compoundCurve
 
 
