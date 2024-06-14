@@ -34,6 +34,7 @@ from ..qad_polyline import QadPolyline
 from ..qad_arc import QadArc
 from ..qad_rubberband import QadRubberBand
 from ..qad_highlight import QadHighlight
+from ..qad_entity import QadEntity
 
 
 #===============================================================================

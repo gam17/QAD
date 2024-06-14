@@ -908,11 +908,11 @@ class QadGRIPCHANGEARCRADIUSCommandClass(QadCommandClass):
       for entityGripPoints in entitySetGripPoints.entityGripPoints:
          for gripPoint in entityGripPoints.gripPoints:
             # grip point selezionato
-            if gripPoint.getStatus() == qad_grip.QadGripStatusEnum.SELECTED:
+            if gripPoint.getStatus() == QadGripStatusEnum.SELECTED:
                # verifico se l'entità appartiene ad uno stile di quotatura
                if QadDimStyles.isDimEntity(entityGripPoints.entity):
                   return False
-               if entityGripPoints.qadGeom.whatIs() != "ARC":
+               if entityGripPoints.entity.getQadGeom().whatIs() != "ARC":
                   return False
                
                self.entity = entityGripPoints.entity
