@@ -90,6 +90,14 @@ class QadPolyline():
       return not self.__eq__(polyline)
 
 
+   def equals(self, polyline):
+      # uguali geometricamente (NON conta il verso)
+      if polyline.whatIs() != "POLYLINE": return False
+      if self.__eq__(polyline): return True
+      dummy = polyline.copy()
+      dummy.reverse()
+      return self.__eq__(dummy)
+
    #============================================================================
    # append
    #============================================================================

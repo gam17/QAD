@@ -311,7 +311,7 @@ class QadSnapper():
    #============================================================================
    # OSnapPointsForPolar
    #============================================================================      
-   def __toggleOSnapPointsForPolar(self, point, oSnapPointsForPolar, snapMarkerSizeInMapUnits):
+   def __toggleOSnapPointsForPolar(self, mousePoint, oSnapPointsForPolar, snapMarkerSizeInMapUnits = None):
       """
       Aggiunge un punto di osnap usati per l'opzione polare
       se non ancora inserito in lista altrimenti lo rimuove dalla lista
@@ -320,35 +320,60 @@ class QadSnapper():
       """
       del self.__oSnapLinesForPolar[:]
       
-      autoSnapSize = QadVariables.get(QadMsg.translate("Environment variables", "AUTOSNAPSIZE"))
-      
-      for itemToToggle in oSnapPointsForPolar.items():
-         key = itemToToggle[0]
-         # non considero alcuni tipi di snap
-         if key == QadSnapTypeEnum.INT or key == QadSnapTypeEnum.PER or key == QadSnapTypeEnum.TAN or \
-            key == QadSnapTypeEnum.NEA or key == QadSnapTypeEnum.APP or key == QadSnapTypeEnum.EXT or \
-            key == QadSnapTypeEnum.PAR or key == QadSnapTypeEnum.PR or key == QadSnapTypeEnum.EXT_INT or \
-            key == QadSnapTypeEnum.PER_DEF or key == QadSnapTypeEnum.TAN_DEF or key == QadSnapTypeEnum.POLAR:
-            continue
-         
+      markerSize = QadVariables.get(QadMsg.translate("Environment variables", "AUTOSNAPSIZE")) if snapMarkerSizeInMapUnits is None else snapMarkerSizeInMapUnits
+
+      for itemToToggle in oSnapPointsForPolar.items():                  
          for ptToToggle in itemToToggle[1]: # per ogni punto
-            # il punto <point> deve essere dentro il punto di snap che ha dimensioni snapMarkerSizeInMapUnits
-            if point.x() >= ptToToggle.x() - snapMarkerSizeInMapUnits and point.x() <= ptToToggle.x() + snapMarkerSizeInMapUnits and \
-               point.y() >= ptToToggle.y() - snapMarkerSizeInMapUnits and point.y() <= ptToToggle.y() + snapMarkerSizeInMapUnits: 
+            # se il punto <point> è dentro il marker del punto di snap che ha dimensioni markerSize
+            if mousePoint.x() >= ptToToggle.x() - markerSize and mousePoint.x() <= ptToToggle.x() + markerSize and \
+               mousePoint.y() >= ptToToggle.y() - markerSize and mousePoint.y() <= ptToToggle.y() + markerSize: 
                add = True
                for item in self.__oSnapPointsForPolar.items():
-                  i = 0
-                  for pt in item[1]:
-                     if pt == ptToToggle:
-                        del item[1][i]
+                  polarPts = item[1]
+                  for i in range(len(polarPts) - 1, -1, -1):
+                     polarPt = polarPts[i]
+                     # se il punto <point> è dentro il marker del punto di snap polare che ha dimensioni markerSize
+                     if mousePoint.x() >= polarPt.x() - markerSize and mousePoint.x() <= polarPt.x() + markerSize and \
+                        mousePoint.y() >= polarPt.y() - markerSize and mousePoint.y() <= polarPt.y() + markerSize: 
+                        del polarPts[i]
                         add = False
-                        i = i + 1
    
                if add:
+                  key = itemToToggle[0]
                   if key in self.__oSnapPointsForPolar: # se già presente
                      self.__oSnapPointsForPolar[key].append(ptToToggle)
                   else:
                      self.__oSnapPointsForPolar[key] = [ptToToggle]
+      
+#       autoSnapSize = QadVariables.get(QadMsg.translate("Environment variables", "AUTOSNAPSIZE"))
+#       
+#       for itemToToggle in oSnapPointsForPolar.items():
+#          key = itemToToggle[0]
+#          # non considero alcuni tipi di snap
+#          if key == QadSnapTypeEnum.INT or key == QadSnapTypeEnum.PER or key == QadSnapTypeEnum.TAN or \
+#             key == QadSnapTypeEnum.NEA or key == QadSnapTypeEnum.APP or key == QadSnapTypeEnum.EXT or \
+#             key == QadSnapTypeEnum.PAR or key == QadSnapTypeEnum.PR or key == QadSnapTypeEnum.EXT_INT or \
+#             key == QadSnapTypeEnum.PER_DEF or key == QadSnapTypeEnum.TAN_DEF or key == QadSnapTypeEnum.POLAR:
+#             continue
+#          
+#          for ptToToggle in itemToToggle[1]: # per ogni punto
+#             # il punto <point> deve essere dentro il punto di snap che ha dimensioni snapMarkerSizeInMapUnits
+#             if point.x() >= ptToToggle.x() - snapMarkerSizeInMapUnits and point.x() <= ptToToggle.x() + snapMarkerSizeInMapUnits and \
+#                point.y() >= ptToToggle.y() - snapMarkerSizeInMapUnits and point.y() <= ptToToggle.y() + snapMarkerSizeInMapUnits: 
+#                add = True
+#                for item in self.__oSnapPointsForPolar.items():
+#                   i = 0
+#                   for pt in item[1]:
+#                      if pt == ptToToggle:
+#                         del item[1][i]
+#                         add = False
+#                         i = i + 1
+#    
+#                if add:
+#                   if key in self.__oSnapPointsForPolar: # se già presente
+#                      self.__oSnapPointsForPolar[key].append(ptToToggle)
+#                   else:
+#                      self.__oSnapPointsForPolar[key] = [ptToToggle]
 
 
    def removeOSnapPointsForPolar(self):

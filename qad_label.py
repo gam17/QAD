@@ -223,7 +223,7 @@ def get_labelText(palLayerSettings, feature):
 #===============================================================================
 def get_labelFontSize(palLayerSettings, feature):
    """
-   restituisce la dimensione del font dell'etichetta 
+   restituisce la dimensione del font dell'etichetta come numero intero
    """
    val = None
    dataDefined = palLayerSettings.dataDefinedProperties().property(QgsPalLayerSettings.Size)
@@ -238,7 +238,7 @@ def get_labelFontSize(palLayerSettings, feature):
       fmt = palLayerSettings.format() 
       val = fmt.font().pointSize() # Returns the point size of the font
    
-   return val
+   return None if val is None else int(val)
 
 
 #===============================================================================

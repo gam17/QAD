@@ -127,8 +127,8 @@ class QadGripMarker(QgsMapCanvasItem):
          painter.drawEllipse(QPointF(0, 0), self.iconSize, self.iconSize)
       elif self.__iconType == QadGripIconTypeEnum.RECTANGLE:
          # un rettangolo
-         painter.fillRect(-self.iconSize, -self.iconSize / 2, self.iconSize * 2, self.iconSize, QBrush(QColor(self.fillColor)));
-         painter.drawRect(-self.iconSize, -self.iconSize / 2, self.iconSize * 2, self.iconSize)
+         painter.fillRect(-self.iconSize, -int(self.iconSize / 2), self.iconSize * 2, self.iconSize, QBrush(QColor(self.fillColor)));
+         painter.drawRect(-self.iconSize, -int(self.iconSize / 2), self.iconSize * 2, self.iconSize)
          
 
    def boundingRect(self):
