@@ -370,7 +370,7 @@ class QadSTRETCHCommandClass(QadCommandClass):
       # RISPOSTA ALLA RICHIESTA PUNTO PER MODALITA' POLIGONO (da step = 1)
       elif self.step == 2: # dopo aver atteso un punto si riavvia il comando
          if self.MPOLYGONCommand.run(msgMapTool, msg) == True:
-            if self.MPOLYGONCommand.polyline.qty() > 0:
+            if self.MPOLYGONCommand.PLINECommand.polyline.qty() > 0:
                # cerco tutte le geometrie intersecanti il poligono
                # e considerando solo layer editabili
                selSet = getSelSet("CP", self.getPointMapTool(), self.MPOLYGONCommand.PLINECommand.polyline.asPolyline(), \

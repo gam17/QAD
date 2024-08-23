@@ -26,6 +26,7 @@
 # Import the PyQt and QGIS libraries
 
 from qgis.core import QgsPointXY
+from qgis.PyQt.QtGui import QIcon
 
 from .qad_generic_cmd import QadCommandClass
 from ..qad_msg import QadMsg
@@ -46,6 +47,9 @@ class QadIDCommandClass(QadCommandClass):
 
    def connectQAction(self, action):
       action.triggered.connect(self.plugIn.runIDCommand)
+
+   def getIcon(self):
+      return QIcon(":/plugins/qad/icons/id.png")
 
    def getNote(self):
       # impostare le note esplicative del comando
