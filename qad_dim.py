@@ -1273,6 +1273,8 @@ class QadDimStyle():
          # segno che questo layer è salvato da QAD
          plugIn.layerStatusList.setStatus(self.getTextualLayer().id(), qad_layer.QadLayerStatusEnum.COMMIT_BY_INTERNAL)
          res = self.getTextualLayer().commitChanges()
+         if res == False:
+            errors = self.getTextualLayer().commitErrors()
          plugIn.layerStatusList.remove(self.getTextualLayer().id())
          return res
       else:
@@ -1286,6 +1288,8 @@ class QadDimStyle():
       """
       Aggiorna e salva i reference delle entità dello stile di quotatura contenuti in textAddedEntitySet.
       """
+      if textAddedEntitySet.isEmpty() == True:
+         return True
       if self.startEditing() == False:
          return False     
       
@@ -1333,19 +1337,24 @@ class QadDimStyle():
          # segno che questo layer è salvato da QAD
          plugIn.layerStatusList.setStatus(self.getTextualLayer().id(), qad_layer.QadLayerStatusEnum.COMMIT_BY_INTERNAL)
          # salvo le entità testuali
-         self.getTextualLayer().commitChanges()
+         if self.getTextualLayer().commitChanges(False) == False: # By setting stopEditing to false, the layer will stay in editing mode.
+            errors = self.getTextualLayer().commitErrors()
          plugIn.layerStatusList.remove(self.getTextualLayer().id())
+         
       if (excludedLayer is None) or excludedLayer.id() != self.getLinearLayer().id():
          # segno che questo layer è salvato da QAD
          plugIn.layerStatusList.setStatus(self.getLinearLayer().id(), qad_layer.QadLayerStatusEnum.COMMIT_BY_INTERNAL)
          # salvo le entità lineari
-         self.getLinearLayer().commitChanges()
+         if self.getLinearLayer().commitChanges(False) == False: # By setting stopEditing to false, the layer will stay in editing mode.
+            errors = self.getTextualLayer().commitErrors()
          plugIn.layerStatusList.remove(self.getLinearLayer().id())
+         
       if (excludedLayer is None) or excludedLayer.id() != self.getSymbolLayer().id():
          # segno che questo layer è salvato da QAD
          plugIn.layerStatusList.setStatus(self.getSymbolLayer().id(), qad_layer.QadLayerStatusEnum.COMMIT_BY_INTERNAL)
          # salvo le entità puntuali
-         self.getSymbolLayer().commitChanges()
+         if self.getSymbolLayer().commitChanges(False) == False: # By setting stopEditing to false, the layer will stay in editing mode.
+            errors = self.getTextualLayer().commitErrors()
          plugIn.layerStatusList.remove(self.getSymbolLayer().id())
    
 
@@ -5050,7 +5059,7 @@ class QadDimEntity():
                                                         destinationCrs, \
                                                         QgsProject.instance())) # trasformo la geometria in map coordinate
 
-                  pts = g.asPolyline()
+                  pts = qad_utils.asPointOrPolyline(g)[0].asPolyline()
                   if value == QadDimComponentEnum.DIM_LINE1:
                      dimLinePt1 = pts[0]
                   else:
@@ -5142,7 +5151,7 @@ class QadDimEntity():
                                                         destinationCrs, \
                                                         QgsProject.instance())) # trasformo la geometria in map coordinate
 
-                  return g.asPolyline()
+                  return qad_utils.asPointOrPolyline(g)[0].asPolyline()
             except:
                return None
             
@@ -5175,7 +5184,7 @@ class QadDimEntity():
                                                         destinationCrs, \
                                                         QgsProject.instance())) # trasformo la geometria in map coordinate
 
-                  pts = g.asPolyline()
+                  pts = qad_utils.asPointOrPolyline(g)[0].asPolyline()
                   if containerGeom is not None: # verifico che il punto iniziale sia interno a containerGeom
                      if type(containerGeom) == QgsGeometry: # geometria   
                         if containerGeom.contains(pts[0]) == True:
@@ -5241,10 +5250,10 @@ class QadDimEntity():
             try:
                value = f.attribute(self.dimStyle.componentFieldName)
                if value == QadDimComponentEnum.DIM_LINE1: # primo punto da quotare ("Dimension point 1")
-                  Pts = f.geometry().asPolyline()
+                  Pts = qad_utils.asPointOrPolyline(f.geometry())[0].asPolyline()
                   break
                elif value == QadDimComponentEnum.DIM_LINE2: # secondo punto da quotare ("Dimension point 2")
-                  Pts = f.geometry().asPolyline()
+                  Pts = qad_utils.asPointOrPolyline(f.geometry())[0].asPolyline()
                   break
             except:
                return None, None
@@ -5898,6 +5907,12 @@ class QadDimEntity():
          # al momento ipotizzo si riferisca sempre ad un cerchio
          dimCircle = self.getDimCircle()
          linePosPt = self.getDimLinePosPt(containerGeom, destinationCrs)
+         
+         if type(containerGeom) == list: # lista di punti
+            for containerPt in containerGeom:
+               # whereIsPt ritorna -1 se il punto è interno, 0 se è sulla circonferenza, 1 se è esterno
+               if dimCircle.whereIsPt(containerPt) == 0:
+                  linePosPt = None # sposto il punto che era sulla circonferenza
          
          if dimCircle is not None:
             dimCircle = qad_stretch_fun.stretchQadGeometry(dimCircle, containerGeom, \

@@ -617,6 +617,7 @@ class Qad(QObject):
       self.toolBar.addAction(self.fillet_action)
       self.toolBar.addAction(self.join_action)
       self.toolBar.addAction(self.disjoin_action)
+      self.toolBar.addAction(self.id_action)
       self.toolBar.addAction(self.dsettings_action)
       self.toolBar.addAction(self.options_action)
       self.enableUndoRedoButtons()
@@ -916,6 +917,12 @@ class Qad(QObject):
       self.help_action = QAction(cmd.getIcon(), cmd.getName(), self.iface.mainWindow())
       self.help_action.setToolTip(cmd.getToolTipText())
       cmd.connectQAction(self.help_action)
+
+      # ID
+      cmd = self.QadCommands.getCommandObj(QadMsg.translate("Command_list", "ID"))
+      self.id_action = QAction(cmd.getIcon(), cmd.getName(), self.iface.mainWindow())
+      self.id_action.setToolTip(cmd.getToolTipText())
+      cmd.connectQAction(self.id_action)
       
       # INSERT
       cmd = self.QadCommands.getCommandObj(QadMsg.translate("Command_list", "INSERT"))
@@ -1224,6 +1231,7 @@ class Qad(QObject):
       toolsMenu = QMenu(QadMsg.translate("QAD", "Tools"))
       toolsMenu.addAction(self.setCurrLayerByGraph_action)
       toolsMenu.addAction(self.setCurrUpdateableLayerByGraph_action)      
+      toolsMenu.addAction(self.id_action)
       toolsMenu.addAction(self.dsettings_action)
       toolsMenu.addAction(self.options_action)
       return toolsMenu
@@ -1354,6 +1362,7 @@ class Qad(QObject):
       layer.layerModified.connect(self.layerModified)
       layer.beforeCommitChanges.connect(self.beforeCommitChanges)
       layer.committedFeaturesAdded.connect(self.committedFeaturesAdded)
+      layer.afterCommitChanges.connect(self.afterCommitChanges)
 
       # vedi qgsvectorlayer.cpp funzione QgsVectorLayer::commitChanges()
       # devo predere l'ultimo segnale vhe viene emesso dal salvataggio QGIS
@@ -1371,6 +1380,7 @@ class Qad(QObject):
       layer.layerModified.disconnect(self.layerModified)
       layer.beforeCommitChanges.disconnect(self.beforeCommitChanges)
       layer.committedFeaturesAdded.disconnect(self.committedFeaturesAdded)
+      layer.afterCommitChanges.disconnect(self.afterCommitChanges)
       
       # vedi qgsvectorlayer.cpp funzione QgsVectorLayer::commitChanges()
       # devo predere l'ultimo segnale vhe viene emesso dal salvataggio QGIS
@@ -1387,54 +1397,56 @@ class Qad(QObject):
 
 
    def editingStopped(self):
-      # questo segnale arriva alla fine del salvataggio di un layer alla versione 2.2 di QGIS
-      # se bisogna fare la ricodifica delle quote
-      if self.dimTextEntitySetRecodeOnSave.isEmpty() == False:
-         layer = self.dimTextEntitySetRecodeOnSave.layer
-         # ricavo gli stili di quotatura
-         dimStyleList = self.mQadDimStyle.getDimListByLayer(layer)
-         for dimStyle in dimStyleList:
-            if dimStyle.isValid(): # stile valido
-               # cerco tutte le feature text in self.dimTextEntitySetRecodeOnSave che appartengono allo stile
-               # di quotatura dimStyle
-               textAddedEntitySet = dimStyle.getFilteredLayerEntitySet(self.dimTextEntitySetRecodeOnSave)
-               # salvo gli oggetti di quello stile di quotatura aggiornando i reference
-               # ricodifica          
-               dimStyle.updateTextReferencesOnSave(self, textAddedEntitySet)
-            
-         self.dimTextEntitySetRecodeOnSave.clear()
-
-         for dimStyle in dimStyleList:
-            if dimStyle.isValid(): # stile valido
-               # salvataggio
-               dimStyle.commitChanges(self) # la funzione scarta self.beforeCommitChangesDimLayer
-               self.beforeCommitChangesDimLayer = None
-               dimStyle.startEditing()
+      return
+#       # questo segnale arriva alla fine del salvataggio di un layer alla versione 2.2 di QGIS
+#       # se bisogna fare la ricodifica delle quote
+#       if self.dimTextEntitySetRecodeOnSave.isEmpty() == False:
+#          layer = self.dimTextEntitySetRecodeOnSave.layer
+#          # ricavo gli stili di quotatura
+#          dimStyleList = self.mQadDimStyle.getDimListByLayer(layer)
+#          for dimStyle in dimStyleList:
+#             if dimStyle.isValid(): # stile valido
+#                # cerco tutte le feature text in self.dimTextEntitySetRecodeOnSave che appartengono allo stile
+#                # di quotatura dimStyle
+#                textAddedEntitySet = dimStyle.getFilteredLayerEntitySet(self.dimTextEntitySetRecodeOnSave)
+#                # salvo gli oggetti di quello stile di quotatura aggiornando i reference
+#                # ricodifica          
+#                dimStyle.updateTextReferencesOnSave(self, textAddedEntitySet)
+#             
+#          self.dimTextEntitySetRecodeOnSave.clear()
+# 
+#          for dimStyle in dimStyleList:
+#             if dimStyle.isValid(): # stile valido
+#                # salvataggio
+#                dimStyle.commitChanges(self) # la funzione scarta self.beforeCommitChangesDimLayer
+#                self.beforeCommitChangesDimLayer = None
+#                dimStyle.startEditing()
 
 
    def repaintRequested(self):
-      # questo segnale arriva alla fine del salvataggio di un layer dalla versione 2.3 di QGIS
-      # se bisogna fare la ricodifica delle quote
-      if self.dimTextEntitySetRecodeOnSave.isEmpty() == False:
-         # ricavo gli stili di quotatura
-         dimStyleList = self.mQadDimStyle.getDimListByLayer(self.dimTextEntitySetRecodeOnSave.layer)
-         for dimStyle in dimStyleList:
-            if dimStyle.isValid(): # stile valido
-               # cerco tutte le feature in self.dimTextEntitySetRecodeOnSave che appartengono allo stile
-               # di quotatura dimStyle
-               textAddedEntitySet = dimStyle.getFilteredLayerEntitySet(self.dimTextEntitySetRecodeOnSave)
-               # salvo gli oggetti di quello stile di quotatura aggiornando i reference
-               # ricodifica          
-               dimStyle.updateTextReferencesOnSave(self, textAddedEntitySet)
-            
-         self.dimTextEntitySetRecodeOnSave.clear()
-         
-         for dimStyle in dimStyleList:
-            if dimStyle.isValid(): # stile valido
-               # salvataggio
-               dimStyle.commitChanges(self) # la funzione scarta self.beforeCommitChangesDimLayer
-               self.beforeCommitChangesDimLayer = None
-               dimStyle.startEditing()
+      return
+#       # questo segnale arriva alla fine del salvataggio di un layer dalla versione 2.3 di QGIS
+#       # se bisogna fare la ricodifica delle quote
+#       if self.dimTextEntitySetRecodeOnSave.isEmpty() == False:
+#          # ricavo gli stili di quotatura
+#          dimStyleList = self.mQadDimStyle.getDimListByLayer(self.dimTextEntitySetRecodeOnSave.layer)
+#          for dimStyle in dimStyleList:
+#             if dimStyle.isValid(): # stile valido
+#                # cerco tutte le feature in self.dimTextEntitySetRecodeOnSave che appartengono allo stile
+#                # di quotatura dimStyle
+#                textAddedEntitySet = dimStyle.getFilteredLayerEntitySet(self.dimTextEntitySetRecodeOnSave)
+#                # salvo gli oggetti di quello stile di quotatura aggiornando i reference
+#                # ricodifica          
+#                dimStyle.updateTextReferencesOnSave(self, textAddedEntitySet)
+#             
+#          self.dimTextEntitySetRecodeOnSave.clear()
+#          
+#          for dimStyle in dimStyleList:
+#             if dimStyle.isValid(): # stile valido
+#                # salvataggio
+#                dimStyle.commitChanges(self) # la funzione scarta self.beforeCommitChangesDimLayer
+#                self.beforeCommitChangesDimLayer = None
+#                dimStyle.startEditing()
 
       
    def beforeCommitChanges(self):
@@ -1448,9 +1460,9 @@ class Qad(QObject):
                if dimStyle.getTextualLayer().id() != layer.id(): # se non si tratta del layer dei testi di quota
                   # memorizzo il layer da cui é scaturito il salvataggio delle quotature per scartarlo
                   # nella funzione dimStyle.commitChanges 
-                  self.beforeCommitChangesDimLayer = layer 
+                  # self.beforeCommitChangesDimLayer = layer non lo uso più perchè non serve con l'evento afterCommitChanges
                   dimStyle.textCommitChangesOnSave(self) # salvo i testi delle quote per ricodifica ID
-                  dimStyle.startEditing()
+                  #dimStyle.startEditing()
 
       
    def committedFeaturesAdded(self, layerId, addedFeatures):
@@ -1466,6 +1478,29 @@ class Qad(QObject):
                return
 
 
+   def afterCommitChanges(self):
+      layer = self.sender()
+      # verifico se il salvataggio del layer non è controllato da QAD
+      if self.layerStatusList.getStatus(layer.id()) != QadLayerStatusEnum.COMMIT_BY_INTERNAL:       
+         # questo segnale arriva alla fine del salvataggio di un layer (versione 3.4 di QGIS)
+         # verifico se il layer che si sta per salvare appartiene ad uno o più stili di quotatura
+         dimStyleList = self.mQadDimStyle.getDimListByLayer(layer)
+         for dimStyle in dimStyleList:
+            if dimStyle.isValid(): # stile valido
+               # cerco tutte le feature in self.dimTextEntitySetRecodeOnSave che appartengono allo stile
+               # di quotatura dimStyle
+               textAddedEntitySet = dimStyle.getFilteredLayerEntitySet(self.dimTextEntitySetRecodeOnSave)
+               # salvo gli oggetti di quello stile di quotatura aggiornando i reference
+               # ricodifica          
+               dimStyle.updateTextReferencesOnSave(self, textAddedEntitySet)         
+               self.dimTextEntitySetRecodeOnSave.subtract(textAddedEntitySet)
+               
+               # salvataggio
+               dimStyle.commitChanges(self) # la funzione scarta self.beforeCommitChangesDimLayer
+               self.beforeCommitChangesDimLayer = None
+               #dimStyle.startEditing()      
+
+   
    def layerModified(self):
       if self.isQadActive == False:
          # la modifica fatta su quel layer é stata fatta dall'esterno di QAD

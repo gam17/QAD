@@ -155,7 +155,7 @@ def stretchMultiPoint(multiPoint, containerGeom, offsetX, offsetY):
 #===============================================================================
 def stretchCircle(circle, containerGeom, offsetX, offsetY):
    """
-   Stira i punti di grip di un cerchio che sono contenuti in containerGeom
+   Stira un cerchio usando i punti che sono contenuti in containerGeom
    circle = cerchio da stirare
    containerGeom = può essere una QgsGeometry rappresentante un poligono contenente i punti di geom da stirare
                    oppure una lista dei punti da stirare
@@ -168,15 +168,23 @@ def stretchCircle(circle, containerGeom, offsetX, offsetY):
    newRadius = circle.radius
 
    if isPtContainedForStretch(circle.center, containerGeom): # se il centro è contenuto in containerGeom
-      newCenter.set(circle.center.x() + offsetX, circle.center.y() + offsetY)
+      newCenter.set(circle.center.x() + offsetX, circle.center.y() + offsetY) # sposto il cerchio
    else:
-      # ritorna i punti quadranti
-      quadrants = circle.getQuadrantPoints()
-      for quadrant in quadrants:         
-         if isPtContainedForStretch(quadrant, containerGeom): # se il quandrante è contenuto in containerGeom
-            newPt = QgsPointXY(quadrant.x() + offsetX, quadrant.y() + offsetY)
-            newRadius = qad_utils.getDistance(circle.center, newPt)
-            break
+      if type(containerGeom) == list: # lista di punti
+         for containerPt in containerGeom:
+            # whereIsPt ritorna -1 se il punto è interno, 0 se è sulla circonferenza, 1 se è esterno
+            if circle.whereIsPt(containerPt) == 0:
+               newPt = QgsPointXY(containerPt.x() + offsetX, containerPt.y() + offsetY)
+               newRadius = qad_utils.getDistance(circle.center, newPt)
+               break     
+      else: # geometria     
+         # ritorna i punti quadranti
+         quadrants = circle.getQuadrantPoints()
+         for quadrant in quadrants:         
+            if isPtContainedForStretch(quadrant, containerGeom): # se il quandrante è contenuto in containerGeom
+               newPt = QgsPointXY(quadrant.x() + offsetX, quadrant.y() + offsetY)
+               newRadius = qad_utils.getDistance(circle.center, newPt)
+               break
 
    return newCircle.set(newCenter, newRadius)
 
