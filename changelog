@@ -1,3 +1,12 @@
+version 3.0.7
+---------------------------
+
+* 2024-08-28 Fixed bug on label size calculation (reported by em-rezende)
+* 2024-08-28 Fixed bug on Fedora linux version (reported by Jesper Reenberg)
+* 2024-08-28 Fixed bug on intersection snap mode
+* 2024-08-28 Fixed bug on stretching and saving dimension
+
+
 version 3.0.6
 ---------------------------
 
@@ -19,6 +28,7 @@ version 3.0.6
 * 2022-05-29 Fixed bug on Trimming a circle into an arc (reported by Jopie01)
 * 2022-05-29 Fixed bug on Error when trying to trim a line to a circle (reported by Jopie01)
 * 2022-05-29 Fixed bug on MPOLYGON-tool crashes when trying to use trace-function (reported by Atol2022)
+
 
 version 3.0.5
 ---------------------------

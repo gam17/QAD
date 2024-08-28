@@ -11,10 +11,10 @@
 name=QAD
 email=gam17@riseup.net
 author=gam17
-qgisMinimumVersion=3.0
+qgisMinimumVersion=3.22
 description=Quantum Aided Design: cad like commands in QGIS
 about=Quantum Aided Design: cad like commands in QGIS
-version=3.0.6
+version=3.0.7
 tracker=https://github.com/gam17/QAD/issues
 repository=https://github.com/gam17/QAD
 
