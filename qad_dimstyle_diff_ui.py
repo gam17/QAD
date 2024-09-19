@@ -58,7 +58,7 @@ class Ui_DimStyle_Diff_Dialog(object):
         self.copyButton.setGeometry(QtCore.QRect(404, 80, 31, 23))
         self.copyButton.setText("")
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap(":/plugins/qad/icons/copy.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap(":/plugins/qad/icons/copy.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.copyButton.setIcon(icon)
         self.copyButton.setObjectName("copyButton")
 

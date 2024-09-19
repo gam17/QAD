@@ -698,7 +698,7 @@ class Qad(QObject):
    def initActions(self):
       # Creo le azioni e le collego ai comandi
       
-      self.mainAction = QAction(QIcon(":/plugins/qad/icons/qad.png"), \
+      self.mainAction = QAction(QIcon(":/plugins/qad/icons/qad.svg"), \
                                 QadMsg.getQADTitle(), self.iface.mainWindow())
       self.mainAction.setCheckable(True)
       self.mainAction.triggered.connect(self.run)
@@ -715,52 +715,52 @@ class Qad(QObject):
       cmd.connectQAction(self.setCurrUpdateableLayerByGraph_action)
             
       # ARC BY 3 POINTS (MACRO)
-      self.arcBy3Points_action = QAction(QIcon(":/plugins/qad/icons/arcBy3Points.png"), \
+      self.arcBy3Points_action = QAction(QIcon(":/plugins/qad/icons/arcBy3Points.svg"), \
                                          QadMsg.translate("Command_ARC", "Arc passing through 3 points"), \
                                          self.iface.mainWindow())
       self.arcBy3Points_action.triggered.connect(self.runARCBY3POINTSCommand)
       # ARC BY START CENTER END POINTS (MACRO)
-      self.arcByStartCenterEndPoints_action = QAction(QIcon(":/plugins/qad/icons/arcByStartCenterEndPoints.png"), \
+      self.arcByStartCenterEndPoints_action = QAction(QIcon(":/plugins/qad/icons/arcByStartCenterEndPoints.svg"), \
                                                       QadMsg.translate("Command_ARC", "Arc defined by start, central and final points"), \
                                                       self.iface.mainWindow())
       self.arcByStartCenterEndPoints_action.triggered.connect(self.runARC_BY_START_CENTER_END_Command)
       # ARC BY START CENTER ANGLE (MACRO)
-      self.arcByStartCenterAngle_action = QAction(QIcon(":/plugins/qad/icons/arcByStartCenterAngle.png"), \
+      self.arcByStartCenterAngle_action = QAction(QIcon(":/plugins/qad/icons/arcByStartCenterAngle.svg"), \
                                                   QadMsg.translate("Command_ARC", "Arc defined by start, central points and angle"), \
                                                   self.iface.mainWindow())
       self.arcByStartCenterAngle_action.triggered.connect(self.runARC_BY_START_CENTER_ANGLE_Command)
       # ARC BY START CENTER LENGTH (MACRO)
-      self.arcByStartCenterLength_action = QAction(QIcon(":/plugins/qad/icons/arcByStartCenterLength.png"), \
+      self.arcByStartCenterLength_action = QAction(QIcon(":/plugins/qad/icons/arcByStartCenterLength.svg"), \
                                                    QadMsg.translate("Command_ARC", "Arc defined by start, central points and cord length"), \
                                                    self.iface.mainWindow())
       self.arcByStartCenterLength_action.triggered.connect(self.runARC_BY_START_CENTER_LENGTH_Command)
       # ARC BY START END ANGLE (MACRO)
-      self.arcByStartEndAngle_action = QAction(QIcon(":/plugins/qad/icons/arcByStartEndAngle.png"), \
+      self.arcByStartEndAngle_action = QAction(QIcon(":/plugins/qad/icons/arcByStartEndAngle.svg"), \
                                                QadMsg.translate("Command_ARC", "Arc defined by start, final points and angle"), \
                                                self.iface.mainWindow())
       self.arcByStartEndAngle_action.triggered.connect(self.runARC_BY_START_END_ANGLE_Command)
       # ARC BY START END TAN (MACRO)
-      self.arcByStartEndTan_action = QAction(QIcon(":/plugins/qad/icons/arcByStartEndTan.png"), \
+      self.arcByStartEndTan_action = QAction(QIcon(":/plugins/qad/icons/arcByStartEndTan.svg"), \
                                                QadMsg.translate("Command_ARC", "Arc defined by start, final points and tangent"), \
                                                self.iface.mainWindow())
       self.arcByStartEndTan_action.triggered.connect(self.runARC_BY_START_END_TAN_Command)
       # ARC BY START END RADIUS (MACRO)
-      self.arcByStartEndRadius_action = QAction(QIcon(":/plugins/qad/icons/arcByStartEndRadius.png"), \
+      self.arcByStartEndRadius_action = QAction(QIcon(":/plugins/qad/icons/arcByStartEndRadius.svg"), \
                                                QadMsg.translate("Command_ARC", "Arc defined by start, final points and radius"), \
                                                self.iface.mainWindow())
       self.arcByStartEndRadius_action.triggered.connect(self.runARC_BY_START_END_RADIUS_Command)
       # ARC BY CENTER START END (MACRO)
-      self.arcByCenterStartEnd_action = QAction(QIcon(":/plugins/qad/icons/arcByCenterStartEnd.png"), \
+      self.arcByCenterStartEnd_action = QAction(QIcon(":/plugins/qad/icons/arcByCenterStartEnd.svg"), \
                                                 QadMsg.translate("Command_ARC", "Arc defined by central, start and final points"), \
                                                 self.iface.mainWindow())
       self.arcByCenterStartEnd_action.triggered.connect(self.runARC_BY_CENTER_START_END_Command)
       # ARC BY CENTER START ANGLE (MACRO)
-      self.arcByCenterStartAngle_action = QAction(QIcon(":/plugins/qad/icons/arcByCenterStartAngle.png"), \
+      self.arcByCenterStartAngle_action = QAction(QIcon(":/plugins/qad/icons/arcByCenterStartAngle.svg"), \
                                                   QadMsg.translate("Command_ARC", "Arc defined by central, start points and angle"), \
                                                   self.iface.mainWindow())
       self.arcByCenterStartAngle_action.triggered.connect(self.runARC_BY_CENTER_START_ANGLE_Command)
       # ARC BY CENTER START LENGTH (MACRO)
-      self.arcByCenterStartLength_action = QAction(QIcon(":/plugins/qad/icons/arcByCenterStartLength.png"), \
+      self.arcByCenterStartLength_action = QAction(QIcon(":/plugins/qad/icons/arcByCenterStartLength.svg"), \
                                                    QadMsg.translate("Command_ARC", "Arc defined by central, start points and cord length"), \
                                                    self.iface.mainWindow())
       self.arcByCenterStartLength_action.triggered.connect(self.runARC_BY_CENTER_START_LENGTH_Command)
@@ -787,38 +787,38 @@ class Qad(QObject):
       self.break_action.setToolTip(cmd.getToolTipText())
       cmd.connectQAction(self.break_action)
       # BREAK BY 1 POINT (MACRO)
-      self.breakBy1Point_action = QAction(QIcon(":/plugins/qad/icons/breakBy1Point.png"), \
+      self.breakBy1Point_action = QAction(QIcon(":/plugins/qad/icons/breakBy1Point.svg"), \
                                           QadMsg.translate("Command_BREAK", "Breaks an object at one point"), \
                                           self.iface.mainWindow())
       self.breakBy1Point_action.triggered.connect(self.runBREAK_BY_1_POINT_Command)
 
       # CIRCLE BY CENTER RADIUS (MACRO)
-      self.circleByCenterRadius_action = QAction(QIcon(":/plugins/qad/icons/circleByCenterRadius.png"), \
+      self.circleByCenterRadius_action = QAction(QIcon(":/plugins/qad/icons/circleByCenterRadius.svg"), \
                                                  QadMsg.translate("Command_CIRCLE", "Circle defined by central point and radius"), \
                                                  self.iface.mainWindow())
       self.circleByCenterRadius_action.triggered.connect(self.runCIRCLE_BY_CENTER_RADIUS_Command)
       # CIRCLE BY CENTER DIAMETER (MACRO)
-      self.circleByCenterDiameter_action = QAction(QIcon(":/plugins/qad/icons/circleByCenterDiameter.png"), \
+      self.circleByCenterDiameter_action = QAction(QIcon(":/plugins/qad/icons/circleByCenterDiameter.svg"), \
                                                    QadMsg.translate("Command_CIRCLE", "Circle defined by central point and diameter"), \
                                                    self.iface.mainWindow())
       self.circleByCenterDiameter_action.triggered.connect(self.runCIRCLE_BY_CENTER_DIAMETER_Command)
       # CIRCLE BY 2 POINTS (MACRO)
-      self.circleBy2Points_action = QAction(QIcon(":/plugins/qad/icons/circleBy2Points.png"), \
+      self.circleBy2Points_action = QAction(QIcon(":/plugins/qad/icons/circleBy2Points.svg"), \
                                             QadMsg.translate("Command_CIRCLE", "Circle defined by 2 points"), \
                                             self.iface.mainWindow())
       self.circleBy2Points_action.triggered.connect(self.runCIRCLE_BY_2POINTS_Command)
       # CIRCLE BY 3 POINTS (MACRO)
-      self.circleBy3Points_action = QAction(QIcon(":/plugins/qad/icons/circleBy3Points.png"), \
+      self.circleBy3Points_action = QAction(QIcon(":/plugins/qad/icons/circleBy3Points.svg"), \
                                                   QadMsg.translate("Command_CIRCLE", "Circle defined by 3 points"), \
                                                   self.iface.mainWindow())
       self.circleBy3Points_action.triggered.connect(self.runCIRCLE_BY_3POINTS_Command)
       # CIRCLE BY TANGEN TANGENT RADIUS (MACRO)
-      self.circleBy2TansRadius_action = QAction(QIcon(":/plugins/qad/icons/circleBy2TansRadius.png"), \
+      self.circleBy2TansRadius_action = QAction(QIcon(":/plugins/qad/icons/circleBy2TansRadius.svg"), \
                                                 QadMsg.translate("Command_CIRCLE", "Circle defined by 2 tangent points and radius"), \
                                                 self.iface.mainWindow())
       self.circleBy2TansRadius_action.triggered.connect(self.runCIRCLE_BY_2TANS_RADIUS_Command)
       # CIRCLE BY TANGEN TANGENT TANGENT (MACRO)
-      self.circleBy3Tans_action = QAction(QIcon(":/plugins/qad/icons/circleBy3Tans.png"), \
+      self.circleBy3Tans_action = QAction(QIcon(":/plugins/qad/icons/circleBy3Tans.svg"), \
                                                 QadMsg.translate("Command_CIRCLE", "Circle defined by 3 tangent points"), \
                                                 self.iface.mainWindow())
       self.circleBy3Tans_action.triggered.connect(self.runCIRCLE_BY_3TANS_Command)
@@ -874,22 +874,22 @@ class Qad(QObject):
       cmd.connectQAction(self.divide_action)
       
       # ELLIPSE BY CENTER 2 POINTS (MACRO)
-      self.ellipseByCenter2Points_action = QAction(QIcon(":/plugins/qad/icons/ellipseByCenter2Points.png"), \
+      self.ellipseByCenter2Points_action = QAction(QIcon(":/plugins/qad/icons/ellipseByCenter2Points.svg"), \
                                                    QadMsg.translate("Command_ELLIPSE", "Ellipse defined by central point"), \
                                                    self.iface.mainWindow())
       self.ellipseByCenter2Points_action.triggered.connect(self.runELLIPSE_BY_CENTER_2_POINTS_Command)
       # ELLIPSE BY AXIS1
-      self.ellipse_action = QAction(QIcon(":/plugins/qad/icons/ellipseByAxis1Point.png"), \
+      self.ellipse_action = QAction(QIcon(":/plugins/qad/icons/ellipseByAxis1Point.svg"), \
                                     QadMsg.translate("Command_ELLIPSE", "Creates an ellipse or an elliptical arc"), \
                                     self.iface.mainWindow())
       self.ellipse_action.triggered.connect(self.runELLIPSECommand)
       # ELLIPTICAL ARC (MACRO)
-      self.ellipticalArc_action = QAction(QIcon(":/plugins/qad/icons/ellipseArc.png"), \
+      self.ellipticalArc_action = QAction(QIcon(":/plugins/qad/icons/ellipseArc.svg"), \
                                                    QadMsg.translate("Command_ELLIPSE", "Creates an elliptical arc"), \
                                                    self.iface.mainWindow())
       self.ellipticalArc_action.triggered.connect(self.runELLIPTICAL_ARC_Command)
       # ELLIPSE BY FOCI (MACRO)
-      self.ellipseByFoci_action = QAction(QIcon(":/plugins/qad/icons/ellipseByFociPoint.png"), \
+      self.ellipseByFoci_action = QAction(QIcon(":/plugins/qad/icons/ellipseByFociPoint.svg"), \
                                           QadMsg.translate("Command_ELLIPSE", "Creates an ellipse by foci"), \
                                           self.iface.mainWindow())
       self.ellipseByFoci_action.triggered.connect(self.runELLIPSE_BY_FOCI_Command)
@@ -1068,7 +1068,7 @@ class Qad(QObject):
       self.undo_action.setToolTip(cmd.getToolTipText())
       cmd.connectQAction(self.undo_action)
       # UNDO OF ONLY ONE OPERATION (MACRO)
-      self.u_action = QAction(QIcon(":/plugins/qad/icons/u.png"), \
+      self.u_action = QAction(QIcon(":/plugins/qad/icons/u.svg"), \
                                     QadMsg.translate("Command_UNDO", "Undo last operation"), \
                                     self.iface.mainWindow())
       self.u_action.triggered.connect(self.runU_Command)

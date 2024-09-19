@@ -132,7 +132,7 @@ class QadTextWindow(QDockWidget, Ui_QadTextWindow):
       # lista composta da elementi con:
       # <nome variabile>, "", <icona>, <note>
       infoVars = []
-      icon = QIcon(":/plugins/qad/icons/variable.png")
+      icon = QIcon(":/plugins/qad/icons/variable.svg")
       for varName in QadVariables.getVarNames():
          var = QadVariables.getVariable(varName)
          infoVars.append([varName, "", icon, var.descr])

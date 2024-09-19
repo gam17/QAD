@@ -319,7 +319,7 @@ class QadDynamicInputCmdLineEdit(QadDynamicEdit):
       # lista composta da elementi con:
       # <nome variabile>, "", <icona>, <note>
       self.infoVars = []
-      icon = QIcon(":/plugins/qad/icons/variable.png")
+      icon = QIcon(":/plugins/qad/icons/variable.svg")
       for varName in QadVariables.getVarNames():
          var = QadVariables.getVariable(varName)
          self.infoVars.append([varName, "", icon, var.descr])
@@ -634,7 +634,7 @@ class QadDynamicInputEdit(QadDynamicEdit):
       self.LockedIcon.resize(height, height)
       self.LockedIcon.setSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
       self.LockedIcon.setStyleSheet("border:0px;"); # senza bordo
-      pixmap = QPixmap(":/plugins/qad/icons/locked.png").scaled(height, height)
+      pixmap = QPixmap(":/plugins/qad/icons/locked.svg").scaled(height, height)
       self.LockedIcon.setPixmap(pixmap)
 
       self.lineMarkerColor = QColor(QadVariables.get(QadMsg.translate("Environment variables", "DYNTRECKINGVECTORCOLOR")))

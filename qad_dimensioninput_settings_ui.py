@@ -71,7 +71,7 @@ class Ui_DimInput_Settings_Dialog(object):
         self.label_3 = QtWidgets.QLabel(self.groupBox)
         self.label_3.setGeometry(QtCore.QRect(10, 240, 31, 31))
         self.label_3.setText("")
-        self.label_3.setPixmap(QtGui.QPixmap(":/plugins/qad/icons/lamp_on.png"))
+        self.label_3.setPixmap(QtGui.QPixmap(":/plugins/qad/icons/lamp_on.svg"))
         self.label_3.setObjectName("label_3")
 
         self.retranslateUi(DimInput_Settings_Dialog)
