@@ -53,7 +53,7 @@ class QadSETCURRLAYERBYGRAPHCommandClass(QadCommandClass):
       action.triggered.connect(self.plugIn.runSETCURRLAYERBYGRAPHCommand)
 
    def getIcon(self):
-      return QIcon(":/plugins/qad/icons/setcurrlayerbygraph.png")
+      return QIcon(":/plugins/qad/icons/setcurrlayerbygraph.svg")
    
    def getNote(self):
       # impostare le note esplicative del comando      
@@ -140,7 +140,7 @@ class QadSETCURRUPDATEABLELAYERBYGRAPHCommandClass(QadCommandClass):
       action.triggered.connect(self.plugIn.runSETCURRUPDATEABLELAYERBYGRAPHCommand)
 
    def getIcon(self):
-      return QIcon(":/plugins/qad/icons/setcurrupdateablelayerbygraph.png")
+      return QIcon(":/plugins/qad/icons/setcurrupdateablelayerbygraph.svg")
    
    def getNote(self):
       # impostare le note esplicative del comando      

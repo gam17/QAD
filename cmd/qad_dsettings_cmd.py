@@ -51,7 +51,7 @@ class QadDSETTINGSCommandClass(QadCommandClass):
       action.triggered.connect(self.plugIn.runDSETTINGSCommand)
 
    def getIcon(self):
-      return QIcon(":/plugins/qad/icons/dsettings.png")
+      return QIcon(":/plugins/qad/icons/dsettings.svg")
 
    def getNote(self):
       # impostare le note esplicative del comando

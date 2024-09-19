@@ -62,7 +62,7 @@ class QadPLINECommandClass(QadCommandClass):
       action.triggered.connect(self.plugIn.runPLINECommand)
 
    def getIcon(self):
-      return QIcon(":/plugins/qad/icons/pline.png")
+      return QIcon(":/plugins/qad/icons/pline.svg")
 
    def getNote(self):
       # impostare le note esplicative del comando      

@@ -59,7 +59,7 @@ class QadARCCommandClass(QadCommandClass):
       action.triggered.connect(self.plugIn.runARCCommand)
    
    def getIcon(self):
-      return QIcon(":/plugins/qad/icons/arc.png")
+      return QIcon(":/plugins/qad/icons/arc.svg")
 
    def getNote(self):
       # impostare le note esplicative del comando      

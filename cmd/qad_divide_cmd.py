@@ -66,7 +66,7 @@ class QadDIVIDECommandClass(QadCommandClass):
       action.triggered.connect(self.plugIn.runDIVIDECommand)
 
    def getIcon(self):
-      return QIcon(":/plugins/qad/icons/divide.png")
+      return QIcon(":/plugins/qad/icons/divide.svg")
 
    def getNote(self):
       # impostare le note esplicative del comando

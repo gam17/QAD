@@ -65,7 +65,7 @@ class QadMAPMPEDITCommandClass(QadCommandClass):
       action.triggered.connect(self.plugIn.runMAPMPEDITCommand)
 
    def getIcon(self):
-      return QIcon(":/plugins/qad/icons/mapmpedit.png")
+      return QIcon(":/plugins/qad/icons/mapmpedit.svg")
    
    def getNote(self):
       # impostare le note esplicative del comando      

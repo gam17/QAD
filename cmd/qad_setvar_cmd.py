@@ -49,7 +49,7 @@ class QadSETVARCommandClass(QadCommandClass):
       action.triggered.connect(self.plugIn.runSETVARCommand)
 
    def getIcon(self):
-      return QIcon(":/plugins/qad/icons/variable.png")
+      return QIcon(":/plugins/qad/icons/variable.svg")
 
    def getNote(self):
       # impostare le note esplicative del comando      

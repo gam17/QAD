@@ -200,7 +200,7 @@ class QadCommandClass(QObject): # derivato da QObject per gestire il metodo send
       #action.triggered.connect(self.plugIn.runPLINECommand) ad esempio
 
    def getIcon(self):
-      # impostare l'icona  del comando (es. QIcon(":/plugins/qad/icons/pline.png"))
+      # impostare l'icona  del comando (es. QIcon(":/plugins/qad/icons/pline.svg"))
       # ricordarsi di inserire l'icona in resources.qrc e di ricompilare le risorse
       return None
 
@@ -483,14 +483,18 @@ class QadOsnapContextualMenuClass(QMenu):
       self.delActions()
 
       msg = QadMsg.translate("Snap", "Midpoint between 2 points")
-      M2PAction = QAction(msg, self)
+      icon = QIcon(":/plugins/qad/icons/osnap_mid2p.svg")
+      if icon is None:
+         M2PAction = QAction(msg, self)
+      else:
+         M2PAction = QAction(icon, msg, self)
       self.addAction(M2PAction)
       self.connections.append([M2PAction, self.addM2PActionByPopupMenu])
       
       self.addSeparator()
 
       msg = QadMsg.translate("DSettings_Dialog", "Start / End")
-      icon = QIcon(":/plugins/qad/icons/osnap_endLine.png")
+      icon = QIcon(":/plugins/qad/icons/osnap_endLine.svg")
       if icon is None:
          addEndLineSnapTypeAction = QAction(msg, self)
       else:
@@ -499,7 +503,7 @@ class QadOsnapContextualMenuClass(QMenu):
       self.connections.append([addEndLineSnapTypeAction, self.addEndLineSnapTypeByPopupMenu])
       
       msg = QadMsg.translate("DSettings_Dialog", "Segment Start / End")
-      icon = QIcon(":/plugins/qad/icons/osnap_end.png")
+      icon = QIcon(":/plugins/qad/icons/osnap_end.svg")
       if icon is None:
          addEndSnapTypeAction = QAction(msg, self)
       else:
@@ -508,7 +512,7 @@ class QadOsnapContextualMenuClass(QMenu):
       self.connections.append([addEndSnapTypeAction, self.addEndSnapTypeByPopupMenu])
       
       msg = QadMsg.translate("DSettings_Dialog", "Middle point")
-      icon = QIcon(":/plugins/qad/icons/osnap_mid.png")
+      icon = QIcon(":/plugins/qad/icons/osnap_mid.svg")
       if icon is None:
          addMidSnapTypeAction = QAction(msg, self)
       else:
@@ -517,7 +521,7 @@ class QadOsnapContextualMenuClass(QMenu):
       self.connections.append([addMidSnapTypeAction, self.addMidSnapTypeByPopupMenu])
       
       msg = QadMsg.translate("DSettings_Dialog", "Intersection")
-      icon = QIcon(":/plugins/qad/icons/osnap_int.png")
+      icon = QIcon(":/plugins/qad/icons/osnap_int.svg")
       if icon is None:
          addIntSnapTypeAction = QAction(msg, self)
       else:
@@ -526,7 +530,7 @@ class QadOsnapContextualMenuClass(QMenu):
       self.connections.append([addIntSnapTypeAction, self.addIntSnapTypeByPopupMenu])
       
       msg = QadMsg.translate("DSettings_Dialog", "Intersection on extension")
-      icon = QIcon(":/plugins/qad/icons/osnap_extInt.png")
+      icon = QIcon(":/plugins/qad/icons/osnap_extInt.svg")
       if icon is None:
          addExtIntSnapTypeAction = QAction(msg, self)
       else:
@@ -535,7 +539,7 @@ class QadOsnapContextualMenuClass(QMenu):
       self.connections.append([addExtIntSnapTypeAction, self.addExtIntSnapTypeByPopupMenu])
       
       msg = QadMsg.translate("DSettings_Dialog", "Extend")
-      icon = QIcon(":/plugins/qad/icons/osnap_ext.png")
+      icon = QIcon(":/plugins/qad/icons/osnap_ext.svg")
       if icon is None:
          addExtSnapTypeAction = QAction(msg, self)
       else:
@@ -546,7 +550,7 @@ class QadOsnapContextualMenuClass(QMenu):
       self.addSeparator()
      
       msg = QadMsg.translate("DSettings_Dialog", "Center")
-      icon = QIcon(":/plugins/qad/icons/osnap_cen.png")
+      icon = QIcon(":/plugins/qad/icons/osnap_cen.svg")
       if icon is None:
          addCenSnapTypeAction = QAction(msg, self)
       else:
@@ -555,7 +559,7 @@ class QadOsnapContextualMenuClass(QMenu):
       self.connections.append([addCenSnapTypeAction, self.addCenSnapTypeByPopupMenu])
      
       msg = QadMsg.translate("DSettings_Dialog", "Quadrant")
-      icon = QIcon(":/plugins/qad/icons/osnap_qua.png")
+      icon = QIcon(":/plugins/qad/icons/osnap_qua.svg")
       if icon is None:
          addQuaSnapTypeAction = QAction(msg, self)
       else:
@@ -564,7 +568,7 @@ class QadOsnapContextualMenuClass(QMenu):
       self.connections.append([addQuaSnapTypeAction, self.addQuaSnapTypeByPopupMenu])
      
       msg = QadMsg.translate("DSettings_Dialog", "Tangent")
-      icon = QIcon(":/plugins/qad/icons/osnap_tan.png")
+      icon = QIcon(":/plugins/qad/icons/osnap_tan.svg")
       if icon is None:
          addTanSnapTypeAction = QAction(msg, self)
       else:
@@ -575,7 +579,7 @@ class QadOsnapContextualMenuClass(QMenu):
       self.addSeparator()
 
       msg = QadMsg.translate("DSettings_Dialog", "Perpendicular")
-      icon = QIcon(":/plugins/qad/icons/osnap_per.png")
+      icon = QIcon(":/plugins/qad/icons/osnap_per.svg")
       if icon is None:
          addPerSnapTypeAction = QAction(msg, self)
       else:
@@ -584,7 +588,7 @@ class QadOsnapContextualMenuClass(QMenu):
       self.connections.append([addPerSnapTypeAction, self.addPerSnapTypeByPopupMenu])
 
       msg = QadMsg.translate("DSettings_Dialog", "Parallel")
-      icon = QIcon(":/plugins/qad/icons/osnap_par.png")
+      icon = QIcon(":/plugins/qad/icons/osnap_par.svg")
       if icon is None:
          addParSnapTypeAction = QAction(msg, self)
       else:
@@ -593,7 +597,7 @@ class QadOsnapContextualMenuClass(QMenu):
       self.connections.append([addParSnapTypeAction, self.addParSnapTypeByPopupMenu])
 
       msg = QadMsg.translate("DSettings_Dialog", "Node")
-      icon = QIcon(":/plugins/qad/icons/osnap_nod.png")
+      icon = QIcon(":/plugins/qad/icons/osnap_nod.svg")
       if icon is None:
          addNodSnapTypeAction = QAction(msg, self)
       else:
@@ -602,7 +606,7 @@ class QadOsnapContextualMenuClass(QMenu):
       self.connections.append([addNodSnapTypeAction, self.addNodSnapTypeByPopupMenu])
 
       msg = QadMsg.translate("DSettings_Dialog", "Near")
-      icon = QIcon(":/plugins/qad/icons/osnap_nea.png")
+      icon = QIcon(":/plugins/qad/icons/osnap_nea.svg")
       if icon is None:
          addNeaSnapTypeAction = QAction(msg, self)
       else:
@@ -611,7 +615,7 @@ class QadOsnapContextualMenuClass(QMenu):
       self.connections.append([addNeaSnapTypeAction, self.addNeaSnapTypeByPopupMenu])
 
       msg = QadMsg.translate("DSettings_Dialog", "Progressive")
-      icon = QIcon(":/plugins/qad/icons/osnap_pr.png")
+      icon = QIcon(":/plugins/qad/icons/osnap_pr.svg")
       if icon is None:
          addPrSnapTypeAction = QAction(msg, self)
       else:
@@ -620,7 +624,7 @@ class QadOsnapContextualMenuClass(QMenu):
       self.connections.append([addPrSnapTypeAction, self.addPrSnapTypeByPopupMenu])
 
       msg = QadMsg.translate("DSettings_Dialog", "None")
-      icon = QIcon(":/plugins/qad/icons/osnap_disable.png")
+      icon = QIcon(":/plugins/qad/icons/osnap_disable.svg")
       if icon is None:
          setSnapTypeToDisableAction = QAction(msg, self)
       else:
@@ -631,7 +635,7 @@ class QadOsnapContextualMenuClass(QMenu):
       self.addSeparator()
 
       msg = QadMsg.translate("DSettings_Dialog", "Object snap settings...")
-      icon = QIcon(":/plugins/qad/icons/dsettings.png")
+      icon = QIcon(":/plugins/qad/icons/dsettings.svg")
       if icon is None:
          DSettingsAction = QAction(msg, self)
       else:

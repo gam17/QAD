@@ -51,7 +51,7 @@ class QadERASECommandClass(QadCommandClass):
       action.triggered.connect(self.plugIn.runERASECommand)
 
    def getIcon(self):
-      return QIcon(":/plugins/qad/icons/erase.png")
+      return QIcon(":/plugins/qad/icons/erase.svg")
 
    def getNote(self):
       # impostare le note esplicative del comando

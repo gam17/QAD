@@ -53,7 +53,7 @@ class QadMPOLYGONCommandClass(QadCommandClass):
       action.triggered.connect(self.plugIn.runMPOLYGONCommand)
 
    def getIcon(self):
-      return QIcon(":/plugins/qad/icons/mpolygon.png")
+      return QIcon(":/plugins/qad/icons/mpolygon.svg")
 
    def getNote(self):
       # impostare le note esplicative del comando      

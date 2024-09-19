@@ -56,7 +56,7 @@ class QadINSERTCommandClass(QadCommandClass):
       action.triggered.connect(self.plugIn.runINSERTCommand)
    
    def getIcon(self):
-      return QIcon(":/plugins/qad/icons/insert.png")
+      return QIcon(":/plugins/qad/icons/insert.svg")
 
    def getNote(self):
       # impostare le note esplicative del comando

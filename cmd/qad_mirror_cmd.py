@@ -58,7 +58,7 @@ class QadMIRRORCommandClass(QadCommandClass):
       action.triggered.connect(self.plugIn.runMIRRORCommand)
 
    def getIcon(self):
-      return QIcon(":/plugins/qad/icons/mirror.png")
+      return QIcon(":/plugins/qad/icons/mirror.svg")
 
    def getNote(self):
       # impostare le note esplicative del comando      

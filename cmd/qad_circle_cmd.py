@@ -58,7 +58,7 @@ class QadCIRCLECommandClass(QadCommandClass):
       action.triggered.connect(self.plugIn.runCIRCLECommand)
 
    def getIcon(self):
-      return QIcon(":/plugins/qad/icons/circle.png")
+      return QIcon(":/plugins/qad/icons/circle.svg")
 
    def getNote(self):
       # impostare le note esplicative del comando

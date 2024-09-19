@@ -68,7 +68,7 @@ class QadPEDITCommandClass(QadCommandClass):
       action.triggered.connect(self.plugIn.runPEDITCommand)
 
    def getIcon(self):
-      return QIcon(":/plugins/qad/icons/pedit.png")
+      return QIcon(":/plugins/qad/icons/pedit.svg")
    
    def getNote(self):
       # impostare le note esplicative del comando      

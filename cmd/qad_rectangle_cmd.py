@@ -57,7 +57,7 @@ class QadRECTANGLECommandClass(QadCommandClass):
       action.triggered.connect(self.plugIn.runRECTANGLECommand)
 
    def getIcon(self):
-      return QIcon(":/plugins/qad/icons/rectangle.png")
+      return QIcon(":/plugins/qad/icons/rectangle.svg")
 
    def getNote(self):
       # impostare le note esplicative del comando

@@ -52,7 +52,7 @@ class QadDIMSTYLECommandClass(QadCommandClass):
       action.triggered.connect(self.plugIn.runDIMSTYLECommand)
 
    def getIcon(self):
-      return QIcon(":/plugins/qad/icons/dimStyle.png")
+      return QIcon(":/plugins/qad/icons/dimStyle.svg")
 
    def getNote(self):
       # impostare le note esplicative del comando

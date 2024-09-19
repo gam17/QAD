@@ -60,7 +60,7 @@ class QadMBUFFERCommandClass(QadCommandClass):
       action.triggered.connect(self.plugIn.runMBUFFERCommand)
 
    def getIcon(self):
-      return QIcon(":/plugins/qad/icons/mbuffer.png")
+      return QIcon(":/plugins/qad/icons/mbuffer.svg")
 
    def getNote(self):
       # impostare le note esplicative del comando

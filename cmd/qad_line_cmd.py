@@ -60,7 +60,7 @@ class QadLINECommandClass(QadCommandClass):
       action.triggered.connect(self.plugIn.runLINECommand)
 
    def getIcon(self):
-      return QIcon(":/plugins/qad/icons/line.png")
+      return QIcon(":/plugins/qad/icons/line.svg")
 
    def getNote(self):
       # impostare le note esplicative del comando

@@ -59,7 +59,7 @@ class QadTEXTCommandClass(QadCommandClass):
       action.triggered.connect(self.plugIn.runTEXTCommand)
    
    def getIcon(self):
-      return QIcon(":/plugins/qad/icons/text.png")
+      return QIcon(":/plugins/qad/icons/text.svg")
 
    def getNote(self):
       # impostare le note esplicative del comando

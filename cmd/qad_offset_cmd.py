@@ -60,7 +60,7 @@ class QadOFFSETCommandClass(QadCommandClass):
       action.triggered.connect(self.plugIn.runOFFSETCommand)
 
    def getIcon(self):
-      return QIcon(":/plugins/qad/icons/offset.png")
+      return QIcon(":/plugins/qad/icons/offset.svg")
 
    def getNote(self):
       # impostare le note esplicative del comando

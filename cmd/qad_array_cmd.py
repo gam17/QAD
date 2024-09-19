@@ -125,7 +125,7 @@ class QadARRAYCommandClass(QadCommandClass):
       action.triggered.connect(self.plugIn.runARRAYCommand)
 
    def getIcon(self):
-      return QIcon(":/plugins/qad/icons/arrayRect.png")
+      return QIcon(":/plugins/qad/icons/arrayRect.svg")
 
    def getNote(self):
       # impostare le note esplicative del comando
@@ -1893,7 +1893,7 @@ class QadARRAYRECTCommandClass(QadCommandClass):
       action.triggered.connect(self.plugIn.runARRAYRECTCommand)
 
    def getIcon(self):
-      return QIcon(":/plugins/qad/icons/arrayRect.png")
+      return QIcon(":/plugins/qad/icons/arrayRect.svg")
 
    def getNote(self):
       # impostare le note esplicative del comando
@@ -1974,7 +1974,7 @@ class QadARRAYPATHCommandClass(QadCommandClass):
       action.triggered.connect(self.plugIn.runARRAYPATHCommand)
 
    def getIcon(self):
-      return QIcon(":/plugins/qad/icons/arrayPath.png")
+      return QIcon(":/plugins/qad/icons/arrayPath.svg")
 
    def getNote(self):
       # impostare le note esplicative del comando
@@ -2055,7 +2055,7 @@ class QadARRAYPOLARCommandClass(QadCommandClass):
       action.triggered.connect(self.plugIn.runARRAYPOLARCommand)
 
    def getIcon(self):
-      return QIcon(":/plugins/qad/icons/arrayPolar.png")
+      return QIcon(":/plugins/qad/icons/arrayPolar.svg")
 
    def getNote(self):
       # impostare le note esplicative del comando

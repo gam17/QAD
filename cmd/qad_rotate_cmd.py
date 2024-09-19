@@ -60,7 +60,7 @@ class QadROTATECommandClass(QadCommandClass):
       action.triggered.connect(self.plugIn.runROTATECommand)
 
    def getIcon(self):
-      return QIcon(":/plugins/qad/icons/rotate.png")
+      return QIcon(":/plugins/qad/icons/rotate.svg")
 
    def getNote(self):
       # impostare le note esplicative del comando      

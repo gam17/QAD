@@ -63,7 +63,7 @@ class QadTRIMCommandClass(QadCommandClass):
       action.triggered.connect(self.plugIn.runTRIMCommand)
 
    def getIcon(self):
-      return QIcon(":/plugins/qad/icons/trim.png")
+      return QIcon(":/plugins/qad/icons/trim.svg")
 
    def getNote(self):
       # impostare le note esplicative del comando

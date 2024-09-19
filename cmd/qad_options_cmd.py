@@ -49,7 +49,7 @@ class QadOPTIONSCommandClass(QadCommandClass):
       action.triggered.connect(self.plugIn.runOPTIONSCommand)
 
    def getIcon(self):
-      return QIcon(":/plugins/qad/icons/options.png")
+      return QIcon(":/plugins/qad/icons/options.svg")
 
    def getNote(self):
       # impostare le note esplicative del comando

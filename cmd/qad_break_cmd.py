@@ -55,7 +55,7 @@ class QadBREAKCommandClass(QadCommandClass):
       action.triggered.connect(self.plugIn.runBREAKCommand)
 
    def getIcon(self):
-      return QIcon(":/plugins/qad/icons/break.png")
+      return QIcon(":/plugins/qad/icons/break.svg")
    
    def getNote(self):
       # impostare le note esplicative del comando      

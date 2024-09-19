@@ -59,7 +59,7 @@ class QadCOPYCommandClass(QadCommandClass):
       action.triggered.connect(self.plugIn.runCOPYCommand)
 
    def getIcon(self):
-      return QIcon(":/plugins/qad/icons/copyEnt.png")
+      return QIcon(":/plugins/qad/icons/copyEnt.svg")
 
    def getNote(self):
       # impostare le note esplicative del comando

@@ -72,7 +72,7 @@ class QadDIMLINEARCommandClass(QadCommandClass):
       action.triggered.connect(self.plugIn.runDIMLINEARCommand)
 
    def getIcon(self):
-      return QIcon(":/plugins/qad/icons/dimLinear.png")
+      return QIcon(":/plugins/qad/icons/dimLinear.svg")
 
    def getNote(self):
       # impostare le note esplicative del comando
@@ -457,7 +457,7 @@ class QadDIMALIGNEDCommandClass(QadCommandClass):
       action.triggered.connect(self.plugIn.runDIMALIGNEDCommand)
 
    def getIcon(self):
-      return QIcon(":/plugins/qad/icons/dimAligned.png")
+      return QIcon(":/plugins/qad/icons/dimAligned.svg")
 
    def getNote(self):
       # impostare le note esplicative del comando
@@ -815,7 +815,7 @@ class QadDIMARCCommandClass(QadCommandClass):
       action.triggered.connect(self.plugIn.runDIMARCCommand)
 
    def getIcon(self):
-      return QIcon(":/plugins/qad/icons/dimArc.png")
+      return QIcon(":/plugins/qad/icons/dimArc.svg")
 
    def getNote(self):
       # impostare le note esplicative del comando
@@ -1253,7 +1253,7 @@ class QadDIMRADIUSCommandClass(QadCommandClass):
       action.triggered.connect(self.plugIn.runDIMRADIUSCommand)
 
    def getIcon(self):
-      return QIcon(":/plugins/qad/icons/dimRadius.png")
+      return QIcon(":/plugins/qad/icons/dimRadius.svg")
 
    def getNote(self):
       # impostare le note esplicative del comando

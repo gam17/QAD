@@ -76,7 +76,7 @@ class QadELLIPSECommandClass(QadCommandClass):
       action.triggered.connect(self.plugIn.runELLIPSECommand)
 
    def getIcon(self):
-      return QIcon(":/plugins/qad/icons/ellipse.png")
+      return QIcon(":/plugins/qad/icons/ellipse.svg")
 
    def getNote(self):
       # impostare le note esplicative del comando

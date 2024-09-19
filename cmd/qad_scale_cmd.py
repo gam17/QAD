@@ -60,7 +60,7 @@ class QadSCALECommandClass(QadCommandClass):
       action.triggered.connect(self.plugIn.runSCALECommand)
 
    def getIcon(self):
-      return QIcon(":/plugins/qad/icons/scale.png")
+      return QIcon(":/plugins/qad/icons/scale.svg")
 
    def getNote(self):
       # impostare le note esplicative del comando      

@@ -61,7 +61,7 @@ class QadFILLETCommandClass(QadCommandClass):
       action.triggered.connect(self.plugIn.runFILLETCommand)
 
    def getIcon(self):
-      return QIcon(":/plugins/qad/icons/fillet.png")
+      return QIcon(":/plugins/qad/icons/fillet.svg")
    
    def getNote(self):
       # impostare le note esplicative del comando      

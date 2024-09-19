@@ -64,7 +64,7 @@ class QadSTRETCHCommandClass(QadCommandClass):
       action.triggered.connect(self.plugIn.runSTRETCHCommand)
 
    def getIcon(self):
-      return QIcon(":/plugins/qad/icons/stretch.png")
+      return QIcon(":/plugins/qad/icons/stretch.svg")
 
    def getNote(self):
       # impostare le note esplicative del comando

@@ -49,7 +49,7 @@ class QadIDCommandClass(QadCommandClass):
       action.triggered.connect(self.plugIn.runIDCommand)
 
    def getIcon(self):
-      return QIcon(":/plugins/qad/icons/id.png")
+      return QIcon(":/plugins/qad/icons/id.svg")
 
    def getNote(self):
       # impostare le note esplicative del comando

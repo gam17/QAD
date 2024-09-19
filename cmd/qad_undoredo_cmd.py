@@ -48,7 +48,7 @@ class QadUNDOCommandClass(QadCommandClass):
       action.triggered.connect(self.plugIn.runUNDOCommand)
 
    def getIcon(self):
-      return QIcon(":/plugins/qad/icons/undo.png")
+      return QIcon(":/plugins/qad/icons/undo.svg")
    
    def getNote(self):
       # impostare le note esplicative del comando      
@@ -178,7 +178,7 @@ class QadREDOCommandClass(QadCommandClass):
       action.triggered.connect(self.plugIn.runREDOCommand)
 
    def getIcon(self):
-      return QIcon(":/plugins/qad/icons/redo.png")
+      return QIcon(":/plugins/qad/icons/redo.svg")
    
    def getNote(self):
       # impostare le note esplicative del comando      

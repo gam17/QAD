@@ -62,7 +62,7 @@ class QadLENGTHENCommandClass(QadCommandClass):
       action.triggered.connect(self.plugIn.runLENGTHENCommand)
 
    def getIcon(self):
-      return QIcon(":/plugins/qad/icons/lengthen.png")
+      return QIcon(":/plugins/qad/icons/lengthen.svg")
    
    def getNote(self):
       # impostare le note esplicative del comando      

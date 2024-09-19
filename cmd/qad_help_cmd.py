@@ -51,7 +51,7 @@ class QadHELPCommandClass(QadCommandClass):
       action.triggered.connect(self.plugIn.runHELPCommand)
 
    def getIcon(self):
-      return QIcon(":/plugins/qad/icons/help.png")
+      return QIcon(":/plugins/qad/icons/help.svg")
 
    def getNote(self):
       # impostare le note esplicative del comando
@@ -82,7 +82,7 @@ class QadSUPPORTERSCommandClass(QadCommandClass):
       action.triggered.connect(self.plugIn.runSUPPORTERSCommand)
 
    def getIcon(self):
-      return QIcon(":/plugins/qad/icons/supporters.png")
+      return QIcon(":/plugins/qad/icons/supporters.svg")
 
    def getNote(self):
       # impostare le note esplicative del comando
