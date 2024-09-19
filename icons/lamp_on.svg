@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Creator: CorelDRAW 2021 (64 Bit) -->
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="2.7092mm" height="2.7092mm" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+viewBox="0 0 270.92 270.92"
+ xmlns:xlink="http://www.w3.org/1999/xlink"
+ xmlns:xodm="http://www.corel.com/coreldraw/odm/2003">
+ <defs>
+  <font id="FontID0" horiz-adv-x="722" font-variant="normal" style="fill-rule:nonzero" font-weight="700">
+	<font-face 
+		font-family="Arial">
+		<font-face-src>
+			<font-face-name name="Arial Negrito"/>
+		</font-face-src>
+	</font-face>
+   <missing-glyph><path d="M0 0z"/></missing-glyph>
+   <glyph unicode="!" horiz-adv-x="333" d="M125.007 184.024l-35.4895 363.796 0 168.207 147.968 0 0 -168.207 -34.9793 -363.796 -77.4987 0zm-29.4801 -184.024l0 137.026 136.969 0 0 -137.026 -136.969 0z"/>
+  </font>
+  <style type="text/css">
+   <![CDATA[
+    @font-face { font-family:"Arial";font-variant:normal;font-weight:bold;src:url("#FontID0") format(svg)}
+    .str0 {stroke:#B3B3B3;stroke-width:10.58;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:22.9256}
+    .fil0 {fill:none}
+    .fil3 {fill:#666666}
+    .fil2 {fill:#B3B3B3}
+    .fil1 {fill:#FFCC00}
+    .fnt0 {font-weight:bold;font-size:176.39px;font-family:'Arial'}
+   ]]>
+  </style>
+ </defs>
+ <g id="Camada_x0020_1">
+  <metadata id="CorelCorpID_0Corel-Layer"/>
+  <rect class="fil0" x="-0.01" y="-0" width="270.93" height="270.93"/>
+  <g id="_2561803220224">
+   <g>
+    <path class="fil1" d="M122.17 165.21l27.16 0c1.48,-4.44 3.1,-8.79 5.77,-14.72 7.35,-16.25 14.02,-24.7 19.85,-32.08 3.11,-3.94 5.92,-7.5 8.22,-12.45l0.03 0.01c3.7,-7.98 5.41,-15.97 5.41,-23.51 0,-10.33 -3.11,-20.22 -8.52,-28.6 -5.38,-8.33 -13.06,-15.14 -22.21,-19.39l-0.07 0c-6.72,-3.13 -14.29,-4.9 -22.35,-4.9l0 -0.07c-8,0 -15.61,1.8 -22.42,4.97 -9.15,4.25 -16.84,11.07 -22.21,19.39 -5.37,8.32 -8.46,18.2 -8.46,28.6l-0.07 0c0,7.53 1.72,15.52 5.42,23.51l0.03 -0.01c2.3,4.95 5.11,8.51 8.22,12.45 5.83,7.38 12.5,15.83 19.85,32.08 2.29,5.08 4.07,9.02 5.7,13.02l-0.04 0.02c0.23,0.56 0.46,1.12 0.69,1.68zm-12.33 17.64l52.35 0c3.34,-10.15 4.59,-15.41 8.97,-25.12 11.52,-25.45 20.93,-29.14 28,-44.33 22.84,-49.09 -13.11,-101.44 -63.7,-101.47 -50.59,0.03 -86.54,52.38 -63.7,101.47 7.07,15.19 16.48,18.88 28,44.33 4.39,9.71 6.74,14.97 10.08,25.12z"/>
+   </g>
+   <path class="fil2" d="M118.3 246.33l35.43 0 0 0.03c0,4.43 -4.03,8.46 -8.46,8.46l-18.51 0c-4.43,0 -8.46,-3.8 -8.46,-8.46l0 -0.03z"/>
+   <path class="fil3" d="M109.84 182.85l52.35 0 0 55.02c0,4.64 -3.82,8.46 -8.46,8.46l-35.43 0c-4.64,0 -8.46,-3.8 -8.46,-8.46l0 -55.02z"/>
+   <path class="fil0 str0" d="M106.59 232.75l57.75 0m-57.75 -33.84l57.75 0m-57.75 16.92l57.75 0"/>
+  </g>
+  <text x="106.62" y="160.54"  class="fil3 fnt0">!</text>
+ </g>
+</svg>

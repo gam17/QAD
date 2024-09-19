@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Creator: CorelDRAW 2021 (64 Bit) -->
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="2.7092mm" height="2.7092mm" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+viewBox="0 0 270.92 270.92"
+ xmlns:xlink="http://www.w3.org/1999/xlink"
+ xmlns:xodm="http://www.corel.com/coreldraw/odm/2003">
+ <defs>
+  <style type="text/css">
+   <![CDATA[
+    .fil0 {fill:none}
+    .fil1 {fill:#4682C8;fill-rule:nonzero}
+    .fil2 {fill:url(#id0)}
+    .fil3 {fill:url(#id1)}
+    .fil4 {fill:url(#id2)}
+   ]]>
+  </style>
+  <linearGradient id="id0" gradientUnits="userSpaceOnUse" x1="179.22" y1="56.14" x2="214.78" y2="91.7">
+   <stop offset="0" style="stop-opacity:1; stop-color:#FA9E0D"/>
+   <stop offset="0.321569" style="stop-opacity:1; stop-color:#FEFEFE"/>
+   <stop offset="1" style="stop-opacity:1; stop-color:#D97300"/>
+  </linearGradient>
+  <linearGradient id="id1" gradientUnits="userSpaceOnUse" x1="217.75" y1="17.62" x2="253.3" y2="53.17">
+   <stop offset="0" style="stop-opacity:1; stop-color:#24292E"/>
+   <stop offset="0.321569" style="stop-opacity:1; stop-color:#B0BFBF"/>
+   <stop offset="1" style="stop-opacity:1; stop-color:#24292E"/>
+  </linearGradient>
+  <linearGradient id="id2" gradientUnits="userSpaceOnUse" x1="142.18" y1="105.03" x2="183.67" y2="122.81">
+   <stop offset="0" style="stop-opacity:1; stop-color:#382B26"/>
+   <stop offset="0.321569" style="stop-opacity:1; stop-color:#E3E3DE"/>
+   <stop offset="1" style="stop-opacity:1; stop-color:#382B26"/>
+  </linearGradient>
+ </defs>
+ <g id="Camada_x0020_1">
+  <metadata id="CorelCorpID_0Corel-Layer"/>
+  <rect class="fil0" x="-0.01" y="-0" width="270.93" height="270.93"/>
+  <path class="fil1" d="M8.46 261.49l59.23 -187.52 21.83 0 62.72 187.52 -23.26 0 -17.68 -56.83 -64.82 0 -16.63 56.83 -21.39 0zm43.95 -77l52.65 0 -16.11 -51.94c-4.98,-15.93 -8.64,-28.9 -10.96,-38.89 -2.01,12.04 -4.8,23.96 -8.42,35.83l-17.16 55zm185.96 60.28c-6.33,6.59 -12.88,11.53 -19.69,14.84 -6.85,3.36 -13.92,5.02 -21.26,5.02 -11.61,0 -20.86,-3.49 -27.76,-10.52 -6.94,-6.98 -10.39,-16.41 -10.39,-28.28 0,-7.86 1.62,-14.8 4.89,-20.87 3.23,-6.06 7.68,-10.82 13.32,-14.23 5.63,-3.4 14.18,-5.93 25.62,-7.55 15.36,-2.18 26.67,-4.8 33.83,-7.86l0.13 -5.89c0,-9.34 -1.66,-15.89 -4.98,-19.68 -4.67,-5.46 -11.87,-8.21 -21.56,-8.21 -8.78,0 -15.32,1.83 -19.69,5.46 -4.32,3.62 -7.51,10.47 -9.56,20.47l-18.85 -3.41c2.66,-14.44 7.98,-24.92 16.06,-31.51 8.07,-6.59 19.64,-9.87 34.66,-9.87 11.7,0 20.86,2.19 27.54,6.59 6.63,4.37 10.86,9.83 12.61,16.29 1.74,6.5 2.61,15.93 2.61,28.37l0 30.68c0,21.48 0.4,35.01 1.23,40.6 0.78,5.54 2.4,11 4.8,16.28l-19.63 0c-2.01,-4.67 -3.32,-10.26 -3.93,-16.72zm-1.44 -51.37c-6.9,3.4 -17.2,6.28 -30.86,8.64 -7.95,1.35 -13.49,2.92 -16.63,4.67 -3.19,1.75 -5.64,4.23 -7.38,7.42 -1.75,3.19 -2.62,6.9 -2.62,11.09 0,6.46 2.01,11.65 6.02,15.54 4.02,3.88 9.56,5.8 16.63,5.8 6.77,0 12.88,-1.74 18.38,-5.24 5.5,-3.49 9.65,-8.16 12.35,-14.01 2.75,-5.8 4.11,-14.32 4.11,-25.49l0 -8.42z"/>
+  <g id="_2779720799472">
+   <polygon class="fil2" points="239.97,66.51 189.59,116.88 154.04,81.33 204.41,30.95 "/>
+   <polygon class="fil3" points="231.08,4.28 204.41,30.95 239.97,66.51 266.64,39.84 "/>
+   <polygon class="fil4" points="154.03,81.34 189.58,116.89 148.11,122.81 "/>
+  </g>
+ </g>
+</svg>

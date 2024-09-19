@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<svg width="270.92" height="270.92" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg" clip-rule="evenodd" fill-rule="evenodd" version="1.1" xml:space="preserve">
+ <defs>
+  <style type="text/css">
+   <![CDATA[
+    .str0 {stroke:#666666;stroke-width:16.93;stroke-linecap:square;stroke-miterlimit:22.9256}
+    .fil0 {fill:none}
+    .fil2 {fill:#009933}
+    .fil1 {fill:white}
+   ]]>
+  </style>
+ </defs>
+ <g class="layer">
+  <title>Layer 1</title>
+  <metadata id="CorelCorpID_0Corel-Layer"/>
+  <rect class="fil0" height="270.93" id="svg_1" width="270.93"/>
+  <polyline class="fil0 str0" id="svg_2" points="25.39,219.16 56.16,82.53 214.75,188.36 245.52,51.76 "/>
+  <g id="svg_3">
+   <polygon class="fil1" id="svg_4" points="270.92,59.26 211.65,59.26 211.65,-0.01 270.92,-0.01 "/>
+   <path class="fil2" d="m270.92,59.26l-59.27,0l0,-59.27l59.27,0l0,59.27zm-46.92,-12.35l34.57,0l0,-34.57l-34.57,0l0,34.57z" id="_1"/>
+  </g>
+  <g id="svg_5">
+   <polygon class="fil1" id="svg_6" points="59.25,270.94 -0.02,270.94 -0.02,211.67 59.25,211.67 "/>
+   <path class="fil2" d="m59.25,270.94l-59.27,0l0,-59.27l59.27,0l0,59.27zm-46.92,-12.35l34.57,0l0,-34.57l-34.57,0l0,34.57z" id="_1_0"/>
+  </g>
+  <g id="svg_7">
+   <polygon class="fil1" id="svg_8" points="87.25,112.94000244140625 27.979999542236328,112.94000244140625 27.979999542236328,53.66999816894531 87.25,53.66999816894531 "/>
+   <path class="fil2" d="m87.25,112.94l-59.27,0l0,-59.27l59.27,0l0,59.27zm-46.92,-12.35l34.57,0l0,-34.57l-34.57,0l0,34.57z" id="svg_9"/>
+  </g>
+  <g id="svg_10">
+   <polygon class="fil1" id="svg_11" points="238.25,209.94000244140625 178.97999954223633,209.94000244140625 178.97999954223633,150.6699981689453 238.25,150.6699981689453 "/>
+   <path class="fil2" d="m238.25,209.94l-59.27,0l0,-59.27l59.27,0l0,59.27zm-46.92,-12.35l34.57,0l0,-34.57l-34.57,0l0,34.57z" id="svg_12"/>
+  </g>
+ </g>
+</svg>

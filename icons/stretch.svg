@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Creator: CorelDRAW 2021 (64 Bit) -->
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="2.7092mm" height="2.7092mm" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+viewBox="0 0 270.92 270.92"
+ xmlns:xlink="http://www.w3.org/1999/xlink"
+ xmlns:xodm="http://www.corel.com/coreldraw/odm/2003">
+ <defs>
+  <style type="text/css">
+   <![CDATA[
+    .str1 {stroke:#FF9933;stroke-width:17.64;stroke-miterlimit:22.9256}
+    .str0 {stroke:#4682C8;stroke-width:15.87;stroke-linejoin:round;stroke-miterlimit:22.9256}
+    .str2 {stroke:gray;stroke-width:17.64;stroke-linejoin:round;stroke-miterlimit:22.9256}
+    .fil0 {fill:none}
+    .fil1 {fill:#4682C8}
+    .fil2 {fill:white}
+   ]]>
+  </style>
+ </defs>
+ <g id="Camada_x0020_1">
+  <metadata id="CorelCorpID_0Corel-Layer"/>
+  <rect class="fil0" x="-0.01" y="-0" width="270.93" height="270.93"/>
+  <line class="fil0 str0" x1="99.03" y1="98.6" x2="48.51" y2= "48.08" />
+  <polygon class="fil1" points="21.14,21.14 28.26,47.72 35.39,74.3 54.84,54.84 74.3,35.39 47.72,28.26 "/>
+  <g id="_2558278244640">
+   <rect class="fil2" transform="matrix(-0.788114 -0.788114 0.848595 -0.848595 187.517 259.359)" width="148.12" height="84.66"/>
+   <polyline class="fil0 str1" points="136.61,196.47 187.51,247.37 247.37,187.51 196.47,136.61 "/>
+   <line class="fil0 str2" x1="189" y1="129.18" x2="177.03" y2= "117.21" />
+   <polyline class="fil0 str1" points="109.74,169.6 82.77,142.63 142.63,82.77 169.6,109.74 "/>
+   <line class="fil0 str2" x1="168.06" y1="150.12" x2="156.09" y2= "138.15" />
+   <line class="fil0 str2" x1="147.13" y1="171.06" x2="135.16" y2= "159.08" />
+   <line class="fil0 str2" x1="129.18" y1="189" x2="117.21" y2= "177.03" />
+  </g>
+ </g>
+</svg>
