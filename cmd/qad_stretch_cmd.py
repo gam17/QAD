@@ -590,7 +590,11 @@ class QadGRIPSTRETCHCommandClass(QadCommandClass):
                if i > 0:
                   ptList.append(gripPoints[i - 1].getPoint())
                if i < gripPointsLen - 1:
-                  ptList.append(gripPoints[i + 1].getPoint())
+                  # se il grip successivo è center si tratta dell'ultimo tratto di un poligono
+                  if gripPoints[i + 1].gripType == qad_grip.QadGripPointTypeEnum.CENTER:
+                     ptList.append(gripPoints[0].getPoint()) # prendo il primo punto
+                  else:
+                     ptList.append(gripPoints[i + 1].getPoint())
             elif gripPoint.gripType == qad_grip.QadGripPointTypeEnum.QUA_POINT:
                ptList.append(gripPoint.getPoint())
             elif gripPoint.gripType == qad_grip.QadGripPointTypeEnum.VERTEX or \
