@@ -448,8 +448,9 @@ def addFeatureToLayer(plugIn, layer, f, coordTransform = None, refresh = True, c
    while i < count:
       if i in pkAttrList:
          defVal = provider.defaultValue(i)
-         if defVal is not None or layer.providerType() == "spatialite":
-            f[i] = provider.defaultValue(i)         
+         f[i] = defVal
+         # if defVal is not None or layer.providerType() == "spatialite":
+         #    f[i] = provider.defaultValue(i)         
       i = i + 1
  
    if layer.addFeature(f):

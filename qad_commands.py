@@ -37,7 +37,7 @@ from .qad_cmd_aliases import *
 from .qad_variables import QadVariables
 
 from .qad_getpoint import *
-from .qad_utils import decriptPlainText, getQADPath
+from .qad_utils import decriptPlainText, getQADPath, getMacAddress
 from .cmd.qad_generic_cmd import QadCommandClass
 from .cmd.qad_id_cmd import QadIDCommandClass
 from .cmd.qad_setcurrlayerbygraph_cmd import QadSETCURRLAYERBYGRAPHCommandClass, QadSETCURRUPDATEABLELAYERBYGRAPHCommandClass
@@ -421,6 +421,7 @@ class QadCommandsClass():
       del self.actualCommand
       self.actualCommand = None
       self.plugIn.setStandardMapTool()
+      self.plugIn.tool.getDynamicInput().show(False)
       self.showCommandPrompt() # visualizza prompt standard per richiesta comando 
 
 
@@ -719,4 +720,4 @@ def getMaxDailyCmdCounter():
    except:
       pass
       
-   return 100
+   return 200

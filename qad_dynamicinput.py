@@ -224,8 +224,9 @@ class QadDynamicEdit(QTextEdit):
 
    def refreshWidth(self, updateCtrlsPos = True):
       fm = QFontMetrics(self.currentFont())
-      width = fm.width(self.toPlainText() + "__")
-      height = fm.height()
+      boundingRect = fm.boundingRect(self.toPlainText())
+      width = int(boundingRect.width() * 1.2) + 5
+      height = boundingRect.height()
       
       canvasRect = self.canvas.rect()
       if width > canvasRect.width():
@@ -706,12 +707,15 @@ class QadDynamicInputEdit(QadDynamicEdit):
    def refreshWidth(self, updateCtrlsPos = True):
       height = self.height()
       fm = QFontMetrics(self.currentFont())
+      boundingRect = fm.boundingRect(self.toPlainText())
+      width = int(boundingRect.width() * 1.2) + 5     
+      
       dimLockedIcon = self.LockedIcon.height()
       offset = 2
       if self.isLockedValue():
-         width = fm.width(self.toPlainText() + "__") + dimLockedIcon + offset # per icona di lock
+         width = width + dimLockedIcon + offset # per icona di lock
       else:
-         width = fm.width(self.toPlainText() + "__") + offset # per icona di lock
+         width = width + offset # per icona di lock
       
       canvasRect = self.canvas.rect()
       if width > canvasRect.width():

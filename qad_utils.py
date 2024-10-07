@@ -45,7 +45,7 @@ from .qad_msg import QadMsg
 
 
 def getMacAddress():
-   return ':'.join(re.findall('..', '%012x' % uuid.getnode())).upper()   
+   return ':'.join(re.findall('..', '%012x' % uuid.getnode())).upper()
 
 
 def criptPlainText(strValue):
@@ -944,12 +944,15 @@ def getVisibleVectorLayers(canvas):
 #===============================================================================
 def getSnappableVectorLayers(canvas):
    # make QAD honor QGIS's snap settings (ALL LAYERS, ACTIVE LAYER, ADVANCED).
-   # by Oliver Dalang
+   # proposed by Oliver Dalang
    enabled = canvas.snappingUtils().config().enabled()
    mode = canvas.snappingUtils().config().mode()
 
    if enabled and mode == QgsSnappingConfig.ActiveLayer:
-      layers = [qgis.utils.iface.activeLayer()]
+      if qgis.utils.iface.activeLayer() is None:
+         layers = []
+      else:
+         layers = [qgis.utils.iface.activeLayer()]
    elif enabled and mode == QgsSnappingConfig.AdvancedConfiguration:
       layers = list(cfg.layer for cfg in canvas.snappingUtils().layers())
    else: # mode == QgsSnappingConfig.AllLayers:
