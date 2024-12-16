@@ -39,9 +39,9 @@ from .qad_arc import QadArc
 from .qad_polyline import *
 
 
-#===============================================================================
+# ===============================================================================
 # offsetQGSGeom
-#===============================================================================
+# ===============================================================================
 def offsetQGSGeom(qgsGeom, offsetDistOrPoint, gapType, forcedOffsetDist = None):
    """
    la funzione fa l'offset di una geometria di QGIS
@@ -114,9 +114,9 @@ def offsetQGSGeom(qgsGeom, offsetDistOrPoint, gapType, forcedOffsetDist = None):
    return result
 
 
-#===============================================================================
+# ===============================================================================
 # offsetPolyline
-#===============================================================================
+# ===============================================================================
 def offsetPolyline(qadGeom, offsetDist, offsetSide, gapType):
    """
    la funzione fa l'offset di una geometria QAD
@@ -195,9 +195,9 @@ def offsetPolyline(qadGeom, offsetDist, offsetSide, gapType):
 
 
 
-#===============================================================================
+# ===============================================================================
 # dualClipping
-#===============================================================================
+# ===============================================================================
 def dualClipping(polyline, untrimmedOffsetPolyline, untrimmedReversedOffsetPolyline, offsetDist):
    """
    la funzione effettua il dual clipping su untrimmedOffsetPolyline.
@@ -319,9 +319,9 @@ def dualClipping(polyline, untrimmedOffsetPolyline, untrimmedReversedOffsetPolyl
    return dualClippedPartList
 
 
-#===============================================================================
+# ===============================================================================
 # generalClosedPointPairClipping
-#===============================================================================
+# ===============================================================================
 def generalClosedPointPairClipping(polyline, dualClippedPolyline, offsetDist):
    """
    la funzione effettua il general closed point pair clipping su dualClippedPolyline.
@@ -443,9 +443,9 @@ def generalClosedPointPairClipping(polyline, dualClippedPolyline, offsetDist):
    return GCPPCList
 
 
-#===============================================================================
+# ===============================================================================
 # getTrimmedOffSetPolyline
-#===============================================================================
+# ===============================================================================
 def getTrimmedOffSetPolyline(polyline, untrimmedOffsetPolyline, untrimmedReversedOffsetPolyline, \
                              offsetDist):
    """
@@ -474,9 +474,9 @@ def getTrimmedOffSetPolyline(polyline, untrimmedOffsetPolyline, untrimmedReverse
    return selfJoinPolyline(GCPPCList)
 
 
-#===============================================================================
+# ===============================================================================
 # getUntrimmedOffSetPolyline
-#===============================================================================
+# ===============================================================================
 def getUntrimmedOffSetPolyline(polyline, offsetDist, offsetSide, gapType):
    """
    la funzione fa l'offset non pulito da eventuali tagli da apportare (vedi
@@ -745,9 +745,9 @@ def getUntrimmedOffSetPolyline(polyline, offsetDist, offsetSide, gapType):
    return untrimmedOffsetPolyline
 
 
-#===============================================================================
+# ===============================================================================
 # preTreatmentOffset
-#===============================================================================
+# ===============================================================================
 def preTreatmentOffset(polyline):
    """
    la funzione controlla le "local self intersection"> :
@@ -802,9 +802,9 @@ def preTreatmentOffset(polyline):
    return result
 
 
-#===============================================================================
+# ===============================================================================
 # getIntersectionPointInfoOffset
-#===============================================================================
+# ===============================================================================
 def getIntersectionPointInfoOffset(part, nextPart):
    """
    la funzione restituisce il punto di intersezione tra le 2 parti e
@@ -926,9 +926,9 @@ def getIntersectionPointInfoOffset(part, nextPart):
          return [ptInt, intTypePart, intTypeNextPart]
 
 
-#============================================================================
+# ============================================================================
 # getSelfIntersectionPoints
-#============================================================================
+# ============================================================================
 def getSelfIntersectionPoints(polyline):
    """
    la funzione restituisce una lista in cui ogni elemento è una sottolista composta da:
@@ -962,9 +962,9 @@ def getSelfIntersectionPoints(polyline):
    return result
 
 
-#============================================================================
+# ============================================================================
 # getIntersectionPointsWithPolyline
-#============================================================================
+# ============================================================================
 def getIntersectionPointsWithPolyline(polyline1, polyline2):
    """
    la funzione restituisce una lista in cui ogni elemento è una sottolista composta da:
@@ -997,9 +997,9 @@ def getIntersectionPointsWithPolyline(polyline1, polyline2):
 
 
 
-#===============================================================================
+# ===============================================================================
 # offsetBridgeTheGapBetweenLines
-#===============================================================================
+# ===============================================================================
 
 
 def offsetBridgeTheGapBetweenLines(line1, line2, offset, gapType):
@@ -1124,9 +1124,9 @@ def offsetBridgeTheGapBetweenLines(line1, line2, offset, gapType):
    return None
 
 
-#===============================================================================
+# ===============================================================================
 # fillet2PartsOffset
-#===============================================================================
+# ===============================================================================
 def fillet2PartsOffset(part, nextPart, offsetSide, offsetDist):
    """
    la funzione raccorda 2 parti nei seguenti casi:   
@@ -1185,9 +1185,9 @@ def fillet2PartsOffset(part, nextPart, offsetSide, offsetDist):
       return newArc
 
 
-#===============================================================================
+# ===============================================================================
 # getOffsetDistancesFromCenterOnOffsetedArc
-#===============================================================================
+# ===============================================================================
 def getOffsetDistancesFromCenterOnOffsetedArc(arc, offsetDist, offsetSide):
    """
    la funzione restituisce la distanza minima e massima dal centro dell'arco su cui è già stato fatto un offset.
@@ -1216,9 +1216,9 @@ def getOffsetDistancesFromCenterOnOffsetedArc(arc, offsetDist, offsetSide):
    return minDist, maxDist
 
 
-#===============================================================================
+# ===============================================================================
 # virtualPartClipping
-#===============================================================================
+# ===============================================================================
 def virtualPartClipping(untrimmedOffsetPolyline, virtualPartPositionList):
    """
    la funzione restituisce una lista di parti in cui vengono tagliate le isole generate
@@ -1394,9 +1394,9 @@ def virtualPartClipping(untrimmedOffsetPolyline, virtualPartPositionList):
    return result
 
 
-#===============================================================================
+# ===============================================================================
 # getIntPtListBetweenPartAndPartListOffset
-#===============================================================================
+# ===============================================================================
 def getIntPtListBetweenPartAndPartListOffset(part, polyline):
    """
    la funzione restituisce due liste:
@@ -1448,9 +1448,9 @@ def getIntPtListBetweenPartAndPartListOffset(part, polyline):
    return resultIntPt, resultPartNumber
 
 
-#============================================================================
+# ============================================================================
 # getPartsExternalToCircle
-#============================================================================
+# ============================================================================
 def getPartsExternalToCircle(linearObj, circle):
    """
    la funzione usa un cerchio per dividere l'oggetto lineare.

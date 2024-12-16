@@ -35,9 +35,9 @@ from .qad_arc import *
 from .qad_ellipse_arc import *
 
 
-#===============================================================================
+# ===============================================================================
 # extendQadGeometry
-#===============================================================================
+# ===============================================================================
 def extendQadGeometry(qadGeom, pt, limitEntitySet, edgeMode):
    """
    la funzione estende una geometria QAD (lineare) nella parte iniziale o finale fino ad
@@ -114,9 +114,9 @@ def extendQadGeometry(qadGeom, pt, limitEntitySet, edgeMode):
    return setQadGeomAt(qadGeom, result, atGeom, atSubGeom)
 
 
-#===============================================================================
+# ===============================================================================
 # getIntersectionPtsExtendQadGeometry
-#===============================================================================
+# ===============================================================================
 def getIntersectionPtsExtendQadGeometry(linearObject, limitGeom, edgeMode):
    """
    la funzione calcola i punti di intersezione tra il prolungamento della parte lineare
@@ -151,9 +151,9 @@ def getIntersectionPtsExtendQadGeometry(linearObject, limitGeom, edgeMode):
          
 
 
-#===============================================================================
+# ===============================================================================
 # trimQadGeometry
-#===============================================================================
+# ===============================================================================
 def trimQadGeometry(qadGeom, pt, limitEntitySet, edgeMode):
    """
    la funzione taglia la geometria QAD (lineare) in una parte i cui limiti sono le intersezioni più
@@ -282,9 +282,9 @@ def trimQadGeometry(qadGeom, pt, limitEntitySet, edgeMode):
       return [g1, g2, atGeom, atSubGeom]
 
 
-#===============================================================================
+# ===============================================================================
 # getIntersectionPtsTrimQadGeometry
-#===============================================================================
+# ===============================================================================
 def getIntersectionPtsTrimQadGeometry(qadGeom, limitGeom, edgeMode):
    """
    la funzione calcola i punti di intersezione tra <qadGeom> e la geometria <limitGeom> secondo la modalità <edgeMode>.

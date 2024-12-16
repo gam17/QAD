@@ -38,9 +38,9 @@ from .qad_msg import QadMsg
 from .qad_point import QadPoint
 
 
-#===============================================================================
+# ===============================================================================
 # QadEllipse ellipse class
-#===============================================================================
+# ===============================================================================
 class QadEllipse():
     
    def __init__(self, ellipse = None):
@@ -56,9 +56,9 @@ class QadEllipse():
       return "ELLIPSE"
 
    
-   #============================================================================
+   # ============================================================================
    # isClosed
-   #============================================================================
+   # ============================================================================
    def isClosed(self):
       return True
 
@@ -128,16 +128,16 @@ class QadEllipse():
       return  math.pi * a * b
 
 
-   #============================================================================
+   # ============================================================================
    # getRotation
-   #============================================================================
+   # ============================================================================
    def getRotation(self):
       return qad_utils.getAngleBy2Pts(self.center, self.majorAxisFinalPt)
 
 
-   #===============================================================================
+   # ===============================================================================
    # getBoundingBox
-   #===============================================================================
+   # ===============================================================================
    def getBoundingBox(self):
       """
       la funzione ritorna il rettangolo che racchiude l'ellisse.
@@ -164,9 +164,9 @@ class QadEllipse():
       return QgsRectangle(xMin, yMin, xMax, yMax)
 
 
-   #============================================================================
+   # ============================================================================
    # getFocus
-   #============================================================================
+   # ============================================================================
    def getFocus(self):
       # restituisce una lista di 2 punti che sono i fuochi dell'ellisse
       # http://www.softschools.com/math/calculus/finding_the_foci_of_an_ellipse/
@@ -181,16 +181,16 @@ class QadEllipse():
       return [pt1, pt2]
       
       
-   #============================================================================
+   # ============================================================================
    # containsPt
-   #============================================================================
+   # ============================================================================
    def containsPt(self, point):
       return True if self.whereIsPt(point) == 0 else False # -1 interno, 0 sull'ellisse, 1 esterno:
 
 
-   #============================================================================
+   # ============================================================================
    # whereIsPt
-   #============================================================================
+   # ============================================================================
    def whereIsPt(self, point):
       # ritorna -1 se il punto è interno, 0 se è sull'ellisse, 1 se è esterno
       foci = self.getFocus()
@@ -209,9 +209,9 @@ class QadEllipse():
          return 1
 
 
-   #============================================================================
+   # ============================================================================
    # getQuadrantPoints
-   #============================================================================
+   # ============================================================================
    def getQuadrantPoints(self):
       # ritorna i punti quadranti: partendo da majorAxisFinalPt in ordine antiorario
       angle = qad_utils.getAngleBy2Pts(self.center, self.majorAxisFinalPt)
@@ -226,9 +226,9 @@ class QadEllipse():
       return [pt1, pt2, pt3, pt4]
 
 
-   #============================================================================
+   # ============================================================================
    # translateAndRotatePtForNormalEllipse
-   #============================================================================
+   # ============================================================================
    def translateAndRotatePtForNormalEllipse(self, point, inverse):
       # poichè è conveniente fare i calcoli considerando una ellisse con centro in 0,0 e rotazione 0
       # traslo e ruoto il punto con cui devo fare i calcoli per adattarlo a questo tipo di ellisse
@@ -271,9 +271,9 @@ class QadEllipse():
       return qad_utils.normalizeAngle(angle)
    
 
-   #============================================================================
+   # ============================================================================
    # getAngleFromParam
-   #============================================================================
+   # ============================================================================
    def getAngleFromParam(self, param):
       """
       L'equazione parametrica per l'ellisse è x=a*cos(param), y=b*sin(param).
@@ -291,9 +291,9 @@ class QadEllipse():
       return angle
       
       
-   #============================================================================
+   # ============================================================================
    # getParamFromAngle
-   #============================================================================
+   # ============================================================================
    def getParamFromAngle(self, angle):
       """
       L'equazione parametrica per l'ellisse è x=a*cos(param), y=b*sin(param).
@@ -312,9 +312,9 @@ class QadEllipse():
 
 
    
-   #============================================================================
+   # ============================================================================
    # asPolyline
-   #============================================================================
+   # ============================================================================
    def asPolyline(self, tolerance2ApproxCurve = None, atLeastNSegment = None):
       """
       ritorna una lista di punti che definisce l'ellisse
@@ -351,19 +351,22 @@ class QadEllipse():
       return points
 
    
-   #===============================================================================
+   # ===============================================================================
    # asLineString
-   #===============================================================================
+   # ===============================================================================
    def asLineString(self, tolerance2ApproxCurve = None, atLeastNSegment = None):
       """
       la funzione ritorna l'ellisse in forma di lineString.
       """
-      return QgsLineString(self.asPolyline(tolerance2ApproxCurve, atLeastNSegment))
+      pts = self.asPolyline(tolerance2ApproxCurve, atLeastNSegment)
+      if pts is None or len(pts) == 0:
+          return None
+      return QgsLineString(pts)
 
 
-   #===============================================================================
+   # ===============================================================================
    # asAbstractGeom
-   #===============================================================================
+   # ===============================================================================
    def asAbstractGeom(self, wkbType = QgsWkbTypes.LineString, tolerance2ApproxCurve = None, atLeastNSegment = None):
       """
       la funzione ritorna l'ellisse in forma di QgsGeometry.
@@ -415,9 +418,9 @@ class QadEllipse():
       return self.asLineString(tolerance2ApproxCurve, atLeastNSegment)
 
 
-   #===============================================================================
+   # ===============================================================================
    # asGeom
-   #===============================================================================
+   # ===============================================================================
    def asGeom(self, wkbType = QgsWkbTypes.LineString, tolerance2ApproxCurve = None, atLeastNSegment = None):
       """
       la funzione ritorna l'ellisse in forma di QgsGeometry.
@@ -425,9 +428,9 @@ class QadEllipse():
       return QgsGeometry(self.asAbstractGeom(wkbType, tolerance2ApproxCurve, atLeastNSegment));
 
 
-   #============================================================================
+   # ============================================================================
    # getPointAt
-   #============================================================================
+   # ============================================================================
    def getPointAt(self, param):
       """
       L'equazione parametrica per l'ellisse è x=a*cos(param), y=b*sin(param).
@@ -448,9 +451,9 @@ class QadEllipse():
       return QgsPointXY(x, y)
    
 
-   #============================================================================
+   # ============================================================================
    # getPointAtAngle
-   #============================================================================
+   # ============================================================================
    def getPointAtAngle(self, angle):
       """
       Trova il punto sull'ellisse
@@ -477,9 +480,9 @@ class QadEllipse():
       return pt
 
 
-   #============================================================================
+   # ============================================================================
    # getNextParamPt
-   #============================================================================
+   # ============================================================================
    def getNextParamPt(self, param1, pt1, angleStep, tolerance):
       """
       La funzione cerca l'angolo (dell'equazione parametrica) successivo all'angolo param1 
@@ -506,9 +509,9 @@ class QadEllipse():
       return param2, pt2
       
    
-   #============================================================================
+   # ============================================================================
    # fromPolyline
-   #============================================================================
+   # ============================================================================
    def fromPolyline(self, points, atLeastNSegment = None):
       """
       setta le caratteristiche dell'ellisse incontrata nella lista di punti.
@@ -646,41 +649,41 @@ class QadEllipse():
       return True
 
 
-   #============================================================================
+   # ============================================================================
    # move
-   #============================================================================
+   # ============================================================================
    def move(self, offsetX, offsetY):
       self.center = qad_utils.movePoint(self.center, offsetX, offsetY)
       self.majorAxisFinalPt = qad_utils.movePoint(self.majorAxisFinalPt, offsetX, offsetY)
 
 
-   #============================================================================
+   # ============================================================================
    # rotate
-   #============================================================================
+   # ============================================================================
    def rotate(self, basePt, angle):
       self.center = qad_utils.rotatePoint(self.center, basePt, angle)
       self.majorAxisFinalPt = qad_utils.rotatePoint(self.majorAxisFinalPt, basePt, angle)
 
 
-   #============================================================================
+   # ============================================================================
    # scale
-   #============================================================================
+   # ============================================================================
    def scale(self, basePt, scale):
       self.center = qad_utils.scalePoint(self.center, basePt, scale)
       self.majorAxisFinalPt = qad_utils.scalePoint(self.majorAxisFinalPt, basePt, scale)
 
 
-   #============================================================================
+   # ============================================================================
    # mirror
-   #============================================================================
+   # ============================================================================
    def mirror(self, mirrorPt, mirrorAngle):
       self.center = qad_utils.mirrorPoint(self.center, mirrorPt, mirrorAngle)
       self.majorAxisFinalPt = qad_utils.mirrorPoint(self.center, mirrorPt, mirrorAngle)
 
 
-   #============================================================================
+   # ============================================================================
    # getNextParamPtForOffset
-   #============================================================================
+   # ============================================================================
    def getNextParamPtForOffset(self, param1, pt1Offset, angleStep, tolerance, dist):
       """
       La funzione cerca l'angolo (dell'equazione parametrica) successivo all'angolo param1 
@@ -711,9 +714,9 @@ class QadEllipse():
       return param2, pt2Offset
 
 
-   #===============================================================================
+   # ===============================================================================
    # offset
-   #===============================================================================
+   # ===============================================================================
    def offset(self, offsetDist, offsetSide, tolerance2ApproxCurve = None):
       """
       la funzione restituisce l'ellisse facendone l'offset.
@@ -764,9 +767,9 @@ class QadEllipse():
       return points
 
 
-   #============================================================================
+   # ============================================================================
    # fromFoci
-   #============================================================================
+   # ============================================================================
    def fromFoci(self, f1, f2, ptOnEllipse):
       """
       setta le caratteristiche dell'ellisse attraverso:
@@ -795,9 +798,9 @@ class QadEllipse():
       return self.set(ptCenter, majorAxisPt, axisRatio)
    
 
-   #============================================================================
+   # ============================================================================
    # fromExtent
-   #============================================================================
+   # ============================================================================
    def fromExtent(self, pt1, pt2, rot = 0):
       """
       setta le caratteristiche dell'ellisse attraverso:
@@ -825,9 +828,9 @@ class QadEllipse():
       return self.set(ptCenter, majorAxisPt, axisRatio)
 
 
-   #============================================================================
+   # ============================================================================
    # fromCenterAxis1FinalPtAxis2FinalPt
-   #============================================================================
+   # ============================================================================
    def fromCenterAxis1FinalPtAxis2FinalPt(self, ptCenter, axis1FinalPt, axis2FinalPt):
       """
       setta le caratteristiche dell'ellisse attraverso:
@@ -844,9 +847,9 @@ class QadEllipse():
       return fromCenterAxis1FinalPtDistAxis2(cls, ptCenter, axis1FinalPt, distAxis2)
 
 
-   #============================================================================
+   # ============================================================================
    # fromCenterAxis1FinalPtDistAxis2
-   #============================================================================
+   # ============================================================================
    def fromCenterAxis1FinalPtDistAxis2(self, ptCenter, axis1FinalPt, distAxis2):
       """
       setta le caratteristiche dell'ellisse attraverso:
@@ -865,9 +868,9 @@ class QadEllipse():
       return self.set(ptCenter, axis1FinalPt, axisRatio)
 
 
-   #============================================================================
+   # ============================================================================
    # fromCenterAxis1FinalPtAxis2FinalPt
-   #============================================================================
+   # ============================================================================
    def fromCenterAxis1FinalPtAxis2FinalPt(self, axis1Finalpt1, axis1Finalpt2, axis2FinalPt):
       """
       setta le caratteristiche dell'ellisse attraverso:
@@ -884,9 +887,9 @@ class QadEllipse():
       return self.fromCenterAxis1FinalPtDistAxis2(ptCenter, axis1FinalPt, axis2Len)
 
 
-   #============================================================================
+   # ============================================================================
    # fromAxis1FinalPtsAxis2Len
-   #============================================================================
+   # ============================================================================
    def fromAxis1FinalPtsAxis2Len(self, axis1FinalPt1, axis1FinalPt2, distAxis2):
       """
       setta le caratteristiche dell'ellisse attraverso:
@@ -906,9 +909,9 @@ class QadEllipse():
       return self.set(ptCenter, axis1FinalPt1, axisRatio)
 
 
-   #============================================================================
+   # ============================================================================
    # fromAxis1FinalPtsArea
-   #============================================================================
+   # ============================================================================
    def fromAxis1FinalPtsArea(self, axis1FinalPt1, axis1FinalPt2, area):
       """
       setta le caratteristiche dell'ellisse attraverso:

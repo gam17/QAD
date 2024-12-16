@@ -33,9 +33,9 @@ from qgis.gui import *
 from .qad_variables import QadVariables
 
 
-#===============================================================================
+# ===============================================================================
 # getQGISColorForHighlight
-#===============================================================================
+# ===============================================================================
 def getQGISColorForHighlight():
    """
    La funzione legge il colore impostato da QGIS per il rubber band di tipo <geometryType>.
@@ -51,9 +51,9 @@ def getQGISColorForHighlight():
    return color
 
 
-#===============================================================================
+# ===============================================================================
 # createHighlight
-#===============================================================================
+# ===============================================================================
 def createHighlight(mapCanvas, geometry_feature, layer, borderColor = None, fillColor = None):
    """
    la funzione crea un rubber band di tipo <geometryType> con le impostazioni di QGIS.

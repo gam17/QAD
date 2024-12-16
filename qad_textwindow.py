@@ -40,9 +40,9 @@ from .qad_snapper import str2snapTypeEnum, str2snapParams
 from .qad_variables import QadVariables, QadINPUTSEARCHOPTIONSEnum
 
 
-#===============================================================================
+# ===============================================================================
 # QadInputTypeEnum class.
-#===============================================================================
+# ===============================================================================
 class QadInputTypeEnum():
    NONE     = 0    # nessuno
    COMMAND  = 1    # nome di un comando
@@ -57,9 +57,9 @@ class QadInputTypeEnum():
    ANGLE    = 512  # un valore reale in gradi
 
 
-#===============================================================================
+# ===============================================================================
 # QadInputModeEnum class.
-#===============================================================================
+# ===============================================================================
 class QadInputModeEnum():
    NONE         = 0
    NOT_NULL     = 1   # inserimento nullo non permesso
@@ -68,9 +68,9 @@ class QadInputModeEnum():
    NOT_POSITIVE = 8   # valore positivo non permesso  
 
       
-#===============================================================================
+# ===============================================================================
 # QadCmdOptionPos
-#===============================================================================
+# ===============================================================================
 class QadCmdOptionPos():      
    def __init__(self, name = "", initialPos = 0, finalPos = 0):
       self.name = name
@@ -82,9 +82,9 @@ class QadCmdOptionPos():
 
 
 
-#===============================================================================
+# ===============================================================================
 # QadTextWindow
-#===============================================================================
+# ===============================================================================
 class QadTextWindow(QDockWidget, Ui_QadTextWindow):
    """This class 
    """
@@ -144,9 +144,9 @@ class QadTextWindow(QDockWidget, Ui_QadTextWindow):
       self.refreshColors()
 
 
-   #============================================================================
+   # ============================================================================
    # refreshColors
-   #============================================================================
+   # ============================================================================
    def refreshColors(self):
       history_ForegroundColor = QColor(QadVariables.get(QadMsg.translate("Environment variables", "CMDHISTORYFORECOLOR")))
       history_BackGroundColor = QColor(QadVariables.get(QadMsg.translate("Environment variables", "CMDHISTORYBACKCOLOR")))
@@ -362,9 +362,9 @@ class QadTextWindow(QDockWidget, Ui_QadTextWindow):
          self.cmdSuggestWindow.resizeEvent(e)
 
         
-#===============================================================================
+# ===============================================================================
 # QadChronologyEdit
-#===============================================================================
+# ===============================================================================
 class QadChronologyEdit(QTextEdit):
    
    def __init__(self, parent):
@@ -375,9 +375,9 @@ class QadChronologyEdit(QTextEdit):
       self.setMinimumSize(0, 1)
    
    
-   #============================================================================
+   # ============================================================================
    # set_Colors
-   #============================================================================
+   # ============================================================================
    def set_Colors(self, foregroundColor = Qt.black, backGroundColor = Qt.lightGray):
       f = QColor(foregroundColor)
       b = QColor(backGroundColor)
@@ -393,9 +393,9 @@ class QadChronologyEdit(QTextEdit):
       self.setStyleSheet(fmt)
 
 
-   #============================================================================
+   # ============================================================================
    # insertText
-   #============================================================================
+   # ============================================================================
    def insertText(self, txt):
       cursor = self.textCursor()
       for line in txt.split('\n'):
@@ -408,9 +408,9 @@ class QadChronologyEdit(QTextEdit):
       self.ensureCursorVisible()
   
            
-#===============================================================================
+# ===============================================================================
 # QadEdit
-#===============================================================================
+# ===============================================================================
 class QadEdit(QTextEdit):
    PROMPT, KEY_WORDS = range(2)
    
@@ -462,9 +462,9 @@ class QadEdit(QTextEdit):
       self.timerForCmdAutoComplete.setSingleShot(True)
        
 
-   #============================================================================
+   # ============================================================================
    # set_Colors
-   #============================================================================
+   # ============================================================================
    def set_Colors(self, foregroundColor = Qt.black, backGroundColor = Qt.white):
       f = QColor(foregroundColor)
       b = QColor(backGroundColor)
@@ -484,9 +484,9 @@ class QadEdit(QTextEdit):
       self.tcf_normal.setFontWeight(QFont.Normal)
 
 
-   #============================================================================
+   # ============================================================================
    # set_keyWordColors
-   #============================================================================
+   # ============================================================================
    def set_keyWordColors(self, backGroundColor = QColor(210, 210, 210), upperKeyWord_ForegroundColor = Qt.blue, \
                          highlightKeyWord_BackGroundColor = Qt.gray):
       self.tcf_keyWord.setBackground(backGroundColor)
@@ -1176,9 +1176,9 @@ class QadEdit(QTextEdit):
       self.timerForCmdAutoComplete.stop()
 
          
-#===============================================================================
+# ===============================================================================
 # QadCmdSuggestWindow
-#===============================================================================
+# ===============================================================================
 class QadCmdSuggestWindow(QWidget, Ui_QadCmdSuggestWindow, object):
          
    def __init__(self, parent, editWidget, infoCmds, infoVars):
@@ -1326,9 +1326,9 @@ class QadCmdSuggestWindow(QWidget, Ui_QadCmdSuggestWindow, object):
          self.editWidget.appendCmdTextForAutoComplete(cmdName, len(self.filter))
       
 
-#===============================================================================
+# ===============================================================================
 # QadCmdListView
-#===============================================================================
+# ===============================================================================
 class QadCmdSuggestListView(QListView):
 
    def __init__(self, parent):

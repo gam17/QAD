@@ -43,9 +43,9 @@ from .qad_dim import *
 from . import qad_label
 from .qad_multi_geom import fromQadGeomToQgsGeom
 
-#===============================================================================
+# ===============================================================================
 # doMoveAndRotateGeom
-#===============================================================================
+# ===============================================================================
 def doMoveAndRotateGeom(plugIn, entity, offsetX, offsetY, angle, basePt, addToLayer, highlightObj):
    # funzione di ausilio
    if entity.whatIs() == "ENTITY":   
@@ -96,9 +96,9 @@ def doMoveAndRotateGeom(plugIn, entity, offsetX, offsetY, angle, basePt, addToLa
    return True
 
 
-#===============================================================================
+# ===============================================================================
 # arrayRectangleEntity
-#===============================================================================
+# ===============================================================================
 def arrayRectangleEntity(plugIn, ent, basePt, rows, cols, distanceBetweenRows, distanceBetweenCols, angle, itemsRotation,
                          addToLayer, highlightObj):
    """
@@ -134,9 +134,9 @@ def arrayRectangleEntity(plugIn, ent, basePt, rows, cols, distanceBetweenRows, d
    return True
 
 
-#===============================================================================
+# ===============================================================================
 # arrayPathEntity
-#===============================================================================
+# ===============================================================================
 def arrayPathEntity(plugIn, ent, basePt, rows, cols, distanceBetweenRows, distanceBetweenCols, tangentDirection, itemsRotation, \
                     pathPolyline, distanceFromStartPt, addToLayer, highlightObj):
    """
@@ -177,9 +177,9 @@ def arrayPathEntity(plugIn, ent, basePt, rows, cols, distanceBetweenRows, distan
    return True
 
 
-#===============================================================================
+# ===============================================================================
 # arrayPolarEntity
-#===============================================================================
+# ===============================================================================
 def arrayPolarEntity(plugIn, ent, basePt, centerPt, itemsNumber, angleBetween, rows, distanceBetweenRows, itemsRotation, \
                      addToLayer, highlightObj):
    """

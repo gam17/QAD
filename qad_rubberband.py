@@ -35,9 +35,9 @@ from .qad_variables import QadVariables
 from .qad_msg import QadMsg
 
 
-#===============================================================================
+# ===============================================================================
 # QadCursorTypeEnum class.
-#===============================================================================
+# ===============================================================================
 class QadCursorTypeEnum():
    NONE     = 0   # nessun cursore
    BOX      = 1   # un quadratino usato per selezionare entità
@@ -45,9 +45,9 @@ class QadCursorTypeEnum():
    APERTURE = 4   # un quadratino usato per selezionare i punti di snap
 
 
-#===============================================================================
+# ===============================================================================
 # createCursorRubberBand
-#===============================================================================
+# ===============================================================================
 # Classe che gestisce rubber band per disegnare il cursore a croce e il quadratino di pickbox
 class QadCursorRubberBand():
    def __init__(self, mapCanvas, cursorType):
@@ -230,9 +230,9 @@ class QadCursorRubberBand():
          self.__apertureRubberBand.show()
 
 
-#===============================================================================
+# ===============================================================================
 # getQGISColorForRubberBand
-#===============================================================================
+# ===============================================================================
 def getQGISColorForRubberBand(geometryType = QgsWkbTypes.LineGeometry, alternativeBand = False):
    """
    La funzione legge il colore impostato da QGIS per il rubber band di tipo <geometryType>.
@@ -254,9 +254,9 @@ def getQGISColorForRubberBand(geometryType = QgsWkbTypes.LineGeometry, alternati
    return color
 
 
-#===============================================================================
+# ===============================================================================
 # getColorForWindowSelectionArea
-#===============================================================================
+# ===============================================================================
 def getColorForWindowSelectionArea():
    """
    La funzione legge il colore (RGB) dell'area di selezione degli oggetti nel modo finestra.
@@ -272,9 +272,9 @@ def getColorForWindowSelectionArea():
    return color
 
 
-#===============================================================================
+# ===============================================================================
 # getColorForCrossingSelectionArea
-#===============================================================================
+# ===============================================================================
 def getColorForCrossingSelectionArea():
    """
    La funzione legge il colore (RGB) dell'area di selezione degli oggetti nel modo intersezione.
@@ -290,9 +290,9 @@ def getColorForCrossingSelectionArea():
    return color
 
 
-#===============================================================================
+# ===============================================================================
 # createRubberBand
-#===============================================================================
+# ===============================================================================
 def createRubberBand(mapCanvas, geometryType = QgsWkbTypes.LineGeometry, alternativeBand = False, borderColor = None, fillColor = None):
    """
    la funzione crea un rubber band di tipo <geometryType> con le impostazioni di QGIS.

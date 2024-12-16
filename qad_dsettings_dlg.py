@@ -43,9 +43,9 @@ from . import qad_utils
 from .qad_windowcolor_dlg import QadColorContextEnum, QadColorElementEnum, QadWindowColorDialog
 
 
-#===============================================================================
+# ===============================================================================
 # QadDSETTINGSTabIndexEnum class.
-#===============================================================================
+# ===============================================================================
 class QadDSETTINGSTabIndexEnum():
    OBJECT_SNAP    = 0
    POLAR_TRACKING = 1
@@ -736,9 +736,9 @@ class QadTOOLTIPAPPEARANCEDialog(QDialog, QObject, qad_tooltip_appearance_ui.Ui_
          self.ColorVariables = Form.getSysVariableList()
 
    
-   #============================================================================
+   # ============================================================================
    # getSysVariableList
-   #============================================================================
+   # ============================================================================
    def getSysVariableList(self):
       # ritorna una lista di variabili gestite da questa finestra
       variables = list(self.ColorVariables) # copio la lista ColorVariables
@@ -774,9 +774,9 @@ class QadTOOLTIPAPPEARANCEDialog(QDialog, QObject, qad_tooltip_appearance_ui.Ui_
       qadShowPluginPDFHelp(QadMsg.translate("Help", "DSETTINGS"))
 
 
-#===============================================================================
+# ===============================================================================
 # QadPreview class.
-#===============================================================================
+# ===============================================================================
 class QadPreview(QWidget):
    def __init__(self, plugIn, parent, size, transparency, windowFlags = Qt.Widget):
       self.plugIn = plugIn

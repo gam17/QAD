@@ -30,9 +30,9 @@ from qgis.core import *
 from qgis.gui import *
 
 
-#===============================================================================
+# ===============================================================================
 # get_tokenListFromLblFieldName ausilio di getTokenListFromLblFieldName
-#===============================================================================
+# ===============================================================================
 def getToken(expr, start, endChar = None):
    """
    ritorna una parola dentro la stringa expr che inizia nella posizione start e che termina con il carattere
@@ -65,9 +65,9 @@ def getToken(expr, start, endChar = None):
    return token, i
             
 
-#===============================================================================
+# ===============================================================================
 # getTokenListFromLblFieldName ausilio di get_labelFieldNames
-#===============================================================================
+# ===============================================================================
 def getTokenListFromLblFieldName(expr):
    """
    ritorna una lista di token escluse le stringhe, dall'espressione passata come parametro 
@@ -93,9 +93,9 @@ def getTokenListFromLblFieldName(expr):
    return result
 
 
-#===============================================================================
+# ===============================================================================
 # get_activeDataDefinedPropertyFieldNames
-#===============================================================================
+# ===============================================================================
 def get_activeDataDefinedPropertyFieldNames(layer, dataDefinedProperty):
    """
    ritorna la lista dei nomi dei campi che determinano il valore della proprietà attiva
@@ -123,9 +123,9 @@ def get_activeDataDefinedPropertyFieldNames(layer, dataDefinedProperty):
    return result
 
 
-#===============================================================================
+# ===============================================================================
 # get_scaleFieldName
-#===============================================================================
+# ===============================================================================
 def get_labelFieldNames(layer):
    """
    ritorna la lista dei campi che concorrono a formare il testo dell'etichetta 
@@ -154,9 +154,9 @@ def get_labelFieldNames(layer):
    return result
 
 
-#===============================================================================
+# ===============================================================================
 # get_labelRotationFieldNames
-#===============================================================================
+# ===============================================================================
 def get_labelRotationFieldNames(layer):
    """
    ritorna la lista dei campi che concorrono a formare la rotazione dell'etichetta 
@@ -169,9 +169,9 @@ def get_labelRotationFieldNames(layer):
    return []
 
 
-#===============================================================================
+# ===============================================================================
 # get_labelSizeFieldNames
-#===============================================================================
+# ===============================================================================
 def get_labelSizeFieldNames(layer):
    """
    ritorna la lista dei campi che concorrono a formare la dimensione del testo dell'etichetta 
@@ -184,9 +184,9 @@ def get_labelSizeFieldNames(layer):
    return []
 
 
-#===============================================================================
+# ===============================================================================
 # get_labelFontFamilyFieldNames
-#===============================================================================
+# ===============================================================================
 def get_labelFontFamilyFieldNames(layer):
    """
    ritorna la lista dei campi che concorrono a formare il nome del font dell'etichetta 
@@ -199,9 +199,9 @@ def get_labelFontFamilyFieldNames(layer):
    return []
 
 
-#===============================================================================
+# ===============================================================================
 # get_labelText
-#===============================================================================
+# ===============================================================================
 def get_labelText(palLayerSettings, feature):
    """
    restituisce il testo dell'etichetta 
@@ -218,9 +218,9 @@ def get_labelText(palLayerSettings, feature):
    return val
 
 
-#===============================================================================
+# ===============================================================================
 # get_labelFontSize
-#===============================================================================
+# ===============================================================================
 def get_labelFontSize(palLayerSettings, feature):
    """
    restituisce la dimensione del font dell'etichetta come numero intero
@@ -241,9 +241,9 @@ def get_labelFontSize(palLayerSettings, feature):
    return None if val is None else int(val)
 
 
-#===============================================================================
+# ===============================================================================
 # get_labelFontFamily
-#===============================================================================
+# ===============================================================================
 def get_labelFontFamily(palLayerSettings, feature):
    """
    restituisce il nome del font dell'etichetta 
@@ -264,9 +264,9 @@ def get_labelFontFamily(palLayerSettings, feature):
    return val
 
 
-#===============================================================================
+# ===============================================================================
 # get_labelFontTextNamedStyle
-#===============================================================================
+# ===============================================================================
 def get_labelFontTextNamedStyle(palLayerSettings, feature):
    """
    restituisce il nome dello stile del font dell'etichetta 
@@ -285,9 +285,9 @@ def get_labelFontTextNamedStyle(palLayerSettings, feature):
    return val
 
 
-#===============================================================================
+# ===============================================================================
 # get_labelIsBold
-#===============================================================================
+# ===============================================================================
 def get_labelIsBold(palLayerSettings, feature):
    """
    restituisce se il font dell'etichetta é grassetto 
@@ -308,9 +308,9 @@ def get_labelIsBold(palLayerSettings, feature):
    return val
 
 
-#===============================================================================
+# ===============================================================================
 # get_labelIsItalic
-#===============================================================================
+# ===============================================================================
 def get_labelIsItalic(palLayerSettings, feature):
    """
    restituisce se il font dell'etichetta é italico 
@@ -331,9 +331,9 @@ def get_labelIsItalic(palLayerSettings, feature):
    return val
 
 
-#===============================================================================
+# ===============================================================================
 # get_labelIsUnderline
-#===============================================================================
+# ===============================================================================
 def get_labelIsUnderline(palLayerSettings, feature):
    """
    restituisce se il font dell'etichetta é sottolineato 
@@ -354,9 +354,9 @@ def get_labelIsUnderline(palLayerSettings, feature):
    return val
 
 
-#===============================================================================
+# ===============================================================================
 # get_labelIsStrikeOut
-#===============================================================================
+# ===============================================================================
 def get_labelIsStrikeOut(palLayerSettings, feature):
    """
    restituisce se il font dell'etichetta é barrato 
@@ -377,9 +377,9 @@ def get_labelIsStrikeOut(palLayerSettings, feature):
    return val
 
 
-#===============================================================================
+# ===============================================================================
 # get_labelFontCase
-#===============================================================================
+# ===============================================================================
 def get_labelFontCase(palLayerSettings, feature):
    """
    restituisce se il font dell'etichetta é maiuscolo/minuscolo e varie opzioni:
@@ -405,9 +405,9 @@ def get_labelFontCase(palLayerSettings, feature):
    return val
 
 
-#===============================================================================
+# ===============================================================================
 # get_labelFontSizeInMapUnits
-#===============================================================================
+# ===============================================================================
 def get_labelFontSizeInMapUnits(palLayerSettings, feature):
    """
    restituisce se l'unità del font dell'etichetta é in unità mappa
@@ -428,9 +428,9 @@ def get_labelFontSizeInMapUnits(palLayerSettings, feature):
    return val
 
 
-#===============================================================================
+# ===============================================================================
 # get_labelRot
-#===============================================================================
+# ===============================================================================
 def get_labelRot(palLayerSettings, feature):
    """
    restituisce la rotazione dell'etichetta 
@@ -447,9 +447,9 @@ def get_labelRot(palLayerSettings, feature):
    return val
 
 
-#===============================================================================
+# ===============================================================================
 # calculateLabelSize
-#===============================================================================
+# ===============================================================================
 def calculateLabelSize(layer, feature, canvas):
    """
    return size for label in map units

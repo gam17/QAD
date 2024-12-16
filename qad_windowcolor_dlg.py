@@ -39,18 +39,18 @@ from .qad_msg import QadMsg, qadShowPluginPDFHelp
 from . import qad_utils
 
 
-#===============================================================================
+# ===============================================================================
 # QadColorContextEnum class.
-#===============================================================================
+# ===============================================================================
 class QadColorContextEnum():
    NONE           = 0
    MODEL_SPACE_2D = 1 # finestra grafica
    COMMAND_LINE   = 2 # finestra di comando
 
 
-#===============================================================================
+# ===============================================================================
 # QadColorElementEnum class.
-#===============================================================================
+# ===============================================================================
 class QadColorElementEnum():
    NONE                       =  0
    CROSSHAIRS                 =  1 # Puntatori a croce
@@ -116,9 +116,9 @@ class QadWindowColorDialog(QDialog, QObject, qad_windowcolor_ui.Ui_WindowColor_D
                         self.listView_Element.selectionModel().setCurrentIndex(index, QItemSelectionModel.SelectCurrent)
 
 
-   #============================================================================
+   # ============================================================================
    # setupUi
-   #============================================================================
+   # ============================================================================
    def setupUi(self, Dialog):
       qad_windowcolor_ui.Ui_WindowColor_Dialog.setupUi(self, self)
       # aggiungo il bottone di qgis QgsColorButton chiamato buttonColor 
@@ -137,9 +137,9 @@ class QadWindowColorDialog(QDialog, QObject, qad_windowcolor_ui.Ui_WindowColor_D
       self.preview.setObjectName("preview")
 
 
-   #============================================================================
+   # ============================================================================
    # init_context_list
-   #============================================================================
+   # ============================================================================
    def init_context_list(self):
       self.contextList = dict()
 
@@ -150,9 +150,9 @@ class QadWindowColorDialog(QDialog, QObject, qad_windowcolor_ui.Ui_WindowColor_D
       self.contextList[QadColorContextEnum.COMMAND_LINE] = [contextDescr, self.get_COMMAND_LINE_element_dict()]
 
 
-   #============================================================================
+   # ============================================================================
    # get_MODEL_SPACE_2D_element_dict
-   #============================================================================
+   # ============================================================================
    def get_MODEL_SPACE_2D_element_dict(self):
       elementList = dict()
       
@@ -200,9 +200,9 @@ class QadWindowColorDialog(QDialog, QObject, qad_windowcolor_ui.Ui_WindowColor_D
       return elementList
 
 
-   #============================================================================
+   # ============================================================================
    # get_COMMAND_LINE_element_dict
-   #============================================================================
+   # ============================================================================
    def get_COMMAND_LINE_element_dict(self):
       elementList = dict()
       
@@ -244,9 +244,9 @@ class QadWindowColorDialog(QDialog, QObject, qad_windowcolor_ui.Ui_WindowColor_D
       return elementList
 
 
-   #============================================================================
+   # ============================================================================
    # init_colors
-   #============================================================================
+   # ============================================================================
    def init_colors(self):
       self.init_context_list()
 
@@ -267,9 +267,9 @@ class QadWindowColorDialog(QDialog, QObject, qad_windowcolor_ui.Ui_WindowColor_D
       self.listView_Context.selectionModel().selectionChanged.connect(self.contextChanged)
   
   
-   #============================================================================
+   # ============================================================================
    # contextChanged
-   #============================================================================
+   # ============================================================================
    def contextChanged(self, current, previous):
       # leggo ciò che selezionato
       index = current.indexes()[0]
@@ -296,9 +296,9 @@ class QadWindowColorDialog(QDialog, QObject, qad_windowcolor_ui.Ui_WindowColor_D
       self.listView_Element.selectionModel().selectionChanged.connect(self.elementChanged)
 
 
-   #============================================================================
+   # ============================================================================
    # elementChanged
-   #============================================================================
+   # ============================================================================
    def elementChanged(self, current, previous):
       # leggo ciò che selezionato
       index = current.indexes()[0]
@@ -309,17 +309,17 @@ class QadWindowColorDialog(QDialog, QObject, qad_windowcolor_ui.Ui_WindowColor_D
       self.buttonColor.setColor(QColor(self.tempQadVariables.get(self.currentVarName)))
       
       
-   #============================================================================
+   # ============================================================================
    # colorChanged
-   #============================================================================
+   # ============================================================================
    def colorChanged(self, value):
       self.tempQadVariables.set(self.currentVarName, self.buttonColor.color().name())
       self.preview.refreshColors(self.currentContext, self.tempQadVariables) # forzo il disegno del preview
 
 
-   #============================================================================
+   # ============================================================================
    # restoreVarValueElement
-   #============================================================================
+   # ============================================================================
    def restoreVarValueElement(self, varName):
       variable = QadVariables.getVariable(varName)
       if variable is None:
@@ -328,9 +328,9 @@ class QadWindowColorDialog(QDialog, QObject, qad_windowcolor_ui.Ui_WindowColor_D
       return True
       
 
-   #============================================================================
+   # ============================================================================
    # restoreContext
-   #============================================================================
+   # ============================================================================
    def restoreContext(self, context):
       context = self.contextList[context] # context = (<contextEnum>, (<contextDescr>, <elementDict>))
       elementDict = context[1]
@@ -341,18 +341,18 @@ class QadWindowColorDialog(QDialog, QObject, qad_windowcolor_ui.Ui_WindowColor_D
          self.restoreVarValueElement(varName)
 
 
-   #============================================================================
+   # ============================================================================
    # Button_RestoreCurrElement_clicked
-   #============================================================================
+   # ============================================================================
    def Button_RestoreCurrElement_clicked(self):
       if self.restoreVarValueElement(self.currentVarName):
          self.preview.refreshColors(self.currentContext, self.tempQadVariables) # forzo il disegno del preview
          self.buttonColor.setColor(QColor(self.tempQadVariables.get(self.currentVarName)))
 
 
-   #============================================================================
+   # ============================================================================
    # Button_RestoreCurrContext_clicked
-   #============================================================================
+   # ============================================================================
    def Button_RestoreCurrContext_clicked(self):
       self.restoreContext(self.currentContext)
       self.preview.refreshColors(self.currentContext, self.tempQadVariables) # forzo il disegno del preview
@@ -360,9 +360,9 @@ class QadWindowColorDialog(QDialog, QObject, qad_windowcolor_ui.Ui_WindowColor_D
          self.buttonColor.setColor(QColor(self.tempQadVariables.get(self.currentVarName)))
 
 
-   #============================================================================
+   # ============================================================================
    # Button_RestoreAllContext_clicked
-   #============================================================================
+   # ============================================================================
    def Button_RestoreAllContext_clicked(self):
       contexts = self.contextList.keys() # lista dei contesti
       for context in contexts:
@@ -374,9 +374,9 @@ class QadWindowColorDialog(QDialog, QObject, qad_windowcolor_ui.Ui_WindowColor_D
 
 
 
-   #============================================================================
+   # ============================================================================
    # getSysVariableList
-   #============================================================================
+   # ============================================================================
    def getSysVariableList(self):
       # ritorna una lista di variabili di sistema dei colori gestiti da questa finestra
       variables = []
@@ -412,9 +412,9 @@ class QadWindowColorDialog(QDialog, QObject, qad_windowcolor_ui.Ui_WindowColor_D
       qadShowPluginPDFHelp(QadMsg.translate("Help", ""))
 
 
-#===============================================================================
+# ===============================================================================
 # QadPreview class.
-#===============================================================================
+# ===============================================================================
 class QadPreview(QWidget):
    def __init__(self, plugIn, parent, tempQadVariables, context, windowFlags = Qt.Widget):
       self.plugIn = plugIn

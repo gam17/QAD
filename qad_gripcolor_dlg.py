@@ -89,9 +89,9 @@ class QadGripColorDialog(QDialog, QObject, Ui_GripColor_Dialog):
       self.contourGripColor.setObjectName("contourGripColor")
 
 
-   #============================================================================
+   # ============================================================================
    # init_colors
-   #============================================================================
+   # ============================================================================
    def init_colors(self):
       # Inizializzazione dei colori
       self.unselectedGripColor.setColor(QColor(self.gripColor))

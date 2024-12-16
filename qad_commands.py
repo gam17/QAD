@@ -187,9 +187,9 @@ class QadCommandsClass():
          self.plugIn.showErr(err)
 
 
-   #============================================================================
+   # ============================================================================
    # getCommandObj
-   #============================================================================
+   # ============================================================================
    def getCommandObj(self, cmdName, useAlias = True):
       if cmdName is None:
          return None
@@ -220,9 +220,9 @@ class QadCommandsClass():
             return None
       
       
-   #============================================================================
+   # ============================================================================
    # getCommandNames
-   #============================================================================
+   # ============================================================================
    def getCommandNames(self):
       """ Return a list of pairs : [(<local cmd name>, <english cmd name>)...]"""     
       cmdNames = []
@@ -236,9 +236,9 @@ class QadCommandsClass():
       return cmdNames
          
    
-   #============================================================================
+   # ============================================================================
    # run
-   #============================================================================
+   # ============================================================================
    def run(self, command, param = None):
       try:
          # se c'é un comando attivo
@@ -247,7 +247,7 @@ class QadCommandsClass():
 
          if command != QadMsg.translate("Command_list", "SUPPORTERS"):
             if incrementDailyCmdCounter() > self.plugIn.maxDailyCmdCounter:
-               if QMessageBox.question(None, "QAD", QadMsg.translate("QAD", "QAD plugin is supported by donors. Donations help us to fund software development, documentation, translation and bug-fixing efforts. Do you want to donate ?"), \
+               if QMessageBox.question(None, "QAD", QadMsg.translate("QAD", "QAD lets you run 200 commands per day free of popups. Donations help us to fund software development, documentation, translation and bug-fixing efforts. Do you want to donate ?"), \
                                        QMessageBox.Yes, QMessageBox.No) == QMessageBox.Yes:
                   command = "_SUPPORTERS";
 #                if QMessageBox.critical(None, "QAD", QadMsg.translate("QAD", "You have run out of daily commands available for this version of QAD, your reasonable donation will allow us to adapt the product to your needs. Do you want to donate ?"), \
@@ -303,9 +303,9 @@ class QadCommandsClass():
          displayError(e)
           
          
-   #============================================================================
+   # ============================================================================
    # runMacro
-   #============================================================================
+   # ============================================================================
    def runMacro(self, args):
       try:
          # se non c'é alcun comando attivo
@@ -314,7 +314,7 @@ class QadCommandsClass():
 
          if args[0] != QadMsg.translate("Command_list", "SUPPORTERS"):
             if incrementDailyCmdCounter() > self.plugIn.maxDailyCmdCounter:
-               if QMessageBox.question(None, "QAD", QadMsg.translate("QAD", "QAD plugin is supported by donors. Donations help us to fund software development, documentation, translation and bug-fixing efforts. Do you want to donate ?"), \
+               if QMessageBox.question(None, "QAD", QadMsg.translate("QAD", "QAD lets you run 200 commands per day free of popups. Donations help us to fund software development, documentation, translation and bug-fixing efforts. Do you want to donate ?"), \
                                        QMessageBox.Yes, QMessageBox.No) == QMessageBox.Yes:
                   args[0] = "_SUPPORTERS";               
 #                if QMessageBox.critical(None, "QAD", QadMsg.translate("QAD", "You have run out of daily commands available for this version of QAD, your reasonable donation will allow us to adapt the product to your needs. Do you want to donate ?"), \
@@ -341,9 +341,9 @@ class QadCommandsClass():
          displayError(e)
 
 
-   #============================================================================
+   # ============================================================================
    # continueCommandFromMapTool
-   #============================================================================
+   # ============================================================================
    def continueCommandFromMapTool(self):
       try:
          # se non c'é alcun comando attivo
@@ -367,9 +367,9 @@ class QadCommandsClass():
          displayError(e)
 
 
-   #============================================================================
+   # ============================================================================
    # continueCommandFromTextWindow
-   #============================================================================
+   # ============================================================================
    def continueCommandFromTextWindow(self, msg):
       try:
          # se non c'é alcun comando attivo
@@ -383,9 +383,9 @@ class QadCommandsClass():
          displayError(e)
 
             
-   #============================================================================
+   # ============================================================================
    # abortCommand
-   #============================================================================
+   # ============================================================================
    def abortCommand(self):
       # se non c'é alcun comando attivo
       if self.actualCommand is None:
@@ -399,9 +399,9 @@ class QadCommandsClass():
          self.plugIn.clearCurrentObjsSelection()
 
 
-   #============================================================================
+   # ============================================================================
    # clearCommand
-   #============================================================================
+   # ============================================================================
    def clearCommand(self):
       if self.actualCommand is None:
          return
@@ -425,9 +425,9 @@ class QadCommandsClass():
       self.showCommandPrompt() # visualizza prompt standard per richiesta comando 
 
 
-   #============================================================================
+   # ============================================================================
    # getActualCommandPointMapTool
-   #============================================================================
+   # ============================================================================
    def getActualCommandPointMapTool(self):
       # se non c'é alcun comando attivo
       if self.actualCommand is None:
@@ -441,9 +441,9 @@ class QadCommandsClass():
       return self.actualCommand.getPointMapTool()
 
 
-   #============================================================================
+   # ============================================================================
    # forceCommandMapToolSnapTypeOnce
-   #============================================================================
+   # ============================================================================
    def forceCommandMapToolSnapTypeOnce(self, snapType, snapParams = None):
       pointMapTool = self.getActualCommandPointMapTool()
       if pointMapTool is None:
@@ -451,9 +451,9 @@ class QadCommandsClass():
       pointMapTool.forceSnapTypeOnce(snapType, snapParams)
 
 
-   #============================================================================
+   # ============================================================================
    # forceCommandMapToolM2P
-   #============================================================================
+   # ============================================================================
    def forceCommandMapToolM2P(self):
       pointMapTool = self.getActualCommandPointMapTool()
       if pointMapTool is None:
@@ -461,9 +461,9 @@ class QadCommandsClass():
       pointMapTool.forceM2P()
 
 
-   #============================================================================
+   # ============================================================================
    # getCurrenPointFromCommandMapTool
-   #============================================================================
+   # ============================================================================
    def getCurrenPointFromCommandMapTool(self):
       pointMapTool = self.getActualCommandPointMapTool()
       if pointMapTool is None:
@@ -471,9 +471,9 @@ class QadCommandsClass():
       return pointMapTool.tmpPoint
       
 
-   #============================================================================
+   # ============================================================================
    # refreshCommandMapToolSnapType
-   #============================================================================
+   # ============================================================================
    def refreshCommandMapToolSnapType(self):
       pointMapTool = self.getActualCommandPointMapTool()
       if pointMapTool is None:
@@ -481,9 +481,9 @@ class QadCommandsClass():
       pointMapTool.refreshSnapType()
       
       
-   #============================================================================
+   # ============================================================================
    # refreshCommandMapToolOrthoMode
-   #============================================================================
+   # ============================================================================
    def refreshCommandMapToolOrthoMode(self):
       pointMapTool = self.getActualCommandPointMapTool()
       if pointMapTool is None:
@@ -491,9 +491,9 @@ class QadCommandsClass():
       pointMapTool.refreshOrthoMode()
       
       
-   #============================================================================
+   # ============================================================================
    # refreshCommandMapToolAutoSnap
-   #============================================================================
+   # ============================================================================
    def refreshCommandMapToolAutoSnap(self):
       pointMapTool = self.getActualCommandPointMapTool()
       if pointMapTool is None:
@@ -501,9 +501,9 @@ class QadCommandsClass():
       pointMapTool.refreshAutoSnap()
 
 
-   #============================================================================
+   # ============================================================================
    # refreshCommandMapToolDynamicInput
-   #============================================================================
+   # ============================================================================
    def refreshCommandMapToolDynamicInput(self):
       self.plugIn.tool.getDynamicInput().refreshOnEnvVariables()
             
@@ -522,9 +522,9 @@ class QadCommandsClass():
                self.plugIn.tool.getDynamicInput().show(True)
 
 
-   #============================================================================
+   # ============================================================================
    # getMoreUsedCmd
-   #============================================================================
+   # ============================================================================
    def getMoreUsedCmd(self, filter):
       upperFilter = filter.upper()
       cmdName, qty = self.usedCmdNames.getMoreUsed(upperFilter)
@@ -545,9 +545,9 @@ class QadCommandsClass():
       return cmdName, 0
 
 
-#===============================================================================
+# ===============================================================================
 # QadMacroRunnerCommandClass
-#===============================================================================
+# ===============================================================================
 class QadMacroRunnerCommandClass(QadCommandClass):
    # Classe che gestisce l'esecuzione di altri comandi
 
@@ -625,9 +625,9 @@ class QadMacroRunnerCommandClass(QadCommandClass):
       return False
 
 
-#===============================================================================
+# ===============================================================================
 # QadUsedCmdNamesClass usata per contare quante volte sono stati usati i comandi
-#===============================================================================
+# ===============================================================================
 
 
 class QadUsedCmdNamesClass():

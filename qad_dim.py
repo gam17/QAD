@@ -91,9 +91,9 @@ Il layer linea deve avere tutte le caratteristiche del layer linea ed in più:
 """
 
 
-#===============================================================================
+# ===============================================================================
 # QadDimTypeEnum class.   
-#===============================================================================
+# ===============================================================================
 class QadDimTypeEnum():
    ALIGNED    = "AL" # quota lineare allineata ai punti di origine delle linee di estensione
    ANGULAR    = "AN" # quota angolare, misura l'angolo tra i 3 punti o tra gli oggetti selezionati
@@ -105,9 +105,9 @@ class QadDimTypeEnum():
    ARC_LENTGH = "AR" # quota per la lunghezza di un arco
 
 
-#===============================================================================
+# ===============================================================================
 # QadDimComponentEnum class.
-#===============================================================================
+# ===============================================================================
 class QadDimComponentEnum():
    DIM_LINE1 = "D1" # linea di quota ("Dimension line 1")
    DIM_LINE2 = "D2" # linea di quota ("Dimension line 2")
@@ -127,9 +127,9 @@ class QadDimComponentEnum():
    CENTER_MARKER_LINE = "CL" # linea che definisce il marcatore del centro di un arco o di un cerchio
 
 
-#===============================================================================
+# ===============================================================================
 # QadDimStyleAlignmentEnum class.
-#===============================================================================
+# ===============================================================================
 class QadDimStyleAlignmentEnum():
    HORIZONTAL      = 0 # orizzontale
    VERTICAL        = 1 # verticale
@@ -137,9 +137,9 @@ class QadDimStyleAlignmentEnum():
    FORCED_ROTATION = 3 # rotazione forzata
 
 
-#===============================================================================
+# ===============================================================================
 # QadDimStyleTxtVerticalPosEnum class.
-#===============================================================================
+# ===============================================================================
 class QadDimStyleTxtVerticalPosEnum():
    CENTERED_LINE = 0 # testo centrato alla linea di quota
    ABOVE_LINE    = 1 # testo sopra alla linea di quota ma nel caso la linea di quota non sia orizzontale 
@@ -149,9 +149,9 @@ class QadDimStyleTxtVerticalPosEnum():
                      # e il testo sia dentro le linee di estensione e forzato orizzontale allora il testo diventa centrato
 
 
-#===============================================================================
+# ===============================================================================
 # QadDimStyleTxtHorizontalPosEnum class.
-#===============================================================================
+# ===============================================================================
 class QadDimStyleTxtHorizontalPosEnum():
    CENTERED_LINE      = 0 # testo centrato alla linea di quota
    FIRST_EXT_LINE     = 1 # testo vicino alla prima linea di estensione
@@ -160,9 +160,9 @@ class QadDimStyleTxtHorizontalPosEnum():
    SECOND_EXT_LINE_UP = 4 # testo sopra e allineato alla seconda linea di estensione
 
 
-#===============================================================================
+# ===============================================================================
 # QadDimStyleTxtRotEnum class.
-#===============================================================================
+# ===============================================================================
 class QadDimStyleTxtRotModeEnum():
    HORIZONTAL      = 0 # testo orizzontale
    ALIGNED_LINE    = 1 # testo allineato con la linea di quota
@@ -171,26 +171,26 @@ class QadDimStyleTxtRotModeEnum():
    FORCED_ROTATION = 3 # testo con rotazione forzata
 
 
-#===============================================================================
+# ===============================================================================
 # QadDimStyleArcSymbolPosEnum class.
-#===============================================================================
+# ===============================================================================
 class QadDimStyleArcSymbolPosEnum():
    BEFORE_TEXT = 0 # simbolo prima del testo
    ABOVE_TEXT  = 1 # simbolo sopra il testo
    NONE        = 2 # niente simbolo
 
 
-#===============================================================================
+# ===============================================================================
 # QadDimStyleArcSymbolPosEnum class.
-#===============================================================================
+# ===============================================================================
 class QadDimStyleTxtDirectionEnum():
    SX_TO_DX = 0 # da sinistra a destra
    DX_TO_SX = 1 # da destra a sinistra 
 
 
-#===============================================================================
+# ===============================================================================
 # QadDimStyleTextBlocksAdjustEnum class.
-#===============================================================================
+# ===============================================================================
 class QadDimStyleTextBlocksAdjustEnum():
    BOTH_OUTSIDE_EXT_LINES = 0 # sposta testo e frecce fuori dalle linee di estensione
    FIRST_BLOCKS_THEN_TEXT = 1 # sposta prima le frecce poi, se non basta, anche il testo
@@ -198,9 +198,9 @@ class QadDimStyleTextBlocksAdjustEnum():
    WHICHEVER_FITS_BEST    = 3 # Sposta indistintamente il testo o le frecce (l'oggetto che si adatta meglio)
 
 
-#===============================================================================
+# ===============================================================================
 # QadDim dimension style class
-#===============================================================================
+# ===============================================================================
 class QadDimStyle():
           
    def __init__(self, dimStyle = None):
@@ -298,9 +298,9 @@ class QadDimStyle():
       self.set(dimStyle)
 
 
-   #============================================================================
+   # ============================================================================
    # FUNZIONI GENERICHE - INIZIO
-   #============================================================================
+   # ============================================================================
 
    def set(self, dimStyle):
       self.name = dimStyle.name
@@ -383,9 +383,9 @@ class QadDimStyle():
       self.rotFieldName = dimStyle.rotFieldName
 
 
-   #============================================================================
+   # ============================================================================
    # getPropList
-   #============================================================================
+   # ============================================================================
    def getPropList(self):
       proplist = dict() # dizionario di nome con lista [descrizione, valore]
       propDescr = QadMsg.translate("Dimension", "Name")
@@ -521,9 +521,9 @@ class QadDimStyle():
       return proplist
 
 
-   #============================================================================
+   # ============================================================================
    # getLayer
-   #============================================================================
+   # ============================================================================
    def getLayer(self, layerName):
       if layerName is not None:
          layerList = QgsProject.instance().mapLayersByName(layerName)
@@ -532,7 +532,7 @@ class QadDimStyle():
       return None
 
 
-   #============================================================================
+   # ============================================================================
    # layer testuale
    def getTextualLayer(self):
       if self.__textualLayer is None:
@@ -552,7 +552,7 @@ class QadDimStyle():
       return self.__textualFeaturePrototype
 
 
-   #============================================================================
+   # ============================================================================
    # layer lineare
    def getLinearLayer(self):
       if self.__linearLayer is None:
@@ -572,7 +572,7 @@ class QadDimStyle():
       return self.__linearFeaturePrototype
 
 
-   #============================================================================
+   # ============================================================================
    # layer simbolo
    def getSymbolLayer(self):
       if self.__symbolLayer is None:
@@ -592,9 +592,9 @@ class QadDimStyle():
       return self.__symbolFeaturePrototype
       
       
-   #============================================================================
+   # ============================================================================
    # initFeatureToDefautlValues
-   #============================================================================
+   # ============================================================================
    def initFeatureToDefautlValues(self, layer, f):
       # assegno i valori di default
       provider = layer.dataProvider()
@@ -604,9 +604,9 @@ class QadDimStyle():
          f[field.name()] = provider.defaultValue(i)
 
 
-   #============================================================================
+   # ============================================================================
    # getDefaultDimFilePath
-   #============================================================================
+   # ============================================================================
    def getDefaultDimFilePath(self):
       # ottiene il percorso automatico dove salvare/caricare il file della quotatura
       # se esiste un progetto caricato il percorso è quello del progetto
@@ -618,9 +618,9 @@ class QadDimStyle():
       return path + "/"
 
    
-   #============================================================================
+   # ============================================================================
    # save
-   #============================================================================
+   # ============================================================================
    def save(self, path = "", overwrite = True):
       """
       Salva le impostazioni dello stile di quotatura in un file.
@@ -729,9 +729,9 @@ class QadDimStyle():
       return True
 
    
-   #============================================================================
+   # ============================================================================
    # load
-   #============================================================================
+   # ============================================================================
    def load(self, path):
       """
       Carica le impostazioni dello stile di quotatura da un file.
@@ -936,9 +936,9 @@ class QadDimStyle():
       return True
 
 
-   #============================================================================
+   # ============================================================================
    # remove
-   #============================================================================
+   # ============================================================================
    def remove(self):
       """
       Cancella il file delle impostazioni dello stile di quotatura.
@@ -956,9 +956,9 @@ class QadDimStyle():
             
       return True
 
-   #============================================================================
+   # ============================================================================
    # rename
-   #============================================================================
+   # ============================================================================
    def rename(self, newName):
       """
       Rinomina il nome dello stile e del file delle impostazioni dello stile di quotatura.
@@ -993,9 +993,9 @@ class QadDimStyle():
       return True
 
 
-   #============================================================================
+   # ============================================================================
    # getInValidErrMsg
-   #============================================================================
+   # ============================================================================
    def getInValidErrMsg(self):
       """
       Verifica se lo stile di quotatura é invalido e in caso affermativo ritorna il messaggio di errore.
@@ -1034,9 +1034,9 @@ class QadDimStyle():
       return None
 
    
-   #============================================================================
+   # ============================================================================
    # isValid
-   #============================================================================
+   # ============================================================================
    def isValid(self):
       """
       Verifica se lo stile di quotatura é valido e in caso affermativo ritorna True.
@@ -1045,9 +1045,9 @@ class QadDimStyle():
       return True if self.getInValidErrMsg() is None else False
    
    
-   #===============================================================================
+   # ===============================================================================
    # getNotGraphEditableErrMsg
-   #===============================================================================
+   # ===============================================================================
    def getNotGraphEditableErrMsg(self):
       """
       Verifica se i layer dello stile di quotatura sono in sola lettura e in caso affermativo ritorna il messaggio di errore.
@@ -1100,9 +1100,9 @@ class QadDimStyle():
       return None
    
     
-   #============================================================================
+   # ============================================================================
    # adjustLineAccordingTextRect
-   #============================================================================
+   # ============================================================================
    def adjustLineAccordingTextRect(self, textRect, line, textLinearDimComponentOn):
       """
       Data una linea, che tipo di componente di quota rappresenta (textLinearDimComponentOn)
@@ -1155,9 +1155,9 @@ class QadDimStyle():
       return line1, line2
    
     
-   #============================================================================
+   # ============================================================================
    # adjustArcAccordingTextRect
-   #============================================================================
+   # ============================================================================
    def adjustArcAccordingTextRect(self, textRect, arc, textLinearDimComponentOn):
       """
       Data un arco (<arc>), che tipo di componente di quota rappresenta (textLinearDimComponentOn)
@@ -1209,9 +1209,9 @@ class QadDimStyle():
       return arc1, arc2
 
    
-   #============================================================================
+   # ============================================================================
    # setDimId
-   #============================================================================
+   # ============================================================================
    def setDimId(self, dimId, features, parentId = False):
       """
       Setta tutte le feature passate nella lista <features> con il codice della quota.
@@ -1235,9 +1235,9 @@ class QadDimStyle():
       return True        
 
 
-   #============================================================================
+   # ============================================================================
    # recodeDimIdOnFeatures
-   #============================================================================
+   # ============================================================================
    def recodeDimIdOnFeatures(self, oldDimId, newDimId, features, parentId = False):
       """
       Cerca tutte le feature passate nella lista <features> con il codice della 
@@ -1281,9 +1281,9 @@ class QadDimStyle():
          return False
 
 
-   #============================================================================
+   # ============================================================================
    # updateTextReferencesOnSave
-   #============================================================================
+   # ============================================================================
    def updateTextReferencesOnSave(self, plugIn, textAddedEntitySet):
       """
       Aggiorna e salva i reference delle entità dello stile di quotatura contenuti in textAddedEntitySet.
@@ -1309,9 +1309,9 @@ class QadDimStyle():
       return True
 
 
-   #============================================================================
+   # ============================================================================
    # startEditing
-   #============================================================================
+   # ============================================================================
    def startEditing(self):
       if self.getTextualLayer() is not None and self.getTextualLayer().isEditable() == False:
          if self.getTextualLayer().startEditing() == False:
@@ -1324,9 +1324,9 @@ class QadDimStyle():
             return False         
 
 
-   #============================================================================
+   # ============================================================================
    # commitChanges
-   #============================================================================
+   # ============================================================================
    def commitChanges(self, plugIn):
       if self.startEditing() == False:
          return False     
@@ -1358,9 +1358,9 @@ class QadDimStyle():
          plugIn.layerStatusList.remove(self.getSymbolLayer().id())
    
 
-   #============================================================================
+   # ============================================================================
    # recodeDimId
-   #============================================================================
+   # ============================================================================
    def getEntitySet(self, dimId):
       """
       Ricava un QadEntitySet con tutte le feature della quota dimId.
@@ -1399,9 +1399,9 @@ class QadDimStyle():
       return result
    
    
-   #============================================================================
+   # ============================================================================
    # recodeDimId
-   #============================================================================
+   # ============================================================================
    def recodeDimId(self, plugIn, oldDimId, newDimId):
       """
       Ricodifica tutte le feature della quota oldDimId con il nuovo codice newDimId.
@@ -1444,9 +1444,9 @@ class QadDimStyle():
       return True
 
    
-   #============================================================================
+   # ============================================================================
    # addDimEntityToLayers
-   #============================================================================
+   # ============================================================================
    def addDimEntityToLayers(self, plugIn, dimEntity):
       """
       Aggiunge un'entità quota ai layer di pertinenza ricodificando i componenti.
@@ -1489,9 +1489,9 @@ class QadDimStyle():
       return True
 
 
-   #============================================================================
+   # ============================================================================
    # getDimIdByEntity
-   #============================================================================
+   # ============================================================================
    def getDimIdByEntity(self, entity):
       """
       La funzione, data un'entità, verifica se fa parte dello stile di quotatura e,
@@ -1536,9 +1536,9 @@ class QadDimStyle():
       return dimId
          
 
-   #============================================================================
+   # ============================================================================
    # isDimLayer
-   #============================================================================
+   # ============================================================================
    def isDimLayer(self, layer):
       """
       La funzione, dato un layer, verifica se fa parte dello stile di quotatura.
@@ -1551,9 +1551,9 @@ class QadDimStyle():
          return False
 
 
-   #============================================================================
+   # ============================================================================
    # getFilteredLayerEntitySet
-   #============================================================================
+   # ============================================================================
    def getFilteredLayerEntitySet(self, layerEntitySet):
       """
       La funzione, dato un QadLayerEntitySet, filtra e restituisce solo quelle appartenenti allo stile di quotatura.
@@ -1571,14 +1571,14 @@ class QadDimStyle():
 
 
 
-   #============================================================================
+   # ============================================================================
    # FUNZIONI PER I BLOCCHI - INIZIO
-   #============================================================================
+   # ============================================================================
 
    
-   #============================================================================
+   # ============================================================================
    # getBlock1Size
-   #============================================================================
+   # ============================================================================
    def getBlock1Size(self):
       """
       Restituisce la dimensione del blocco 1 delle frecce in unità di mappa.
@@ -1586,9 +1586,9 @@ class QadDimStyle():
       return 0 if self.block1Name == "" else self.blockWidth * self.blockScale
 
 
-   #============================================================================
+   # ============================================================================
    # getBlock2Size
-   #============================================================================
+   # ============================================================================
    def getBlock2Size(self):
       """
       Restituisce la dimensione del blocco 2 delle frecce in unità di mappa.
@@ -1598,9 +1598,9 @@ class QadDimStyle():
       return 0 if self.block2Name == "" else self.blockWidth * self.blockScale
 
 
-   #============================================================================
+   # ============================================================================
    # getBlocksRotOnLine
-   #============================================================================
+   # ============================================================================
    def getBlocksRotOnLine(self, dimLine, inside):
       """
       Restituisce una lista di 2 elementi che descrivono le rotazioni dei due blocchi:
@@ -1621,9 +1621,9 @@ class QadDimStyle():
       return qad_utils.normalizeAngle(rot1), qad_utils.normalizeAngle(rot2)
 
 
-   #============================================================================
+   # ============================================================================
    # getBlocksRotOnArc
-   #============================================================================
+   # ============================================================================
    def getBlocksRotOnArc(self, dimLineArc, inside):
       """
       Restituisce una lista di 2 elementi che descrivono le rotazioni dei due blocchi:
@@ -1643,9 +1643,9 @@ class QadDimStyle():
       return qad_utils.normalizeAngle(rot1), qad_utils.normalizeAngle(rot2)
 
 
-   #============================================================================
+   # ============================================================================
    # getSpaceForBlock1AndBlock2OnLine
-   #============================================================================
+   # ============================================================================
    def getSpaceForBlock1AndBlock2OnLineAuxiliary(self, dimLine, rectCorner):
       # calcolo la proiezione di un vertice del rettangolo sulla linea dimLine
       perpPt = QadPerpendicularity.fromPointToInfinityLine(rectCorner, dimLine)
@@ -1699,9 +1699,9 @@ class QadDimStyle():
       return spaceForBlock1, spaceForBlock2
 
 
-   #============================================================================
+   # ============================================================================
    # getSpaceForBlock1AndBlock2OnArc
-   #============================================================================
+   # ============================================================================
    def getSpaceForBlock1AndBlock2OnArcAuxiliary(self, dimLineArc, rectCorner):
       # calcolo la proiezione di un vertice del rettangolo sull'arco dimLineArc
       angle = qad_utils.getAngleBy2Pts(dimLineArc.center, rectCorner)
@@ -1797,9 +1797,9 @@ class QadDimStyle():
       return spaceForBlock1, spaceForBlock2
 
 
-   #============================================================================
+   # ============================================================================
    # getSymbolFeature
-   #============================================================================
+   # ============================================================================
    def getSymbolFeature(self, insPt, rot, isBlock1, textLinearDimComponentOn):
       """
       Restituisce la feature per il simbolo delle frecce.
@@ -1877,9 +1877,9 @@ class QadDimStyle():
       return f
 
 
-   #============================================================================
+   # ============================================================================
    # getDimPointFeature
-   #============================================================================
+   # ============================================================================
    def getDimPointFeature(self, insPt, isDimPt1):
       """
       Restituisce la feature per il punto di quotatura.
@@ -1909,9 +1909,9 @@ class QadDimStyle():
       return f
 
 
-   #============================================================================
+   # ============================================================================
    # getLeaderSymbolFeature
-   #============================================================================
+   # ============================================================================
    def getLeaderSymbolFeature(self, insPt, rot):
       """
       Restituisce la feature per il simbolo delle frecce per la linea direttrice.
@@ -1963,9 +1963,9 @@ class QadDimStyle():
       return f
 
 
-   #============================================================================
+   # ============================================================================
    # getArcSymbolLineFeature
-   #============================================================================
+   # ============================================================================
    def getArcSymbolLineFeature(self, arc):
       """
       Restituisce la feature per il simbolo dell'arco.
@@ -2003,15 +2003,15 @@ class QadDimStyle():
       return f
 
 
-   #============================================================================
+   # ============================================================================
    # FUNZIONI PER I BLOCCHI - FINE
    # FUNZIONI PER IL TESTO - INIZIO
-   #============================================================================
+   # ============================================================================
 
 
-   #============================================================================
+   # ============================================================================
    # getFormattedText
-   #============================================================================
+   # ============================================================================
    def getFormattedText(self, measure):
       """
       Restituisce il testo della misura della quota formattato
@@ -2026,9 +2026,9 @@ class QadDimStyle():
          return ""
 
 
-   #============================================================================
+   # ============================================================================
    # getNumericText
-   #============================================================================
+   # ============================================================================
    def getNumericText(self, text):
       """
       Restituisce il valore numerico del testo della misura della quota formattato
@@ -2040,9 +2040,9 @@ class QadDimStyle():
       return qad_utils.str2float(textToConvert)
 
    
-   #============================================================================
+   # ============================================================================
    # textRectToQadPolyline
-   #============================================================================
+   # ============================================================================
    def textRectToQadPolyline(self, ptBottomLeft, textWidth, textHeight, rot):
       """
       Restituisce il rettangolo che rappresenta il testo sotto forma di una QadPolyline.
@@ -2060,9 +2060,9 @@ class QadDimStyle():
       return res
 
 
-   #============================================================================
+   # ============================================================================
    # getBoundingPointsTextRectProjectedToLine
-   #============================================================================
+   # ============================================================================
    def getBoundingPointsTextRectProjectedToLine(self, line, textRect):
       """
       Restituisce una lista di 2 punti che sono i punti estremi della proiezione dei 4 angoli del rettangolo
@@ -2084,9 +2084,9 @@ class QadDimStyle():
       return getBoundingPtsOnOnInfinityLine(perpPts)
    
 
-   #============================================================================
+   # ============================================================================
    # getTextPositionOnLine
-   #============================================================================
+   # ============================================================================
    def getTextPositionOnLine(self, pt1, pt2, textWidth, textHeight, horizontalPos, verticalPos, rotMode):
       """
       pt1 = primo punto della linea
@@ -2120,7 +2120,7 @@ class QadDimStyle():
             textRot = lineRot
          
          # allineamento orizzontale
-         #=========================
+         # =========================
          if horizontalPos == QadDimStyleTxtHorizontalPosEnum.CENTERED_LINE: # testo centrato alla linea
             middlePt = qad_utils.getMiddlePoint(pt1, pt2)
             if textInsPtCloseToPt1: # il punto di inserimento del testo é vicino a pt1
@@ -2144,7 +2144,7 @@ class QadDimStyle():
                insPt = qad_utils.getPolarPointByPtAngle(pt1, lineRot, lineLen - (self.textOffsetDist + self.textOffsetDist))         
 
          # allineamento verticale
-         #=========================
+         # =========================
          if verticalPos == QadDimStyleTxtVerticalPosEnum.CENTERED_LINE: # testo centrato alla linea
             if textInsPtCloseToPt1: # il punto di inserimento del testo é vicino a pt1
                insPt = qad_utils.getPolarPointByPtAngle(insPt, lineRot - math.pi / 2, textHeight / 2)
@@ -2182,7 +2182,7 @@ class QadDimStyle():
          projectedTextWidth = qad_utils.getDistance(pts[0], pts[1])
 
          # allineamento orizzontale
-         #=========================
+         # =========================
          if horizontalPos == QadDimStyleTxtHorizontalPosEnum.CENTERED_LINE: # testo centrato alla linea
             closestPtToPt1 = qad_utils.getPolarPointByPtAngle(pt1, lineRot, (lineLen - projectedTextWidth) / 2)
             
@@ -2201,7 +2201,7 @@ class QadDimStyle():
             rectCorners = textRect.asPolyline()
             
             # allineamento verticale
-            #=========================
+            # =========================
             if verticalPos == QadDimStyleTxtVerticalPosEnum.ABOVE_LINE: # sopra alla linea
                # l'angolo 4 deve essere sopra la linea distante self.textOffsetDist dalla stessa
                rectPt = rectCorners[3]
@@ -2218,7 +2218,7 @@ class QadDimStyle():
             rectCorners = textRect.asPolyline()
             
             # allineamento verticale
-            #=========================
+            # =========================
             if verticalPos == QadDimStyleTxtVerticalPosEnum.ABOVE_LINE: # sopra alla linea
                # l'angolo 1 deve essere sopra la linea distante self.textOffsetDist dalla stessa
                rectPt = rectCorners[0]
@@ -2235,7 +2235,7 @@ class QadDimStyle():
             rectCorners = textRect.asPolyline()
 
             # allineamento verticale
-            #=========================
+            # =========================
             if verticalPos == QadDimStyleTxtVerticalPosEnum.ABOVE_LINE: # sopra alla linea
                # l'angolo 4 deve essere sopra la linea distante self.textOffsetDist dalla stessa
                rectPt = rectCorners[3]
@@ -2252,7 +2252,7 @@ class QadDimStyle():
             rectCorners = textRect.asPolyline()
             
             # allineamento verticale
-            #=========================
+            # =========================
             if verticalPos == QadDimStyleTxtVerticalPosEnum.ABOVE_LINE: # sopra alla linea
                # l'angolo 1 deve essere sopra la linea distante self.textOffsetDist dalla stessa
                rectPt = rectCorners[0]
@@ -2261,7 +2261,7 @@ class QadDimStyle():
                rectPt = rectCorners[2]
 
          # allineamento verticale
-         #=========================         
+         # =========================         
          if verticalPos == QadDimStyleTxtVerticalPosEnum.CENTERED_LINE: # testo centrato alla linea
             # il centro del rettangolo deve essere sulla linea
             centerPt = qad_utils.getPolarPointByPtAngle(rectCorners[0], \
@@ -2296,9 +2296,9 @@ class QadDimStyle():
       return insPt, textRot
    
 
-   #============================================================================
+   # ============================================================================
    # getTextPositionOnArc
-   #============================================================================
+   # ============================================================================
    def getTextPositionOnArc(self, arc, textWidth, textHeight, horizontalPos, verticalPos, rotMode):
       """
       arc = oggetto QadArc
@@ -2337,7 +2337,7 @@ class QadDimStyle():
 
       
       # allineamento orizzontale
-      #=========================
+      # =========================
       if horizontalPos == QadDimStyleTxtHorizontalPosEnum.CENTERED_LINE: # testo centrato alla linea
          insPtCenterTxt = arc.getMiddlePt()
          lineRot = arc.getTanDirectionOnPt(insPtCenterTxt)
@@ -2382,7 +2382,7 @@ class QadDimStyle():
 
 
       # allineamento verticale
-      #=========================
+      # =========================
       angleOnCenterTxt = qad_utils.getAngleBy2Pts(arc.center, insPtCenterTxt)
       
       if verticalPos == QadDimStyleTxtVerticalPosEnum.CENTERED_LINE: # testo centrato alla linea
@@ -2427,9 +2427,9 @@ class QadDimStyle():
       return insPt, textRot
 
 
-   #============================================================================
+   # ============================================================================
    # getTextPosAndLinesOutOfDimLines
-   #============================================================================
+   # ============================================================================
    def getTextPosAndLinesOutOfDimLines(self, dimLinePt1, dimLinePt2, textWidth, textHeight):
       """      
       Restituisce una lista di 3 elementi nel caso il testo venga spostato fuori dalle linee 
@@ -2460,9 +2460,9 @@ class QadDimStyle():
       return textInsPt, textRot, lines
 
 
-   #============================================================================
+   # ============================================================================
    # getTextPosAndLinesOutOfDimArc
-   #============================================================================
+   # ============================================================================
    def getTextPosAndLinesOutOfDimArc(self, dimLineArc, textWidth, textHeight):
       """      
       Restituisce una lista di 3 elementi nel caso il testo venga spostato fuori dalle linee 
@@ -2492,9 +2492,9 @@ class QadDimStyle():
       return textInsPt, textRot, lines
 
 
-   #============================================================================
+   # ============================================================================
    # getLinearTextAndBlocksPosition
-   #============================================================================
+   # ============================================================================
    def getLinearTextAndBlocksPosition(self, dimPt1, dimPt2, dimLine, textWidth, textHeight):
       """
       dimPt1 = primo punto da quotare
@@ -2742,9 +2742,9 @@ class QadDimStyle():
       return [[textInsPt, textRot], [textLinearDimComponentOn, txtLeaderLines], block1Rot, block2Rot]
             
 
-   #============================================================================
+   # ============================================================================
    # getArcTextAndBlocksPosition
-   #============================================================================
+   # ============================================================================
    def getArcTextAndBlocksPosition(self, dimArc, dimLineArc, textWidth, textHeight):
       """
       dimArc = arco da quotare
@@ -3013,9 +3013,9 @@ class QadDimStyle():
       return [[textInsPt, textRot], [textLinearDimComponentOn, txtLeaderLines], block1Rot, block2Rot]
 
 
-   #============================================================================
+   # ============================================================================
    # getRadiusTextAndBlocksPosition
-   #============================================================================
+   # ============================================================================
    def getRadiusTextAndBlocksPosition(self, dimLine, textWidth, textHeight):
       """
       dimLine = linea di quota (QadLine)
@@ -3055,9 +3055,9 @@ class QadDimStyle():
       return res
 
    
-   #============================================================================
+   # ============================================================================
    # getTextFeature
-   #============================================================================
+   # ============================================================================
    def getTextFeature(self, measure, pt = None, rot = None):
       """
       Restituisce la feature per il testo della quota.
@@ -3112,15 +3112,15 @@ class QadDimStyle():
       return f  
 
              
-   #============================================================================
+   # ============================================================================
    # FUNZIONI PER IL TESTO - FINE
    # FUNZIONI PER LA LINEA DI LEADER - INIZIO
-   #============================================================================
+   # ============================================================================
 
 
-   #============================================================================
+   # ============================================================================
    # getAuxiliarySecondLeaderLine
-   #============================================================================
+   # ============================================================================
    def getAuxiliarySecondLeaderLine(self, pt1, rotLine, textWidth, textHeight):
       """
       Funzione interna di ausilio per le successive che si occupano di leader line.
@@ -3151,9 +3151,9 @@ class QadDimStyle():
       return QadLine().set(pt1, pt2)
 
 
-   #============================================================================
+   # ============================================================================
    # getLeaderLinesOnLine
-   #============================================================================
+   # ============================================================================
    def getLeaderLinesOnLine(self, dimLinePt1, dimLinePt2, textWidth, textHeight):
       """
       Restituisce una polilinea (QadPolyline) che forma il porta quota nel caso il testo venga spostato
@@ -3182,9 +3182,9 @@ class QadDimStyle():
       return res
 
 
-   #============================================================================
+   # ============================================================================
    # getLeaderLinesOnArc
-   #============================================================================
+   # ============================================================================
    def getLeaderLinesOnArc(self, dimLineArc, textWidth, textHeight):
       """
       Restituisce una polilinea (QadPolyline) che forma il porta quota nel caso il testo venga spostato
@@ -3214,9 +3214,9 @@ class QadDimStyle():
       return res
 
 
-   #============================================================================
+   # ============================================================================
    # getLeaderFeature
-   #============================================================================
+   # ============================================================================
    def getLeaderFeature(self, leaderLines, leaderLineType = QadDimComponentEnum.LEADER_LINE):
       """
       Restituisce la feature per la linea di estensione.
@@ -3257,9 +3257,9 @@ class QadDimStyle():
       return f
       
 
-   #============================================================================
+   # ============================================================================
    # getArcLeaderLine
-   #============================================================================
+   # ============================================================================
    def getArcLeaderLine(self, pt, arc):
       """
       Restituisce la linea che congiunge il testo all'arco da quotare.
@@ -3277,15 +3277,15 @@ class QadDimStyle():
          return None
       
       
-   #============================================================================
+   # ============================================================================
    # FUNZIONI PER LA LINEA DI LEADER - FINE
    # FUNZIONI PER LE LINEE DI ESTENSIONE - INIZIO
-   #============================================================================
+   # ============================================================================
 
 
-   #============================================================================
+   # ============================================================================
    # getExtLine
-   #============================================================================
+   # ============================================================================
    def getExtLine(self, dimPt, dimLinePt):
       """
       dimPt     = punto da quotare
@@ -3314,9 +3314,9 @@ class QadDimStyle():
       return QadLine().set(pt1, pt2)
 
 
-   #============================================================================
+   # ============================================================================
    # getExtArc
-   #============================================================================
+   # ============================================================================
    def getExtArc(self, arc, linePosPt):
       """
       arc     = arco da quotare
@@ -3355,9 +3355,9 @@ class QadDimStyle():
       return myArc
 
 
-   #============================================================================
+   # ============================================================================
    # getExtLineFeature
-   #============================================================================
+   # ============================================================================
    def getExtLineFeature(self, extLine, isExtLine1):
       """
       Restituisce la feature per la linea di estensione.
@@ -3396,15 +3396,15 @@ class QadDimStyle():
       return f
 
              
-   #============================================================================
+   # ============================================================================
    # FUNZIONI PER LE LINEE DI ESTENSIONE - FINE
    # FUNZIONI PER LA LINEA DI QUOTA - INIZIO
-   #============================================================================
+   # ============================================================================
 
 
-   #============================================================================
+   # ============================================================================
    # getDimLine
-   #============================================================================
+   # ============================================================================
    def getDimLine(self, dimPt1, dimPt2, linePosPt, preferredAlignment = QadDimStyleAlignmentEnum.HORIZONTAL,
                   dimLineRotation = 0.0):
       """
@@ -3448,9 +3448,9 @@ class QadDimStyle():
             return QadLine().set(pt1, pt2)
 
 
-   #============================================================================
+   # ============================================================================
    # getDimLineForArc
-   #============================================================================
+   # ============================================================================
    def getDimLineForArc(self, arc, linePosPt):
       """
       Restituisce la linea di quotatura (sottoforma di un arco) per la l'ampiezza di un arco + 
@@ -3476,9 +3476,9 @@ class QadDimStyle():
       return None
 
 
-   #============================================================================
+   # ============================================================================
    # getDimLineFeature
-   #============================================================================
+   # ============================================================================
    def getDimLineFeature(self, dimLine, isDimLine1, textLinearDimComponentOn):
       """
       Restituisce la feature per la linea di quota.
@@ -3529,15 +3529,15 @@ class QadDimStyle():
       return f
 
 
-   #============================================================================
+   # ============================================================================
    # FUNZIONI PER LA LINEA DI QUOTA - FINE
    # FUNZIONI PER LE ESTENSIONI DELLA LINEA DI QUOTATURA - INIZIO
-   #============================================================================
+   # ============================================================================
 
 
-   #============================================================================
+   # ============================================================================
    # getDimLineExtensions
-   #============================================================================
+   # ============================================================================
    def getDimLineExtensions(self, dimLine1, dimLine2):
       """
       Restituisce le estensioni delle linee di quotatura a inizio e fine (vedi variabile dimLineOffsetExtLine)
@@ -3568,9 +3568,9 @@ class QadDimStyle():
       return extDimLine1, extDimLine2
 
 
-   #============================================================================
+   # ============================================================================
    # getDimArcExtension
-   #============================================================================
+   # ============================================================================
    def getDimArcExtensions(self, dimLineArc1, dimLineArc2):
       """
       Restituisce le estensioni degli archi di quotatura applicando a inizio e fine (vedi variabile dimLineOffsetExtLine)
@@ -3601,9 +3601,9 @@ class QadDimStyle():
       return extDimArc1, extDimArc2
 
 
-   #============================================================================
+   # ============================================================================
    # getDimLineExtFeature
-   #============================================================================
+   # ============================================================================
    def getDimLineExtFeature(self, extLine, isExtLine1):
       """
       Restituisce la feature per l'estensione della linea di quotatura.
@@ -3641,15 +3641,15 @@ class QadDimStyle():
       return f
 
 
-   #============================================================================
+   # ============================================================================
    # FUNZIONI PER LE ESTENSIONI DELLA LINEA DI QUOTATURA - FINE
    # FUNZIONI PER LA QUOTATURA LINEARE - INIZIO
-   #============================================================================
+   # ============================================================================
 
 
-   #============================================================================
+   # ============================================================================
    # getLinearDimFeatures
-   #============================================================================
+   # ============================================================================
    def getLinearDimFeatures(self, canvas, dimPt1, dimPt2, linePosPt, measure = None, \
                             preferredAlignment = QadDimStyleAlignmentEnum.HORIZONTAL, \
                             dimLineRotation = 0.0):
@@ -3797,9 +3797,9 @@ class QadDimStyle():
       return dimEntity, QgsGeometry.fromPolygonXY([textOffsetRect.asPolyline()])
 
 
-   #============================================================================
+   # ============================================================================
    # addLinearDimToLayers
-   #============================================================================
+   # ============================================================================
    def addLinearDimToLayers(self, plugIn, dimPt1, dimPt2, linePosPt, measure = None, \
                             preferredAlignment = QadDimStyleAlignmentEnum.HORIZONTAL, \
                             dimLineRotation = 0.0):
@@ -3817,15 +3817,15 @@ class QadDimStyle():
       return self.addDimEntityToLayers(plugIn, dimEntity)
 
 
-   #============================================================================
+   # ============================================================================
    # FUNZIONI PER LA QUOTATURA LINEARE - FINE
    # FUNZIONI PER LA QUOTATURA ALLINEATA - INIZIO
-   #============================================================================
+   # ============================================================================
    
 
-   #============================================================================
+   # ============================================================================
    # getAlignedDimFeatures
-   #============================================================================
+   # ============================================================================
    def getAlignedDimFeatures(self, canvas, dimPt1, dimPt2, linePosPt, measure = None):
       """
       dimPt1 = primo punto da quotare (in unita di mappa)
@@ -3967,9 +3967,9 @@ class QadDimStyle():
       return dimEntity, QgsGeometry.fromPolygonXY([textOffsetRect.asPolyline()])
 
 
-   #============================================================================
+   # ============================================================================
    # addAlignedDimToLayers
-   #============================================================================
+   # ============================================================================
    def addAlignedDimToLayers(self, plugIn, dimPt1, dimPt2, linePosPt, measure = None, \
                             preferredAlignment = QadDimStyleAlignmentEnum.HORIZONTAL, \
                             dimLineRotation = 0.0):
@@ -3993,15 +3993,15 @@ class QadDimStyle():
       return self.addDimEntityToLayers(plugIn, dimEntity)
 
 
-   #============================================================================
+   # ============================================================================
    # FUNZIONI PER LA QUOTATURA ALLINEATA - FINE
    # FUNZIONI PER LA QUOTATURA ARCO - INIZIO
-   #============================================================================
+   # ============================================================================
    
 
-   #============================================================================
+   # ============================================================================
    # getArcDimFeatures
-   #============================================================================
+   # ============================================================================
    def getArcDimFeatures(self, canvas, dimArc, linePosPt, measure = None, arcLeader = None):
       """
       dimArc = oggetto arco QadArc da quotare (in unita di mappa)
@@ -4207,9 +4207,9 @@ class QadDimStyle():
       return dimEntity, QgsGeometry.fromPolygonXY([textOffsetRect.asPolyline()])
 
 
-   #============================================================================
+   # ============================================================================
    # addArcDimToLayers
-   #============================================================================
+   # ============================================================================
    def addArcDimToLayers(self, plugIn, dimArc, linePosPt, measure = None, arcLeader = False):
       """
       dimArc = arco da quotare (in unita di mappa)
@@ -4228,15 +4228,15 @@ class QadDimStyle():
       return self.addDimEntityToLayers(plugIn, dimEntity)
 
 
-   #============================================================================
+   # ============================================================================
    # FUNZIONI PER LA QUOTATURA ARCO - FINE
    # FUNZIONI PER LA QUOTATURA RAGGIO - INIZIO
-   #============================================================================
+   # ============================================================================
 
 
-   #============================================================================
+   # ============================================================================
    # getCenterMarkerLinesFeature
-   #============================================================================
+   # ============================================================================
    def getCenterMarkerLinesFeature(self, canvas, dimObj, linePosPt):
       """
       center = punto del centro dell'arco o del cerchio da quotare (in unita di mappa)
@@ -4317,9 +4317,9 @@ class QadDimStyle():
       return features
 
 
-   #============================================================================
+   # ============================================================================
    # getRadiusDimFeatures
-   #============================================================================
+   # ============================================================================
    def getRadiusDimFeatures(self, canvas, dimObj, linePosPt, measure = None):
       """
       dimObj = oggetto arco circle da quotare (in unita di mappa)
@@ -4444,9 +4444,9 @@ class QadDimStyle():
       return dimEntity, QgsGeometry.fromPolygonXY([textOffsetRect.asPolyline()])
 
 
-   #============================================================================
+   # ============================================================================
    # addRadiusDimToLayers
-   #============================================================================
+   # ============================================================================
    def addRadiusDimToLayers(self, plugIn, dimObj, linePosPt, measure = None):
       """
       dimObj = oggetto arco circle da quotare (in unita di mappa)
@@ -4463,14 +4463,14 @@ class QadDimStyle():
       return self.addDimEntityToLayers(plugIn, dimEntity)
 
 
-   #============================================================================
+   # ============================================================================
    # FUNZIONI PER LA QUOTATURA RAGGIO - FINE
-   #============================================================================
+   # ============================================================================
 
 
-#===============================================================================
+# ===============================================================================
 # QadDimStylesClass list of dimension styles
-#===============================================================================
+# ===============================================================================
 class QadDimStylesClass():
    
    def __init__(self, dimStyleList = None):
@@ -4520,9 +4520,9 @@ class QadDimStylesClass():
       return False     
          
 
-   #============================================================================
+   # ============================================================================
    # removeDimStyle
-   #============================================================================
+   # ============================================================================
    def removeDimStyle(self, dimStyleName, toFile = False):
       i = 0
       for dimStyle in self.dimStyleList:
@@ -4537,9 +4537,9 @@ class QadDimStylesClass():
       return False
       
       
-   #============================================================================
+   # ============================================================================
    # renameDimStyle
-   #============================================================================
+   # ============================================================================
    def renameDimStyle(self, dimStyleName, newDimStyleName):
       if dimStyleName == newDimStyleName: # nome uguale
          return True
@@ -4552,9 +4552,9 @@ class QadDimStylesClass():
       return dimStyle.rename(newDimStyleName)
 
       
-   #============================================================================
+   # ============================================================================
    # load
-   #============================================================================
+   # ============================================================================
    def load(self, dir = None, append = False):
       """
       Carica le impostazioni di tutti gli stili di quotatura presenti nella directory indicata.
@@ -4601,9 +4601,9 @@ class QadDimStylesClass():
       return True
 
 
-   #============================================================================
+   # ============================================================================
    # getDimIdByEntity
-   #============================================================================
+   # ============================================================================
    def getDimIdByEntity(self, entity):
       """
       La funzione, data un'entità, verifica se fa parte di uno stile di quotatura della lista e,
@@ -4616,9 +4616,9 @@ class QadDimStylesClass():
       return None, None
 
 
-   #============================================================================
+   # ============================================================================
    # isDimEntity
-   #============================================================================
+   # ============================================================================
    def isDimEntity(self, entity):
       """
       La funzione, data un'entità, verifica se fa parte di uno stile di quotatura della lista e,
@@ -4631,9 +4631,9 @@ class QadDimStylesClass():
          return True
 
 
-   #============================================================================
+   # ============================================================================
    # getDimEntity
-   #============================================================================
+   # ============================================================================
    def getDimEntity(self, layer, fid = None):
       """
          la funzione può essere richiamata in 2 modi:
@@ -4658,9 +4658,9 @@ class QadDimStylesClass():
       return dimEntity
 
 
-   #============================================================================
+   # ============================================================================
    # getDimListByLayer
-   #============================================================================
+   # ============================================================================
    def getDimListByLayer(self, layer):
       """
       La funzione, dato un layer, verifica se fa parte di uno o più stili di quotatura della lista e,
@@ -4675,9 +4675,9 @@ class QadDimStylesClass():
       return result
 
 
-   #============================================================================
+   # ============================================================================
    # addAllDimComponentsToEntitySet
-   #============================================================================
+   # ============================================================================
    def addAllDimComponentsToEntitySet(self, entitySet, onlyEditableLayers):
       """
       La funzione verifica se le entità che fanno parte di un entitySet sono anche parte di quotatura e,
@@ -4712,9 +4712,9 @@ class QadDimStylesClass():
                         elaboratedDimEntitySet.unite(dimEntitySet)
 
 
-   #============================================================================
+   # ============================================================================
    # removeAllDimLayersFromEntitySet
-   #============================================================================
+   # ============================================================================
    def removeAllDimLayersFromEntitySet(self, entitySet):
       """
       La funzione rimuove tutte le entità che fanno parte di quotature dall'entitySet.
@@ -4725,14 +4725,14 @@ class QadDimStylesClass():
          entitySet.removeLayerEntitySet(dimStyle.getLinearLayer())
 
 
-#===============================================================================
+# ===============================================================================
 # QadDimEntity dimension entity class
-#===============================================================================
+# ===============================================================================
 class QadDimEntity():
 
-   #============================================================================
+   # ============================================================================
    # __init__
-   #============================================================================
+   # ============================================================================
    def __init__(self, dimEntity = None):
       self.dimStyle = None
       self.textualFeature = None
@@ -4765,9 +4765,9 @@ class QadDimEntity():
          return False    
 
 
-   #============================================================================
+   # ============================================================================
    # isValid
-   #============================================================================
+   # ============================================================================
    def isValid(self):
       """
       Verifica se lo stile di quotatura é valido e in caso affermativo ritorna True.
@@ -4778,36 +4778,36 @@ class QadDimEntity():
       return self.dimStyle.isValid()
 
 
-   #============================================================================
+   # ============================================================================
    # getTextualLayer
-   #============================================================================
+   # ============================================================================
    def getTextualLayer(self):
       if self.dimStyle is None:
          return None
       return self.dimStyle.getTextualLayer()
          
                   
-   #============================================================================
+   # ============================================================================
    # getLinearLayer
-   #============================================================================
+   # ============================================================================
    def getLinearLayer(self):
       if self.dimStyle is None:
          return None
       return self.dimStyle.getLinearLayer()
          
                   
-   #============================================================================
+   # ============================================================================
    # getSymbolLayer
-   #============================================================================
+   # ============================================================================
    def getSymbolLayer(self):
       if self.dimStyle is None:
          return None
       return self.dimStyle.getSymbolLayer()
          
       
-   #============================================================================
+   # ============================================================================
    # set
-   #============================================================================
+   # ============================================================================
    def set(self, dimEntity):
       self.dimStyle = QadDimStyle(dimEntity.dimStyle)
       
@@ -4822,9 +4822,9 @@ class QadDimEntity():
          self.symbolFeatures.append(QgsFeature(f))
 
 
-   #============================================================================
+   # ============================================================================
    # getLinearGeometryCollection
-   #============================================================================
+   # ============================================================================
    def getLinearGeometryCollection(self):
       result = []
       for f in self.linearFeatures:
@@ -4832,9 +4832,9 @@ class QadDimEntity():
       return result
 
          
-   #============================================================================
+   # ============================================================================
    # getSymbolGeometryCollection
-   #============================================================================
+   # ============================================================================
    def getSymbolGeometryCollection(self):
       result = []
       for f in self.symbolFeatures:
@@ -4842,9 +4842,9 @@ class QadDimEntity():
       return result
 
 
-   #============================================================================
+   # ============================================================================
    # getDimId
-   #============================================================================
+   # ============================================================================
    def getDimId(self):
       """
       La funzione restituisce il codice della quotatura altrimenti None.
@@ -4869,9 +4869,9 @@ class QadDimEntity():
       return True
    
    
-   #============================================================================
+   # ============================================================================
    # addToLayers
-   #============================================================================
+   # ============================================================================
    def addToLayers(self, plugIn):
       # prima di tutto inserisco il testo di quota per ricodificare la quotatura
       # plugIn, layer, feature, coordTransform, refresh, check_validity
@@ -4895,9 +4895,9 @@ class QadDimEntity():
       return True
    
    
-   #============================================================================
+   # ============================================================================
    # deleteToLayers
-   #============================================================================
+   # ============================================================================
    def deleteToLayers(self, plugIn):
       ids =[]
 
@@ -4921,9 +4921,9 @@ class QadDimEntity():
       return True
       
       
-   #============================================================================
+   # ============================================================================
    # initByEntity
-   #============================================================================
+   # ============================================================================
    def initByEntity(self, dimStyle, entity):
       dimId = dimStyle.getDimIdByEntity(entity)
       if dimId is None:
@@ -4931,9 +4931,9 @@ class QadDimEntity():
       return self.initByDimId(dimStyle, dimId)
 
 
-   #============================================================================
+   # ============================================================================
    # initByDimId
-   #============================================================================
+   # ============================================================================
    def initByDimId(self, dimStyle, dimId):      
       self.dimStyle = QadDimStyle(dimStyle)
       entitySet = self.dimStyle.getEntitySet(dimId)
@@ -4960,9 +4960,9 @@ class QadDimEntity():
       return True
 
 
-   #============================================================================
+   # ============================================================================
    # getEntitySet
-   #============================================================================
+   # ============================================================================
    def getEntitySet(self):      
       result = QadEntitySet()
       
@@ -4983,23 +4983,23 @@ class QadDimEntity():
       return result
    
 
-   #============================================================================
+   # ============================================================================
    # selectOnLayer
-   #============================================================================
+   # ============================================================================
    def selectOnLayer(self, incremental = True):
       self.getEntitySet().selectOnLayer(incremental)
    
 
-   #============================================================================
+   # ============================================================================
    # deselectOnLayer
-   #============================================================================
+   # ============================================================================
    def deselectOnLayer(self):
       self.getEntitySet().deselectOnLayer()
 
    
-   #============================================================================
+   # ============================================================================
    # getDimPts
-   #============================================================================
+   # ============================================================================
    def getDimPts(self, destinationCrs = None):
       """
       destinationCrs = sistema di coordinate in cui verrà restituito il risultato
@@ -5035,9 +5035,9 @@ class QadDimEntity():
       return QadPoint(dimPt1), QadPoint(dimPt2)      
 
 
-   #============================================================================
+   # ============================================================================
    # getDimLinePts
-   #============================================================================
+   # ============================================================================
    def getDimLinePts(self, destinationCrs = None):
       """
       destinationCrs = sistema di coordinate in cui verrà restituito il risultato
@@ -5101,9 +5101,9 @@ class QadDimEntity():
       return dimLinePt1, dimLinePt2
 
 
-   #============================================================================
+   # ============================================================================
    # getDimArc
-   #============================================================================
+   # ============================================================================
    def getDimArc(self, destinationCrs = None):
       """
       destinationCrs = sistema di coordinate in cui verrà restituito il risultato
@@ -5130,9 +5130,9 @@ class QadDimEntity():
       return arc
 
 
-   #============================================================================
+   # ============================================================================
    # getDimLeaderLine
-   #============================================================================
+   # ============================================================================
    def getDimLeaderLine(self, leaderLineType = None, destinationCrs = None):
       """
       Trova la linea porta quota del tipo indicato (in destinationCrs tipicamente = map coordinate)
@@ -5158,9 +5158,9 @@ class QadDimEntity():
       return None
 
 
-   #============================================================================
+   # ============================================================================
    # getDimLinePosPt
-   #============================================================================
+   # ============================================================================
    def getDimLinePosPt(self, containerGeom = None, destinationCrs = None):
       """
       Trova fra i vari punti possibili un punto che indichi dove si trova la linea di quota (in destinationCrs tipicamente = map coordinate)
@@ -5236,9 +5236,9 @@ class QadDimEntity():
       return None
 
 
-   #============================================================================
+   # ============================================================================
    # getDimLinearAlignment
-   #============================================================================
+   # ============================================================================
    def getDimLinearAlignment(self):
       dimLinearAlignment = None
       dimLineRotation = None
@@ -5285,9 +5285,9 @@ class QadDimEntity():
       return dimLinearAlignment, dimLineRotation
 
 
-   #============================================================================
+   # ============================================================================
    # getDimCircle
-   #============================================================================
+   # ============================================================================
    def getDimCircle(self, destinationCrs = None):
       """
       destinationCrs = sistema di coordinate in cui verrà restituito il risultato
@@ -5304,9 +5304,9 @@ class QadDimEntity():
       return circle
 
 
-   #============================================================================
+   # ============================================================================
    # getTextRot
-   #============================================================================
+   # ============================================================================
    def getTextRot(self):
       textRot = None
    
@@ -5319,9 +5319,9 @@ class QadDimEntity():
       return qad_utils.toRadians(textRot)
 
 
-   #============================================================================
+   # ============================================================================
    # getTextValue
-   #============================================================================
+   # ============================================================================
    def getTextValue(self):
       textValue = None
 
@@ -5339,9 +5339,9 @@ class QadDimEntity():
       return textValue
 
 
-   #============================================================================
+   # ============================================================================
    # getTextPt
-   #============================================================================
+   # ============================================================================
    def getTextPt(self, destinationCrs = None):
       # destinationCrs = sistema di coordinate in cui verrà restituito il risultato
       g = self.textualFeature.geometry()
@@ -5353,9 +5353,9 @@ class QadDimEntity():
       return g.asPoint()
 
 
-   #============================================================================
+   # ============================================================================
    # isCalculatedText
-   #============================================================================
+   # ============================================================================
    def isCalculatedText(self):
       # la funzione verifica se il testo della quota è calcolato dalla grafica o se è stato forzato un testo diverso
       measure = self.getTextValue()
@@ -5383,9 +5383,9 @@ class QadDimEntity():
       return True
 
 
-   #============================================================================
+   # ============================================================================
    # isCalculatedTextRot
-   #============================================================================
+   # ============================================================================
    def isCalculatedTextRot(self):
       # la funzione verifica se la rotazione del testo della quota è calcolato dalla grafica o se è stato forzato una rotazione diversa
       measure = self.getTextValue()
@@ -5446,9 +5446,9 @@ class QadDimEntity():
       return True
 
 
-   #============================================================================
+   # ============================================================================
    # move
-   #============================================================================
+   # ============================================================================
    def move(self, offsetX, offsetY):
       # offsetX = spostamento X in map coordinate
       # offsetY = spostamento Y in map coordinate
@@ -5480,9 +5480,9 @@ class QadDimEntity():
       return False
 
       
-   #============================================================================
+   # ============================================================================
    # rotate
-   #============================================================================
+   # ============================================================================
    def rotate(self, basePt, angle):
       # basePt = punto base espresso in map coordinate
       if self.isValid() == False: return False;
@@ -5573,9 +5573,9 @@ class QadDimEntity():
       return True
    
 
-   #============================================================================
+   # ============================================================================
    # scale
-   #============================================================================
+   # ============================================================================
    def scale(self, basePt, scale):
       # basePt = punto base espresso in map coordinate
       if self.isValid() == False: return False;
@@ -5670,9 +5670,9 @@ class QadDimEntity():
       return True
    
    
-   #============================================================================
+   # ============================================================================
    # mirror
-   #============================================================================
+   # ============================================================================
    def mirror(self, mirrorPt, mirrorAngle):
       # mirrorPt = punto base espresso in map coordinate
       if self.isValid() == False: return False;
@@ -5771,9 +5771,9 @@ class QadDimEntity():
       return True
    
    
-   #============================================================================
+   # ============================================================================
    # stretch
-   #============================================================================
+   # ============================================================================
    def stretch(self, containerGeom, offsetX, offsetY):
       """
       containerGeom = può essere una QgsGeometry rappresentante un poligono contenente i punti di geom da stirare
@@ -5940,9 +5940,9 @@ class QadDimEntity():
       return True;
 
 
-   #============================================================================
+   # ============================================================================
    # getDimComponentByEntity
-   #============================================================================
+   # ============================================================================
    def getDimComponentByEntity(self, entity):
       """
       La funzione, data un'entità, restituisce il componente della quotatura.
@@ -5959,9 +5959,9 @@ class QadDimEntity():
       return None
 
 
-#============================================================================
+# ============================================================================
 # appendDimEntityIfNotExisting
-#============================================================================
+# ============================================================================
 def appendDimEntityIfNotExisting(dimEntityList, dimEntity):
    """
    La funzione è di utilità nei comandi per evitare di elaborare più volte oggetti appartenenti a quotatura
@@ -5975,8 +5975,8 @@ def appendDimEntityIfNotExisting(dimEntityList, dimEntity):
    return True
 
 
-#===============================================================================
+# ===============================================================================
 #  = variabile globale
-#===============================================================================
+# ===============================================================================
 
 QadDimStyles = QadDimStylesClass()                 # lista degli stili di quotatura caricati

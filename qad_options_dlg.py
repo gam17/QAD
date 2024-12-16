@@ -43,9 +43,9 @@ from .qad_dsettings_dlg import QadTOOLTIPAPPEARANCEDialog
 from .qad_rightclick_dlg import QadRightClickDialog
 
 
-#===============================================================================
+# ===============================================================================
 # QadOPTIONSTabIndexEnum class.
-#===============================================================================
+# ===============================================================================
 class QadOPTIONSTabIndexEnum():
    DISPLAY          = 0
    USER_PREFERENCES = 1
@@ -735,9 +735,9 @@ class QadOPTIONSDialog(QDialog, QObject, Ui_Options_Dialog):
       return QObject.eventFilter(self, obj, event);
 
 
-   #============================================================================
+   # ============================================================================
    # refreshPreviewColor
-   #============================================================================
+   # ============================================================================
    def refreshPreviewColor(self):
       pickBoxColor = QColor(self.tempQadVariables.get(QadMsg.translate("Environment variables", "PICKBOXCOLOR")))
       self.previewPickBox.color = pickBoxColor
@@ -780,9 +780,9 @@ class QadOPTIONSDialog(QDialog, QObject, Ui_Options_Dialog):
       qadShowPluginPDFHelp(QadMsg.translate("Help", "OPTIONS"))
 
 
-#===============================================================================
+# ===============================================================================
 # QadPreviewAutoSnapMarker class.
-#===============================================================================
+# ===============================================================================
 class QadPreviewAutoSnapMarker(QWidget):
    def __init__(self, plugIn, color, parent = None, windowFlags = Qt.Widget):
       self.plugIn = plugIn
@@ -808,9 +808,9 @@ class QadPreviewAutoSnapMarker(QWidget):
       painter.drawRect(x1, y1, dblSize, dblSize)
 
 
-#===============================================================================
+# ===============================================================================
 # QadPreviewAperture class.
-#===============================================================================
+# ===============================================================================
 class QadPreviewAperture(QWidget):
    def __init__(self, plugIn, color, cursorColor, parent = None, windowFlags = Qt.Widget):
       self.plugIn = plugIn
@@ -838,9 +838,9 @@ class QadPreviewAperture(QWidget):
       painter.drawRect(x1, y1, dblSize, dblSize)
 
 
-#===============================================================================
+# ===============================================================================
 # QadPreviewPickBox class.
-#===============================================================================
+# ===============================================================================
 class QadPreviewPickBox(QWidget):
    def __init__(self, plugIn, color, parent = None, windowFlags = Qt.Widget):
       self.plugIn = plugIn
@@ -865,9 +865,9 @@ class QadPreviewPickBox(QWidget):
       painter.drawRect(x1, y1, dblSize, dblSize)
 
 
-#===============================================================================
+# ===============================================================================
 # QadPreviewGripSize class.
-#===============================================================================
+# ===============================================================================
 class QadPreviewGripSize(QWidget):
    def __init__(self, plugIn, fillColor, borderColor, parent = None, windowFlags = Qt.Widget):
       self.plugIn = plugIn

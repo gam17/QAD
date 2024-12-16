@@ -66,9 +66,9 @@ class QadRightClickDialog(QDialog, QObject, Ui_RightClick_Dialog):
       return QObject.eventFilter(self, obj, event);
 
 
-   #============================================================================
+   # ============================================================================
    # timeSensitive_clicked
-   #============================================================================
+   # ============================================================================
    def timeSensitive_clicked(self):
       if self.checkBox_timeSensitive.checkState() == Qt.Checked:
          self.lineEdit_duration.setEnabled(True)
@@ -88,9 +88,9 @@ class QadRightClickDialog(QDialog, QObject, Ui_RightClick_Dialog):
                                                    QadMsg.translate("RightClick_Dialog", "Invalid duration time"))
 
    
-   #============================================================================
+   # ============================================================================
    # init_values
-   #============================================================================
+   # ============================================================================
    def init_values(self):
       # Inizializzazione dei valori
       shortCutMenu = QadVariables.get(QadMsg.translate("Environment variables", "SHORTCUTMENU"))
@@ -131,9 +131,9 @@ class QadRightClickDialog(QDialog, QObject, Ui_RightClick_Dialog):
       self.timeSensitive_clicked()
 
 
-   #============================================================================
+   # ============================================================================
    # getShortCutMenuValue
-   #============================================================================   
+   # ============================================================================   
    def getShortCutMenuValue(self):
       # ritorna la composizione bit a bit della variabile SHORTCUTMENU leggendo i valori dei vari widget della dialog
       shortCutMenu = 0
@@ -160,9 +160,9 @@ class QadRightClickDialog(QDialog, QObject, Ui_RightClick_Dialog):
       return shortCutMenu
 
 
-   #============================================================================
+   # ============================================================================
    # getSysVariableList
-   #============================================================================
+   # ============================================================================
    def getSysVariableList(self):
       # ritorna una lista di variabili gestite da questa finestra
       variables = []
@@ -178,9 +178,9 @@ class QadRightClickDialog(QDialog, QObject, Ui_RightClick_Dialog):
       return variables
 
 
-   #============================================================================
+   # ============================================================================
    # applyClose_clicked
-   #============================================================================
+   # ============================================================================
    def applyClose_clicked(self):
       # Memorizzo il valore di SHORTCUTMENUDURATION
       value = self.lineEdit_duration.text()
@@ -193,15 +193,15 @@ class QadRightClickDialog(QDialog, QObject, Ui_RightClick_Dialog):
       QDialog.accept(self)
 
 
-   #============================================================================
+   # ============================================================================
    # cancel_clicked
-   #============================================================================
+   # ============================================================================
    def cancel_clicked(self):
       QDialog.reject(self)
 
 
-   #============================================================================
+   # ============================================================================
    # help_clicked
-   #============================================================================
+   # ============================================================================
    def help_clicked(self):
       qadShowPluginPDFHelp(QadMsg.translate("Help", ""))

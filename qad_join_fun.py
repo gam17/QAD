@@ -38,9 +38,9 @@ from .qad_layer import createMemoryLayer
 from .qad_polyline import *
 
 
-#============================================================================
+# ============================================================================
 # join2polyline
-#============================================================================
+# ============================================================================
 def join2polyline(polyline, polylineToJoinTo, toleranceDist = None, mode = 1):
    """
    la funzione unisce la polilinea <polyline> con un'altra polilinea <polylineToJoinTo> secondo la modalità <mode>.
@@ -176,9 +176,9 @@ def join2polyline(polyline, polylineToJoinTo, toleranceDist = None, mode = 1):
    return False
 
 
-#===============================================================================
+# ===============================================================================
 # joinEndPtsLinearParts
-#===============================================================================
+# ===============================================================================
 def joinEndPtsLinearParts(part1, part2, mode):
    """
    la funzione effettua il join (unione) tra 2 parti lineari di base considerando il punto finale di part1
@@ -250,9 +250,9 @@ def joinEndPtsLinearParts(part1, part2, mode):
    return None
 
 
-#============================================================================
+# ============================================================================
 # joinFeatureInVectorLayer
-#============================================================================
+# ============================================================================
 def joinFeatureInVectorLayer(featureIdToJoin, vectorLayer, tolerance2ApproxCurve, toleranceDist = None, \
                              mode = 2):
    """
@@ -355,9 +355,9 @@ def joinFeatureInVectorLayer(featureIdToJoin, vectorLayer, tolerance2ApproxCurve
    return deleteFeatures
 
 
-#============================================================================
+# ============================================================================
 # polylineAsQgsFeatureList
-#============================================================================
+# ============================================================================
 def polylineAsQgsFeatureList(polyline, polylineMode):
    """
    la funzione restituisce una lista di feature.
@@ -377,9 +377,9 @@ def polylineAsQgsFeatureList(polyline, polylineMode):
    return fList
 
 
-#============================================================================
+# ============================================================================
 # appendPolylineToTempQgsVectorLayer
-#============================================================================
+# ============================================================================
 def appendPolylineToTempQgsVectorLayer(polyline, vectorLayer, polylineMode, updateExtents = True):
    """
    la funzione inserisce gli oggetti lineari di una polyline in un QgsVectorLayer temporaneo già creato.
@@ -412,9 +412,9 @@ def appendPolylineToTempQgsVectorLayer(polyline, vectorLayer, polylineMode, upda
       return None
 
 
-#============================================================================
+# ============================================================================
 # selfJoinPolyline
-#============================================================================
+# ============================================================================
 def selfJoinPolyline(polyline):
    """
    la funzione viene usata quando la polilinea contiene parti lineari non connesse tra loro come una vera polyline.

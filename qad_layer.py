@@ -35,9 +35,9 @@ from .qad_msg import QadMsg
 from .qad_label import get_labelFieldNames
 
 
-#===============================================================================
+# ===============================================================================
 # layerGeometryTypeToStr
-#===============================================================================
+# ===============================================================================
 def layerGeometryTypeToStr(geomType):
    """
    restituisce la stringa corrispondente al tipo di geometria del layer
@@ -59,9 +59,9 @@ def layerGeometryTypeToStr(geomType):
    return msg
 
 
-#===============================================================================
+# ===============================================================================
 # getCurrLayerEditable
-#===============================================================================
+# ===============================================================================
 def getCurrLayerEditable(canvas, geomType = None):
    """
    Ritorna il layer corrente se é aggiornabile e compatibile con il tipo geomType +
@@ -100,9 +100,9 @@ def getCurrLayerEditable(canvas, geomType = None):
    return vLayer, None
   
 
-#===============================================================================
+# ===============================================================================
 # addPointToLayer
-#===============================================================================
+# ===============================================================================
 def addPointToLayer(plugIn, layer, point, transform = True, refresh = True, check_validity = False, openForm = True):
    """
    Aggiunge un punto ad un layer. Se il punto é già 
@@ -162,9 +162,9 @@ def addPointToLayer(plugIn, layer, point, transform = True, refresh = True, chec
 #    return result
 
 
-#===============================================================================
+# ===============================================================================
 # addLineToLayer
-#===============================================================================
+# ===============================================================================
 def addLineToLayer(plugIn, layer, points, transform = True, refresh = True, check_validity = False, openForm = True):
    """
    Aggiunge una linea (lista di punti) ad un layer. Se la lista di punti é già 
@@ -236,9 +236,9 @@ def addLineToLayer(plugIn, layer, points, transform = True, refresh = True, chec
 #    return result
 
 
-#===============================================================================
+# ===============================================================================
 # addPolygonToLayer
-#===============================================================================
+# ===============================================================================
 def addPolygonToLayer(plugIn, layer, points, transform = True, refresh = True, check_validity = False, openForm = True):
    """
    Aggiunge un poligono (lista di punti) ad un layer. Se la lista di punti é già 
@@ -310,9 +310,9 @@ def addPolygonToLayer(plugIn, layer, points, transform = True, refresh = True, c
 #    return result
 
 
-#===============================================================================
+# ===============================================================================
 # addGeomToLayer
-#===============================================================================
+# ===============================================================================
 def addGeomToLayer(plugIn, layer, geom, coordTransform = None, refresh = True, check_validity = False, openForm = True):
    """
    Aggiunge una geometria ad un layer. Se la geometria é da convertire allora
@@ -389,9 +389,9 @@ def addGeomToLayer(plugIn, layer, geom, coordTransform = None, refresh = True, c
 #       
 #    return result
 
-#===============================================================================
+# ===============================================================================
 # addGeomsToLayer
-#===============================================================================
+# ===============================================================================
 def addGeomsToLayer(plugIn, layer, geoms, coordTransform = None, refresh = True, check_validity = False):
    """
    Aggiunge le geometrie ad un layer. Se la geometria é da convertire allora
@@ -413,9 +413,9 @@ def addGeomsToLayer(plugIn, layer, geoms, coordTransform = None, refresh = True,
    return True
 
 
-#===============================================================================
+# ===============================================================================
 # addFeatureToLayer
-#===============================================================================
+# ===============================================================================
 def addFeatureToLayer(plugIn, layer, f, coordTransform = None, refresh = True, check_validity = False, openForm = True):
    """
    Aggiunge una feature ad un layer. Se la geometria é da convertire allora
@@ -468,9 +468,9 @@ def addFeatureToLayer(plugIn, layer, f, coordTransform = None, refresh = True, c
    return result
 
 
-#===============================================================================
+# ===============================================================================
 # addFeaturesToLayer
-#===============================================================================
+# ===============================================================================
 def addFeaturesToLayer(plugIn, layer, features, coordTransform = None, refresh = True, check_validity = False):
    """
    Aggiunge le feature ad un layer. Se la geometria é da convertire allora
@@ -492,9 +492,9 @@ def addFeaturesToLayer(plugIn, layer, features, coordTransform = None, refresh =
    return True
 
 
-#===============================================================================
+# ===============================================================================
 # updateFeatureToLayer
-#===============================================================================
+# ===============================================================================
 def updateFeatureToLayer(plugIn, layer, f, refresh = True, check_validity = False):
    """
    Aggiorna la feature ad un layer.
@@ -520,9 +520,9 @@ def updateFeatureToLayer(plugIn, layer, f, refresh = True, check_validity = Fals
    return result
 
 
-#===============================================================================
+# ===============================================================================
 # updateFeaturesToLayer
-#===============================================================================
+# ===============================================================================
 def updateFeaturesToLayer(plugIn, layer, features, refresh = True, check_validity = False):
    """
    Aggiorna le features ad un layer.
@@ -543,9 +543,9 @@ def updateFeaturesToLayer(plugIn, layer, features, refresh = True, check_validit
    return True
 
 
-#===============================================================================
+# ===============================================================================
 # deleteFeatureToLayer
-#===============================================================================
+# ===============================================================================
 def deleteFeatureToLayer(plugIn, layer, featureId, refresh = True):
    """
    Cancella la feature da un layer.
@@ -567,9 +567,9 @@ def deleteFeatureToLayer(plugIn, layer, featureId, refresh = True):
    return result
 
 
-#===============================================================================
+# ===============================================================================
 # deleteFeaturesToLayer
-#===============================================================================
+# ===============================================================================
 def deleteFeaturesToLayer(plugIn, layer, featureIds, refresh = True):
    """
    Aggiorna le features ad un layer.
@@ -590,9 +590,9 @@ def deleteFeaturesToLayer(plugIn, layer, featureIds, refresh = True):
    return True
 
 
-#===============================================================================
+# ===============================================================================
 # getLayersByName
-#===============================================================================
+# ===============================================================================
 def getLayersByName(regularExprName):
    """
    Ritorna la lista dei layer il cui nome soddisfa la regular expression di ricerca
@@ -611,9 +611,9 @@ def getLayersByName(regularExprName):
    return result
 
 
-#===============================================================================
+# ===============================================================================
 # getLayerById
-#===============================================================================
+# ===============================================================================
 def getLayerById(id):
    """
    Ritorna il layer con id noto
@@ -624,9 +624,9 @@ def getLayerById(id):
    return None
 
 
-#===============================================================================
+# ===============================================================================
 # get_symbolRotationFieldName
-#===============================================================================
+# ===============================================================================
 def get_symbolRotationFieldName(layer):
    """
    return rotation field name (or empty string if not set or not supported by renderer) 
@@ -648,9 +648,9 @@ def get_symbolRotationFieldName(layer):
       return ""
 
 
-#===============================================================================
+# ===============================================================================
 # get_symbolScaleFieldName
-#===============================================================================
+# ===============================================================================
 def get_symbolScaleFieldName(layer):
    """
    return symbol scale field name (or empty string if not set or not supported by renderer) 
@@ -674,9 +674,9 @@ def get_symbolScaleFieldName(layer):
    
 
 
-#===============================================================================
+# ===============================================================================
 # isTextLayer
-#===============================================================================
+# ===============================================================================
 def isTextLayer(layer):
    """
    return True se il layer é di tipo testo 
@@ -704,9 +704,9 @@ def isTextLayer(layer):
    return True
 
 
-#===============================================================================
+# ===============================================================================
 # isSymbolLayer
-#===============================================================================
+# ===============================================================================
 def isSymbolLayer(layer):
    """
    return True se il layer é di tipo simbolo 
@@ -721,9 +721,9 @@ def isSymbolLayer(layer):
 
 
 
-#===============================================================================
+# ===============================================================================
 # get_Disable_enter_attribute_values_dialog
-#===============================================================================
+# ===============================================================================
 def get_Disable_enter_attribute_values_dialog():
    value = QSettings().value('/qgis/digitizing/disable_enter_attribute_values_dialog', True)
    if type(value) == str:
@@ -733,14 +733,14 @@ def get_Disable_enter_attribute_values_dialog():
       
    return True 
    
-#============================================================================
+# ============================================================================
 # INIZIO - Gestione layer temporanei di QAD
-#============================================================================
+# ============================================================================
 
 
-#===============================================================================
+# ===============================================================================
 # createQADTempLayer
-#===============================================================================
+# ===============================================================================
 def createQADTempLayer(plugIn, GeomType):
    """
    Aggiunge tre liste di geometrie rispettivamente a tre layer temporanei di QAD (uno per tipologia di
@@ -780,9 +780,9 @@ def createQADTempLayer(plugIn, GeomType):
    return layer
 
 
-#===============================================================================
+# ===============================================================================
 # createMemoryLayer
-#===============================================================================
+# ===============================================================================
 def createMemoryLayer(layerName, geomType, crs):
    """
    Crea un layer in memoria con indice spaziale.
@@ -800,9 +800,9 @@ def createMemoryLayer(layerName, geomType, crs):
    return layer
 
    
-#===============================================================================
+# ===============================================================================
 # addGeometriesToQADTempLayers
-#===============================================================================
+# ===============================================================================
 def addGeometriesToQADTempLayers(plugIn, pointGeoms = None, lineGeoms = None, polygonGeoms = None, \
                                crs = None, refresh = True):
    """
@@ -855,17 +855,17 @@ def addGeometriesToQADTempLayers(plugIn, pointGeoms = None, lineGeoms = None, po
    return True
 
 
-#===============================================================================
+# ===============================================================================
 # QadLayerStatusEnum class.
-#===============================================================================
+# ===============================================================================
 class QadLayerStatusEnum():
    UNKNOWN = 0
    COMMIT_BY_EXTERNAL = 1 # salvataggio quando questo è richiamato da eventi esterni a QAD
    COMMIT_BY_INTERNAL = 2 # salvataggio quando questo è richiamato da eventi interni a QAD
 
-#===============================================================================
+# ===============================================================================
 # QadLayerStatusListClass class.
-#===============================================================================
+# ===============================================================================
 class QadLayerStatusListClass():
    def __init__(self):
       self.layerStatusList = [] # lista di coppie (<id layer>-<stato layer>)

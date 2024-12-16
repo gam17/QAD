@@ -33,9 +33,9 @@ from .qad_multi_geom import getQadGeomAt, isLinearQadGeom
 from .qad_geom_relations import *
            
 
-#===============================================================================
+# ===============================================================================
 # breakQadGeometry
-#===============================================================================
+# ===============================================================================
 def breakQadGeometry(qadGeom, firstPt, secondPt):
    """
    la funzione spezza la geometria in un punto (se <secondPt> = None) o in due punti 

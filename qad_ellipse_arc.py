@@ -36,9 +36,9 @@ from .qad_variables import QadVariables
 from .qad_msg import QadMsg
 
 
-#===============================================================================
+# ===============================================================================
 # QadEllipseArc arc of ellipse class
-#===============================================================================
+# ===============================================================================
 class QadEllipseArc(QadEllipse):
     
    def __init__(self, ellipseArc = None):
@@ -58,9 +58,9 @@ class QadEllipseArc(QadEllipse):
       return "ELLIPSE_ARC"
 
 
-   #============================================================================
+   # ============================================================================
    # isClosed
-   #============================================================================
+   # ============================================================================
    def isClosed(self):
       return False
    
@@ -113,9 +113,9 @@ class QadEllipseArc(QadEllipse):
       return QadEllipseArc(self)
 
 
-   #===============================================================================
+   # ===============================================================================
    # length
-   #===============================================================================
+   # ===============================================================================
    def length(self):
       # obbligatoria
       # temporaneamente approssimo segmentando l'arco...
@@ -132,17 +132,17 @@ class QadEllipseArc(QadEllipse):
       return 0
 
 
-   #============================================================================
+   # ============================================================================
    # reverse
-   #============================================================================
+   # ============================================================================
    def reverse(self):
       # inverto direzione dell'arco di ellisse (punto iniziale-finale)
       self.reversed = not self.reversed
       return self
 
-   #============================================================================
+   # ============================================================================
    # inverseAngles
-   #============================================================================
+   # ============================================================================
    def inverseAngles(self):
       # inverto angolo iniziale-finale
       dummy = self.endAngle
@@ -152,9 +152,9 @@ class QadEllipseArc(QadEllipse):
       self.reverse()
 
 
-   #============================================================================
+   # ============================================================================
    # getStartPt, setStartPt
-   #============================================================================
+   # ============================================================================
    def getStartPt(self, usingReversedFlag = True):
       # obbligatoria
       # usingReversedFlag è usato per sapere il punto iniziale nel caso l'arco abbia una direzione (nella polyline)
@@ -182,9 +182,9 @@ class QadEllipseArc(QadEllipse):
       return True
 
 
-   #============================================================================
+   # ============================================================================
    # getEndPt, setEndPt
-   #============================================================================
+   # ============================================================================
    def getEndPt(self, usingReversedFlag = True):
       # obbligatoria
       # usingReversedFlag è usato per sapere il punto iniziale nel caso l'arco abbia una direzione (nella polyline)
@@ -213,18 +213,18 @@ class QadEllipseArc(QadEllipse):
       return True
    
    
-   #============================================================================
+   # ============================================================================
    # isPtOnEllipseArcOnlyByAngle
-   #============================================================================
+   # ============================================================================
    def isPtOnEllipseArcOnlyByAngle(self, point):
       # la funzione valuta se un punto è sull'arco di ellisse considerando solo gli angoli iniziale/finale
       angle = qad_utils.getAngleBy3Pts(self.majorAxisFinalPt, self.center, point, False)
       return qad_utils.isAngleBetweenAngles(self.startAngle, self.endAngle, angle)
 
 
-   #============================================================================
+   # ============================================================================
    # containsPt
-   #============================================================================
+   # ============================================================================
    def containsPt(self, point):
       # obbligatoria
       """
@@ -236,9 +236,9 @@ class QadEllipseArc(QadEllipse):
       return False
 
 
-   #============================================================================
+   # ============================================================================
    # getDistanceFromStart
-   #============================================================================
+   # ============================================================================
    def getDistanceFromStart(self, pt):
       # obbligatoria
       """
@@ -251,9 +251,9 @@ class QadEllipseArc(QadEllipse):
       return dummy.length()
 
 
-   #============================================================================
+   # ============================================================================
    # getPointFromStart
-   #============================================================================
+   # ============================================================================
    def getPointFromStart(self, distance):
       # obbligatoria
       """
@@ -286,9 +286,9 @@ class QadEllipseArc(QadEllipse):
          return None, None
 
 
-   #============================================================================
+   # ============================================================================
    # getDistanceFromEnd
-   #============================================================================
+   # ============================================================================
    def getDistanceFromEnd(self, pt):
       # obbligatoria
       """
@@ -298,9 +298,9 @@ class QadEllipseArc(QadEllipse):
       return self.length() - self.getDistanceFromStart()
 
 
-   #===============================================================================
+   # ===============================================================================
    # getPointFromEnd
-   #===============================================================================
+   # ===============================================================================
    def getPointFromEnd(self, distance):
       """
       la funzione restituisce un punto (e la direzione della tangente) alla distanza <distance> 
@@ -310,9 +310,9 @@ class QadEllipseArc(QadEllipse):
       return self.getPointFromStart(d)
 
    
-   #============================================================================
+   # ============================================================================
    # lengthen_delta
-   #============================================================================
+   # ============================================================================
    def lengthen_delta(self, move_startPt, delta):
       # obbligatoria
       """
@@ -347,9 +347,9 @@ class QadEllipseArc(QadEllipse):
       return False
 
 
-   #===============================================================================
+   # ===============================================================================
    # getBoundingBox
-   #===============================================================================
+   # ===============================================================================
    def getBoundingBox(self):
       """
       la funzione ritorna il rettangolo che racchiude l'arco di ellisse.
@@ -359,9 +359,9 @@ class QadEllipseArc(QadEllipse):
       return ellipseBoundingBox
 
 
-   #============================================================================
+   # ============================================================================
    # getQuadrantPoints
-   #============================================================================
+   # ============================================================================
    def getQuadrantPoints(self):
       Pts = QadEllipse.getQuadrantPoints(self)
       # annullo i punti fuori dall'arco di ellisse ma restituisco una lista 4 per
@@ -374,26 +374,26 @@ class QadEllipseArc(QadEllipse):
       return Pts
 
 
-   #===============================================================================
+   # ===============================================================================
    # getMiddleParam
-   #===============================================================================
+   # ===============================================================================
    def getMiddleParam(self):
       return self.getParamFromAngle(qad_utils.getMiddleAngle(self.startAngle, self.endAngle))
 
 
-   #===============================================================================
+   # ===============================================================================
    # getMiddlePoint
-   #===============================================================================
+   # ===============================================================================
    def getMiddlePt(self):
       return self.getPointAt(self.getMiddleParam())
 
 
-   #============================================================================
+   # ============================================================================
    # getTanDirectionOnStartPt, getTanDirectionOnEndPt, getTanDirectionOnMiddlePt
-   #============================================================================
-   #============================================================================
+   # ============================================================================
+   # ============================================================================
    # getTanDirectionOnStartPt, getTanDirectionOnEndPt, getTanDirectionOnMiddlePt
-   #============================================================================
+   # ============================================================================
    def getTanDirectionOnStartPt(self):
       # obbligatoria
       """
@@ -425,9 +425,9 @@ class QadEllipseArc(QadEllipse):
       return result
 
    
-   #===============================================================================
+   # ===============================================================================
    # leftOf
-   #===============================================================================
+   # ===============================================================================
    def leftOf(self, pt):
       # obbligatoria
       """
@@ -449,9 +449,9 @@ class QadEllipseArc(QadEllipse):
             return -1  # a sinistra
 
 
-   #============================================================================
+   # ============================================================================
    # asPolyline
-   #============================================================================
+   # ============================================================================
    def asPolyline(self, tolerance2ApproxCurve = None, atLeastNSegment = None):
       """
       ritorna una lista di punti che definisce la tangente
@@ -495,9 +495,9 @@ class QadEllipseArc(QadEllipse):
       return points
 
    
-   #===============================================================================
+   # ===============================================================================
    # asLineString
-   #===============================================================================
+   # ===============================================================================
    def asLineString(self, tolerance2ApproxCurve = None, atLeastNSegment = None, forcedStartPt = None):
       """
       la funzione ritorna l'ellisse in forma di lineString.
@@ -505,14 +505,16 @@ class QadEllipseArc(QadEllipse):
       percui il punto iniziale viene forzato.
       """
       pts = self.asPolyline(tolerance2ApproxCurve, atLeastNSegment)
+      if pts is None or len(pts) == 0:
+          return None
       if forcedStartPt is not None:
          pts[0] = QgsPointXY(forcedStartPt)
       return QgsLineString(pts)
 
 
-   #===============================================================================
+   # ===============================================================================
    # asAbstractGeom
-   #===============================================================================
+   # ===============================================================================
    def asAbstractGeom(self, wkbType = QgsWkbTypes.LineString, tolerance2ApproxCurve = None, atLeastNSegment = None):
       """
       la funzione ritorna l'ellisse in forma di QgsAbstractGeometry.
@@ -540,9 +542,9 @@ class QadEllipseArc(QadEllipse):
       return self.asLineString(tolerance2ApproxCurve, atLeastNSegment)
 
 
-   #===============================================================================
+   # ===============================================================================
    # asGeom
-   #===============================================================================
+   # ===============================================================================
    def asGeom(self, wkbType = QgsWkbTypes.LineString, tolerance2ApproxCurve = None, atLeastNSegment = None):
       """
       la funzione ritorna l'ellisse in forma di QgsGeometry.
@@ -550,9 +552,9 @@ class QadEllipseArc(QadEllipse):
       return QgsGeometry(self.asAbstractGeom(wkbType, tolerance2ApproxCurve, atLeastNSegment));
 
 
-   #============================================================================
+   # ============================================================================
    # fromPolyline
-   #============================================================================
+   # ============================================================================
    def fromPolyline(self, points, startVertex, atLeastNSegment = None):
       """
       Setta le caratteristiche dell'arco di ellisse incontrato nella lista di punti
@@ -705,9 +707,9 @@ class QadEllipseArc(QadEllipse):
       return i + startVertex
 
 
-   #===============================================================================
+   # ===============================================================================
    # breakOnPts
-   #===============================================================================
+   # ===============================================================================
    def breakOnPts(selfs, firstPt, secondPt):
       # obbligatoria
       """
@@ -735,18 +737,18 @@ class QadEllipseArc(QadEllipse):
       return [part1, part2]
 
 
-   #============================================================================
+   # ============================================================================
    # mirror
-   #============================================================================
+   # ============================================================================
    def mirror(self, mirrorPt, mirrorAngle):
       QadEllipse.mirror(self, mirrorPt, mirrorAngle)
       self.startAngle = (2 * math.pi) - self.startAngle
       self.endAngle = (2 * math.pi) - self.endAngle
 
 
-   #===============================================================================
+   # ===============================================================================
    # offset
-   #===============================================================================
+   # ===============================================================================
    def offset(self, offsetDist, offsetSide, tolerance2ApproxCurve = None):
       """
       la funzione restituisce l'arco di ellisse facendone l'offset.
@@ -810,9 +812,9 @@ class QadEllipseArc(QadEllipse):
       return points
 
 
-   #============================================================================
+   # ============================================================================
    # fromFoci
-   #============================================================================
+   # ============================================================================
    def fromFoci(self, f1, f2, ptOnEllipse, startAngle, endAngle):
       """
       setta le caratteristiche dell'ellisse attraverso:
@@ -829,9 +831,9 @@ class QadEllipseArc(QadEllipse):
       return True
    
 
-   #============================================================================
+   # ============================================================================
    # fromExtent
-   #============================================================================
+   # ============================================================================
    def fromExtent(self, pt1, pt2, rot, startAngle, endAngle):
       """
       setta le caratteristiche dell'ellisse attraverso:
@@ -848,9 +850,9 @@ class QadEllipseArc(QadEllipse):
       return True
       
 
-   #============================================================================
+   # ============================================================================
    # fromCenterAxis1FinalPtAxis2FinalPt
-   #============================================================================
+   # ============================================================================
    def fromCenterAxis1FinalPtAxis2FinalPt(self, ptCenter, axis1FinalPt, axis2FinalPt, startAngle, endAngle):
       """
       setta le caratteristiche dell'ellisse attraverso:
@@ -868,9 +870,9 @@ class QadEllipseArc(QadEllipse):
       return True
 
 
-   #============================================================================
+   # ============================================================================
    # fromCenterAxis1FinalPtDistAxis2
-   #============================================================================
+   # ============================================================================
    def fromCenterAxis1FinalPtDistAxis2(self, ptCenter, axis1FinalPt, distAxis2, startAngle, endAngle):
       """
       setta le caratteristiche dell'ellisse attraverso:
@@ -888,9 +890,9 @@ class QadEllipseArc(QadEllipse):
       return True
 
 
-   #============================================================================
+   # ============================================================================
    # fromCenterAxis1FinalPtAxis2FinalPt
-   #============================================================================
+   # ============================================================================
    def fromCenterAxis1FinalPtAxis2FinalPt(self, axis1Finalpt1, axis1Finalpt2, axis2FinalPt, startAngle, endAngle):
       """
       setta le caratteristiche dell'ellisse attraverso:
@@ -907,9 +909,9 @@ class QadEllipseArc(QadEllipse):
       return True
 
 
-   #============================================================================
+   # ============================================================================
    # fromAxis1FinalPtsAxis2Len
-   #============================================================================
+   # ============================================================================
    def fromAxis1FinalPtsAxis2Len(self, axis1FinalPt1, axis1FinalPt2, distAxis2, startAngle, endAngle):
       """
       setta le caratteristiche dell'ellisse attraverso:
@@ -926,9 +928,9 @@ class QadEllipseArc(QadEllipse):
       return True
 
 
-   #============================================================================
+   # ============================================================================
    # fromAxis1FinalPtsArea
-   #============================================================================
+   # ============================================================================
    def fromAxis1FinalPtsArea(self, axis1FinalPt1, axis1FinalPt2, area, startAngle, endAngle):
       """
       setta le caratteristiche dell'ellisse attraverso:
@@ -945,9 +947,9 @@ class QadEllipseArc(QadEllipse):
       return True
 
 
-   #===============================================================================
+   # ===============================================================================
    # getGeomBetween2Pts
-   #===============================================================================
+   # ===============================================================================
    def getGeomBetween2Pts(self, startPt, endPt):
       """
       Ritorna una sotto geometria che parte dal punto startPt e finisce al punto endPt seguendo il tracciato della geometria.

@@ -36,9 +36,9 @@ from . import qad_utils
 from .qad_geom_relations import *
 
 
-#============================================================================
+# ============================================================================
 # circleFrom3Pts
-#============================================================================
+# ============================================================================
 def circleFrom3Pts(firstPt, secondPt, thirdPt):
    """
    crea un cerchio attraverso:
@@ -60,9 +60,9 @@ def circleFrom3Pts(firstPt, secondPt, thirdPt):
    return QadCircle().set(center, radius)
 
    
-#===========================================================================
+# ===========================================================================
 # circleFrom2IntPtsCircleTanPts
-#===========================================================================
+# ===========================================================================
 def circleFrom2IntPtsCircleTanPts(pt1, pt2, circle, pt):
    """
    crea un cerchio attraverso 2 punti di intersezione e un cerchio tangente:
@@ -165,9 +165,9 @@ def circleFrom2IntPtsCircleTanPts(pt1, pt2, circle, pt):
    return result
 
 
-#===========================================================================
+# ===========================================================================
 # circleFrom2IntPtsLineTanPts
-#===========================================================================
+# ===========================================================================
 def circleFrom2IntPtsLineTanPts(pt1, pt2, line, pt, AllCircles = False):
    """
    crea uno o più cerchi (vedi allCircles) attraverso 2 punti di intersezione e una linea tangente:
@@ -271,9 +271,9 @@ def circleFrom2IntPtsLineTanPts(pt1, pt2, line, pt, AllCircles = False):
    return result
 
 
-#============================================================================
+# ============================================================================
 # circleFrom2IntPts1TanPt
-#============================================================================
+# ============================================================================
 def circleFrom2IntPts1TanPt(pt1, pt2, geom, pt):
    """
    crea un cerhcio attraverso 2 punti di intersezione ed un oggetto di tangenza:
@@ -301,9 +301,9 @@ def circleFrom2IntPts1TanPt(pt1, pt2, geom, pt):
    return None
 
 
-#============================================================================
+# ============================================================================
 # circleFrom1IntPt2TanPts
-#============================================================================
+# ============================================================================
 def circleFrom1IntPt2TanPts(pt, geom1, pt1, geom2, pt2):
    """
    crea un cerchio attraverso 1 punti di intersezione e 2 oggetti di tangenza:
@@ -346,9 +346,9 @@ def circleFrom1IntPt2TanPts(pt, geom1, pt1, geom2, pt2):
    return None
 
 
-#===========================================================================
+# ===========================================================================
 # circleFrom1IntPtLineLineTanPts
-#===========================================================================
+# ===========================================================================
 def circleFrom1IntPtLineLineTanPts(pt, line1, pt1, line2, pt2, AllCircles = False):
    """
    crea uno o più cerchi (vedi allCircles) attraverso 1 punti di intersezione e due linee tangenti:
@@ -464,9 +464,9 @@ def circleFrom1IntPtLineLineTanPts(pt, line1, pt1, line2, pt2, AllCircles = Fals
    return result
 
 
-#===============================================================================
+# ===============================================================================
 # solveCircleTangentTo2LinesAndCircle
-#===============================================================================
+# ===============================================================================
 def solveCircleTangentTo2LinesAndCircle(line1, line2, circle, s1, s2):
    '''
    Trova i due cerchi tangenti a due rette e un cerchio (sarebbero 8 cerchi che si trovano con le 
@@ -501,9 +501,9 @@ def solveCircleTangentTo2LinesAndCircle(line1, line2, circle, s1, s2):
    return circleList
 
 
-#============================================================================
+# ============================================================================
 # circleFromLineLineCircleTanPts
-#============================================================================
+# ============================================================================
 def circleFromLineLineCircleTanPts(line1, pt1, line2, pt2, circle, pt3):
    """
    crea un cerchio attraverso tre linee:
@@ -551,9 +551,9 @@ def circleFromLineLineCircleTanPts(line1, pt1, line2, pt2, circle, pt3):
    return True
 
 
-#============================================================================
+# ============================================================================
 # circleFrom3TanPts
-#============================================================================
+# ============================================================================
 def circleFrom3TanPts(geom1, pt1, geom2, pt2, geom3, pt3):
    """
    crea un cerchio attraverso tre oggetti di tangenza per le estremità del diametro:
@@ -615,9 +615,9 @@ def circleFrom3TanPts(geom1, pt1, geom2, pt2, geom3, pt3):
    return None
             
 
-#============================================================================
+# ============================================================================
 # circleFromLineLineLineTanPts
-#============================================================================
+# ============================================================================
 def circleFromLineLineLineTanPts(line1, pt1, line2, pt2, line3, pt3):
    """
    Crea un cerchio attraverso tre linee:
@@ -724,9 +724,9 @@ def circleFromLineLineLineTanPts(line1, pt1, line2, pt2, line3, pt3):
    return result
 
 
-#===========================================================================
+# ===========================================================================
 # circleFrom2ParLinesLineTanPts
-#===========================================================================
+# ===========================================================================
 def circleFrom2ParLinesLineTanPts(parLine1, parLine2, line3):
    """
    Crea due cerchi attraverso 2 linee parallele e una terza linea non parallela:
@@ -775,9 +775,9 @@ def circleFrom2ParLinesLineTanPts(parLine1, parLine2, line3):
    return circleList
    
    
-#============================================================================
+# ============================================================================
 # circleFromLineCircleCircleTanPts
-#============================================================================
+# ============================================================================
 def circleFromLineCircleCircleTanPts(line, pt, circle1, pt1, circle2, pt2):
    """
    setta le caratteristiche del cerchio attraverso tre linee:
@@ -828,9 +828,9 @@ def circleFromLineCircleCircleTanPts(line, pt, circle1, pt1, circle2, pt2):
    return result
             
 
-#============================================================================
+# ============================================================================
 # circleFromCircleCircleCircleTanPts
-#============================================================================
+# ============================================================================
 def circleFromCircleCircleCircleTanPts(circle1, pt1, circle2, pt2, circle3, pt3):
    """
    Crea un cerchio attraverso tre cerchi tangenti:
@@ -903,9 +903,9 @@ def circleFromCircleCircleCircleTanPts(circle1, pt1, circle2, pt2, circle3, pt3)
    return result
    
    
-#===========================================================================
+# ===========================================================================
 # circleFrom1IntPtLineCircleTanPts
-#===========================================================================
+# ===========================================================================
 def circleFrom1IntPtLineCircleTanPts(pt, line1, pt1, circle2, pt2, AllCircles = False):
    """
    crea uno o più cerchi (vedi AllCircles) attraverso 1 punto di intersezione, 1 linea e 1 cerchio tangenti:
@@ -972,9 +972,9 @@ def circleFrom1IntPtLineCircleTanPts(pt, line1, pt1, circle2, pt2, AllCircles = 
    return result
 
 
-#===========================================================================
+# ===========================================================================
 # circleFrom1IntPtCircleCircleTanPts
-#===========================================================================
+# ===========================================================================
 def circleFrom1IntPtCircleCircleTanPts(pt, circle1, pt1, circle2, pt2):
    """
    Crea dei cerchi attraverso 1 punto di intersezione, 2 cerchi tangenti:
@@ -1035,9 +1035,9 @@ def circleFrom1IntPtCircleCircleTanPts(pt, circle1, pt1, circle2, pt2):
    return result
 
 
-#============================================================================
+# ============================================================================
 # circleFromDiamEndsPtTanPt
-#============================================================================
+# ============================================================================
 def circleFromDiamEndsPtTanPt(startPt, geom, pt):
    """
    Crea un cerchio attraverso un punto di estremità del diametro e
@@ -1067,9 +1067,9 @@ def circleFromDiamEndsPtTanPt(startPt, geom, pt):
       return QadCircle().fromDiamEnds(startPt, ptTan)
 
 
-#============================================================================
+# ============================================================================
 # circleFromDiamEnds2TanPts
-#============================================================================
+# ============================================================================
 def circleFromDiamEnds2TanPts(geom1, pt1, geom2, pt2):
    """
    Creo un cerchio attraverso due oggetto di tangenza per le estremità del diametro:
@@ -1111,9 +1111,9 @@ def circleFromDiamEnds2TanPts(geom1, pt1, geom2, pt2):
    return None
             
 
-#============================================================================
+# ============================================================================
 # circleFromLineCircleTanPts
-#============================================================================
+# ============================================================================
 def circleFromLineCircleTanPts(line, circle, ptCircle):
    """
    Creo un cerchio attraverso una linea, un cerchio di tangenza:
@@ -1130,9 +1130,9 @@ def circleFromLineCircleTanPts(line, circle, ptCircle):
    return QadCircle().fromDiamEnds(ptPer, ptTan)
 
 
-#============================================================================
+# ============================================================================
 # circleFromCircleCircleTanPts
-#============================================================================
+# ============================================================================
 def circleFromCircleCircleTanPts(circle1, pt1, circle2, pt2):
    """
    Crea un cerchio attraverso due cerchi di tangenza:
@@ -1153,9 +1153,9 @@ def circleFromCircleCircleTanPts(circle1, pt1, circle2, pt2):
    return QadCircle().fromDiamEnds(ptTan1, ptTan2)
 
 
-#============================================================================
+# ============================================================================
 # circleFrom2TanPtsRadius
-#============================================================================
+# ============================================================================
 def circleFrom2TanPtsRadius(geom1, pt1, geom2, pt2, radius):
    """
    Crea un cerchio attraverso 2 oggetti di tangenza e un raggio:
@@ -1198,9 +1198,9 @@ def circleFrom2TanPtsRadius(geom1, pt1, geom2, pt2, radius):
    return None
 
 
-#============================================================================
+# ============================================================================
 # circleFromLineLineTanPtsRadius
-#============================================================================
+# ============================================================================
 def circleFromLineLineTanPtsRadius(line1, pt1, line2, pt2, radius):
    """
    Crea un cerchio attraverso due linee di tangenza e un raggio:
@@ -1267,9 +1267,9 @@ def circleFromLineLineTanPtsRadius(line1, pt1, line2, pt2, radius):
    return QadCircle().set(center, radius)
             
 
-#============================================================================
+# ============================================================================
 # circleFromLineCircleTanPtsRadius
-#============================================================================
+# ============================================================================
 def circleFromLineCircleTanPtsRadius(line, ptLine, circle, ptCircle, radius):
    """
    Crea un cerchio attraverso una linea, un cerchio di tangenza e un raggio:
@@ -1313,9 +1313,9 @@ def circleFromLineCircleTanPtsRadius(line, ptLine, circle, ptCircle, radius):
    return QadCircle().set(center, radius)
 
 
-#============================================================================
+# ============================================================================
 # circleFromCircleCircleTanPtsRadius
-#============================================================================
+# ============================================================================
 def circleFromCircleCircleTanPtsRadius(circle1, pt1, circle2, pt2, radius):
    """
    Crea un cerchio attraverso due cerchi di tangenza e un raggio:
@@ -1343,9 +1343,9 @@ def circleFromCircleCircleTanPtsRadius(circle1, pt1, circle2, pt2, radius):
    return QadCircle().set(center, radius)
 
 
-#===============================================================================
+# ===============================================================================
 # solveCircleTangentToLineAnd2Circles
-#===============================================================================
+# ===============================================================================
 def solveCircleTangentToLineAnd2Circles(line, circle1, circle2, s1, s2):
    '''
    Trova i due cerchi tangenti a una retta e due cerchi (sarebbero 8 cerchi che si trovano con le 
@@ -1389,9 +1389,9 @@ def solveCircleTangentToLineAnd2Circles(line, circle1, circle2, s1, s2):
    return circleList
 
 
-#===============================================================================
+# ===============================================================================
 # solveApollonius
-#===============================================================================
+# ===============================================================================
 def solveApollonius(c1, c2, c3, s1, s2, s3):
    '''
    >>> solveApollonius((0, 0, 1), (4, 0, 1), (2, 4, 2), 1,1,1)
@@ -1468,9 +1468,9 @@ def solveApollonius(c1, c2, c3, s1, s2, s3):
    return circle
 
 
-#===============================================================================
+# ===============================================================================
 # getCircularInversionOfPoint
-#===============================================================================
+# ===============================================================================
 def getCircularInversionOfPoint(circleRef, pt):
    """
    la funzione ritorna l'inversione circolare di un punto
@@ -1481,9 +1481,9 @@ def getCircularInversionOfPoint(circleRef, pt):
    return qad_utils.getPolarPointByPtAngle(circleRef.center, angle, circInvDist)
 
 
-#===============================================================================
+# ===============================================================================
 # getCircularInversionOfLine
-#===============================================================================
+# ===============================================================================
 def getCircularInversionOfLine(circleRef, line):
    """
    la funzione ritorna l'inversione circolare di una linea (che é un cerchio)
@@ -1503,9 +1503,9 @@ def getCircularInversionOfLine(circleRef, line):
    return circleFrom3Pts(pt1, pt2, pt3)
 
 
-#===============================================================================
+# ===============================================================================
 # getCircularInversionOfCircle
-#===============================================================================
+# ===============================================================================
 def getCircularInversionOfCircle(circleRef, circle):
    """
    la funzione ritorna l'inversione circolare di un cerchio (che é un cerchio)

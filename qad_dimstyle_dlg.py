@@ -233,9 +233,9 @@ class QadDIMSTYLEDialog(QDialog, QObject, qad_dimstyle_ui.Ui_DimStyle_Dialog):
       Form.exec_()
 
 
-   #============================================================================
+   # ============================================================================
    # startEditingItem
-   #============================================================================
+   # ============================================================================
    def startEditingItem(self):
       if self.selectedDimStyle is None:
          return
@@ -256,9 +256,9 @@ class QadDIMSTYLEDialog(QDialog, QObject, qad_dimstyle_ui.Ui_DimStyle_Dialog):
       qadShowPluginPDFHelp(QadMsg.translate("Help", "Dimensioning"))
 
 
-   #============================================================================
+   # ============================================================================
    # displayPopupMenu
-   #============================================================================
+   # ============================================================================
    def displayPopupMenu(self, pos):
       if self.selectedDimStyle is None:
          return

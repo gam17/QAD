@@ -38,9 +38,9 @@ from .qad_ellipse import QadEllipse
 from .qad_ellipse_arc import QadEllipseArc
 
 
-#===============================================================================
+# ===============================================================================
 # isPtContainedForStretch
-#===============================================================================
+# ===============================================================================
 def isPtContainedForStretch(point, containerGeom, tolerance=None):
    """
    Funzione di ausilio per le funzioni di stretch (stretchPoint e stretchQgsLineStringGeometry).
@@ -62,9 +62,9 @@ def isPtContainedForStretch(point, containerGeom, tolerance=None):
    return False 
 
 
-#===============================================================================
+# ===============================================================================
 # stretchQadGeometry
-#===============================================================================
+# ===============================================================================
 def stretchQadGeometry(geom, ptListToStretch, offsetX, offsetY):
    """
    Stira una entità qad in coordinate piane mediante grip point
@@ -108,9 +108,9 @@ def stretchQadGeometry(geom, ptListToStretch, offsetX, offsetY):
    return None
 
 
-#===============================================================================
+# ===============================================================================
 # stretchPoint
-#===============================================================================
+# ===============================================================================
 def stretchPoint(point, containerGeom, offsetX, offsetY):
    """
    Restituisce un nuovo punto stirato se è contenuto in containerGeom
@@ -127,9 +127,9 @@ def stretchPoint(point, containerGeom, offsetX, offsetY):
    return stretchedGeom
 
 
-#===============================================================================
+# ===============================================================================
 # stretchMultiPoint
-#===============================================================================
+# ===============================================================================
 def stretchMultiPoint(multiPoint, containerGeom, offsetX, offsetY):
    """
    Restituisce un nuovo multi punto stirato se è contenuto in containerGeom
@@ -150,9 +150,9 @@ def stretchMultiPoint(multiPoint, containerGeom, offsetX, offsetY):
    return multiPointToStretch
 
 
-#===============================================================================
+# ===============================================================================
 # stretchCircle
-#===============================================================================
+# ===============================================================================
 def stretchCircle(circle, containerGeom, offsetX, offsetY):
    """
    Stira un cerchio usando i punti che sono contenuti in containerGeom
@@ -189,9 +189,9 @@ def stretchCircle(circle, containerGeom, offsetX, offsetY):
    return newCircle.set(newCenter, newRadius)
 
 
-#===============================================================================
+# ===============================================================================
 # stretchArc
-#===============================================================================
+# ===============================================================================
 def stretchArc(arc, containerGeom, offsetX, offsetY):
    """
    Stira i punti di grip di un arco che sono contenuti in containerGeom
@@ -232,9 +232,9 @@ def stretchArc(arc, containerGeom, offsetX, offsetY):
    return newArc
 
 
-#===============================================================================
+# ===============================================================================
 # stretchEllipse
-#===============================================================================
+# ===============================================================================
 def stretchEllipse(ellipse, containerGeom, offsetX, offsetY):
    """
    Stira i punti di grip di una ellisse che sono contenuti in containerGeom
@@ -285,9 +285,9 @@ def stretchEllipse(ellipse, containerGeom, offsetX, offsetY):
    return newEllipse.set(newCenter, newMajorAxisFinalPt, newAxisRatio)
 
 
-#===============================================================================
+# ===============================================================================
 # stretchEllipseArc
-#===============================================================================
+# ===============================================================================
 def stretchEllipseArc(ellipseArc, containerGeom, offsetX, offsetY):
    """
    Stira i punti di grip di un arco di ellisse che sono contenuti in containerGeom
@@ -350,9 +350,9 @@ def stretchEllipseArc(ellipseArc, containerGeom, offsetX, offsetY):
    return newEllipseArc.set(newCenter, newMajorAxisFinalPt, newAxisRatio, newStartAngle, newEndAngle)
 
 
-#===============================================================================
+# ===============================================================================
 # stretchLine
-#===============================================================================
+# ===============================================================================
 def stretchLine(line, containerGeom, offsetX, offsetY):
    """
    Stira i punti di grip di una qadLine che sono contenuti in containerGeom
@@ -381,9 +381,9 @@ def stretchLine(line, containerGeom, offsetX, offsetY):
    return lineToStretch
 
 
-#===============================================================================
+# ===============================================================================
 # stretchPolyline
-#===============================================================================
+# ===============================================================================
 def stretchPolyline(polyline, containerGeom, offsetX, offsetY):
    """
    Crea una nuova polyline stirando i punti di grip che sono contenuti in containerGeom
@@ -415,9 +415,9 @@ def stretchPolyline(polyline, containerGeom, offsetX, offsetY):
    return polylineToStretch
 
 
-#===============================================================================
+# ===============================================================================
 # stretchMultiLinearObj
-#===============================================================================
+# ===============================================================================
 def stretchMultiLinearObj(multiLinear, containerGeom, offsetX, offsetY):
    """
    Crea un nuovo multi lineare stirando i punti di grip che sono contenuti in containerGeom
@@ -441,9 +441,9 @@ def stretchMultiLinearObj(multiLinear, containerGeom, offsetX, offsetY):
    return multiLinearToStretch
 
 
-#===============================================================================
+# ===============================================================================
 # stretchPolygon
-#===============================================================================
+# ===============================================================================
 def stretchPolygon(polygon, containerGeom, offsetX, offsetY):
    """
    Crea un nuovo poligono stirando i punti di grip che sono contenuti in containerGeom
@@ -471,9 +471,9 @@ def stretchPolygon(polygon, containerGeom, offsetX, offsetY):
    return polygonToStretch
 
 
-#===============================================================================
+# ===============================================================================
 # stretchMultiPolygon
-#===============================================================================
+# ===============================================================================
 def stretchMultiPolygon(multiPolygon, containerGeom, offsetX, offsetY):
    """
    Crea un nuovo multi poligono stirando i punti di grip che sono contenuti in containerGeom

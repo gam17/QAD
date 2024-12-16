@@ -33,9 +33,9 @@ from . import qad_utils
 from .qad_msg import QadMsg
 
 
-#===============================================================================
+# ===============================================================================
 # Qad variable type class.
-#===============================================================================
+# ===============================================================================
 class QadVariableTypeEnum():
    UNKNOWN = 0 # sconosciuto (non gestito da QAD)
    STRING  = 1 # caratteri
@@ -45,9 +45,9 @@ class QadVariableTypeEnum():
    BOOL    = 5 # booleano (True o False)
 
 
-#===============================================================================
+# ===============================================================================
 # Qad AUTOSNAP class.
-#===============================================================================
+# ===============================================================================
 class QadAUTOSNAPEnum():
    DISPLAY_MARK      = 1  # Turns on the AutoSnap mark
    DISPLAY_TOOLTIPS  = 2  # Turns on the AutoSnap tooltips
@@ -57,9 +57,9 @@ class QadAUTOSNAPEnum():
    DISPLAY_TOOLTIPS_POLAR_OSNAP_TRACKING_ORTHO = 32 # Turns on tooltips for polar tracking, object snap tracking, and Ortho mode
 
 
-#===============================================================================
+# ===============================================================================
 # Qad INPUTSEARCHOPTIONS class.
-#===============================================================================
+# ===============================================================================
 class QadINPUTSEARCHOPTIONSEnum():
    ON              = 1  # Turns off all automated keyboard features when typing at the Command prompt
    AUTOCOMPLETE    = 2  # Automatically appends suggestions as each keystroke is entered after the second keystroke
@@ -68,9 +68,9 @@ class QadINPUTSEARCHOPTIONSEnum():
    EXCLUDE_SYS_VAR = 16 # Excludes the display of system variables
 
 
-#===============================================================================
+# ===============================================================================
 # Qad POLARMODE class.
-#===============================================================================
+# ===============================================================================
 class QadPOLARMODEnum():
    MEASURE_RELATIVE_ANGLE = 1 # if setted: Measure polar angles from selected objects (relative) 
                               # if not setted: Measure polar angles based on current UCS (absolute)
@@ -81,34 +81,34 @@ class QadPOLARMODEnum():
                               # if not setted: Acquire automatically object snap tracking points
 
 
-#===============================================================================
+# ===============================================================================
 # Qad DELOBJ class.
-#===============================================================================
+# ===============================================================================
 class QadDELOBJEnum():
    ALL_RETAINED       =  0 # All defining geometry is retained
    DELETE_ALL         =  1 # Delete all defining geometry 
    ASK_FOR_DELETE_ALL = -1 # Ask the user for delete all defining geometry 
 
 
-#===============================================================================
+# ===============================================================================
 # Qad GRIPMULTIFUNCTIONAL class.
-#===============================================================================
+# ===============================================================================
 class QadGRIPMULTIFUNCTIONALEnum():
    ON_CTRL_CYCLE_AND_HOT_GRIPT   = 1 # Access multi-functional grips with Ctrl-cycling and the Hot Grip shortcut menu
    ON_DYNAMIC_MENU_AND_HOT_GRIPT = 2 # Access multi-functional grips with the dynamic menu and the Hot Grip shortcut menu
 
 
-#===============================================================================
+# ===============================================================================
 # Qad global or project class.
-#===============================================================================
+# ===============================================================================
 class QadVariableLevelEnum():
    GLOBAL  = 0 # variabile globale di QAD
    PROJECT = 2 # variabile del progetto corrente (che sovrascrive quella globale)
 
 
-#===============================================================================
+# ===============================================================================
 # Qad variable class.
-#===============================================================================
+# ===============================================================================
 class QadVariable():
    """
    Classe che gestisce le variabili di ambiente di QAD
@@ -125,9 +125,9 @@ class QadVariable():
       self.level = level # di tipo QadVariableLevelEnum
 
 
-#===============================================================================
+# ===============================================================================
 # Qad variables class.
-#===============================================================================
+# ===============================================================================
 class QadVariablesClass():
    """
    Classe che gestisce le variabili di ambiente di Qad
@@ -1335,9 +1335,9 @@ class QadVariablesClass():
       return True
 
 
-   #============================================================================
+   # ============================================================================
    # copyTo
-   #============================================================================
+   # ============================================================================
    def copyTo(self, dest):
       """
       Copia il dizionario con le variabili in dest
@@ -1346,9 +1346,9 @@ class QadVariablesClass():
          dest.set(VarName, self.get(VarName))
 
 
-#===============================================================================
+# ===============================================================================
 #  = variabile globale
-#===============================================================================
+# ===============================================================================
 
 
 def POLARADDANG_to_list(PolarAddAngles, convertToRadians = False):

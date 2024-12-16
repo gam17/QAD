@@ -37,9 +37,9 @@ from .qad_entity import *
 from .qad_offset_fun import offsetBridgeTheGapBetweenLines
 
 
-#============================================================================
+# ============================================================================
 # isStartedPtChanged
-#============================================================================
+# ============================================================================
 def isStartedPtChanged(oldQadGeom, newQadGeom, filletQadGeom, nearNewQadGeom):
    """
    Funzione di ausilio alle funzioni filletQadGeometry e fillet2QadGeometries.
@@ -74,9 +74,9 @@ def isStartedPtChanged(oldQadGeom, newQadGeom, filletQadGeom, nearNewQadGeom):
    return changedStartPt
 
 
-#============================================================================
+# ============================================================================
 # filletQadGeometry
-#============================================================================
+# ============================================================================
 def filletQadPolyline(qadPolyline, partAt1, pointAt1, partAt2, pointAt2, \
                       filletMode, radius):
    """
@@ -139,9 +139,9 @@ def filletQadPolyline(qadPolyline, partAt1, pointAt1, partAt2, pointAt2, \
    return filletPolyline
 
 
-#============================================================================
+# ============================================================================
 # fillet2QadGeometries
-#============================================================================
+# ============================================================================
 def fillet2QadGeometries(qadGeom1, atGeom1, atSubGeom1, partAt1, pointAt1, \
                          qadGeom2, atGeom2, atSubGeom2, partAt2, pointAt2, \
                          filletMode, radius):
@@ -240,9 +240,9 @@ def fillet2QadGeometries(qadGeom1, atGeom1, atSubGeom1, partAt1, pointAt1, \
       return filletPolyline, whatToDoGeom1, whatToDoGeom2
 
 
-#============================================================================
+# ============================================================================
 # filletBridgeTheGapBetween2BasicQadGeometries
-#============================================================================
+# ============================================================================
 def filletBridgeTheGapBetween2BasicQadGeometries(qadGeom1, pointAt1, qadGeom2, pointAt2, filletMode, radius):
    """
    Date due geometrie di base di qad, la parte e il punto in cui bisogna fare il raccordo tra le due
@@ -367,14 +367,14 @@ def filletBridgeTheGapBetween2BasicQadGeometries(qadGeom1, pointAt1, qadGeom2, p
    return res
 
 
-#===============================================================================
+# ===============================================================================
 # INIZIO - 2 CERCHI
-#===============================================================================
+# ===============================================================================
 
 
-#===============================================================================
+# ===============================================================================
 # filletBridgeTheGapBetweenCircles
-#===============================================================================
+# ===============================================================================
 def filletBridgeTheGapBetweenCircles(circle1, ptOnCircle1, circle2, ptOnCircle2, radius):
    """
    la funzione raccorda due cerchi attraverso 
@@ -425,9 +425,9 @@ def filletBridgeTheGapBetweenCircles(circle1, ptOnCircle1, circle2, ptOnCircle2,
    return [None, resFilletArc, None]
 
 
-#===============================================================================
+# ===============================================================================
 # getFilletArcsBetweenCircles
-#===============================================================================
+# ===============================================================================
 def getFilletArcsBetweenCircles(circle1, circle2, radius):
    """
    la funzione raccorda due cerchi attraverso un arco di raccordo di raggio <radius>.
@@ -518,9 +518,9 @@ def getFilletArcsBetweenCircles(circle1, circle2, radius):
    return res
 
 
-#===============================================================================
+# ===============================================================================
 # auxFilletArcsBetweenCircles
-#===============================================================================
+# ===============================================================================
 def auxFilletArcsBetweenCircles(circle1, circle2, radius, both = True):
    """
    la funzione di ausilio a getFilletArcsBetweenCircles   
@@ -570,15 +570,15 @@ def auxFilletArcsBetweenCircles(circle1, circle2, radius, both = True):
    return res
 
 
-#===============================================================================
+# ===============================================================================
 # FINE - 2 CERCHI
 # INIZIO - CERCHIO ED ELLISSE
-#===============================================================================
+# ===============================================================================
 
 
-#===============================================================================
+# ===============================================================================
 # filletBridgeTheGapBetweenCircleEllipse
-#===============================================================================
+# ===============================================================================
 def filletBridgeTheGapBetweenCircleEllipse(circle, ptOnCircle, ellipse, ptOnEllipse, radius):
    """
    la funzione raccorda un cerchio con una ellisse attraverso 
@@ -594,15 +594,15 @@ def filletBridgeTheGapBetweenCircleEllipse(circle, ptOnCircle, ellipse, ptOnElli
    return [None, None, None]
 
 
-#===============================================================================
+# ===============================================================================
 # FINE - CERCHIO ED ELLISSE
 # INIZIO - 2 LINEE
-#===============================================================================
+# ===============================================================================
 
 
-#===============================================================================
+# ===============================================================================
 # filletBridgeTheGapBetweenLines
-#===============================================================================
+# ===============================================================================
 def filletBridgeTheGapBetweenLines(line1, ptOnLine1, line2, ptOnLine2, radius, filletMode):
    """   
    la funzione raccorda 2 segmenti retti (QadLine) attraverso 
@@ -681,9 +681,9 @@ def filletBridgeTheGapBetweenLines(line1, ptOnLine1, line2, ptOnLine2, radius, f
          return [None, resFilletArc, None]
 
 
-#===============================================================================
+# ===============================================================================
 # getFilletArcsBetweenLines
-#===============================================================================
+# ===============================================================================
 def getFilletArcsBetweenLines(line1, line2, radius):
    """
    la funzione raccorda due linee rette (QadLine) attraverso 
@@ -740,9 +740,9 @@ def getFilletArcsBetweenLines(line1, line2, radius):
    return res
 
 
-#===============================================================================
+# ===============================================================================
 # getNewLineAccordingFilletArc
-#===============================================================================
+# ===============================================================================
 def getNewLineAccordingFilletArc(line, filletArc, ptOnLine):
    """
    dato un segmento retto (<line>) e un arco che si 
@@ -816,9 +816,9 @@ def getNewLineAccordingFilletArc(line, filletArc, ptOnLine):
       return getNewLineAccordingFilletArc(newLine, filletArc, ptOnLine)
 
 
-#===============================================================================
+# ===============================================================================
 # auxFilletArcsBetweenLines
-#===============================================================================
+# ===============================================================================
 def auxFilletArcsBetweenLines(ptLine1, ptLine2, intPt, radius, both = True):
    """
    la funzione di ausilio a getFilletArcsBetweenLines
@@ -867,15 +867,15 @@ def auxFilletArcsBetweenLines(ptLine1, ptLine2, intPt, radius, both = True):
    return res
 
 
-#===============================================================================
+# ===============================================================================
 # FINE - 2 LINEE
 # INIZIO - ARCO E CERCHIO
-#===============================================================================
+# ===============================================================================
 
 
-#===============================================================================
+# ===============================================================================
 # filletBridgeTheGapBetweenArcCircle
-#===============================================================================
+# ===============================================================================
 def filletBridgeTheGapBetweenArcCircle(arc, ptOnArc, circle, ptOnCircle, radius, filletMode):
    """
    la funzione raccorda un arco e un cerchio attraverso 
@@ -932,9 +932,9 @@ def filletBridgeTheGapBetweenArcCircle(arc, ptOnArc, circle, ptOnCircle, radius,
       return [None, resFilletArc, None]
 
 
-#===============================================================================
+# ===============================================================================
 # getFilletArcsBetweenArcCircle
-#===============================================================================
+# ===============================================================================
 def getFilletArcsBetweenArcCircle(arc, circle, radius):
    """
    la funzione raccorda un arco e un cerchio attraverso 
@@ -948,9 +948,9 @@ def getFilletArcsBetweenArcCircle(arc, circle, radius):
    return getFilletArcsBetweenCircles(circle1, circle, radius)
 
 
-#===============================================================================
+# ===============================================================================
 # getNewArcAccordingFilletArc
-#===============================================================================
+# ===============================================================================
 def getNewArcAccordingFilletArc(arc, filletArc, ptOnArc):
    """
    dato un arco (<arc>) e un altro arco che si raccorda ad esso (<filleArc>),
@@ -1024,15 +1024,15 @@ def getNewArcAccordingFilletArc(arc, filletArc, ptOnArc):
    return newArc, distFromPtOnArc
 
 
-#===============================================================================
+# ===============================================================================
 # FINE - ARCO E CERCHIO
 # INIZIO - CERCHIO E ARCO DI ELLISSE
-#===============================================================================
+# ===============================================================================
 
 
-#===============================================================================
+# ===============================================================================
 # filletBridgeTheGapBetweenCircleEllipsearc
-#===============================================================================
+# ===============================================================================
 def filletBridgeTheGapBetweenCircleEllipsearc(circle, ptOnCircle, ellipseArc, ptOnEllipseArc, radius):
    """
    la funzione raccorda un cerchio ed un arco ellisse attraverso 
@@ -1048,15 +1048,15 @@ def filletBridgeTheGapBetweenCircleEllipsearc(circle, ptOnCircle, ellipseArc, pt
    return [None, None, None]
 
 
-#===============================================================================
+# ===============================================================================
 # FINE - CERCHIO E ARCO DI ELLISSE
 # INIZIO - CERCHIO E LINEA
-#===============================================================================
+# ===============================================================================
 
 
-#===============================================================================
+# ===============================================================================
 # filletBridgeTheGapBetweenCircleLine
-#===============================================================================
+# ===============================================================================
 def filletBridgeTheGapBetweenCircleLine(circle, ptOnCircle, line, ptOnLine, radius, filletMode):
    """
    la funzione raccorda un cerchio e un segmento retto (QadLine) attraverso 
@@ -1112,9 +1112,9 @@ def filletBridgeTheGapBetweenCircleLine(circle, ptOnCircle, line, ptOnLine, radi
       return [None, resFilletArc, None]
 
 
-#===============================================================================
+# ===============================================================================
 # auxFilletArcsBetweenCircleLine
-#===============================================================================
+# ===============================================================================
 def auxFilletArcsBetweenCircleLine(circle, line, origCircle, origLine, both = True):
    """
    la funzione di ausilio a getFilletArcsBetweenArcLine
@@ -1165,9 +1165,9 @@ def auxFilletArcsBetweenCircleLine(circle, line, origCircle, origLine, both = Tr
    return res
 
 
-#===============================================================================
+# ===============================================================================
 # getFilletArcsBetweenCircleLine
-#===============================================================================
+# ===============================================================================
 def getFilletArcsBetweenCircleLine(circle, line, radius):
    """
    la funzione raccorda un cerchio e una linea retta (QadLine) attraverso 
@@ -1248,15 +1248,15 @@ def getFilletArcsBetweenCircleLine(circle, line, radius):
    return res
 
 
-#===============================================================================
+# ===============================================================================
 # FINE - CERCHIO E LINEA
 # INIZIO - 2 ELLISSI
-#===============================================================================
+# ===============================================================================
 
 
-#===============================================================================
+# ===============================================================================
 # filletBridgeTheGapBetweenEllipses
-#===============================================================================
+# ===============================================================================
 def filletBridgeTheGapBetweenEllipses(ellipse1, ptOnEllipse1, ellipse2, ptOnEllipse2, radius):
    """
    la funzione raccorda due ellissi attraverso 
@@ -1272,15 +1272,15 @@ def filletBridgeTheGapBetweenEllipses(ellipse1, ptOnEllipse1, ellipse2, ptOnElli
    return [None, None, None]
 
 
-#===============================================================================
+# ===============================================================================
 # FINE - 2 ELLISSI
 # INIZIO - ARCO ED ELLISSE
-#===============================================================================
+# ===============================================================================
 
 
-#===============================================================================
+# ===============================================================================
 # filletBridgeTheGapBetweenArcEllipse
-#===============================================================================
+# ===============================================================================
 def filletBridgeTheGapBetweenArcEllipse(arc, ptOnArc, ellipse, ptOnEllipse, radius):
    """
    la funzione raccorda un arco con una ellisse attraverso 
@@ -1296,15 +1296,15 @@ def filletBridgeTheGapBetweenArcEllipse(arc, ptOnArc, ellipse, ptOnEllipse, radi
    return [None, None, None]
 
 
-#===============================================================================
+# ===============================================================================
 # FINE - ARCO ED ELLISSE
 # INIZIO - ELLISSE ED ARCO DI ELLISSE
-#===============================================================================
+# ===============================================================================
 
 
-#===============================================================================
+# ===============================================================================
 # filletBridgeTheGapBetweenEllipseEllipsearc
-#===============================================================================
+# ===============================================================================
 def filletBridgeTheGapBetweenEllipseEllipsearc(ellipse, ptOnEllipse, ellipseArc, ptOnEllipseArc, radius):
    """
    la funzione raccorda una ellisse con un arco di ellisse attraverso 
@@ -1320,15 +1320,15 @@ def filletBridgeTheGapBetweenEllipseEllipsearc(ellipse, ptOnEllipse, ellipseArc,
    return [None, None, None]
 
 
-#===============================================================================
+# ===============================================================================
 # FINE - ELLISSE ED ARCO DI ELLISSE
 # INIZIO - ELLISSE E LINEA
-#===============================================================================
+# ===============================================================================
 
 
-#===============================================================================
+# ===============================================================================
 # filletBridgeTheGapBetweenEllipseLine
-#===============================================================================
+# ===============================================================================
 def filletBridgeTheGapBetweenEllipseLine(ellipse, ptOnEllipse, line, ptOnLine, radius):
    """
    la funzione raccorda una ellisse con una linea attraverso 
@@ -1344,15 +1344,15 @@ def filletBridgeTheGapBetweenEllipseLine(ellipse, ptOnEllipse, line, ptOnLine, r
    return [None, None, None]
 
 
-#===============================================================================
+# ===============================================================================
 # FINE - ELLISSE E LINEA
 # INIZIO - 2 ARCHI
-#===============================================================================
+# ===============================================================================
 
 
-#===============================================================================
+# ===============================================================================
 # filletBridgeTheGapBetweenArcs
-#===============================================================================
+# ===============================================================================
 def filletBridgeTheGapBetweenArcs(arc1, ptOnArc1, arc2, ptOnArc2, radius, filletMode):
    """
    la funzione raccorda due archi attraverso 
@@ -1405,9 +1405,9 @@ def filletBridgeTheGapBetweenArcs(arc1, ptOnArc1, arc2, ptOnArc2, radius, fillet
       return [None, resFilletArc, None]
 
 
-#===============================================================================
+# ===============================================================================
 # getFilletArcsBetweenArcs
-#===============================================================================
+# ===============================================================================
 def getFilletArcsBetweenArcs(arc1, arc2, radius):
    """
    la funzione raccorda due archi attraverso un arco di raccordo di raggio <radius>.
@@ -1422,15 +1422,15 @@ def getFilletArcsBetweenArcs(arc1, arc2, radius):
    return getFilletArcsBetweenCircles(circle1, circle2, radius)
 
 
-#===============================================================================
+# ===============================================================================
 # FINE - 2 ARCHI
 # INIZIO - ARCO ED ARCO DI ELLISSE
-#===============================================================================
+# ===============================================================================
 
 
-#===============================================================================
+# ===============================================================================
 # filletBridgeTheGapBetweenArcEllipsearc
-#===============================================================================
+# ===============================================================================
 def filletBridgeTheGapBetweenArcEllipsearc(arc, ptOnArc, ellipseArc, ptOnEllipseArc, radius):
    """
    la funzione raccorda una acro con un rco di ellisse 
@@ -1446,15 +1446,15 @@ def filletBridgeTheGapBetweenArcEllipsearc(arc, ptOnArc, ellipseArc, ptOnEllipse
    return [None, None, None]
 
 
-#===============================================================================
+# ===============================================================================
 # FINE - ARCO ED ARCO DI ELLISSE
 # INIZIO - ARCO E LINEA
-#===============================================================================
+# ===============================================================================
 
 
-#===============================================================================
+# ===============================================================================
 # filletBridgeTheGapBetweenArcLine
-#===============================================================================
+# ===============================================================================
 def filletBridgeTheGapBetweenArcLine(arc, ptOnArc, line, ptOnLine, radius, filletMode):
    """
    la funzione raccorda un arco e un segmento retto attraverso 
@@ -1508,9 +1508,9 @@ def filletBridgeTheGapBetweenArcLine(arc, ptOnArc, line, ptOnLine, radius, fille
       return [None, resFilletArc, None]
 
 
-#===============================================================================
+# ===============================================================================
 # getFilletArcsBetweenArcLine
-#===============================================================================
+# ===============================================================================
 def getFilletArcsBetweenArcLine(arc, line, radius):
    """
    la funzione raccorda un arco e una linea retta attraverso 
@@ -1524,15 +1524,15 @@ def getFilletArcsBetweenArcLine(arc, line, radius):
    return getFilletArcsBetweenCircleLine(circle, line, radius)
 
 
-#===============================================================================
+# ===============================================================================
 # FINE - ARCO E LINEA
 # INIZIO - 2 ARCHI DI ELLISSE
-#===============================================================================
+# ===============================================================================
 
 
-#===============================================================================
+# ===============================================================================
 # filletBridgeTheGapBetweenEllipsearcs
-#===============================================================================
+# ===============================================================================
 def filletBridgeTheGapBetweenEllipsearcs(ellipseArc1, ptOnEllipseArc1, ellipseArc2, ptOnEllipseArc2, radius):
    """
    la funzione raccorda due archi di ellisse attraverso 
@@ -1548,15 +1548,15 @@ def filletBridgeTheGapBetweenEllipsearcs(ellipseArc1, ptOnEllipseArc1, ellipseAr
    return [None, None, None]
 
 
-#===============================================================================
+# ===============================================================================
 # FINE - 2 ARCHI DI ELLISSE
 # INIZIO - LINEA E ARCO DI ELLISSE
-#===============================================================================
+# ===============================================================================
 
 
-#===============================================================================
+# ===============================================================================
 # filletBridgeTheGapBetweenLineEllipsearc
-#===============================================================================
+# ===============================================================================
 def filletBridgeTheGapBetweenLineEllipsearc(line, ptOnLine, ellipseArc, ptOnEllipseArc, radius):
    """
    la funzione raccorda una linea ed un arco di ellisse attraverso 
@@ -1572,15 +1572,15 @@ def filletBridgeTheGapBetweenLineEllipsearc(line, ptOnLine, ellipseArc, ptOnElli
    return [None, None, None]
 
 
-#===============================================================================
+# ===============================================================================
 # FINE - LINEA E ARCO DI ELLISSE
 # INIZIO - POLILINEA
-#===============================================================================
+# ===============================================================================
 
 
-#============================================================================
+# ============================================================================
 # filletAllPartsQadPolyline
-#============================================================================
+# ============================================================================
 def filletAllPartsQadPolyline(polyline, radius):
    """
    la funzione raccorda ogni segmento al successivo con un raggio di curvatura noto,
