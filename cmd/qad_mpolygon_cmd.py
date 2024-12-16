@@ -106,7 +106,7 @@ class QadMPOLYGONCommandClass(QadCommandClass):
             self.showErr(errMsg)
             return True # fine comando
 
-      #=========================================================================
+      # =========================================================================
       # RICHIESTA PRIMO PUNTO PER SELEZIONE OGGETTI
       if self.step == 0:
          self.PLINECommand = QadPLINECommandClass(self.plugIn, True)
@@ -119,7 +119,7 @@ class QadMPOLYGONCommandClass(QadCommandClass):
          self.step = 1
          return False # continua     
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA PUNTO (da step = 0 o 1)
       elif self.step == 1: # dopo aver atteso un punto si riavvia il comando
          if self.PLINECommand.run(msgMapTool, msg) == True:

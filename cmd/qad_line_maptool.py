@@ -29,9 +29,9 @@ from ..qad_getpoint import QadGetPoint, QadGetPointDrawModeEnum
 from ..qad_rubberband import QadRubberBand
 
 
-#===============================================================================
+# ===============================================================================
 # Qad_line_maptool_ModeEnum class.
-#===============================================================================
+# ===============================================================================
 class Qad_line_maptool_ModeEnum():
    # noto niente si richiede il primo punto
    NONE_KNOWN_ASK_FOR_FIRST_PT = 1
@@ -43,9 +43,9 @@ class Qad_line_maptool_ModeEnum():
    FIRST_PER_KNOWN_ASK_FOR_SECOND_PT = 4
    
 
-#===============================================================================
+# ===============================================================================
 # Qad_line_maptool class
-#===============================================================================
+# ===============================================================================
 class Qad_line_maptool(QadGetPoint):
     
    def __init__(self, plugIn):

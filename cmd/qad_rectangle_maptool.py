@@ -31,9 +31,9 @@ from ..qad_getpoint import QadGetPoint, QadGetPointDrawModeEnum
 from ..qad_rubberband import QadRubberBand
 
 
-#===============================================================================
+# ===============================================================================
 # Qad_rectangle_maptool_ModeEnum class.
-#===============================================================================
+# ===============================================================================
 class Qad_rectangle_maptool_ModeEnum():
    # noto niente si richiede il primo angolo
    NONE_KNOWN_ASK_FOR_FIRST_CORNER = 1     
@@ -42,9 +42,9 @@ class Qad_rectangle_maptool_ModeEnum():
    # noto il primo angolo si richiede la rotazione
    FIRST_CORNER_KNOWN_ASK_FOR_ROTATION = 3
 
-#===============================================================================
+# ===============================================================================
 # Qad_rotate_maptool class
-#===============================================================================
+# ===============================================================================
 class Qad_rectangle_maptool(QadGetPoint):
     
    def __init__(self, plugIn):

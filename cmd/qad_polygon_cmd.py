@@ -92,18 +92,18 @@ class QadPOLYGONCommandClass(QadCommandClass):
          qad_layer.addGeomToLayer(self.plugIn, layer, self.mapToLayerCoordinates(layer, geom))
       
 
-   #============================================================================
+   # ============================================================================
    # WaitForSideNumber
-   #============================================================================
+   # ============================================================================
    def WaitForSideNumber(self):
       self.step = 1
       prompt = QadMsg.translate("Command_POLYGON", "Enter number of sides <{0}>: ")
       self.waitForInt(prompt.format(str(self.sideNumber)), self.sideNumber, \
                       QadInputModeEnum.NOT_ZERO | QadInputModeEnum.NOT_NEGATIVE)
          
-   #============================================================================
+   # ============================================================================
    # WaitForCenter
-   #============================================================================
+   # ============================================================================
    def WaitForCenter(self):
       self.step = 2
       self.getPointMapTool().setMode(Qad_polygon_maptool_ModeEnum.ASK_FOR_CENTER_PT)
@@ -119,9 +119,9 @@ class QadPOLYGONCommandClass(QadCommandClass):
                    QadInputTypeEnum.POINT2D | QadInputTypeEnum.KEYWORDS, \
                    None, keyWords, QadInputModeEnum.NONE)
          
-   #============================================================================
+   # ============================================================================
    # WaitForInscribedCircumscribedOption
-   #============================================================================
+   # ============================================================================
    def WaitForInscribedCircumscribedOption(self):
       self.step = 3      
       keyWords = QadMsg.translate("Command_POLYGON", "Inscribed in circle") + "/" + \
@@ -138,9 +138,9 @@ class QadPOLYGONCommandClass(QadCommandClass):
                    self.constructionModeByCenter, \
                    keyWords, QadInputModeEnum.NONE)                  
 
-   #============================================================================
+   # ============================================================================
    # WaitForRadius
-   #============================================================================
+   # ============================================================================
    def WaitForRadius(self, layer):
       self.step = 4
       if layer is not None:
@@ -155,9 +155,9 @@ class QadPOLYGONCommandClass(QadCommandClass):
                    self.plugIn.lastRadius, "", \
                    QadInputModeEnum.NOT_ZERO | QadInputModeEnum.NOT_NEGATIVE)
 
-   #============================================================================
+   # ============================================================================
    # WaitForFirstEdgePt
-   #============================================================================
+   # ============================================================================
    def WaitForFirstEdgePt(self):
       self.step = 5
       # imposto il map tool
@@ -165,9 +165,9 @@ class QadPOLYGONCommandClass(QadCommandClass):
       # si appresta ad attendere un punto
       self.waitForPoint(QadMsg.translate("Command_POLYGON", "Specify the first point of the edge: "))
 
-   #============================================================================
+   # ============================================================================
    # WaitForSecondEdgePt
-   #============================================================================
+   # ============================================================================
    def WaitForSecondEdgePt(self, layer):
       self.step = 6
       self.getPointMapTool().firstEdgePt = self.firstEdgePt
@@ -180,9 +180,9 @@ class QadPOLYGONCommandClass(QadCommandClass):
       # si appresta ad attendere un punto
       self.waitForPoint(QadMsg.translate("Command_POLYGON", "Specify the second point of the edge: "))
 
-   #============================================================================
+   # ============================================================================
    # WaitForArea
-   #============================================================================
+   # ============================================================================
    def WaitForArea(self):
       self.step = 7
          
@@ -194,9 +194,9 @@ class QadPOLYGONCommandClass(QadCommandClass):
                    QadInputModeEnum.NOT_ZERO | QadInputModeEnum.NOT_NEGATIVE)
 
          
-   #============================================================================
+   # ============================================================================
    # run
-   #============================================================================
+   # ============================================================================
    def run(self, msgMapTool = False, msg = None):
       if self.plugIn.canvas.mapSettings().destinationCrs().isGeographic():
          self.showMsg(QadMsg.translate("QAD", "\nThe coordinate reference system of the project must be a projected coordinate system.\n"))
@@ -210,13 +210,13 @@ class QadPOLYGONCommandClass(QadCommandClass):
             self.showErr(errMsg)
             return True # fine comando
       
-      #=========================================================================
+      # =========================================================================
       # RICHIESTA NUMERO DI LATI DEL POLIGONO 
       if self.step == 0: # inizio del comando
          self.WaitForSideNumber()
          return False
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA DEL NUMERO DI LATI DEL POLIGONO (da step = 0) 
       elif self.step == 1: # dopo aver atteso un punto si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -241,7 +241,7 @@ class QadPOLYGONCommandClass(QadCommandClass):
          return False # continua
 
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA DEL CENTRO DEL POLIGONO (da step = 1)
       elif self.step == 2: # dopo aver atteso un punto si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -271,7 +271,7 @@ class QadPOLYGONCommandClass(QadCommandClass):
                        
          return False # continua
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA DI POLIGONO INSCRITTO O CIRCOSCRITTO (da step = 2)
       elif self.step == 3:
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -301,7 +301,7 @@ class QadPOLYGONCommandClass(QadCommandClass):
                
          return False # fine comando
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA DEL RAGGIO (da step = 3)
       elif self.step == 4:
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -345,7 +345,7 @@ class QadPOLYGONCommandClass(QadCommandClass):
          return False # fine comando
  
  
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA DEL PRIMO PUNTO DELLO SPIGOLO (da step = 2)
       elif self.step == 5: # dopo aver atteso un punto si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -370,7 +370,7 @@ class QadPOLYGONCommandClass(QadCommandClass):
 
          return False
             
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA DEL SECONDO PUNTO DELLO SPIGOLO (da step = 5)
       elif self.step == 6: # dopo aver atteso un punto o un numero reale si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -399,7 +399,7 @@ class QadPOLYGONCommandClass(QadCommandClass):
          return False
 
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA AREA POLIGONO (da step = 3)
       elif self.step == 7: # dopo aver atteso un numero reale si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica

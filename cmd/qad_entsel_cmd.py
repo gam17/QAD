@@ -37,9 +37,9 @@ from ..qad_dim import QadDimStyles
 from ..qad_variables import QadVariables
 
 
-#===============================================================================
+# ===============================================================================
 # QadEntSelClass
-#===============================================================================
+# ===============================================================================
 class QadEntSelClass(QadCommandClass):
    """
       Questa classe seleziona un'entità. Non è in grado di selezionare una quotatura ma solo un componente di una quotatura.
@@ -70,9 +70,9 @@ class QadEntSelClass(QadCommandClass):
          self.entity.deselectOnLayer()
 
 
-   #============================================================================
+   # ============================================================================
    # setEntity
-   #============================================================================
+   # ============================================================================
    def setEntity(self, layer, fid):
       del self.entity
       if self.selDimEntity: # se è possibile restituire un oggetto QadDimEntity
@@ -88,9 +88,9 @@ class QadEntSelClass(QadCommandClass):
       self.entity.selectOnLayer()
 
 
-   #============================================================================
+   # ============================================================================
    # getLayersToCheck
-   #============================================================================
+   # ============================================================================
    def getLayersToCheck(self):
       layerList = []
       for layer in qad_utils.getVisibleVectorLayers(self.plugIn.canvas): # Tutti i layer vettoriali visibili
@@ -112,7 +112,7 @@ class QadEntSelClass(QadCommandClass):
          self.showMsg(QadMsg.translate("QAD", "\nThe coordinate reference system of the project must be a projected coordinate system.\n"))
          return True # fine comando
 
-      #=========================================================================
+      # =========================================================================
       # RICHIESTA PUNTO o ENTITA'
       if self.step == 0: # inizio del comando
          # imposto il map tool
@@ -134,7 +134,7 @@ class QadEntSelClass(QadCommandClass):
          self.step = 1
          return False
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA PUNTO o ENTITA'
       elif self.step == 1: # dopo aver atteso un punto si riavvia il comando
          entity = None

@@ -89,7 +89,7 @@ class QadARCCommandClass(QadCommandClass):
          self.showErr(errMsg)
          return True # fine comando
 
-      #=========================================================================
+      # =========================================================================
       # RICHIESTA PRIMO PUNTO o CENTRO
       if self.step == 0: # inizio del comando
          # imposto il map tool
@@ -110,7 +110,7 @@ class QadARCCommandClass(QadCommandClass):
          
          return False
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA PRIMO PUNTO o CENTRO
       elif self.step == 1: # dopo aver atteso un punto o enter o una parola chiave si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -168,7 +168,7 @@ class QadARCCommandClass(QadCommandClass):
             self.step = 13
             return False
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA SECONDO PUNTO o CENTRO o FINE
       elif self.step == 2: # dopo aver atteso un punto o una parola chiave si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -212,7 +212,7 @@ class QadARCCommandClass(QadCommandClass):
                   
          return False
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA PUNTO FINALE DELL'ARCO (da step = 2)
       elif self.step == 3: # dopo aver atteso un punto si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -254,7 +254,7 @@ class QadARCCommandClass(QadCommandClass):
          self.isValidPreviousInput = False # per gestire il comando anche in macro     
          return False
       
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA CENTRO DELL'ARCO (da step = 2)
       elif self.step == 4: # dopo aver atteso un punto si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -297,7 +297,7 @@ class QadARCCommandClass(QadCommandClass):
          self.step = 5
          return False
       
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA "Specificare punto finale dell'arco o [Angolo/Lunghezza corda]: " (da step = 4)
       elif self.step == 5: # dopo aver atteso un punto o una parola chiave si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -379,7 +379,7 @@ class QadARCCommandClass(QadCommandClass):
             self.isValidPreviousInput = False # per gestire il comando anche in macro
             return False
       
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA "Specificare angolo inscritto: " (da step = 5)
       elif self.step == 6: # dopo aver atteso un punto o un numero reale si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -434,7 +434,7 @@ class QadARCCommandClass(QadCommandClass):
          return False
 
       
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA "Specificare lunghezza della corda: " (da step = 5)
       elif self.step == 7: # dopo aver atteso un punto o un numero reale si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -488,7 +488,7 @@ class QadARCCommandClass(QadCommandClass):
          self.isValidPreviousInput = False # per gestire il comando anche in macro         
          return False
                  
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA "Specificare punto finale dell'arco: " (da step = 1)
       elif self.step == 8: # dopo aver atteso un punto si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -532,7 +532,7 @@ class QadARCCommandClass(QadCommandClass):
          self.step = 9
          return False
          
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA "Specificare centro dell'arco o [Angolo/Direzione/Raggio]: " (da step = 8)
       elif self.step == 9: # dopo aver atteso un punto o una parola chiave si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -624,7 +624,7 @@ class QadARCCommandClass(QadCommandClass):
             self.isValidPreviousInput = False # per gestire il comando anche in macro                     
             return False
       
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA "Specificare angolo inscritto: " (da step = 9)
       elif self.step == 10: # dopo aver atteso un punto o un numero reale si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -678,7 +678,7 @@ class QadARCCommandClass(QadCommandClass):
          self.isValidPreviousInput = False # per gestire il comando anche in macro         
          return False
       
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA "Specificare direzione tangente per il punto iniziale dell'arco: " (da step = 9)
       elif self.step == 11: # dopo aver atteso un punto o un numero reale si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -732,7 +732,7 @@ class QadARCCommandClass(QadCommandClass):
          return False
 
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA "Specificare raggio dell'arco: " (da step = 9)
       elif self.step == 12: # dopo aver atteso un punto o un numero reale si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -789,7 +789,7 @@ class QadARCCommandClass(QadCommandClass):
          return False
 
 
-      #=========================================================================
+      # ========================================================================
       # RISPOSTA ALLA RICHIESTA CENTRO DELL'ARCO (da step = 1)
       elif self.step == 13: # dopo aver atteso un punto si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -822,7 +822,7 @@ class QadARCCommandClass(QadCommandClass):
          return False
 
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA PUNTO INIZIALE DELL'ARCO (da step = 13)
       elif self.step == 14: # dopo aver atteso un punto si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -866,9 +866,9 @@ class QadARCCommandClass(QadCommandClass):
          return False
 
 
-#============================================================================
+# ============================================================================
 # Classe che gestisce il comando per cambiare il raggio di un arco per i grip
-#============================================================================
+# ============================================================================
 class QadGRIPCHANGEARCRADIUSCommandClass(QadCommandClass):
 
    def instantiateNewCmd(self):
@@ -898,9 +898,9 @@ class QadGRIPCHANGEARCRADIUSCommandClass(QadCommandClass):
          return None
 
    
-   #============================================================================
+   # ============================================================================
    # setSelectedEntityGripPoints
-   #============================================================================
+   # ============================================================================
    def setSelectedEntityGripPoints(self, entitySetGripPoints):
       # lista delle entityGripPoint con dei grip point selezionati
       # setta la prima entità con un grip selezionato
@@ -922,9 +922,9 @@ class QadGRIPCHANGEARCRADIUSCommandClass(QadCommandClass):
       return False
    
 
-   #============================================================================
+   # ============================================================================
    # changeRadius
-   #============================================================================
+   # ============================================================================
    def changeRadius(self, radius):
       # radius = nuovo raggio dell'arco
       if radius <= 0:
@@ -959,9 +959,9 @@ class QadGRIPCHANGEARCRADIUSCommandClass(QadCommandClass):
       return True
 
 
-   #============================================================================
+   # ============================================================================
    # waitForRadius
-   #============================================================================
+   # ============================================================================
    def waitForRadius(self):
       keyWords = QadMsg.translate("Command_GRIP", "Base point") + "/" + \
                  QadMsg.translate("Command_GRIP", "Copy") + "/" + \
@@ -984,9 +984,9 @@ class QadGRIPCHANGEARCRADIUSCommandClass(QadCommandClass):
       self.getPointMapTool().setMode(Qad_gripChangeArcRadius_maptool_ModeEnum.BASE_PT_KNOWN_ASK_FOR_RADIUS_PT)
 
 
-   #============================================================================
+   # ============================================================================
    # waitForBasePt
-   #============================================================================
+   # ============================================================================
    def waitForBasePt(self):
       self.step = 2   
       # imposto il map tool
@@ -996,15 +996,15 @@ class QadGRIPCHANGEARCRADIUSCommandClass(QadCommandClass):
       self.waitForPoint(QadMsg.translate("Command_GRIP", "Specify base point: "))
 
 
-   #============================================================================
+   # ============================================================================
    # run
-   #============================================================================
+   # ============================================================================
    def run(self, msgMapTool = False, msg = None):
       if self.plugIn.canvas.mapSettings().destinationCrs().isGeographic():
          self.showMsg(QadMsg.translate("QAD", "\nThe coordinate reference system of the project must be a projected coordinate system.\n"))
          return True # fine comando
      
-      #=========================================================================
+      # =========================================================================
       # RICHIESTA SELEZIONE OGGETTI
       if self.step == 0: # inizio del comando
          if self.entity is None: # non ci sono oggetti da stirare
@@ -1014,7 +1014,7 @@ class QadGRIPCHANGEARCRADIUSCommandClass(QadCommandClass):
          self.waitForRadius()
          return False
       
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA DEL RAGGIO DI RACCORDO (da step = 1)
       elif self.step == 1:
          ctrlKey = False
@@ -1084,7 +1084,7 @@ class QadGRIPCHANGEARCRADIUSCommandClass(QadCommandClass):
 
          return False
               
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA PUNTO BASE (da step = 1)
       elif self.step == 2: # dopo aver atteso un punto
          if msgMapTool == True: # il punto arriva da una selezione grafica

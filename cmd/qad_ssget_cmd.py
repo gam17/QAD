@@ -45,9 +45,9 @@ from ..qad_utils import getVisibleVectorLayers, distMapToLayerCoordinates
 from ..qad_rubberband import getColorForCrossingSelectionArea, \
                              getColorForWindowSelectionArea
 
-#===============================================================================
+# ===============================================================================
 # QadSSGetClass
-#===============================================================================
+# ===============================================================================
 class QadSSGetClass(QadCommandClass):
 # Classe che gestisce la selezione di oggetti geometrici
 
@@ -133,9 +133,9 @@ class QadSSGetClass(QadCommandClass):
          return self.contextualMenu
 
    
-   #============================================================================
+   # ============================================================================
    # getLayersToCheck
-   #============================================================================
+   # ============================================================================
    def getLayersToCheck(self):
       layerList = []
       for layer in getVisibleVectorLayers(self.plugIn.canvas): # Tutti i layer vettoriali visibili
@@ -152,17 +152,17 @@ class QadSSGetClass(QadCommandClass):
       return layerList
 
 
-   #============================================================================
+   # ============================================================================
    # showMsgOnAddRemove
-   #============================================================================
+   # ============================================================================
    def showMsgOnAddRemove(self, found):
       msg = QadMsg.translate("Command_SSGET", " found {0}, total {1}")
       self.showMsg(msg.format(found, self.entitySet.count()), False) # non ripete il prompt 2016
 
 
-   #============================================================================
+   # ============================================================================
    # elaborateEntity
-   #============================================================================
+   # ============================================================================
    def elaborateEntity(self, entity, shiftKey):
       if self.AddOnSelection == True: # aggiungi al gruppo di selezione
          if shiftKey: # se la selezione é avvenuta con shift premuto
@@ -182,9 +182,9 @@ class QadSSGetClass(QadCommandClass):
          self.AddRemoveEntity(entity, False) # rimuovo l'entità
 
 
-   #============================================================================
+   # ============================================================================
    # SetEntity
-   #============================================================================
+   # ============================================================================
    def SetEntity(self, entity):
       # controllo sul layer
       if self.onlyEditableLayers == True and entity.layer.isEditable() == False:
@@ -218,9 +218,9 @@ class QadSSGetClass(QadCommandClass):
       self.lastEntitySet.addEntity(entity)
 
 
-   #============================================================================
+   # ============================================================================
    # AddRemoveEntity
-   #============================================================================
+   # ============================================================================
    def AddRemoveEntity(self, entity, Add):
       # controllo sul layer
       if self.onlyEditableLayers == True and entity.layer.isEditable() == False:
@@ -262,9 +262,9 @@ class QadSSGetClass(QadCommandClass):
       self.lastEntitySet.addEntity(entity)
 
 
-   #============================================================================
+   # ============================================================================
    # elaborateSelSet
-   #============================================================================
+   # ============================================================================
    def elaborateSelSet(self, selSet, shiftKey):
       if self.checkDimLayers == True:
          dimEntitySet = QadEntitySet(selSet)
@@ -294,9 +294,9 @@ class QadSSGetClass(QadCommandClass):
          self.AddRemoveSelSet(selSet, False) # rimuovo il gruppo di selezione
 
     
-   #============================================================================
+   # ============================================================================
    # SetSelSet
-   #============================================================================
+   # ============================================================================
    def SetSelSet(self, selSet):
       for layerEntitySet in self.entitySet.layerEntitySetList:
          # se il layer non é presente in selSet
@@ -312,9 +312,9 @@ class QadSSGetClass(QadCommandClass):
       self.lastEntitySet.set(selSet)
 
 
-   #============================================================================
+   # ============================================================================
    # AddCurrentQgsSelectedFeatures
-   #============================================================================
+   # ============================================================================
    def AddCurrentQgsSelectedFeatures(self):
       # verifico se ci sono entità correntemente selezionate
       self.entitySet.initByCurrentQgsSelectedFeatures(self.getLayersToCheck())
@@ -327,9 +327,9 @@ class QadSSGetClass(QadCommandClass):
          return False
 
 
-   #============================================================================
+   # ============================================================================
    # AddRemoveSelSet
-   #============================================================================
+   # ============================================================================
    def AddRemoveSelSet(self, selSet, Add):
       self.entitySet.deselectOnLayer()
       if Add == True: # aggiungi al gruppo di selezione
@@ -342,27 +342,27 @@ class QadSSGetClass(QadCommandClass):
       self.entitySet.selectOnLayer(False) # incremental = False
       self.lastEntitySet.set(selSet)
 
-   #============================================================================
+   # ============================================================================
    # AddRemoveSelSetByFence
-   #============================================================================
+   # ============================================================================
    def AddRemoveSelSetByFence(self, points):
       if len(points) > 1:
          selSet = getSelSet("F", self.getPointMapTool(), points, \
                                       self.getLayersToCheck())
          self.elaborateSelSet(selSet, False)
 
-   #============================================================================
+   # ============================================================================
    # AddRemoveSelSetByPolygon
-   #============================================================================
+   # ============================================================================
    def AddRemoveSelSetByPolygon(self, mode, points):
       if len(points) > 2:
          selSet = getSelSet(mode, self.getPointMapTool(), points, \
                                       self.getLayersToCheck())
          self.elaborateSelSet(selSet, False)
 
-   #============================================================================
+   # ============================================================================
    # AddRemoveSelSetByGeometry
-   #============================================================================
+   # ============================================================================
    def AddRemoveSelSetByGeometry(self, mode, geom):
       if type(geom) == QgsGeometry: # singola geometria
          selSet = getSelSet(mode, self.getPointMapTool(), geom, \
@@ -376,9 +376,9 @@ class QadSSGetClass(QadCommandClass):
       self.elaborateSelSet(selSet, False)
 
       
-   #============================================================================
+   # ============================================================================
    # WaitForFirstPoint
-   #============================================================================
+   # ============================================================================
    def WaitForFirstPoint(self):
       self.step = 1
 
@@ -456,7 +456,7 @@ class QadSSGetClass(QadCommandClass):
          self.showMsg(QadMsg.translate("QAD", "\nThe coordinate reference system of the project must be a projected coordinate system.\n"))
          return True # errore
             
-      #=========================================================================
+      # =========================================================================
       # RICHIESTA PRIMO PUNTO PER SELEZIONE OGGETTI
       if self.step == 0:
          # if you can also select objects before you start a command
@@ -467,7 +467,7 @@ class QadSSGetClass(QadCommandClass):
          self.WaitForFirstPoint()
          return False # continua
       
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA PRIMO PUNTO PER SELEZIONE OGGETTI
       elif self.step == 1: # dopo aver atteso un punto o enter o una parola chiave si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -713,7 +713,7 @@ class QadSSGetClass(QadCommandClass):
           
          return False # continua
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA DEL PRIMO PUNTO DEL RETTANGOLO DA OPZIONE 
       # FINESTRA, INTERSECA, RIQUADRO (da step = 1)
       elif self.step == 2: # dopo aver atteso un punto si riavvia il comando
@@ -760,7 +760,7 @@ class QadSSGetClass(QadCommandClass):
          return False # continua
 
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA DEL SECONDO PUNTO DEL RETTANGOLO (da step = 1)
       elif self.step == 3: # dopo aver atteso un punto si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -820,7 +820,7 @@ class QadSSGetClass(QadCommandClass):
          return False # continua
 
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA PUNTO PER MODALITA' INTERCETTA (da step = 1 o 4)
       elif self.step == 4: # dopo aver atteso un punto si riavvia il comando
          if self.PLINECommand.run(msgMapTool, msg) == True:
@@ -840,7 +840,7 @@ class QadSSGetClass(QadCommandClass):
          return False
 
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA PER MODALITA' FCERCHIO e ICERCHIO (da step = 1 o 5)
       elif self.step == 5: # dopo aver atteso un punto si riavvia il comando
          if self.CIRCLECommand.run(msgMapTool, msg) == True:
@@ -871,7 +871,7 @@ class QadSSGetClass(QadCommandClass):
          return False
 
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA DI SELEZIONE DI OGGETTI PER MODALITA' FOGGETTI e IOGGETTI (da step = 1 o 6)
       elif self.step == 6: # dopo aver atteso un punto si riavvia il comando
          if self.SSGetClass.run(msgMapTool, msg) == True:
@@ -900,7 +900,7 @@ class QadSSGetClass(QadCommandClass):
          return False
 
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA PER MODALITA' FPOLIGONO e IPOLIGONO (da step = 1 o 7)
       elif self.step == 7: # dopo aver atteso un punto si riavvia il comando
          if self.MPOLYGONCommand.run(msgMapTool, msg) == True:
@@ -926,7 +926,7 @@ class QadSSGetClass(QadCommandClass):
          return False
 
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA DI SELEZIONE DI OGGETTI PER MODALITA' FBUFFER e IBUFFER (da step = 1 o 8)
       elif self.step == 8: # dopo aver atteso un punto si riavvia il comando
          if self.MBUFFERCommand.run(msgMapTool, msg) == True:

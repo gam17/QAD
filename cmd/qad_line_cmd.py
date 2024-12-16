@@ -108,9 +108,9 @@ class QadLINECommandClass(QadCommandClass):
          self.setTmpGeometriesToMapTool()      
          
 
-   #============================================================================
+   # ============================================================================
    # addPointToRubberBand
-   #============================================================================
+   # ============================================================================
    def addPointToRubberBand(self, point, doUpdate = True):
       numberOfVertices = self.rubberBand.numberOfVertices()
          
@@ -124,9 +124,9 @@ class QadLINECommandClass(QadCommandClass):
          self.rubberBand.addPoint(point, doUpdate)
       
       
-   #============================================================================
+   # ============================================================================
    # removeLastPointToRubberBand
-   #============================================================================
+   # ============================================================================
    def removeLastPointToRubberBand(self):
       self.rubberBand.removeLastPoint()
 
@@ -142,9 +142,9 @@ class QadLINECommandClass(QadCommandClass):
          i = i + 1
 
 
-   #============================================================================
+   # ============================================================================
    # setTmpGeometriesToMapTool
-   #============================================================================
+   # ============================================================================
    def setTmpGeometriesToMapTool(self):
       self.getPointMapTool().clearTmpGeometries()
       i = 1
@@ -174,7 +174,7 @@ class QadLINECommandClass(QadCommandClass):
          self.step = 1
          return False
       
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA PUNTO OPPURE MENU PRINCIPALE
       elif self.step == 1: # dopo aver atteso un punto si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica

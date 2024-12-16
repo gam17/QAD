@@ -118,9 +118,9 @@ class QadFILLETCommandClass(QadCommandClass):
          return self.contextualMenu
 
 
-   #============================================================================
+   # ============================================================================
    # setEntityInfo
-   #============================================================================
+   # ============================================================================
    def setEntityInfo(self, firstObj, layer, featureId, point):
       """
       Setta self.entity, self.atGeom, self.atSubGeom, self.partAt, self.pointAt
@@ -162,9 +162,9 @@ class QadFILLETCommandClass(QadCommandClass):
       return True
 
 
-   #============================================================================
+   # ============================================================================
    # filletPolyline
-   #============================================================================
+   # ============================================================================
    def filletPolyline(self):         
       layer = self.entity1.layer
       f = self.entity1.getFeature()
@@ -190,9 +190,9 @@ class QadFILLETCommandClass(QadCommandClass):
       return True
    
 
-   #============================================================================
+   # ============================================================================
    # fillet
-   #============================================================================
+   # ============================================================================
    def fillet(self):
       tolerance2ApproxCurve = QadVariables.get(QadMsg.translate("Environment variables", "TOLERANCE2APPROXCURVE")) 
       
@@ -298,9 +298,9 @@ class QadFILLETCommandClass(QadCommandClass):
       return True
       
 
-   #============================================================================
+   # ============================================================================
    # waitForFirstEntSel
-   #============================================================================
+   # ============================================================================
    def waitForFirstEntSel(self):      
       self.step = 1
       # imposto il map tool
@@ -324,9 +324,9 @@ class QadFILLETCommandClass(QadCommandClass):
                    keyWords, QadInputModeEnum.NOT_NULL)      
       
 
-   #============================================================================
+   # ============================================================================
    # WaitForPolyline
-   #============================================================================
+   # ============================================================================
    def WaitForPolyline(self):
       self.step = 2
       # imposto il map tool
@@ -347,9 +347,9 @@ class QadFILLETCommandClass(QadCommandClass):
                    keyWords, QadInputModeEnum.NOT_NULL)      
             
         
-   #============================================================================
+   # ============================================================================
    # waitForFilletMode
-   #============================================================================
+   # ============================================================================
    def waitForFilletMode(self):      
       self.step = 4
       # imposto il map tool
@@ -373,9 +373,9 @@ class QadFILLETCommandClass(QadCommandClass):
                    keyWords)      
 
 
-   #============================================================================
+   # ============================================================================
    # waitForSecondEntSel
-   #============================================================================
+   # ============================================================================
    def waitForSecondEntSel(self):      
       self.step = 6      
       # imposto il map tool
@@ -417,7 +417,7 @@ class QadFILLETCommandClass(QadCommandClass):
          self.waitForFirstEntSel()
          return False # continua
       
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA SELEZIONE PRIMO OGGETTO
       elif self.step == 1:
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -496,7 +496,7 @@ class QadFILLETCommandClass(QadCommandClass):
          
          return False 
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA SELEZIONE DI UNA POLILINEA (da step = 1)
       elif self.step == 2:
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -566,7 +566,7 @@ class QadFILLETCommandClass(QadCommandClass):
          self.WaitForPolyline()
          return False
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA DEL RAGGIO DI RACCORDO (da step = 1)
       elif self.step == 3:
          if self.GetDistClass.run(msgMapTool, msg) == True:
@@ -578,7 +578,7 @@ class QadFILLETCommandClass(QadCommandClass):
             self.getPointMapTool().refreshSnapType() # aggiorno lo snapType che può essere variato dal maptool di distanza                     
          return False # fine comando
       
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA DELLA MODALITA' DI TAGLIO (da step = 1)
       elif self.step == 4: # dopo aver atteso un punto o un numero reale si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -607,7 +607,7 @@ class QadFILLETCommandClass(QadCommandClass):
          self.waitForFirstEntSel() # si appresta ad attendere la selezione del primo oggetto
          return False
       
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA DEL RAGGIO DI RACCORDO (da step = 3)
       elif self.step == 5:
          if self.GetDistClass.run(msgMapTool, msg) == True:
@@ -619,7 +619,7 @@ class QadFILLETCommandClass(QadCommandClass):
             self.getPointMapTool().refreshSnapType() # aggiorno lo snapType che può essere variato dal maptool di distanza                     
          return False # fine comando
       
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA SELEZIONE SECONDO OGGETTO
       elif self.step == 6:
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -711,7 +711,7 @@ class QadFILLETCommandClass(QadCommandClass):
          self.waitForSecondEntSel() # si appresta ad attendere la selezione del secondo oggetto         
          return False 
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA DEL RAGGIO DI RACCORDO (da step = 6)
       elif self.step == 7:
          if self.GetDistClass.run(msgMapTool, msg) == True:

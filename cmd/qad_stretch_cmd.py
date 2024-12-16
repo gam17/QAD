@@ -146,9 +146,9 @@ class QadSTRETCHCommandClass(QadCommandClass):
       return True
 
 
-   #============================================================================
+   # ============================================================================
    # stretchFeatures
-   #============================================================================
+   # ============================================================================
    def stretchFeatures(self, newPt):
       # mi ricavo un unico QadEntitySet con le entità selezionate
       entitySet = QadEntitySet()
@@ -200,9 +200,9 @@ class QadSTRETCHCommandClass(QadCommandClass):
       self.plugIn.endEditCommand()
 
 
-   #============================================================================
+   # ============================================================================
    # setEntitySetGeom
-   #============================================================================
+   # ============================================================================
    def setEntitySetGeom(self, entitySet, selGeom):
       for SSGeom in self.SSGeomList:
          SSGeom[0].deselectOnLayer()
@@ -211,9 +211,9 @@ class QadSTRETCHCommandClass(QadCommandClass):
       self.SSGeomList.append([entitySet, selGeom])
       entitySet.selectOnLayer(False) # incremental = False
 
-   #============================================================================
+   # ============================================================================
    # addEntitySetGeom
-   #============================================================================
+   # ============================================================================
    def addEntitySetGeom(self, entitySet, selGeom):      
       # elimino dai gruppi precedenti gli oggetti presenti in entitySet
       self.removeEntitySet(entitySet)
@@ -222,9 +222,9 @@ class QadSTRETCHCommandClass(QadCommandClass):
       entitySet.selectOnLayer(True) # incremental = True
                                                       
 
-   #============================================================================
+   # ============================================================================
    # removeEntitySet
-   #============================================================================
+   # ============================================================================
    def removeEntitySet(self, entitySet):
       # elimino dai gruppi precedenti gli oggetti presenti in entitySet
       for SSGeom in self.SSGeomList:
@@ -233,9 +233,9 @@ class QadSTRETCHCommandClass(QadCommandClass):
          SSGeom[0].selectOnLayer(False) # incremental = False
 
 
-   #============================================================================
+   # ============================================================================
    # SSGeomListIsEmpty
-   #============================================================================
+   # ============================================================================
    def SSGeomListIsEmpty(self):
       if len(self.SSGeomList) == 0:
          return True      
@@ -245,9 +245,9 @@ class QadSTRETCHCommandClass(QadCommandClass):
       return True
 
       
-   #============================================================================
+   # ============================================================================
    # waitForObjectSel
-   #============================================================================
+   # ============================================================================
    def waitForObjectSel(self):      
       self.step = 1     
       # imposto il map tool
@@ -272,9 +272,9 @@ class QadSTRETCHCommandClass(QadCommandClass):
                    keyWords, QadInputModeEnum.NONE)      
 
 
-   #============================================================================
+   # ============================================================================
    # waitForBasePt
-   #============================================================================
+   # ============================================================================
    def waitForBasePt(self):      
       self.step = 4   
       # imposto il map tool
@@ -293,22 +293,22 @@ class QadSTRETCHCommandClass(QadCommandClass):
                    keyWords, QadInputModeEnum.NONE)      
 
 
-   #============================================================================
+   # ============================================================================
    # run
-   #============================================================================
+   # ============================================================================
    def run(self, msgMapTool = False, msg = None):
       if self.plugIn.canvas.mapSettings().destinationCrs().isGeographic():
          self.showMsg(QadMsg.translate("QAD", "\nThe coordinate reference system of the project must be a projected coordinate system.\n"))
          return True # fine comando
      
-      #=========================================================================
+      # =========================================================================
       # RICHIESTA SELEZIONE OGGETTI
       if self.step == 0: # inizio del comando
          # si appresta ad attendere la selezione degli oggetti da stirare
          self.waitForObjectSel()
          return False
       
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA SELEZIONE OGGETTI DA STIRARE
       elif self.step == 1:
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -366,7 +366,7 @@ class QadSTRETCHCommandClass(QadCommandClass):
                                           
          return False 
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA PUNTO PER MODALITA' POLIGONO (da step = 1)
       elif self.step == 2: # dopo aver atteso un punto si riavvia il comando
          if self.MPOLYGONCommand.run(msgMapTool, msg) == True:
@@ -390,7 +390,7 @@ class QadSTRETCHCommandClass(QadCommandClass):
             self.getPointMapTool().refreshSnapType() # aggiorno lo snapType che può essere variato dal maptool di mpolygon                     
          return False
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA PUNTO PER MODALITA' FINESTRA (da step = 1)
       elif self.step == 3: # dopo aver atteso un punto si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -434,7 +434,7 @@ class QadSTRETCHCommandClass(QadCommandClass):
             self.waitForObjectSel()                                 
          return False
               
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA PUNTO BASE (da step = 1)
       elif self.step == 4: # dopo aver atteso un punto o un numero reale si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -485,7 +485,7 @@ class QadSTRETCHCommandClass(QadCommandClass):
          
          return False 
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA DEL PUNTO DI SPOSTAMENTO (da step = 2)
       elif self.step == 5: # dopo aver atteso un punto o un numero reale si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -508,7 +508,7 @@ class QadSTRETCHCommandClass(QadCommandClass):
          self.stretchFeatures(value)
          return True # fine comando     
          
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA SECONDO PUNTO PER SPOSTAMENTO (da step = 2)
       elif self.step == 6: # dopo aver atteso un punto o un numero reale si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -537,9 +537,9 @@ class QadSTRETCHCommandClass(QadCommandClass):
 
 
 
-#============================================================================
+# ============================================================================
 # Classe che gestisce il comando STRETCH per i grip
-#============================================================================
+# ============================================================================
 class QadGRIPSTRETCHCommandClass(QadCommandClass):
 
 
@@ -570,9 +570,9 @@ class QadGRIPSTRETCHCommandClass(QadCommandClass):
          return None
 
 
-   #============================================================================
+   # ============================================================================
    # addToSelectedEntityGripPoints
-   #============================================================================
+   # ============================================================================
    def addToSelectedEntityGripPoints(self, entityGripPoints):
       # entità con lista dei grip point
       i = 0
@@ -608,9 +608,9 @@ class QadGRIPSTRETCHCommandClass(QadCommandClass):
          self.selectedEntityGripPoints.append([entityGripPoints.entity, ptList])
 
    
-   #============================================================================
+   # ============================================================================
    # setSelectedEntityGripPoints
-   #============================================================================
+   # ============================================================================
    def setSelectedEntityGripPoints(self, entitySetGripPoints):
       # lista delle entityGripPoint con dei grip point selezionati
       # ritorna una lista in cui ogni elemento è una entità + una lista di punti da stirare
@@ -647,9 +647,9 @@ class QadGRIPSTRETCHCommandClass(QadCommandClass):
                   self.getPointMapTool().prevPart = line
 
 
-   #============================================================================
+   # ============================================================================
    # getSelectedEntityGripPointNdx
-   #============================================================================
+   # ============================================================================
    def getSelectedEntityGripPointNdx(self, entity):
       # lista delle entityGripPoint con dei grip point selezionati
       # cerca la posizione di un'entità nella lista in cui ogni elemento è una entità + una lista di punti da stirare
@@ -663,9 +663,9 @@ class QadGRIPSTRETCHCommandClass(QadCommandClass):
       return -1
 
 
-   #============================================================================
+   # ============================================================================
    # stretch
-   #============================================================================
+   # ============================================================================
    def stretch(self, entity, ptList, offsetX, offsetY, tolerance2ApproxCurve, openForm):
       # entity = entità da stirare
       # ptList = lista dei punti da stirare
@@ -716,9 +716,9 @@ class QadGRIPSTRETCHCommandClass(QadCommandClass):
       return True
 
 
-   #============================================================================
+   # ============================================================================
    # stretchFeatures
-   #============================================================================
+   # ============================================================================
    def stretchFeatures(self, newPt):
       # mi ricavo un unico QadEntitySet con le entità selezionate
       entitySet = QadEntitySet()
@@ -775,9 +775,9 @@ class QadGRIPSTRETCHCommandClass(QadCommandClass):
       self.nOperationsToUndo = self.nOperationsToUndo + 1
                            
                            
-   #============================================================================
+   # ============================================================================
    # waitForStretchPoint
-   #============================================================================
+   # ============================================================================
    def waitForStretchPoint(self):
       self.step = 1
       self.plugIn.setLastPoint(self.basePt)
@@ -801,9 +801,9 @@ class QadGRIPSTRETCHCommandClass(QadCommandClass):
                    keyWords, QadInputModeEnum.NONE)      
 
 
-   #============================================================================
+   # ============================================================================
    # waitForBasePt
-   #============================================================================
+   # ============================================================================
    def waitForBasePt(self):
       self.step = 2   
       # imposto il map tool
@@ -813,15 +813,15 @@ class QadGRIPSTRETCHCommandClass(QadCommandClass):
       self.waitForPoint(QadMsg.translate("Command_GRIPSTRETCH", "Specify base point: "))
 
 
-   #============================================================================
+   # ============================================================================
    # run
-   #============================================================================
+   # ============================================================================
    def run(self, msgMapTool = False, msg = None):
       if self.plugIn.canvas.mapSettings().destinationCrs().isGeographic():
          self.showMsg(QadMsg.translate("QAD", "\nThe coordinate reference system of the project must be a projected coordinate system.\n"))
          return True # fine comando
      
-      #=========================================================================
+      # =========================================================================
       # RICHIESTA SELEZIONE OGGETTI
       if self.step == 0: # inizio del comando
          if len(self.selectedEntityGripPoints) == 0: # non ci sono oggetti da stirare
@@ -831,7 +831,7 @@ class QadGRIPSTRETCHCommandClass(QadCommandClass):
          self.waitForStretchPoint()
          return False
       
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA DI UN PUNTO DI STIRAMENTO
       elif self.step == 1:
          ctrlKey = False
@@ -891,7 +891,7 @@ class QadGRIPSTRETCHCommandClass(QadCommandClass):
          return False 
 
               
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA PUNTO BASE (da step = 1)
       elif self.step == 2: # dopo aver atteso un punto
          if msgMapTool == True: # il punto arriva da una selezione grafica

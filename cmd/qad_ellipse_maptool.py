@@ -36,9 +36,9 @@ from ..qad_ellipse_arc import QadEllipseArc
 from ..qad_rubberband import QadRubberBand
 
 
-#===============================================================================
+# ===============================================================================
 # Qad_ellipse_maptool_ModeEnum class.
-#===============================================================================
+# ===============================================================================
 class Qad_ellipse_maptool_ModeEnum():
    # noto niente si richiede il primo punto finale dell'asse
    NONE_KNOWN_ASK_FOR_FIRST_FINAL_AXIS_PT = 1
@@ -70,9 +70,9 @@ class Qad_ellipse_maptool_ModeEnum():
    ASK_AREA = 14 
    
 
-#===============================================================================
+# ===============================================================================
 # Qad_ellipse_maptool class
-#===============================================================================
+# ===============================================================================
 class Qad_ellipse_maptool(QadGetPoint):
     
    def __init__(self, plugIn):

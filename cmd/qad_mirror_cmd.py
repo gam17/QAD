@@ -97,9 +97,9 @@ class QadMIRRORCommandClass(QadCommandClass):
          return self.contextualMenu
 
 
-   #============================================================================
+   # ============================================================================
    # scale
-   #============================================================================
+   # ============================================================================
    def mirror(self, entity, mirrorPt, angle, openForm):
       
       # verifico se l'entità appartiene ad uno stile di quotatura
@@ -139,9 +139,9 @@ class QadMIRRORCommandClass(QadCommandClass):
       return True
 
 
-   #============================================================================
+   # ============================================================================
    # mirrorGeoms
-   #============================================================================
+   # ============================================================================
    def mirrorGeoms(self):      
       self.plugIn.beginEditCommand("Feature mirrored", self.cacheEntitySet.getLayerList())
 
@@ -171,7 +171,7 @@ class QadMIRRORCommandClass(QadCommandClass):
          self.showMsg(QadMsg.translate("QAD", "\nThe coordinate reference system of the project must be a projected coordinate system.\n"))
          return True # fine comando
             
-      #=========================================================================
+      # =========================================================================
       # RICHIESTA SELEZIONE OGGETTI
       if self.step == 0: # inizio del comando
          if self.SSGetClass.run(msgMapTool, msg) == True:
@@ -180,7 +180,7 @@ class QadMIRRORCommandClass(QadCommandClass):
             self.getPointMapTool().refreshSnapType() # aggiorno lo snapType che può essere variato dal maptool di selezione entità                    
             return self.run(msgMapTool, msg)
       
-      #=========================================================================
+      # =========================================================================
       # SPECCHIA OGGETTI
       elif self.step == 1:
          if self.SSGetClass.entitySet.count() == 0:
@@ -196,7 +196,7 @@ class QadMIRRORCommandClass(QadCommandClass):
          self.step = 2      
          return False
          
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA PUNTO BASE (da step = 1)
       elif self.step == 2: # dopo aver atteso un punto o un numero reale si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -229,7 +229,7 @@ class QadMIRRORCommandClass(QadCommandClass):
          
          return False 
          
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA SECONDO PUNTO PER SPECCHIO (da step = 2)
       elif self.step == 3: # dopo aver atteso un punto si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -279,7 +279,7 @@ class QadMIRRORCommandClass(QadCommandClass):
          return False
             
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA DI CANCELLAZIONE OGGETTO SORGENTE (da step = 3)
       elif self.step == 4: # dopo aver atteso un punto o un numero reale si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -339,9 +339,9 @@ class QadGRIPMIRRORCommandClass(QadCommandClass):
          return None
 
 
-   #============================================================================
+   # ============================================================================
    # setSelectedEntityGripPoints
-   #============================================================================
+   # ============================================================================
    def setSelectedEntityGripPoints(self, entitySetGripPoints):
       # lista delle entityGripPoint con dei grip point selezionati
       self.cacheEntitySet.clear()
@@ -352,9 +352,9 @@ class QadGRIPMIRRORCommandClass(QadCommandClass):
       self.getPointMapTool().cacheEntitySet = self.cacheEntitySet
 
 
-   #============================================================================
+   # ============================================================================
    # mirror
-   #============================================================================
+   # ============================================================================
    def mirror(self, entity, mirrorPt, angle):
       # entity = entità da specchiare
       # pt1 e pt2 = linea di simmetria
@@ -396,9 +396,9 @@ class QadGRIPMIRRORCommandClass(QadCommandClass):
       return True
 
 
-   #============================================================================
+   # ============================================================================
    # mirrorGeoms
-   #============================================================================
+   # ============================================================================
    def mirrorGeoms(self):
       self.plugIn.beginEditCommand("Feature mirrored", self.cacheEntitySet.getLayerList())
 
@@ -425,9 +425,9 @@ class QadGRIPMIRRORCommandClass(QadCommandClass):
       self.nOperationsToUndo = self.nOperationsToUndo + 1
    
    
-   #============================================================================
+   # ============================================================================
    # waitForMirrorPoint
-   #============================================================================
+   # ============================================================================
    def waitForMirrorPoint(self):
       self.step = 1
       self.plugIn.setLastPoint(self.basePt)
@@ -451,9 +451,9 @@ class QadGRIPMIRRORCommandClass(QadCommandClass):
                    keyWords, QadInputModeEnum.NONE)      
    
 
-   #============================================================================
+   # ============================================================================
    # waitForBasePt
-   #============================================================================
+   # ============================================================================
    def waitForBasePt(self):
       self.step = 2   
       # imposto il map tool
@@ -467,7 +467,7 @@ class QadGRIPMIRRORCommandClass(QadCommandClass):
          self.showMsg(QadMsg.translate("QAD", "\nThe coordinate reference system of the project must be a projected coordinate system.\n"))
          return True # fine comando
             
-      #=========================================================================
+      # =========================================================================
       # RICHIESTA SELEZIONE OGGETTI
       if self.step == 0: # inizio del comando
          if self.cacheEntitySet.isEmpty(): # non ci sono oggetti da ruotare
@@ -476,7 +476,7 @@ class QadGRIPMIRRORCommandClass(QadCommandClass):
          # si appresta ad attendere il secondo punto di specchio
          self.waitForMirrorPoint()
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA SECONDO PUNTO PER SPECCHIO
       elif self.step == 1: # dopo aver atteso un punto si riavvia il comando
          ctrlKey = False
@@ -544,7 +544,7 @@ class QadGRIPMIRRORCommandClass(QadCommandClass):
          return False
 
               
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA PUNTO BASE (da step = 1)
       elif self.step == 2: # dopo aver atteso un punto
          if msgMapTool == True: # il punto arriva da una selezione grafica

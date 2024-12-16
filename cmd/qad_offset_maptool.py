@@ -37,9 +37,9 @@ from ..qad_geom_relations import getQadGeomClosestPart
 from ..qad_multi_geom import fromQgsGeomToQadGeom
 
 
-#===============================================================================
+# ===============================================================================
 # Qad_offset_maptool_ModeEnum class.
-#===============================================================================
+# ===============================================================================
 class Qad_offset_maptool_ModeEnum():
    # si richiede il primo punto per calcolo offset 
    ASK_FOR_FIRST_OFFSET_PT = 1     
@@ -52,9 +52,9 @@ class Qad_offset_maptool_ModeEnum():
    # si richiede la selezione di un oggetto
    ASK_FOR_ENTITY_SELECTION = 5  
 
-#===============================================================================
+# ===============================================================================
 # Qad_offset_maptool class
-#===============================================================================
+# ===============================================================================
 class Qad_offset_maptool(QadGetPoint):
     
    def __init__(self, plugIn):

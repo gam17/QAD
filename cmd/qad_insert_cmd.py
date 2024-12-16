@@ -145,14 +145,14 @@ class QadINSERTCommandClass(QadCommandClass):
          return True # fine comando
 
                
-      #=========================================================================
+      # =========================================================================
       # RICHIESTA PUNTO DI INSERIMENTO
       if self.step == 0: # inizio del comando
          self.waitForPoint() # si appresta ad attendere un punto
          self.step = self.step + 1
          return False
       
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA PUNTO DI INSERIMENTO
       elif self.step == 1: # dopo aver atteso un punto si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -207,7 +207,7 @@ class QadINSERTCommandClass(QadCommandClass):
 
          return True
       
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA SCALA (da step = 1)
       elif self.step == 2:
          if self.GetDistClass.run(msgMapTool, msg) == True:
@@ -238,7 +238,7 @@ class QadINSERTCommandClass(QadCommandClass):
                return True   
          return False
       
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA ROTAZIONE (da step = 1 o 2)
       elif self.step == 3:
          if self.GetAngleClass.run(msgMapTool, msg) == True:

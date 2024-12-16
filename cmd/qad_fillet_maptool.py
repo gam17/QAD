@@ -36,9 +36,9 @@ from ..qad_multi_geom import fromQadGeomToQgsGeom, getQadGeomAt, setQadGeomAt
 from ..qad_geom_relations import getQadGeomClosestPart
 
 
-#===============================================================================
+# ===============================================================================
 # Qad_fillet_maptool_ModeEnum class.
-#===============================================================================
+# ===============================================================================
 class Qad_fillet_maptool_ModeEnum():
    # si richiede la selezione del primo oggetto
    ASK_FOR_FIRST_LINESTRING = 1     
@@ -50,9 +50,9 @@ class Qad_fillet_maptool_ModeEnum():
    ASK_FOR_POLYLINE = 4     
 
 
-#===============================================================================
+# ===============================================================================
 # Qad_fillet_maptool class
-#===============================================================================
+# ===============================================================================
 class Qad_fillet_maptool(QadGetPoint):
     
    def __init__(self, plugIn):

@@ -34,18 +34,18 @@ from ..qad_mbuffer_fun import buffer
 from ..qad_multi_geom import fromQadGeomToQgsGeom
 
 
-#===============================================================================
+# ===============================================================================
 # Qad_mbuffer_maptool_ModeEnum class.
-#===============================================================================
+# ===============================================================================
 class Qad_mbuffer_maptool_ModeEnum():
    # noto niente si richiede il primo punto
    NONE_KNOWN_ASK_FOR_FIRST_PT = 1     
    # noto il primo punto si richiede la larghezza del buffer
    FIRST_PT_ASK_FOR_BUFFER_WIDTH = 2     
 
-#===============================================================================
+# ===============================================================================
 # Qad_mbuffer_maptool class
-#===============================================================================
+# ===============================================================================
 class Qad_mbuffer_maptool(QadGetPoint):
     
    def __init__(self, plugIn):

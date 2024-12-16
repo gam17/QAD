@@ -31,18 +31,18 @@ from ..qad_entity import QadEntityTypeEnum, QadCacheEntitySetIterator
 from ..qad_multi_geom import fromQadGeomToQgsGeom
 
 
-#===============================================================================
+# ===============================================================================
 # Qad_copy_maptool_ModeEnum class.
-#===============================================================================
+# ===============================================================================
 class Qad_mirror_maptool_ModeEnum():
    # noto niente si richiede il primo punto della linea speculare
    NONE_KNOWN_ASK_FOR_FIRST_PT = 1     
    # noto il primo punto si richiede il secondo punto della linea speculare
    FIRST_PT_KNOWN_ASK_FOR_SECOND_PT = 2     
 
-#===============================================================================
+# ===============================================================================
 # Qad_mirror_maptool class
-#===============================================================================
+# ===============================================================================
 class Qad_mirror_maptool(QadGetPoint):
     
    def __init__(self, plugIn):
@@ -66,9 +66,9 @@ class Qad_mirror_maptool(QadGetPoint):
       self.mode = None    
    
 
-   #============================================================================
+   # ============================================================================
    # mirror
-   #============================================================================
+   # ============================================================================
    def mirror(self, entity, mirrorPt, angle):
       # verifico se l'entità appartiene ad uno stile di quotatura
       if entity.whatIs() == "ENTITY":

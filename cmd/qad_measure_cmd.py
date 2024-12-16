@@ -42,9 +42,9 @@ from ..qad_multi_geom import getQadGeomAt
 from ..qad_geom_relations import getQadGeomClosestPart
 
 
-#===============================================================================
+# ===============================================================================
 # QadMEASURECommandClassStepEnum class.
-#===============================================================================
+# ===============================================================================
 class QadMEASURECommandClassStepEnum():
    ASK_FOR_ENT        = 1 # richiede la selezione di un oggetto (0 è l'inizio del comando)
    ASK_FOR_ALIGNMENT  = 2 # richiede l'allineamento
@@ -103,9 +103,9 @@ class QadMEASURECommandClass(QadCommandClass):
          return self.contextualMenu
 
 
-   #============================================================================
+   # ============================================================================
    # waitForEntsel
-   #============================================================================
+   # ============================================================================
    def waitForEntsel(self, msgMapTool, msg):
       if self.entSelClass is not None:
          del self.entSelClass
@@ -122,9 +122,9 @@ class QadMEASURECommandClass(QadCommandClass):
       self.entSelClass.run(msgMapTool, msg)
 
 
-   #============================================================================
+   # ============================================================================
    # waitForAlignmentObjs
-   #============================================================================
+   # ============================================================================
    def waitForAlignmentObjs(self):
       self.step = QadMEASURECommandClassStepEnum.ASK_FOR_ALIGNMENT
 
@@ -142,9 +142,9 @@ class QadMEASURECommandClass(QadCommandClass):
                    keyWords, QadInputModeEnum.NONE)
 
    
-   #============================================================================
+   # ============================================================================
    # waitForSegmentLength
-   #============================================================================
+   # ============================================================================
    def waitForSegmentLength(self):
       self.step = QadMEASURECommandClassStepEnum.ASK_SEGMENT_LENGTH
       
@@ -156,9 +156,9 @@ class QadMEASURECommandClass(QadCommandClass):
       self.GetDistClass.run()
 
 
-   #============================================================================
+   # ============================================================================
    # addFeature
-   #============================================================================
+   # ============================================================================
    def addFeature(self, layer, insPt, rot, openForm = True):
       transformedPoint = self.mapToLayerCoordinates(layer, insPt)
       g = QgsGeometry.fromPointXY(transformedPoint)
@@ -187,9 +187,9 @@ class QadMEASURECommandClass(QadCommandClass):
       return qad_layer.addFeatureToLayer(self.plugIn, layer, f, None, True, False, openForm)               
 
 
-   #============================================================================
+   # ============================================================================
    # doMeasure
-   #============================================================================
+   # ============================================================================
    def doMeasure(self, dstLayer):
       qadGeom = self.entSelClass.entity.getQadGeom()
       # la funzione ritorna una lista con 
@@ -248,7 +248,7 @@ class QadMEASURECommandClass(QadCommandClass):
          return False # continua
 
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA SELEZIONE DI UN'ENTITA' (da step = 0)
       elif self.step == QadMEASURECommandClassStepEnum.ASK_FOR_ENT:
          if self.entSelClass.run(msgMapTool, msg) == True:
@@ -269,7 +269,7 @@ class QadMEASURECommandClass(QadCommandClass):
          return False # continua
       
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA DI ALLINEARE GLI OGGETTI (da step = ASK_FOR_ENT)
       elif self.step == QadMEASURECommandClassStepEnum.ASK_FOR_ALIGNMENT: # dopo aver atteso una parola chiave si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -293,9 +293,9 @@ class QadMEASURECommandClass(QadCommandClass):
          return False 
 
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA DELLA LUNGHEZZA DEL SEGMENTO (da step = ASK_FOR_ALIGNMENT)
-      #=========================================================================
+      # =========================================================================
       elif self.step == QadMEASURECommandClassStepEnum.ASK_SEGMENT_LENGTH: # dopo aver atteso un numero reale si riavvia il comando
          if self.GetDistClass.run(msgMapTool, msg) == True:
             self.getPointMapTool().refreshSnapType() # aggiorno lo snapType che può essere variato da altri maptool

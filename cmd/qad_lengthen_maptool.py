@@ -38,9 +38,9 @@ from ..qad_multi_geom import getQadGeomAt, fromQadGeomToQgsGeom
 from ..qad_snapper import QadSnapTypeEnum
 
 
-#===============================================================================
+# ===============================================================================
 # Qad_lengthen_maptool_ModeEnum class.
-#===============================================================================
+# ===============================================================================
 class Qad_lengthen_maptool_ModeEnum():
    # si richiede la selezione dell'oggetto da misurare
    ASK_FOR_OBJ_TO_MISURE = 1
@@ -57,9 +57,9 @@ class Qad_lengthen_maptool_ModeEnum():
    # si richiede il nuovo punto dell'estremità in modalità dinamica
    ASK_FOR_DYNAMIC_POINT = 7
 
-#===============================================================================
+# ===============================================================================
 # Qad_lengthen_maptool class
-#===============================================================================
+# ===============================================================================
 class Qad_lengthen_maptool(QadGetPoint):
     
    def __init__(self, plugIn):

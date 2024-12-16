@@ -40,9 +40,9 @@ from ..qad_multi_geom import getQadGeomAt
 from ..qad_geom_relations import getQadGeomClosestPart
 
 
-#===============================================================================
+# ===============================================================================
 # QadDIVIDECommandClassStepEnum class.
-#===============================================================================
+# ===============================================================================
 class QadDIVIDECommandClassStepEnum():
    ASK_FOR_ENT        = 1 # richiede la selezione di un oggetto (0 è l'inizio del comando)
    ASK_FOR_ALIGNMENT  = 2 # richiede l'allineamento
@@ -85,9 +85,9 @@ class QadDIVIDECommandClass(QadCommandClass):
          del self.entSelClass
       
 
-   #============================================================================
+   # ============================================================================
    # waitForEntsel
-   #============================================================================
+   # ============================================================================
    def waitForEntsel(self, msgMapTool, msg):
       if self.entSelClass is not None:
          del self.entSelClass
@@ -104,9 +104,9 @@ class QadDIVIDECommandClass(QadCommandClass):
       self.entSelClass.run(msgMapTool, msg)
 
 
-   #============================================================================
+   # ============================================================================
    # waitForAlignmentObjs
-   #============================================================================
+   # ============================================================================
    def waitForAlignmentObjs(self):
       self.step = QadDIVIDECommandClassStepEnum.ASK_FOR_ALIGNMENT
 
@@ -124,9 +124,9 @@ class QadDIVIDECommandClass(QadCommandClass):
                    keyWords, QadInputModeEnum.NONE)
 
    
-   #============================================================================
+   # ============================================================================
    # waitForSegmentNumber
-   #============================================================================
+   # ============================================================================
    def waitForSegmentNumber(self):
       self.step = QadDIVIDECommandClassStepEnum.ASK_SEGMENT_NUMBER
 
@@ -140,9 +140,9 @@ class QadDIVIDECommandClass(QadCommandClass):
                    QadInputModeEnum.NOT_ZERO | QadInputModeEnum.NOT_NEGATIVE)
 
 
-   #============================================================================
+   # ============================================================================
    # addFeature
-   #============================================================================
+   # ============================================================================
    def addFeature(self, layer, insPt, rot, openForm = True):
       transformedPoint = self.mapToLayerCoordinates(layer, insPt)
       g = QgsGeometry.fromPointXY(transformedPoint)
@@ -171,9 +171,9 @@ class QadDIVIDECommandClass(QadCommandClass):
       return qad_layer.addFeatureToLayer(self.plugIn, layer, f, None, True, False, openForm)               
 
 
-   #============================================================================
+   # ============================================================================
    # doDivide
-   #============================================================================
+   # ============================================================================
    def doDivide(self, dstLayer):
       f = self.entSelClass.entity.getFeature()
       if f is None:
@@ -238,7 +238,7 @@ class QadDIVIDECommandClass(QadCommandClass):
          return False # continua
 
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA SELEZIONE DI UN'ENTITA' (da step = 0)
       elif self.step == QadDIVIDECommandClassStepEnum.ASK_FOR_ENT:
          if self.entSelClass.run(msgMapTool, msg) == True:
@@ -259,7 +259,7 @@ class QadDIVIDECommandClass(QadCommandClass):
          return False # continua
       
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA DI ALLINEARE GLI OGGETTI (da step = ASK_FOR_ENT)
       elif self.step == QadDIVIDECommandClassStepEnum.ASK_FOR_ALIGNMENT: # dopo aver atteso una parola chiave si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -283,9 +283,9 @@ class QadDIVIDECommandClass(QadCommandClass):
          return False 
 
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA DEL NUMERO DI SEGMENTI (da step = ASK_FOR_ALIGNMENT)
-      #=========================================================================
+      # =========================================================================
       elif self.step == QadDIVIDECommandClassStepEnum.ASK_SEGMENT_NUMBER: # dopo aver atteso un numero intero si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
             if self.getPointMapTool().rightButton == True: # se usato il tasto destro del mouse

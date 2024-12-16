@@ -33,9 +33,9 @@ from ..qad_dim import QadDimStyleAlignmentEnum
 from ..qad_rubberband import QadRubberBand
 
 
-#===============================================================================
+# ===============================================================================
 # Qad_dim_maptool_ModeEnum class.
-#===============================================================================
+# ===============================================================================
 class Qad_dim_maptool_ModeEnum():
    # noto niente si richiede il primo punto di quotatura
    NONE_KNOWN_ASK_FOR_FIRST_PT = 1     
@@ -55,9 +55,9 @@ class Qad_dim_maptool_ModeEnum():
    OBJ_KNOWN_ASK_FOR_RADIUS_DIM_LINE_POS = 8
 
 
-#===============================================================================
+# ===============================================================================
 # Qad_dim_maptool class
-#===============================================================================
+# ===============================================================================
 class Qad_dim_maptool(QadGetPoint):
     
    def __init__(self, plugIn):
@@ -112,9 +112,9 @@ class Qad_dim_maptool(QadGetPoint):
       return
             
 
-   #============================================================================
+   # ============================================================================
    # setLinearDimPtsAndDimLineAlignmentOnCircle
-   #============================================================================
+   # ============================================================================
    def setLinearDimPtsAndDimLineAlignmentOnCircle(self, LinePosPt, circle):
       pt1 = qad_utils.getPolarPointByPtAngle(circle.center, self.forcedDimLineRot, circle.radius)
       pt2 = qad_utils.getPolarPointByPtAngle(pt1, self.forcedDimLineRot + math.pi / 2, circle.radius)
@@ -146,9 +146,9 @@ class Qad_dim_maptool(QadGetPoint):
          self.dimPt2 = verticalLine2[0]
          
 
-   #============================================================================
+   # ============================================================================
    # setLinearDimLineAlignmentOnDimPts
-   #============================================================================
+   # ============================================================================
    def setLinearDimLineAlignmentOnDimPts(self, LinePosPt):      
       # se non é stato impostato un allineamento forzato, lo calcolo in automatico
       if self.forcedDimLineAlignment is None:         
@@ -169,9 +169,9 @@ class Qad_dim_maptool(QadGetPoint):
          self.preferredAlignment = self.forcedDimLineAlignment
             
             
-   #============================================================================
+   # ============================================================================
    # canvasMoveEvent
-   #============================================================================
+   # ============================================================================
    def canvasMoveEvent(self, event):
       QadGetPoint.canvasMoveEvent(self, event)
       

@@ -100,9 +100,9 @@ class QadOFFSETCommandClass(QadCommandClass):
       else:
          return None
 
-   #============================================================================
+   # ============================================================================
    # addFeatureCache
-   #============================================================================
+   # ============================================================================
    def addFeatureCache(self, newPt):
       featureCacheLen = len(self.featureCache)
       layer = self.entity.layer
@@ -215,9 +215,9 @@ class QadOFFSETCommandClass(QadCommandClass):
          self.undoFeatureCacheIndexes.append(featureCacheLen)
 
 
-   #============================================================================
+   # ============================================================================
    # undoGeomsInCache
-   #============================================================================
+   # ============================================================================
    def undoGeomsInCache(self):
       tot = len(self.featureCache)
       if tot > 0:
@@ -231,9 +231,9 @@ class QadOFFSETCommandClass(QadCommandClass):
          self.refreshRubberBand()
 
             
-   #============================================================================
+   # ============================================================================
    # addFeatureToRubberBand
-   #============================================================================
+   # ============================================================================
    def addFeatureToRubberBand(self, layer, feature):
       if layer.geometryType() == QgsWkbTypes.PolygonGeometry:
          if feature.geometry().type() == QgsWkbTypes.PolygonGeometry:
@@ -244,9 +244,9 @@ class QadOFFSETCommandClass(QadCommandClass):
          self.rubberBand.addGeometry(feature.geometry(), layer)
       
       
-   #============================================================================
+   # ============================================================================
    # refreshRubberBand
-   #============================================================================
+   # ============================================================================
    def refreshRubberBand(self):
       self.rubberBand.reset(QgsWkbTypes.LineGeometry)
       self.rubberBandPolygon.reset(QgsWkbTypes.PolygonGeometry)
@@ -262,9 +262,9 @@ class QadOFFSETCommandClass(QadCommandClass):
             self.rubberBand.addGeometry(feature.geometry(), layer)            
 
 
-   #============================================================================
+   # ============================================================================
    # addToLayer
-   #============================================================================
+   # ============================================================================
    def addToLayer(self, currLayer):
       featuresLayers = [] # lista di (layer, features)
       
@@ -338,9 +338,9 @@ class QadOFFSETCommandClass(QadCommandClass):
       self.plugIn.endEditCommand()
 
  
-   #============================================================================
+   # ============================================================================
    # waitForDistance
-   #============================================================================
+   # ============================================================================
    def waitForDistance(self):      
       # imposto il map tool
       self.getPointMapTool().setMode(Qad_offset_maptool_ModeEnum.ASK_FOR_FIRST_OFFSET_PT)
@@ -365,9 +365,9 @@ class QadOFFSETCommandClass(QadCommandClass):
                    QadInputModeEnum.NOT_ZERO | QadInputModeEnum.NOT_NEGATIVE)      
       self.step = 1      
    
-   #============================================================================
+   # ============================================================================
    # waitForObjectSel
-   #============================================================================
+   # ============================================================================
    def waitForObjectSel(self):      
       # imposto il map tool
       self.getPointMapTool().setMode(Qad_offset_maptool_ModeEnum.ASK_FOR_ENTITY_SELECTION)                                      
@@ -392,9 +392,9 @@ class QadOFFSETCommandClass(QadCommandClass):
                    keyWords, QadInputModeEnum.NONE)      
       self.step = 2      
         
-   #============================================================================
+   # ============================================================================
    # waitForSidePt
-   #============================================================================
+   # ============================================================================
    def waitForSidePt(self):      
       # imposto il map tool
       self.getPointMapTool().setMode(Qad_offset_maptool_ModeEnum.OFFSET_KNOWN_ASK_FOR_SIDE_PT)                                
@@ -429,9 +429,9 @@ class QadOFFSETCommandClass(QadCommandClass):
                    keyWords, QadInputModeEnum.NONE)      
       self.step = 3
         
-   #============================================================================
+   # ============================================================================
    # waitForPassagePt
-   #============================================================================
+   # ============================================================================
    def waitForPassagePt(self):
       # imposto il map tool
       self.getPointMapTool().setMode(Qad_offset_maptool_ModeEnum.ASK_FOR_PASSAGE_PT)                                
@@ -466,9 +466,9 @@ class QadOFFSETCommandClass(QadCommandClass):
                    keyWords, QadInputModeEnum.NONE)      
       self.step = 4
 
-   #============================================================================
+   # ============================================================================
    # run
-   #============================================================================
+   # ============================================================================
    def run(self, msgMapTool = False, msg = None):
       if self.plugIn.canvas.mapSettings().destinationCrs().isGeographic():
          self.showMsg(QadMsg.translate("QAD", "\nThe coordinate reference system of the project must be a projected coordinate system.\n"))
@@ -480,7 +480,7 @@ class QadOFFSETCommandClass(QadCommandClass):
          self.showErr(errMsg)
          return True # fine comando
 
-      #=========================================================================
+      # =========================================================================
       # RICHIESTA DISTANZA DI OFFSET
       if self.step == 0: # inizio del comando
          CurrSettingsMsg = QadMsg.translate("QAD", "\nCurrent settings: ")
@@ -496,7 +496,7 @@ class QadOFFSETCommandClass(QadCommandClass):
 
          self.waitForDistance()
             
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA DELLA DISTANZA DI OFFSET (da step = 0)
       elif self.step == 1: # dopo aver atteso un punto o un numero reale si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -566,7 +566,7 @@ class QadOFFSETCommandClass(QadCommandClass):
          
          return False 
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA SELEZIONE DI UN OGGETTO
       elif self.step == 2:
          entity = None
@@ -626,7 +626,7 @@ class QadOFFSETCommandClass(QadCommandClass):
 
          return False
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA DI UN PUNTO PER STABILIRE LA PARTE DI OFFSET  (da step = 2)
       elif self.step == 3:
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -680,7 +680,7 @@ class QadOFFSETCommandClass(QadCommandClass):
 
          return False
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA DI UN PUNTO DI PASSAGGIO DI OFFSET  (da step = 2)
       elif self.step == 4:
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -734,7 +734,7 @@ class QadOFFSETCommandClass(QadCommandClass):
 
          return False
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA DI CANCELLAZIONE OGGETTO SORGENTE (da step = 1)
       elif self.step == 5: # dopo aver atteso un punto o un numero reale si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -760,7 +760,7 @@ class QadOFFSETCommandClass(QadCommandClass):
          
          return False
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA SECONDO PUNTO PER LUNGHEZZA OFFSET (da step = 1)
       elif self.step == 6: # dopo aver atteso un punto o un numero reale si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica

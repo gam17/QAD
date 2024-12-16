@@ -35,9 +35,9 @@ from ..qad_rubberband import QadRubberBand
 from ..qad_snapper import QadSnapTypeEnum
 
 
-#===============================================================================
+# ===============================================================================
 # Qad_circle_maptool_ModeEnum class.
-#===============================================================================
+# ===============================================================================
 class Qad_circle_maptool_ModeEnum():
    # noto niente si richiede il centro
    NONE_KNOWN_ASK_FOR_CENTER_PT = 1     
@@ -65,9 +65,9 @@ class Qad_circle_maptool_ModeEnum():
    # si richiede il secondo punto per misurare il raggio
    FIRST_SECOND_TAN_FIRSTPTRADIUS_KNOWN_ASK_FOR_SECONDPTRADIUS = 12
 
-#===============================================================================
+# ===============================================================================
 # Qad_circle_maptool class
-#===============================================================================
+# ===============================================================================
 class Qad_circle_maptool(QadGetPoint):
     
    def __init__(self, plugIn):

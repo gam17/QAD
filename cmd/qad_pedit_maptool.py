@@ -37,9 +37,9 @@ from ..qad_dim import QadDimStyles
 from ..qad_msg import QadMsg
 
 
-#===============================================================================
+# ===============================================================================
 # Qad_pedit_maptool_ModeEnum class.
-#===============================================================================
+# ===============================================================================
 class Qad_pedit_maptool_ModeEnum():
    # si richiede la selezione di un'entità
    ASK_FOR_ENTITY_SEL = 1     
@@ -59,9 +59,9 @@ class Qad_pedit_maptool_ModeEnum():
    ASK_FOR_BASE_PT = 8
 
 
-#===============================================================================
+# ===============================================================================
 # Qad_pedit_maptool class
-#===============================================================================
+# ===============================================================================
 class Qad_pedit_maptool(QadGetPoint):
     
    def __init__(self, plugIn):
@@ -232,9 +232,9 @@ class Qad_pedit_maptool(QadGetPoint):
          self.setDrawMode(QadGetPointDrawModeEnum.NONE)
 
 
-#===============================================================================
+# ===============================================================================
 # Qad_gripLineToArcConvert_maptool_ModeEnum class.
-#===============================================================================
+# ===============================================================================
 class Qad_gripLineToArcConvert_maptool_ModeEnum():
    # noti il punto iniziale e finale dell'arco si richiede il punto intermedio
    START_END_PT_KNOWN_ASK_FOR_SECOND_PT = 1
@@ -242,9 +242,9 @@ class Qad_gripLineToArcConvert_maptool_ModeEnum():
    NONE = 2     
 
 
-#===============================================================================
+# ===============================================================================
 # Qad_gripLineToArcConvert_maptool class
-#===============================================================================
+# ===============================================================================
 class Qad_gripLineToArcConvert_maptool(QadGetPoint):
     
    def __init__(self, plugIn):

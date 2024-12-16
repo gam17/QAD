@@ -126,9 +126,9 @@ class QadRECTANGLECommandClass(QadCommandClass):
          qad_layer.addPolygonToLayer(self.plugIn, layer, vertices)
       
          
-   #============================================================================
+   # ============================================================================
    # WaitForFirstCorner
-   #============================================================================
+   # ============================================================================
    def WaitForFirstCorner(self):
       self.step = 1         
       self.getPointMapTool().setMode(Qad_rectangle_maptool_ModeEnum.NONE_KNOWN_ASK_FOR_FIRST_CORNER)
@@ -145,9 +145,9 @@ class QadRECTANGLECommandClass(QadCommandClass):
                    QadInputTypeEnum.POINT2D | QadInputTypeEnum.KEYWORDS, \
                    None, keyWords, QadInputModeEnum.NONE)
          
-   #============================================================================
+   # ============================================================================
    # WaitForSecondCorner
-   #============================================================================
+   # ============================================================================
    def WaitForSecondCorner(self, layer):
       self.step = 2
       self.getPointMapTool().rot = self.rot
@@ -171,9 +171,9 @@ class QadRECTANGLECommandClass(QadCommandClass):
                    QadInputTypeEnum.POINT2D | QadInputTypeEnum.KEYWORDS, \
                    None, keyWords, QadInputModeEnum.NONE)
          
-   #============================================================================
+   # ============================================================================
    # run
-   #============================================================================
+   # ============================================================================
    def run(self, msgMapTool = False, msg = None):
       if self.plugIn.canvas.mapSettings().destinationCrs().isGeographic():
          self.showMsg(QadMsg.translate("QAD", "\nThe coordinate reference system of the project must be a projected coordinate system.\n"))
@@ -187,13 +187,13 @@ class QadRECTANGLECommandClass(QadCommandClass):
             self.showErr(errMsg)
             return True # fine comando
       
-      #=========================================================================
+      # =========================================================================
       # RICHIESTA PRIMO PUNTO 
       if self.step == 0: # inizio del comando
          self.WaitForFirstCorner()         
          return False
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA DEL PRIMO PUNTO DEL RETTANGOLO (da step = 0)
       elif self.step == 1: # dopo aver atteso un punto si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -243,7 +243,7 @@ class QadRECTANGLECommandClass(QadCommandClass):
          return False # continua
 
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA DEL SECONDO PUNTO DEL RETTANGOLO (da step = 1)
       elif self.step == 2: # dopo aver atteso un punto si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -309,7 +309,7 @@ class QadRECTANGLECommandClass(QadCommandClass):
 
          return False # continua
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA RAGGIO DI CURVATURA (da step = 1)
       elif self.step == 3:
          if self.GetDistClass.run(msgMapTool, msg) == True:
@@ -324,7 +324,7 @@ class QadRECTANGLECommandClass(QadCommandClass):
             self.getPointMapTool().refreshSnapType() # aggiorno lo snapType che può essere variato dal maptool di distanza                     
          return False # fine comando
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA PRIMA DISTANZA DI CIMATURA (da step = 1)
       elif self.step == 4:
          if self.GetDistClass.run(msgMapTool, msg) == True:
@@ -345,7 +345,7 @@ class QadRECTANGLECommandClass(QadCommandClass):
                self.getPointMapTool().refreshSnapType() # aggiorno lo snapType che può essere variato dal maptool di distanza                                 
          return False # fine comando
  
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA SECONDA DISTANZA DI CIMATURA (da step = 1)
       elif self.step == 5:
          if self.GetDistClass.run(msgMapTool, msg) == True:
@@ -360,7 +360,7 @@ class QadRECTANGLECommandClass(QadCommandClass):
             self.getPointMapTool().refreshSnapType() # aggiorno lo snapType che può essere variato dal maptool di distanza                     
          return False # fine comando
  
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA AREA RETTANGOLO (da step = 2)
       elif self.step == 6: # dopo aver atteso un punto si riavvia il comando
          keyWords = QadMsg.translate("Command_RECTANGLE", "Length") + "/" + \
@@ -408,7 +408,7 @@ class QadRECTANGLECommandClass(QadCommandClass):
             self.step = 7
          return False
             
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA DELLA MODALITA' (LUNGHEZZA / LARGHEZZA) DATA L'AREA (da step = 6)
       elif self.step == 7: # dopo aver atteso un punto o un numero reale si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -449,7 +449,7 @@ class QadRECTANGLECommandClass(QadCommandClass):
             
          return False
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA LUNGHEZZA RETTANGOLO DATA L'AREA (da step = 7)
       elif self.step == 8:
          if self.GetDistClass.run(msgMapTool, msg) == True:
@@ -462,7 +462,7 @@ class QadRECTANGLECommandClass(QadCommandClass):
                return True # fine comando
          return False
             
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA LARGHEZZA RETTANGOLO DATA L'AREA (da step = 7)
       elif self.step == 9:
          if self.GetDistClass.run(msgMapTool, msg) == True:
@@ -474,7 +474,7 @@ class QadRECTANGLECommandClass(QadCommandClass):
                return True # fine comando		
          return False
             
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA LUNGHEZZA RETTANGOLO (da step = 2)
       elif self.step == 10:
          if self.GetDistClass.run(msgMapTool, msg) == True:
@@ -492,7 +492,7 @@ class QadRECTANGLECommandClass(QadCommandClass):
                          
          return False
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA LARGHEZZA RETTANGOLO (da step = 10)
       elif self.step == 11:
          if self.GetDistClass.run(msgMapTool, msg) == True:
@@ -504,7 +504,7 @@ class QadRECTANGLECommandClass(QadCommandClass):
                return True # fine comando      
          return False
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA ROTAZIONE RETTANGOLO (da step = 2)
       elif self.step == 12: # dopo aver atteso un punto si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -542,7 +542,7 @@ class QadRECTANGLECommandClass(QadCommandClass):
             
          return False # continua
       
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA ROTAZIONE RETTANGOLO (da step = 12)
       elif self.step == 13:
          if self.GetAngleClass.run(msgMapTool, msg) == True:

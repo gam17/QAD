@@ -35,9 +35,9 @@ from .. import qad_utils
 from ..qad_entity import QadEntity
 
 
-#===============================================================================
+# ===============================================================================
 # QadGetDistClass
-#===============================================================================
+# ===============================================================================
 class QadGetDistClass(QadCommandClass):
 
    def instantiateNewCmd(self):
@@ -62,7 +62,7 @@ class QadGetDistClass(QadCommandClass):
          self.showMsg(QadMsg.translate("QAD", "\nThe coordinate reference system of the project must be a projected coordinate system.\n"))
          return True # fine comando
 
-      #=========================================================================
+      # =========================================================================
       # RICHIESTA PUNTO o ENTITA'
       if self.step == 0: # inizio del comando
          # si appresta ad attendere un punto o un numero reale         
@@ -80,7 +80,7 @@ class QadGetDistClass(QadCommandClass):
          self.step = 1
          return False
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA PUNTO o numero reale
       elif self.step == 1: # dopo aver atteso un punto si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -126,7 +126,7 @@ class QadGetDistClass(QadCommandClass):
 
          return False
          
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA SECONDO PUNTO DELLA DISTANZA (da step = 1)
       elif self.step == 2: # dopo aver atteso un punto si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica

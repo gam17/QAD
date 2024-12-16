@@ -33,9 +33,9 @@ from ..qad_rubberband import QadRubberBand
 from ..qad_multi_geom import getQadGeomAt
 from ..qad_geom_relations import getQadGeomClosestPart, getQadGeomBetween2Pts
 
-#===============================================================================
+# ===============================================================================
 # Qad_pline_maptool_ModeEnum class.
-#===============================================================================
+# ===============================================================================
 class Qad_pline_maptool_ModeEnum():
    # non si richiede niente
    NONE = 0
@@ -45,9 +45,9 @@ class Qad_pline_maptool_ModeEnum():
    DRAW_LINE = 2
 
 
-#===============================================================================
+# ===============================================================================
 # Qad_pline_maptool class
-#===============================================================================
+# ===============================================================================
 class Qad_pline_maptool(QadGetPoint):
     
    def __init__(self, plugIn, asToolForMPolygon = False):

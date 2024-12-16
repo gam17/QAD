@@ -101,9 +101,9 @@ class QadSCALECommandClass(QadCommandClass):
          return self.contextualMenu
 
 
-   #============================================================================
+   # ============================================================================
    # scale
-   #============================================================================
+   # ============================================================================
    def scale(self, entity, basePt, scale, openForm = True):
       # verifico se l'entità appartiene ad uno stile di quotatura
       if entity.whatIs() == "ENTITY":
@@ -154,9 +154,9 @@ class QadSCALECommandClass(QadCommandClass):
       return True
       
 
-   #============================================================================
+   # ============================================================================
    # scaleGeoms
-   #============================================================================
+   # ============================================================================
    def scaleGeoms(self, scale):
       self.plugIn.beginEditCommand("Feature scaled", self.cacheEntitySet.getLayerList())
       
@@ -241,7 +241,7 @@ class QadSCALECommandClass(QadCommandClass):
          self.showMsg(QadMsg.translate("QAD", "\nThe coordinate reference system of the project must be a projected coordinate system.\n"))
          return True # fine comando
             
-      #=========================================================================
+      # =========================================================================
       # RICHIESTA SELEZIONE OGGETTI
       if self.step == 0: # inizio del comando
          if self.SSGetClass.run(msgMapTool, msg) == True:
@@ -250,7 +250,7 @@ class QadSCALECommandClass(QadCommandClass):
             self.getPointMapTool().refreshSnapType() # aggiorno lo snapType che può essere variato dal maptool di selezione entità                    
             return self.run(msgMapTool, msg)
       
-      #=========================================================================
+      # =========================================================================
       # RUOTA OGGETTI
       elif self.step == 1:
          if self.SSGetClass.entitySet.count() == 0:
@@ -266,7 +266,7 @@ class QadSCALECommandClass(QadCommandClass):
          self.step = 2     
          return False
          
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA PUNTO BASE (da step = 1)
       elif self.step == 2: # dopo aver atteso un punto o un numero reale si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -294,7 +294,7 @@ class QadSCALECommandClass(QadCommandClass):
          
          return False 
          
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA SECONDO PUNTO PER SCALA (da step = 2)
       elif self.step == 3: # dopo aver atteso un punto o un numero reale si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -340,7 +340,7 @@ class QadSCALECommandClass(QadCommandClass):
          
          return False
                
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA PRIMO PUNTO PER LUNGHEZZA DI RIFERIMENTO (da step = 3)
       elif self.step == 4: # dopo aver atteso un punto o un numero reale si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -376,7 +376,7 @@ class QadSCALECommandClass(QadCommandClass):
             
          return False
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA SECONDO PUNTO PER LUNGHEZZA DI RIFERIMENTO (da step = 4)
       elif self.step == 5: # dopo aver atteso un punto o un numero reale si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -409,7 +409,7 @@ class QadSCALECommandClass(QadCommandClass):
             
          return False
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA SECONDO PUNTO PER NUOVA LUNGHEZZA (da step = 4 e 5)
       elif self.step == 6: # dopo aver atteso un punto o un numero reale si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -454,7 +454,7 @@ class QadSCALECommandClass(QadCommandClass):
 
          return False
       
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA PRIMO PUNTO PER NUOVA LUNGHEZZA (da step = 6)
       elif self.step == 7: # dopo aver atteso un punto o un numero reale si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -483,7 +483,7 @@ class QadSCALECommandClass(QadCommandClass):
             
          return False
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA SECONDO PUNTO PER NUOVA LUNGHEZZA (da step = 7)
       elif self.step == 8: # dopo aver atteso un punto o un numero reale si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -549,9 +549,9 @@ class QadGRIPSCALECommandClass(QadCommandClass):
          return None
 
 
-   #============================================================================
+   # ============================================================================
    # setSelectedEntityGripPoints
-   #============================================================================
+   # ============================================================================
    def setSelectedEntityGripPoints(self, entitySetGripPoints):
       # lista delle entityGripPoint con dei grip point selezionati
       self.cacheEntitySet.clear()
@@ -562,9 +562,9 @@ class QadGRIPSCALECommandClass(QadCommandClass):
       self.getPointMapTool().cacheEntitySet = self.cacheEntitySet
 
 
-   #============================================================================
+   # ============================================================================
    # scale
-   #============================================================================
+   # ============================================================================
    def scale(self, entity, basePt, scale, sizeFldName, openForm = True):
       # entity = entità da scalare
       # basePt = punto base
@@ -672,9 +672,9 @@ class QadGRIPSCALECommandClass(QadCommandClass):
       self.step = 1
 
 
-   #============================================================================
+   # ============================================================================
    # waitForBasePt
-   #============================================================================
+   # ============================================================================
    def waitForBasePt(self):
       self.step = 2   
       # imposto il map tool
@@ -704,7 +704,7 @@ class QadGRIPSCALECommandClass(QadCommandClass):
          self.showMsg(QadMsg.translate("QAD", "\nThe coordinate reference system of the project must be a projected coordinate system.\n"))
          return True # fine comando
             
-      #=========================================================================
+      # =========================================================================
       # RICHIESTA SELEZIONE OGGETTI
       if self.step == 0: # inizio del comando
          if self.cacheEntitySet.isEmpty(): # non ci sono oggetti da ruotare
@@ -714,7 +714,7 @@ class QadGRIPSCALECommandClass(QadCommandClass):
          self.waitForScale()
          return False
       
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA DEL FATTORE DI SCALA
       elif self.step == 1:
          ctrlKey = False         
@@ -794,7 +794,7 @@ class QadGRIPSCALECommandClass(QadCommandClass):
          return False 
 
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA PUNTO BASE (da step = 1)
       elif self.step == 2: # dopo aver atteso un punto o un numero reale si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -822,7 +822,7 @@ class QadGRIPSCALECommandClass(QadCommandClass):
          return False 
          
                
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA PRIMO PUNTO PER LUNGHEZZA DI RIFERIMENTO (da step = 1)
       elif self.step == 3: # dopo aver atteso un punto o un numero reale si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -858,7 +858,7 @@ class QadGRIPSCALECommandClass(QadCommandClass):
             
          return False
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA SECONDO PUNTO PER LUNGHEZZA DI RIFERIMENTO (da step = 4)
       elif self.step == 4: # dopo aver atteso un punto o un numero reale si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica

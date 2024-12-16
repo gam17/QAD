@@ -39,9 +39,9 @@ from .qad_entsel_cmd import QadEntSelClass
 from ..qad_geom_relations import getQadGeomClosestVertex
 
 
-#===============================================================================
+# ===============================================================================
 # QadMAPMPEDITCommandOpTypeEnum class.
-#===============================================================================
+# ===============================================================================
 class QadMAPMPEDITCommandOpTypeEnum():
    UNION        = 1 # unione tra poligoni
    INTERSECTION = 2 # intersezione tra poligoni
@@ -121,9 +121,9 @@ class QadMAPMPEDITCommandClass(QadCommandClass):
       self.SSGetClass.checkPointLayer = checkPointLayer
 
 
-   #============================================================================
+   # ============================================================================
    # setCurrentSubGeom
-   #============================================================================
+   # ============================================================================
    def setCurrentSubGeom(self, entSelClass):
       """
       Setta la sottogeometria corrente
@@ -159,9 +159,9 @@ class QadMAPMPEDITCommandClass(QadCommandClass):
       return True
    
 
-   #============================================================================
+   # ============================================================================
    # addEntitySetToPolygon
-   #============================================================================
+   # ============================================================================
    def addEntitySetToPolygon(self, entitySet, removeOriginals = False):
       """
       Aggiunge il set di entità al poligono da modificare
@@ -248,9 +248,9 @@ class QadMAPMPEDITCommandClass(QadCommandClass):
       return True
    
 
-   #============================================================================
+   # ============================================================================
    # delCurrentSubGeomToPolygon
-   #============================================================================
+   # ============================================================================
    def delCurrentSubGeomToPolygon(self):
       """
       Cancella la sotto-geometria corrente dal poligono da modificare
@@ -283,9 +283,9 @@ class QadMAPMPEDITCommandClass(QadCommandClass):
       self.nOperationsToUndo = self.nOperationsToUndo + 1
 
 
-   #============================================================================
+   # ============================================================================
    # unionIntersSubtractEntitySetToPolygon
-   #============================================================================
+   # ============================================================================
    def unionIntersSubtractEntitySetToPolygon(self, entitySet, opType, removeOriginals = False):
       """
       Unisce o interseca i poligoni di entitySet al poligono corrente
@@ -378,9 +378,9 @@ class QadMAPMPEDITCommandClass(QadCommandClass):
       return True
 
    
-   #============================================================================
+   # ============================================================================
    # convexHullEntitySetToPolygon
-   #============================================================================
+   # ============================================================================
    def convexHullEntitySetToPolygon(self, entitySet, removeOriginals = False):
       """
       modifica il poligono corrente in modo che includa tutti i punti delle geometrie di entitySet
@@ -439,9 +439,9 @@ class QadMAPMPEDITCommandClass(QadCommandClass):
       return True
 
 
-   #============================================================================
+   # ============================================================================
    # dividePolygon
-   #============================================================================
+   # ============================================================================
    def splitPolygon(self, splitLine, createNewEntities):
       """
       divide il poligono corrente usando una polilinea con i vertici in <plineVertices> in modo da generare o meno nuove entità
@@ -495,9 +495,9 @@ class QadMAPMPEDITCommandClass(QadCommandClass):
 
 
 
-   #============================================================================
+   # ============================================================================
    # waitForEntsel
-   #============================================================================
+   # ============================================================================
    def waitForEntsel(self, msgMapTool, msg):
       if self.entSelClass is not None:
          del self.entSelClass
@@ -514,9 +514,9 @@ class QadMAPMPEDITCommandClass(QadCommandClass):
       self.entSelClass.run(msgMapTool, msg)
       
 
-   #============================================================================
+   # ============================================================================
    # WaitForMainMenu
-   #============================================================================
+   # ============================================================================
    def WaitForMainMenu(self):
       self.poligonEntity.selectOnLayer(False)
       keyWords = QadMsg.translate("Command_MAPMPEDIT", "Add") + "/" + \
@@ -555,9 +555,9 @@ class QadMAPMPEDITCommandClass(QadCommandClass):
       return False
       
 
-   #============================================================================
+   # ============================================================================
    # waitForBoundary
-   #============================================================================
+   # ============================================================================
    def waitForBoundary(self, msgMapTool, msg):
       if self.entSelClass is not None:
          del self.entSelClass
@@ -582,7 +582,7 @@ class QadMAPMPEDITCommandClass(QadCommandClass):
          self.waitForEntsel(msgMapTool, msg) # seleziona il poligono da modificare
          return False # continua
       
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA SELEZIONE POLIGONO DA MODIFICARE
       elif self.step == 1:
          if self.entSelClass.run(msgMapTool, msg) == True:
@@ -599,7 +599,7 @@ class QadMAPMPEDITCommandClass(QadCommandClass):
 
          return False # continua
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA DEL MENU PRINCIPALE
       elif self.step == 2: # dopo aver atteso una opzione si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -682,7 +682,7 @@ class QadMAPMPEDITCommandClass(QadCommandClass):
          self.WaitForMainMenu()
          return False      
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA DELLA MODALITA' DI ADD (da step = 2)
       elif self.step == 3:
          if self.SSGetClass.run(msgMapTool, msg) == True:
@@ -692,7 +692,7 @@ class QadMAPMPEDITCommandClass(QadCommandClass):
             self.WaitForMainMenu()
          return False
       
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA DELLA MODALITA' DI DELETE (da step = 2)
       elif self.step == 4:
          if self.entSelClass.run(msgMapTool, msg) == True:
@@ -707,7 +707,7 @@ class QadMAPMPEDITCommandClass(QadCommandClass):
                   self.waitForBoundary(msgMapTool, msg)
          return False # continua
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA DELLA MODALITA' DI UNION (da step = 2)
       elif self.step == 5: # dopo aver atteso una entità si riavvia il comando
          if self.SSGetClass.run(msgMapTool, msg) == True:
@@ -717,7 +717,7 @@ class QadMAPMPEDITCommandClass(QadCommandClass):
             self.WaitForMainMenu()
          return False # continua
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA DELLA MODALITA' DI SUBTRACT (da step = 2)
       elif self.step == 6: # dopo aver atteso una entità si riavvia il comando
          if self.SSGetClass.run(msgMapTool, msg) == True:
@@ -727,7 +727,7 @@ class QadMAPMPEDITCommandClass(QadCommandClass):
             self.WaitForMainMenu()
          return False # continua
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA DELLA MODALITA' DI INTERSECT (da step = 2)
       elif self.step == 7: # dopo aver atteso una entità si riavvia il comando
          if self.SSGetClass.run(msgMapTool, msg) == True:
@@ -737,7 +737,7 @@ class QadMAPMPEDITCommandClass(QadCommandClass):
             self.WaitForMainMenu()
          return False # continua
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA DELLA MODALITA' DI INCLUDE OBJS (da step = 2)
       elif self.step == 8: # dopo aver atteso una entità si riavvia il comando
          if self.SSGetClass.run(msgMapTool, msg) == True:
@@ -747,7 +747,7 @@ class QadMAPMPEDITCommandClass(QadCommandClass):
             self.WaitForMainMenu()
          return False # continua
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA DELLA LINEA DI DIVISIONE (da step = 2)
       elif self.step == 9: # dopo aver atteso un punto si riavvia il comando
          if self.PLINECommand.run(msgMapTool, msg) == True:
@@ -758,7 +758,7 @@ class QadMAPMPEDITCommandClass(QadCommandClass):
             self.WaitForMainMenu()
          return False
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA DELLA LINEA DI DIVISIONE (da step = 2)
       elif self.step == 10: # dopo aver atteso un punto si riavvia il comando
          if self.PLINECommand.run(msgMapTool, msg) == True:

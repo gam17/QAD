@@ -94,9 +94,9 @@ class QadMOVECommandClass(QadCommandClass):
          return self.contextualMenu
 
 
-   #============================================================================
+   # ============================================================================
    # move
-   #============================================================================
+   # ============================================================================
    def move(self, entity, offsetX, offsetY):
       # verifico se l'entità appartiene ad uno stile di quotatura
       if entity.whatIs() == "ENTITY":
@@ -118,9 +118,9 @@ class QadMOVECommandClass(QadCommandClass):
       return True
 
 
-   #============================================================================
+   # ============================================================================
    # moveGeoms
-   #============================================================================
+   # ============================================================================
    def moveGeoms(self, newPt):      
       offsetX = newPt.x() - self.basePt.x()
       offsetY = newPt.y() - self.basePt.y()
@@ -151,7 +151,7 @@ class QadMOVECommandClass(QadCommandClass):
          self.showMsg(QadMsg.translate("QAD", "\nThe coordinate reference system of the project must be a projected coordinate system.\n"))
          return True # fine comando
             
-      #=========================================================================
+      # =========================================================================
       # RICHIESTA SELEZIONE OGGETTI
       if self.step == 0: # inizio del comando
          if self.SSGetClass.run(msgMapTool, msg) == True:
@@ -160,7 +160,7 @@ class QadMOVECommandClass(QadCommandClass):
             self.getPointMapTool().refreshSnapType() # aggiorno lo snapType che può essere variato dal maptool di selezione entità                    
             return self.run(msgMapTool, msg)
       
-      #=========================================================================
+      # =========================================================================
       # SPOSTA OGGETTI
       elif self.step == 1:
          if self.SSGetClass.entitySet.count() == 0:
@@ -185,7 +185,7 @@ class QadMOVECommandClass(QadCommandClass):
          self.step = 2      
          return False
          
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA PUNTO BASE (da step = 1)
       elif self.step == 2: # dopo aver atteso un punto o un numero reale si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -233,7 +233,7 @@ class QadMOVECommandClass(QadCommandClass):
          
          return False 
          
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA SECONDO PUNTO PER SPOSTAMENTO (da step = 2)
       elif self.step == 3: # dopo aver atteso un punto o un numero reale si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -260,7 +260,7 @@ class QadMOVECommandClass(QadCommandClass):
             
          return True # fine comando
                
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA DEL PUNTO DI SPOSTAMENTO (da step = 2)
       elif self.step == 4: # dopo aver atteso un punto o un numero reale si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -315,9 +315,9 @@ class QadGRIPMOVECommandClass(QadCommandClass):
          return None
 
 
-   #============================================================================
+   # ============================================================================
    # setSelectedEntityGripPoints
-   #============================================================================
+   # ============================================================================
    def setSelectedEntityGripPoints(self, entitySetGripPoints):
       # lista delle entityGripPoint con dei grip point selezionati
       self.cacheEntitySet.clear()
@@ -328,9 +328,9 @@ class QadGRIPMOVECommandClass(QadCommandClass):
       self.getPointMapTool().cacheEntitySet = self.cacheEntitySet
 
 
-   #============================================================================
+   # ============================================================================
    # move
-   #============================================================================
+   # ============================================================================
    def move(self, entity, offsetX, offsetY, openForm = True):
       # verifico se l'entità appartiene ad uno stile di quotatura
       if entity.whatIs() == "ENTITY":
@@ -360,9 +360,9 @@ class QadGRIPMOVECommandClass(QadCommandClass):
       return True
       
 
-   #============================================================================
+   # ============================================================================
    # moveFeatures
-   #============================================================================
+   # ============================================================================
    def moveFeatures(self, newPt):
       offsetX = newPt.x() - self.basePt.x()
       offsetY = newPt.y() - self.basePt.y()
@@ -390,9 +390,9 @@ class QadGRIPMOVECommandClass(QadCommandClass):
       self.nOperationsToUndo = self.nOperationsToUndo + 1
                            
                            
-   #============================================================================
+   # ============================================================================
    # waitForMovePoint
-   #============================================================================
+   # ============================================================================
    def waitForMovePoint(self):
       self.step = 1
       self.plugIn.setLastPoint(self.basePt)
@@ -416,9 +416,9 @@ class QadGRIPMOVECommandClass(QadCommandClass):
                    keyWords, QadInputModeEnum.NONE)      
 
 
-   #============================================================================
+   # ============================================================================
    # waitForBasePt
-   #============================================================================
+   # ============================================================================
    def waitForBasePt(self):
       self.step = 2   
       # imposto il map tool
@@ -428,15 +428,15 @@ class QadGRIPMOVECommandClass(QadCommandClass):
       self.waitForPoint(QadMsg.translate("Command_GRIPMOVE", "Specify base point: "))
 
 
-   #============================================================================
+   # ============================================================================
    # run
-   #============================================================================
+   # ============================================================================
    def run(self, msgMapTool = False, msg = None):
       if self.plugIn.canvas.mapSettings().destinationCrs().isGeographic():
          self.showMsg(QadMsg.translate("QAD", "\nThe coordinate reference system of the project must be a projected coordinate system.\n"))
          return True # fine comando
      
-      #=========================================================================
+      # =========================================================================
       # RICHIESTA SELEZIONE OGGETTI
       if self.step == 0: # inizio del comando
          if self.cacheEntitySet.isEmpty(): # non ci sono oggetti da spostare
@@ -446,7 +446,7 @@ class QadGRIPMOVECommandClass(QadCommandClass):
          self.waitForMovePoint()
          return False
       
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA DI UN PUNTO DI SPOSTAMENTO
       elif self.step == 1:
          ctrlKey = False
@@ -506,7 +506,7 @@ class QadGRIPMOVECommandClass(QadCommandClass):
          return False 
 
               
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA PUNTO BASE (da step = 1)
       elif self.step == 2: # dopo aver atteso un punto
          if msgMapTool == True: # il punto arriva da una selezione grafica

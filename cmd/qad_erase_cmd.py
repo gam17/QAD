@@ -74,7 +74,7 @@ class QadERASECommandClass(QadCommandClass):
 
    def run(self, msgMapTool = False, msg = None):
             
-      #=========================================================================
+      # =========================================================================
       # RICHIESTA PRIMO PUNTO PER SELEZIONE OGGETTI
       if self.step == 0: # inizio del comando
          if self.SSGetClass.run(msgMapTool, msg) == True:
@@ -84,7 +84,7 @@ class QadERASECommandClass(QadCommandClass):
          else:
             return False
       
-      #=========================================================================
+      # =========================================================================
       # CANCELLAZIONE OGGETTI
       elif self.step == 1:
          self.plugIn.beginEditCommand("Feature deleted", self.SSGetClass.entitySet.getLayerList())

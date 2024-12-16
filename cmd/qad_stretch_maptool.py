@@ -35,9 +35,9 @@ from ..qad_entity import QadEntitySet, QadEntity, QadEntityTypeEnum
 from ..qad_multi_geom import fromQadGeomToQgsGeom
 
 
-#===============================================================================
+# ===============================================================================
 # Qad_stretch_maptool_ModeEnum class.
-#===============================================================================
+# ===============================================================================
 class Qad_stretch_maptool_ModeEnum():
    # si richiede la selezione del primo punto del rettangolo per selezionare gli oggetti
    ASK_FOR_FIRST_PT_RECTANGLE = 1
@@ -49,9 +49,9 @@ class Qad_stretch_maptool_ModeEnum():
    BASE_PT_KNOWN_ASK_FOR_MOVE_PT = 4     
 
 
-#===============================================================================
+# ===============================================================================
 # Qad_stretch_maptool class
-#===============================================================================
+# ===============================================================================
 class Qad_stretch_maptool(QadGetPoint):
     
    def __init__(self, plugIn):
@@ -75,9 +75,9 @@ class Qad_stretch_maptool(QadGetPoint):
       self.mode = None    
    
    
-   #============================================================================
+   # ============================================================================
    # stretch
-   #============================================================================
+   # ============================================================================
    def stretch(self, entity, containerGeom, offsetX, offsetY, tolerance2ApproxCurve):
       # entity = entità da stirare
       # ptList = lista dei punti da stirare
@@ -108,9 +108,9 @@ class Qad_stretch_maptool(QadGetPoint):
       return True
 
 
-   #============================================================================
+   # ============================================================================
    # addStretchedGeometries
-   #============================================================================
+   # ============================================================================
    def addStretchedGeometries(self, newPt):
       self.__highlight.reset()            
 
@@ -186,9 +186,9 @@ class Qad_stretch_maptool(QadGetPoint):
          self.setStartPoint(self.basePt)
 
 
-#===============================================================================
+# ===============================================================================
 # Qad_gripStretch_maptool class
-#===============================================================================
+# ===============================================================================
 class Qad_gripStretch_maptool(QadGetPoint):
     
    def __init__(self, plugIn):
@@ -214,16 +214,16 @@ class Qad_gripStretch_maptool(QadGetPoint):
       self.mode = None
 
 
-   #============================================================================
+   # ============================================================================
    # setSelectedEntityGripPoints
-   #============================================================================
+   # ============================================================================
    def setSelectedEntityGripPoints(self, selectedEntityGripPoints):
       self.selectedEntityGripPoints = selectedEntityGripPoints
 
       
-   #============================================================================
+   # ============================================================================
    # getSelectedEntityGripPointNdx
-   #============================================================================
+   # ============================================================================
    def getSelectedEntityGripPointNdx(self, entity):
       # lista delle entityGripPoint con dei grip point selezionati
       # cerca la posizione di un'entità nella lista in cui ogni elemento è una entità + una lista di punti da stirare
@@ -237,9 +237,9 @@ class Qad_gripStretch_maptool(QadGetPoint):
       return -1
    
    
-   #============================================================================
+   # ============================================================================
    # stretch
-   #============================================================================
+   # ============================================================================
    def stretch(self, entity, ptList, offsetX, offsetY, tolerance2ApproxCurve):
       # entity = entità da stirare
       # ptList = lista dei punti da stirare
@@ -262,9 +262,9 @@ class Qad_gripStretch_maptool(QadGetPoint):
          self.__highlight.addGeometries(entity.getSymbolGeometryCollection(), entity.getSymbolLayer())
 
    
-   #============================================================================
+   # ============================================================================
    # addStretchedGeometries
-   #============================================================================
+   # ============================================================================
    def addStretchedGeometries(self, newPt):
       self.__highlight.reset()
 

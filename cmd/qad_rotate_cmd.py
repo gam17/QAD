@@ -101,9 +101,9 @@ class QadROTATECommandClass(QadCommandClass):
          return self.contextualMenu
 
 
-   #============================================================================
+   # ============================================================================
    # rotate
-   #============================================================================
+   # ============================================================================
    def rotate(self, entity, basePt, angle, openForm):
       # verifico se l'entità appartiene ad uno stile di quotatura
       if entity.whatIs() == "ENTITY":
@@ -224,7 +224,7 @@ class QadROTATECommandClass(QadCommandClass):
          self.showMsg(QadMsg.translate("QAD", "\nThe coordinate reference system of the project must be a projected coordinate system.\n"))
          return True # fine comando
             
-      #=========================================================================
+      # =========================================================================
       # RICHIESTA SELEZIONE OGGETTI
       if self.step == 0: # inizio del comando
          if self.SSGetClass.run(msgMapTool, msg) == True:
@@ -233,7 +233,7 @@ class QadROTATECommandClass(QadCommandClass):
             self.getPointMapTool().refreshSnapType() # aggiorno lo snapType che può essere variato dal maptool di selezione entità                    
             return self.run(msgMapTool, msg)
       
-      #=========================================================================
+      # =========================================================================
       # RUOTA OGGETTI
       elif self.step == 1:
          if self.SSGetClass.entitySet.count() == 0:
@@ -249,7 +249,7 @@ class QadROTATECommandClass(QadCommandClass):
          self.step = 2     
          return False
          
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA PUNTO BASE (da step = 1)
       elif self.step == 2: # dopo aver atteso un punto o un numero reale si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -277,7 +277,7 @@ class QadROTATECommandClass(QadCommandClass):
          
          return False 
          
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA SECONDO PUNTO PER ANGOLO ROTAZIONE (da step = 2)
       elif self.step == 3: # dopo aver atteso un punto o un numero reale si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -317,7 +317,7 @@ class QadROTATECommandClass(QadCommandClass):
          
          return False
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA PRIMO PUNTO PER ANGOLO ROTAZIONE DI RIFERIMENTO (da step = 3)
       elif self.step == 4: # dopo aver atteso un punto o un numero reale si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -353,7 +353,7 @@ class QadROTATECommandClass(QadCommandClass):
             
          return False
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA SECONDO PUNTO PER ANGOLO ROTAZIONE DI RIFERIMENTO (da step = 4)
       elif self.step == 5: # dopo aver atteso un punto o un numero reale si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -380,7 +380,7 @@ class QadROTATECommandClass(QadCommandClass):
             
          return False
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA SECONDO PUNTO PER NUOVO ANGOLO ROTAZIONE (da step = 4 e 5)
       elif self.step == 6: # dopo aver atteso un punto o un numero reale si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -419,7 +419,7 @@ class QadROTATECommandClass(QadCommandClass):
 
          return False
       
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA PRIMO PUNTO PER NUOVO ANGOLO ROTAZIONE (da step = 6)
       elif self.step == 7: # dopo aver atteso un punto o un numero reale si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -448,7 +448,7 @@ class QadROTATECommandClass(QadCommandClass):
             
          return False
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA SECONDO PUNTO PER NUOVO ANGOLO ROTAZIONE (da step = 7)
       elif self.step == 8: # dopo aver atteso un punto o un numero reale si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -508,9 +508,9 @@ class QadGRIPROTATECommandClass(QadCommandClass):
          return None
 
 
-   #============================================================================
+   # ============================================================================
    # setSelectedEntityGripPoints
-   #============================================================================
+   # ============================================================================
    def setSelectedEntityGripPoints(self, entitySetGripPoints):
       # lista delle entityGripPoint con dei grip point selezionati
       self.cacheEntitySet.clear()
@@ -521,9 +521,9 @@ class QadGRIPROTATECommandClass(QadCommandClass):
       self.getPointMapTool().cacheEntitySet = self.cacheEntitySet
 
 
-   #============================================================================
+   # ============================================================================
    # rotate
-   #============================================================================
+   # ============================================================================
    def rotate(self, entity, basePt, angle, rotFldName):
       # entity = entità da ruotare
       # basePt = punto base
@@ -564,9 +564,9 @@ class QadGRIPROTATECommandClass(QadCommandClass):
       return True
 
 
-   #============================================================================
+   # ============================================================================
    # rotateFeatures
-   #============================================================================
+   # ============================================================================
    def rotateFeatures(self, angle):
       self.plugIn.beginEditCommand("Feature rotated", self.cacheEntitySet.getLayerList())
 
@@ -588,9 +588,9 @@ class QadGRIPROTATECommandClass(QadCommandClass):
       self.nOperationsToUndo = self.nOperationsToUndo + 1
    
                            
-   #============================================================================
+   # ============================================================================
    # waitForRotatePoint
-   #============================================================================
+   # ============================================================================
    def waitForRotatePoint(self):
       self.step = 1
       self.plugIn.setLastPoint(self.basePt)
@@ -615,9 +615,9 @@ class QadGRIPROTATECommandClass(QadCommandClass):
                    keyWords, QadInputModeEnum.NONE)      
 
 
-   #============================================================================
+   # ============================================================================
    # waitForBasePt
-   #============================================================================
+   # ============================================================================
    def waitForBasePt(self):
       self.step = 2   
       # imposto il map tool
@@ -641,15 +641,15 @@ class QadGRIPROTATECommandClass(QadCommandClass):
       self.step = 3
 
 
-   #============================================================================
+   # ============================================================================
    # run
-   #============================================================================
+   # ============================================================================
    def run(self, msgMapTool = False, msg = None):
       if self.plugIn.canvas.mapSettings().destinationCrs().isGeographic():
          self.showMsg(QadMsg.translate("QAD", "\nThe coordinate reference system of the project must be a projected coordinate system.\n"))
          return True # fine comando
      
-      #=========================================================================
+      # =========================================================================
       # RICHIESTA SELEZIONE OGGETTI
       if self.step == 0: # inizio del comando
          if self.cacheEntitySet.isEmpty(): # non ci sono oggetti da ruotare
@@ -659,7 +659,7 @@ class QadGRIPROTATECommandClass(QadCommandClass):
          self.waitForRotatePoint()
          return False
       
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA DI UN PUNTO DI ROTAZIONE
       elif self.step == 1:
          ctrlKey = False
@@ -730,7 +730,7 @@ class QadGRIPROTATECommandClass(QadCommandClass):
          return False 
 
               
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA PUNTO BASE (da step = 1)
       elif self.step == 2: # dopo aver atteso un punto
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -760,7 +760,7 @@ class QadGRIPROTATECommandClass(QadCommandClass):
          return False
 
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA PRIMO PUNTO PER ANGOLO ROTAZIONE DI RIFERIMENTO (da step = 1)
       elif self.step == 3: # dopo aver atteso un punto o un numero reale si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -796,7 +796,7 @@ class QadGRIPROTATECommandClass(QadCommandClass):
             
          return False
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA SECONDO PUNTO PER NUOVO ANGOLO ROTAZIONE (da step = 3)
       elif self.step == 4: # dopo aver atteso un punto o un numero reale si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica

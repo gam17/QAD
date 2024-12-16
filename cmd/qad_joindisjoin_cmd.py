@@ -114,9 +114,9 @@ class QadJOINCommandClass(QadCommandClass):
          self.SSGetClass.checkPolygonLayer = True
    
 
-   #============================================================================
+   # ============================================================================
    # addEntitySetToPoint
-   #============================================================================
+   # ============================================================================
    def addEntitySetToPoint(self, entitySet, removeOriginals = True):
       """
       Aggiunge il set di entità al punto da modificare
@@ -176,9 +176,9 @@ class QadJOINCommandClass(QadCommandClass):
       return True
    
 
-   #============================================================================
+   # ============================================================================
    # addEntitySetToPolyline
-   #============================================================================
+   # ============================================================================
    def addEntitySetToPolyline(self, entitySet, removeOriginals = True):
       """
       Aggiunge il set di entità alla polilinea da modificare
@@ -238,9 +238,9 @@ class QadJOINCommandClass(QadCommandClass):
       return True
    
 
-   #============================================================================
+   # ============================================================================
    # addEntitySetToPolygon
-   #============================================================================
+   # ============================================================================
    def addEntitySetToPolygon(self, entitySet, removeOriginals = True):
       """
       Aggiunge il set di entità al poligono da modificare
@@ -326,9 +326,9 @@ class QadJOINCommandClass(QadCommandClass):
       return True
 
 
-   #============================================================================
+   # ============================================================================
    # waitForEntsel
-   #============================================================================
+   # ============================================================================
    def waitForEntsel(self, msgMapTool, msg):
       if self.entSelClass is not None:
          del self.entSelClass
@@ -343,9 +343,9 @@ class QadJOINCommandClass(QadCommandClass):
       self.entSelClass.run(msgMapTool, msg)
 
 
-   #============================================================================
+   # ============================================================================
    # waitForSSsel
-   #============================================================================
+   # ============================================================================
    def waitForSSsel(self, msgMapTool, msg):
       self.reinitSSGetClass()
       self.step = 2
@@ -362,7 +362,7 @@ class QadJOINCommandClass(QadCommandClass):
          self.waitForEntsel(msgMapTool, msg) # seleziona l'oggetto a cui aggregarsi
          return False # continua
       
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA SELEZIONE ENTITA' DA MODIFICARE
       elif self.step == 1:
          if self.entSelClass.run(msgMapTool, msg) == True:
@@ -378,7 +378,7 @@ class QadJOINCommandClass(QadCommandClass):
 
          return False # continua
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA DEL GRUPPO DI SELEZIONE (da step = 1)
       elif self.step == 2:
          if self.SSGetClass.run(msgMapTool, msg) == True:
@@ -454,9 +454,9 @@ class QadDISJOINCommandClass(QadCommandClass):
          return self.contextualMenu
 
 
-   #============================================================================
+   # ============================================================================
    # setCurrentSubGeom
-   #============================================================================
+   # ============================================================================
    def setCurrentSubGeom(self, entSelClass):
       """
       Setta la sottogeometria corrente
@@ -493,9 +493,9 @@ class QadDISJOINCommandClass(QadCommandClass):
       return True
 
 
-   #============================================================================
+   # ============================================================================
    # disjoinCurrentSubGeomToPolygon
-   #============================================================================
+   # ============================================================================
    def disjoinCurrentSubGeomToPolygon(self):
       """
       Sconnette la sotto-geometria corrente del poligono da modificare creando una nuova entità
@@ -566,9 +566,9 @@ class QadDISJOINCommandClass(QadCommandClass):
       return True
 
 
-   #============================================================================
+   # ============================================================================
    # waitForEntsel
-   #============================================================================
+   # ============================================================================
    def waitForEntsel(self, msgMapTool, msg):
       if self.entSelClass is not None:
          del self.entSelClass
@@ -592,7 +592,7 @@ class QadDISJOINCommandClass(QadCommandClass):
          self.waitForEntsel(msgMapTool, msg) # seleziona l'oggetto da disgregare
          return False # continua
       
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA SELEZIONE ENTITA' DA MODIFICARE
       elif self.step == 1:
          if self.entSelClass.run(msgMapTool, msg) == True:

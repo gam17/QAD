@@ -138,9 +138,9 @@ class QadPEDITCommandClass(QadCommandClass):
          return self.contextualMenu
 
 
-   #============================================================================
+   # ============================================================================
    # setEntityInfo
-   #============================================================================
+   # ============================================================================
    def setEntityInfo(self, layer, featureId, point):
       """
       Setta self.entity, self.atSubGeom, self.polyline
@@ -173,9 +173,9 @@ class QadPEDITCommandClass(QadCommandClass):
       return True
          
 
-   #============================================================================
+   # ============================================================================
    # getNextVertex
-   #============================================================================
+   # ============================================================================
    def getNextVertex(self, vertexAt):
       """
       Ritorna la posizione del vertice successivo rispetto vertexAt
@@ -189,9 +189,9 @@ class QadPEDITCommandClass(QadCommandClass):
          return vertexAt
 
 
-   #============================================================================
+   # ============================================================================
    # getPrevVertex
-   #============================================================================
+   # ============================================================================
    def getPrevVertex(self, vertexAt):
       """
       Ritorna la posizione del vertice precedente rispetto vertexAt
@@ -205,9 +205,9 @@ class QadPEDITCommandClass(QadCommandClass):
          return vertexAt - 1
 
 
-   #============================================================================
+   # ============================================================================
    # displayVertexMarker
-   #============================================================================
+   # ============================================================================
    def displayVertexMarker(self, vertexAt):
       if vertexAt == self.polyline.qty():
          pt = self.polyline.getLinearObjectAt(-1).getEndPt()
@@ -220,9 +220,9 @@ class QadPEDITCommandClass(QadCommandClass):
       self.snapPointsDisplayManager.show(snapPoint)
          
 
-   #============================================================================
+   # ============================================================================
    # setClose
-   #============================================================================
+   # ============================================================================
    def setClose(self, toClose):
       if self.entity.isInitialized(): # selezionato solo un oggetto
          qadGeom = self.entity.getQadGeom()
@@ -294,9 +294,9 @@ class QadPEDITCommandClass(QadCommandClass):
       self.nOperationsToUndo = self.nOperationsToUndo + 1
       
 
-   #============================================================================
+   # ============================================================================
    # reverse
-   #============================================================================
+   # ============================================================================
    def reverse(self):
       if self.entity.isInitialized(): # selezionato solo un oggetto
          g = self.entity.getQadGeom()
@@ -336,9 +336,9 @@ class QadPEDITCommandClass(QadCommandClass):
       self.nOperationsToUndo = self.nOperationsToUndo + 1
       
 
-   #============================================================================
+   # ============================================================================
    # join
-   #============================================================================
+   # ============================================================================
    def join(self):
       tolerance2ApproxCurve = QadVariables.get(QadMsg.translate("Environment variables", "TOLERANCE2APPROXCURVE"))
       crs = qgis.utils.iface.mapCanvas().mapSettings().destinationCrs()
@@ -495,9 +495,9 @@ class QadPEDITCommandClass(QadCommandClass):
       self.nOperationsToUndo = self.nOperationsToUndo + 1
 
 
-   #============================================================================
+   # ============================================================================
    # curve
-   #============================================================================
+   # ============================================================================
    def curve(self, toCurve):
       if self.entity.isInitialized(): # selezionato solo un oggetto
          g = self.entity.getQadGeom()
@@ -537,9 +537,9 @@ class QadPEDITCommandClass(QadCommandClass):
       self.nOperationsToUndo = self.nOperationsToUndo + 1
 
 
-   #============================================================================
+   # ============================================================================
    # simplify
-   #============================================================================
+   # ============================================================================
    def simplify(self):
       if self.entity.isInitialized(): # selezionato solo un oggetto
          self.plugIn.beginEditCommand("Feature edited", self.entity.layer)
@@ -577,9 +577,9 @@ class QadPEDITCommandClass(QadCommandClass):
       self.nOperationsToUndo = self.nOperationsToUndo + 1
 
 
-   #============================================================================
+   # ============================================================================
    # insertVertexAt
-   #============================================================================
+   # ============================================================================
    def insertVertexAt(self, pt):         
       layer = self.entity.layer
 
@@ -611,9 +611,9 @@ class QadPEDITCommandClass(QadCommandClass):
       self.nOperationsToUndo = self.nOperationsToUndo + 1
 
 
-   #============================================================================
+   # ============================================================================
    # moveVertexAt
-   #============================================================================
+   # ============================================================================
    def moveVertexAt(self, pt):         
       layer = self.entity.layer
 
@@ -635,9 +635,9 @@ class QadPEDITCommandClass(QadCommandClass):
       self.nOperationsToUndo = self.nOperationsToUndo + 1
 
 
-   #============================================================================
+   # ============================================================================
    # straightenFromVertexAtToSecondVertexAt
-   #============================================================================
+   # ============================================================================
    def straightenFromVertexAtToSecondVertexAt(self):
       if self.vertexAt == self.secondVertexAt:
          return
@@ -683,9 +683,9 @@ class QadPEDITCommandClass(QadCommandClass):
       self.nOperationsToUndo = self.nOperationsToUndo + 1
 
 
-   #============================================================================
+   # ============================================================================
    # breakFromVertexAtToSecondVertexAt
-   #============================================================================
+   # ============================================================================
    def breakFromVertexAtToSecondVertexAt(self):
       layer = self.entity.layer
 
@@ -720,9 +720,9 @@ class QadPEDITCommandClass(QadCommandClass):
       self.nOperationsToUndo = self.nOperationsToUndo + 1
 
 
-   #============================================================================
+   # ============================================================================
    # waitForEntsel
-   #============================================================================
+   # ============================================================================
    def waitForEntsel(self):      
       # imposto il map tool
       self.step = 1
@@ -742,9 +742,9 @@ class QadPEDITCommandClass(QadCommandClass):
                    keyWords, QadInputModeEnum.NOT_NULL)      
       
 
-   #============================================================================
+   # ============================================================================
    # WaitForMainMenu
-   #============================================================================
+   # ============================================================================
    def WaitForMainMenu(self):
       # verifico se ci sono layer di tipo linea
       line = False
@@ -803,9 +803,9 @@ class QadPEDITCommandClass(QadCommandClass):
       return False
       
 
-   #============================================================================
+   # ============================================================================
    # WaitForJoin
-   #============================================================================
+   # ============================================================================
    def WaitForJoin(self):
       CurrSettingsMsg = QadMsg.translate("QAD", "\nCurrent settings: ")
       CurrSettingsMsg = CurrSettingsMsg + QadMsg.translate("Command_PEDIT", "Join type = ")
@@ -820,9 +820,9 @@ class QadPEDITCommandClass(QadCommandClass):
       self.waitForDistance()       
         
 
-   #============================================================================
+   # ============================================================================
    # waitForDistance
-   #============================================================================
+   # ============================================================================
    def waitForDistance(self):      
       # imposto il map tool
       self.getPointMapTool().setMode(Qad_pedit_maptool_ModeEnum.ASK_FOR_FIRST_TOLERANCE_PT)
@@ -842,9 +842,9 @@ class QadPEDITCommandClass(QadCommandClass):
       self.step = 4      
       
         
-   #============================================================================
+   # ============================================================================
    # waitForJoinType
-   #============================================================================
+   # ============================================================================
    def waitForJoinType(self):      
       # imposto il map tool
       self.getPointMapTool().setMode(Qad_pedit_maptool_ModeEnum.NONE)
@@ -869,9 +869,9 @@ class QadPEDITCommandClass(QadCommandClass):
       self.step = 6
 
 
-   #============================================================================
+   # ============================================================================
    # WaitForVertexEditingMenu
-   #============================================================================
+   # ============================================================================
    def WaitForVertexEditingMenu(self):
       self.getPointMapTool().setPolyline(self.polyline, self.entity.layer)
       
@@ -908,9 +908,9 @@ class QadPEDITCommandClass(QadCommandClass):
       return False
 
 
-   #============================================================================
+   # ============================================================================
    # waitForNewVertex
-   #============================================================================
+   # ============================================================================
    def waitForNewVertex(self):      
       # imposto il map tool
       self.getPointMapTool().setVertexAt(self.vertexAt, self.after)
@@ -921,9 +921,9 @@ class QadPEDITCommandClass(QadCommandClass):
       self.step = 9   
 
 
-   #============================================================================
+   # ============================================================================
    # waitForMoveVertex
-   #============================================================================
+   # ============================================================================
    def waitForMoveVertex(self):      
       # imposto il map tool
       self.getPointMapTool().setVertexAt(self.vertexAt)            
@@ -934,9 +934,9 @@ class QadPEDITCommandClass(QadCommandClass):
       self.step = 10   
 
 
-   #============================================================================
+   # ============================================================================
    # WaitForVertexEditingMenu
-   #============================================================================
+   # ============================================================================
    def WaitForSecondVertex(self):
       self.displayVertexMarker(self.secondVertexAt)
       
@@ -961,9 +961,9 @@ class QadPEDITCommandClass(QadCommandClass):
       return False
 
 
-   #============================================================================
+   # ============================================================================
    # WaitForSimplifyTolerance
-   #============================================================================
+   # ============================================================================
    def WaitForSimplifyTolerance(self, msgMapTool, msg):
       if self.GetDistClass is not None:
          del self.GetDistClass
@@ -988,7 +988,7 @@ class QadPEDITCommandClass(QadCommandClass):
          self.waitForEntsel()
          return False # continua
       
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA SELEZIONE OGGETTI
       elif self.step == 1:
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -1048,7 +1048,7 @@ class QadPEDITCommandClass(QadCommandClass):
          self.waitForEntsel()
          return False 
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA SELEZIONE DI UN GRUPPO OGGETTI
       elif self.step == 2:
          if self.SSGetClass.run(msgMapTool, msg) == True:         
@@ -1061,7 +1061,7 @@ class QadPEDITCommandClass(QadCommandClass):
             self.getPointMapTool().refreshSnapType() # aggiorno lo snapType che può essere variato dal maptool di selezione entità                    
          return False
       
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA DEL MENU PRINCIPALE (da step = 1 e 2)
       elif self.step == 3: # dopo aver atteso una opzione si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -1133,7 +1133,7 @@ class QadPEDITCommandClass(QadCommandClass):
          self.WaitForMainMenu()
          return False      
       
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA DELLA DISTANZA DI APPROSSIMAZIONE (da step = 3)
       elif self.step == 4: # dopo aver atteso un punto o un numero reale si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -1175,7 +1175,7 @@ class QadPEDITCommandClass(QadCommandClass):
          
          return False 
       
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA SECONDO PUNTO PER DISTANZA DI APPROSSIMAZIONE (da step = 4)
       elif self.step == 5: # dopo aver atteso un punto o un numero reale si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -1209,7 +1209,7 @@ class QadPEDITCommandClass(QadCommandClass):
 
          return False
       
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA DELLA MODALITA' DI UNIONE (da step = 4)
       elif self.step == 6: # dopo aver atteso un punto o un numero reale si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -1242,7 +1242,7 @@ class QadPEDITCommandClass(QadCommandClass):
          self.WaitForJoin()
          return False
       
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA SELEZIONE DI UN GRUPPO OGGETTI DA UNIRE (da step = 3)
       elif self.step == 7:
          if self.SSGetClass.run(msgMapTool, msg) == True:         
@@ -1257,7 +1257,7 @@ class QadPEDITCommandClass(QadCommandClass):
             self.WaitForMainMenu()
          return False
       
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA DI OPZIONI EDITAZIONE VERTICI (da step = 3)
       elif self.step == 8: # dopo aver atteso un punto o una opzione si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -1322,7 +1322,7 @@ class QadPEDITCommandClass(QadCommandClass):
          return False 
 
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA DEL NUOVO VERTICE DA INSERIRE (da step = 8)
       elif self.step == 9: # dopo aver atteso un punto o un numero reale si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -1348,7 +1348,7 @@ class QadPEDITCommandClass(QadCommandClass):
          return False
 
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA DELLA POSIZIONE DEL VERTICE DA SPOSTARE (da step = 8)
       elif self.step == 10: # dopo aver atteso un punto o un numero reale si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -1373,7 +1373,7 @@ class QadPEDITCommandClass(QadCommandClass):
          return False
 
       
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA DEL SECONDO VERTICE (da step = 8)
       elif self.step == 11: # dopo aver atteso un punto o una opzione si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -1427,7 +1427,7 @@ class QadPEDITCommandClass(QadCommandClass):
                                  
          return False 
       
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA DELLA TOLLERANZE PER SEMPLIFICAZIONE (da step = 3)
       elif self.step == 12:
          if self.GetDistClass.run(msgMapTool, msg) == True:
@@ -1440,9 +1440,9 @@ class QadPEDITCommandClass(QadCommandClass):
          return False # fine comando
 
 
-#============================================================================
+# ============================================================================
 # Classe che gestisce il comando per inserire/cancellare un vertice per i grip
-#============================================================================
+# ============================================================================
 class QadGRIPINSERTREMOVEVERTEXCommandClass(QadCommandClass):
 
    def instantiateNewCmd(self):
@@ -1489,9 +1489,9 @@ class QadGRIPINSERTREMOVEVERTEXCommandClass(QadCommandClass):
       self.insert_mode = False
       
       
-   #============================================================================
+   # ============================================================================
    # setSelectedEntityGripPoints
-   #============================================================================
+   # ============================================================================
    def setSelectedEntityGripPoints(self, entitySetGripPoints):
       # lista delle entityGripPoint con dei grip point selezionati
       # setta la prima entità con un grip selezionato
@@ -1537,9 +1537,9 @@ class QadGRIPINSERTREMOVEVERTEXCommandClass(QadCommandClass):
       return False
 
 
-   #============================================================================
+   # ============================================================================
    # insertVertexAt
-   #============================================================================
+   # ============================================================================
    def insertVertexAt(self, pt):
       layer = self.entity.layer
       f = self.entity.getFeature()
@@ -1584,9 +1584,9 @@ class QadGRIPINSERTREMOVEVERTEXCommandClass(QadCommandClass):
       self.nOperationsToUndo = self.nOperationsToUndo + 1
 
 
-   #============================================================================
+   # ============================================================================
    # removeVertexAt
-   #============================================================================
+   # ============================================================================
    def removeVertexAt(self):
       if self.polyline.qty() == 1: return False # non si può cancellare l'unica parte della geometria
       
@@ -1623,9 +1623,9 @@ class QadGRIPINSERTREMOVEVERTEXCommandClass(QadCommandClass):
       self.plugIn.endEditCommand()
 
 
-   #============================================================================
+   # ============================================================================
    # waitForBasePt
-   #============================================================================
+   # ============================================================================
    def waitForBasePt(self):
       self.step = 2   
       # imposto il map tool
@@ -1635,9 +1635,9 @@ class QadGRIPINSERTREMOVEVERTEXCommandClass(QadCommandClass):
       self.waitForPoint(QadMsg.translate("Command_GRIP", "Specify base point: "))
 
 
-   #============================================================================
+   # ============================================================================
    # waitForNewVertex
-   #============================================================================
+   # ============================================================================
    def waitForNewVertex(self):
       # imposto il map tool
       self.getPointMapTool().setVertexAt(self.vertexAt, self.after)
@@ -1663,15 +1663,15 @@ class QadGRIPINSERTREMOVEVERTEXCommandClass(QadCommandClass):
       self.step = 1
 
 
-   #============================================================================
+   # ============================================================================
    # run
-   #============================================================================
+   # ============================================================================
    def run(self, msgMapTool = False, msg = None):
       if self.plugIn.canvas.mapSettings().destinationCrs().isGeographic():
          self.showMsg(QadMsg.translate("QAD", "\nThe coordinate reference system of the project must be a projected coordinate system.\n"))
          return True # fine comando
      
-      #=========================================================================
+      # =========================================================================
       # RICHIESTA SELEZIONE OGGETTI
       if self.step == 0: # inizio del comando
          if self.entity is None: # non ci sono oggetti da stirare
@@ -1688,7 +1688,7 @@ class QadGRIPINSERTREMOVEVERTEXCommandClass(QadCommandClass):
          
          return False
       
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA DEL NUOVO VERTICE DA INSERIRE (da step = 1)
       elif self.step == 1:
          ctrlKey = False
@@ -1750,7 +1750,7 @@ class QadGRIPINSERTREMOVEVERTEXCommandClass(QadCommandClass):
 
          return False
               
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA PUNTO BASE (da step = 1)
       elif self.step == 2: # dopo aver atteso un punto
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -1781,9 +1781,9 @@ class QadGRIPINSERTREMOVEVERTEXCommandClass(QadCommandClass):
          return False
       
 
-#============================================================================
+# ============================================================================
 # Classe che gestisce il comando per convertire in arco o in linea un segmento per i grip
-#============================================================================
+# ============================================================================
 class QadGRIPARCLINECONVERTCommandClass(QadCommandClass):
 
    def instantiateNewCmd(self):
@@ -1824,9 +1824,9 @@ class QadGRIPARCLINECONVERTCommandClass(QadCommandClass):
       self.lineToArc = False
 
 
-   #============================================================================
+   # ============================================================================
    # setSelectedEntityGripPoints
-   #============================================================================
+   # ============================================================================
    def setSelectedEntityGripPoints(self, entitySetGripPoints):
       # lista delle entityGripPoint con dei grip point selezionati
       # setta la prima entità con un grip selezionato
@@ -1876,9 +1876,9 @@ class QadGRIPARCLINECONVERTCommandClass(QadCommandClass):
       return False
 
 
-   #============================================================================
+   # ============================================================================
    # convertLineToArc
-   #============================================================================
+   # ============================================================================
    def convertLineToArc(self, pt):
       layer = self.entity.layer
       f = self.entity.getFeature()
@@ -1924,9 +1924,9 @@ class QadGRIPARCLINECONVERTCommandClass(QadCommandClass):
       self.nOperationsToUndo = self.nOperationsToUndo + 1
 
 
-   #============================================================================
+   # ============================================================================
    # convertArcToLine
-   #============================================================================
+   # ============================================================================
    def convertArcToLine(self):
       layer = self.entity.layer
       f = self.entity.getFeature()
@@ -1967,9 +1967,9 @@ class QadGRIPARCLINECONVERTCommandClass(QadCommandClass):
       self.nOperationsToUndo = self.nOperationsToUndo + 1
 
 
-   #============================================================================
+   # ============================================================================
    # waitForConvertToArc
-   #============================================================================
+   # ============================================================================
    def waitForConvertToArc(self):
       # imposto il map tool
       self.getPointMapTool().setMode(Qad_gripLineToArcConvert_maptool_ModeEnum.START_END_PT_KNOWN_ASK_FOR_SECOND_PT)
@@ -1991,15 +1991,15 @@ class QadGRIPARCLINECONVERTCommandClass(QadCommandClass):
       self.step = 1
 
 
-   #============================================================================
+   # ============================================================================
    # run
-   #============================================================================
+   # ============================================================================
    def run(self, msgMapTool = False, msg = None):
       if self.plugIn.canvas.mapSettings().destinationCrs().isGeographic():
          self.showMsg(QadMsg.translate("QAD", "\nThe coordinate reference system of the project must be a projected coordinate system.\n"))
          return True # fine comando
      
-      #=========================================================================
+      # =========================================================================
       # RICHIESTA SELEZIONE OGGETTI
       if self.step == 0: # inizio del comando
          if self.entity is None: # non ci sono oggetti da stirare
@@ -2016,7 +2016,7 @@ class QadGRIPARCLINECONVERTCommandClass(QadCommandClass):
          
          return False
       
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA DEL NUOVO PUNTO PER DEFINIRE UN ARCO (da step = 1)
       elif self.step == 1:
          ctrlKey = False

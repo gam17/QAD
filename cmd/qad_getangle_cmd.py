@@ -35,9 +35,9 @@ from ..qad_getpoint import QadGetPointDrawModeEnum
 from .. import qad_utils
 
 
-#===============================================================================
+# ===============================================================================
 # QadGetAngleClass
-#===============================================================================
+# ===============================================================================
 class QadGetAngleClass(QadCommandClass):
 
    def instantiateNewCmd(self):
@@ -59,7 +59,7 @@ class QadGetAngleClass(QadCommandClass):
          self.showMsg(QadMsg.translate("QAD", "\nThe coordinate reference system of the project must be a projected coordinate system.\n"))
          return True # fine comando
 
-      #=========================================================================
+      # =========================================================================
       # RICHIESTA PUNTO o ENTITA'
       if self.step == 0: # inizio del comando
          if self.startPt is not None:
@@ -77,7 +77,7 @@ class QadGetAngleClass(QadCommandClass):
          self.step = 1
          return False
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA PUNTO O NUMERO REALE
       elif self.step == 1: # dopo aver atteso un punto si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -121,7 +121,7 @@ class QadGetAngleClass(QadCommandClass):
 
          return False
          
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA SECONDO PUNTO DELLA ANGOLO (da step = 1)
       elif self.step == 2: # dopo aver atteso un punto si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica

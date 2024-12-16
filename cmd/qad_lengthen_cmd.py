@@ -146,9 +146,9 @@ class QadLENGTHENCommandClass(QadCommandClass):
       return True
    
 
-   #============================================================================
+   # ============================================================================
    # lengthen
-   #============================================================================
+   # ============================================================================
    def lengthen(self, point):
       layer = self.entity.layer
       f = self.entity.getFeature()
@@ -449,22 +449,22 @@ class QadLENGTHENCommandClass(QadCommandClass):
                    "", QadInputModeEnum.NONE)
 
 
-   #============================================================================
+   # ============================================================================
    # run
-   #============================================================================
+   # ============================================================================
    def run(self, msgMapTool = False, msg = None):
       if self.plugIn.canvas.mapSettings().destinationCrs().isGeographic():
          self.showMsg(QadMsg.translate("QAD", "\nThe coordinate reference system of the project must be a projected coordinate system.\n"))
          return True # fine comando
 
-      #=========================================================================
+      # =========================================================================
       # RICHIESTA SELEZIONE OGGETTO
       if self.step == 0: # inizio del comando
          # si appresta ad attendere la selezione degli oggetti da estendere/tagliare
          self.waitForObjectSelToMisure()
          return False
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA SELEZIONE OGGETTI DA MISURARE
       elif self.step == 1:
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -529,7 +529,7 @@ class QadLENGTHENCommandClass(QadCommandClass):
          return False
 
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA DEL DELTA (da step = 1)
       elif self.step == 2: # dopo aver atteso un punto o un numero reale si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -564,7 +564,7 @@ class QadLENGTHENCommandClass(QadCommandClass):
          return False 
 
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA DELLA LUNGHEZZA DEL DELTA (da step = 2)
       elif self.step == 3: # dopo aver atteso un punto o un numero reale si riavvia il comando
          if self.GetDistClass.run(msgMapTool, msg) == True:
@@ -575,7 +575,7 @@ class QadLENGTHENCommandClass(QadCommandClass):
                self.waitForObjectSel()
                
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA DELL'ANGOLO DEL DELTA (da step = 2)
       elif self.step == 4: # dopo aver atteso un punto o un numero reale si riavvia il comando
          if self.GetAngleClass.run(msgMapTool, msg) == True:
@@ -586,7 +586,7 @@ class QadLENGTHENCommandClass(QadCommandClass):
                self.waitForObjectSel()
 
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA SELEZIONE OGGETTI DA ALLUNGARE
       elif self.step == 5:
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -651,7 +651,7 @@ class QadLENGTHENCommandClass(QadCommandClass):
                            
          return False 
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA PERCENTUALE (da step = 1)
       elif self.step == 6: # dopo aver atteso un numero reale si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -679,7 +679,7 @@ class QadLENGTHENCommandClass(QadCommandClass):
          return False
 
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA DEL TOTALE (da step = 1)
       elif self.step == 7: # dopo aver atteso un punto o un numero reale si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -714,7 +714,7 @@ class QadLENGTHENCommandClass(QadCommandClass):
          return False 
 
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA DELLA LUNGHEZZA DEL TOTALE (da step = 7)
       elif self.step == 8: # dopo aver atteso un punto o un numero reale si riavvia il comando
          if self.GetDistClass.run(msgMapTool, msg) == True:
@@ -726,7 +726,7 @@ class QadLENGTHENCommandClass(QadCommandClass):
                return False
             
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA DELL'ANGOLO DEL DELTA (da step = 7)
       elif self.step == 9: # dopo aver atteso un punto o un numero reale si riavvia il comando
          if self.GetAngleClass.run(msgMapTool, msg) == True:
@@ -738,7 +738,7 @@ class QadLENGTHENCommandClass(QadCommandClass):
                return False
 
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA DELLA NUOVA ESTREMITA' IN MODO DINAMICO (da step = 5)
       elif self.step == 10: # dopo aver atteso un punto
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -765,9 +765,9 @@ class QadLENGTHENCommandClass(QadCommandClass):
 
 
 
-#============================================================================
+# ============================================================================
 # Classe che gestisce il comando LENGTHEN per i grip
-#============================================================================
+# ============================================================================
 class QadGRIPLENGTHENCommandClass(QadCommandClass):
 
    def instantiateNewCmd(self):
@@ -800,9 +800,9 @@ class QadGRIPLENGTHENCommandClass(QadCommandClass):
          return None
 
 
-   #============================================================================
+   # ============================================================================
    # setSelectedEntityGripPoints
-   #============================================================================
+   # ============================================================================
    def setSelectedEntityGripPoints(self, entitySetGripPoints):
       # lista delle entityGripPoint con dei grip point selezionati
       # setta la prima entità con un grip selezionato
@@ -856,9 +856,9 @@ class QadGRIPLENGTHENCommandClass(QadCommandClass):
       return False
 
 
-   #============================================================================
+   # ============================================================================
    # lengthen
-   #============================================================================
+   # ============================================================================
    def lengthen(self, point):
       layer = self.entity.layer
       f = self.entity.getFeature()
@@ -946,21 +946,21 @@ class QadGRIPLENGTHENCommandClass(QadCommandClass):
       self.getPointMapTool().setMode(Qad_lengthen_maptool_ModeEnum.ASK_FOR_DYNAMIC_POINT)
 
 
-   #============================================================================
+   # ============================================================================
    # run
-   #============================================================================
+   # ============================================================================
    def run(self, msgMapTool = False, msg = None):
       if self.plugIn.canvas.mapSettings().destinationCrs().isGeographic():
          self.showMsg(QadMsg.translate("QAD", "\nThe coordinate reference system of the project must be a projected coordinate system.\n"))
          return True # fine comando
 
-      #=========================================================================
+      # =========================================================================
       # RICHIESTA SELEZIONE OGGETTO
       if self.step == 0: # inizio del comando
          self.waitForDynamicPt()
          return False
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA SELEZIONE OGGETTI DA MISURARE
       elif self.step == 1:
          ctrlKey = False

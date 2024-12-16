@@ -195,7 +195,7 @@ class QadMBUFFERCommandClass(QadCommandClass):
             self.showErr(errMsg.format(dimStyleNames))
             return True # fine comando
             
-      #=========================================================================
+      # =========================================================================
       # RICHIESTA SELEZIONE OGGETTI
       if self.step == 0: # inizio del comando
          if self.SSGetClass.run(msgMapTool, msg) == True:
@@ -204,7 +204,7 @@ class QadMBUFFERCommandClass(QadCommandClass):
             self.getPointMapTool().refreshSnapType() # aggiorno lo snapType che può  essere variato dal maptool di selezione entità                     
             return self.run(msgMapTool, msg)
       
-      #=========================================================================
+      # =========================================================================
       # BUFFER OGGETTI
       elif self.step == 1:
          self.entitySet.set(self.SSGetClass.entitySet)
@@ -228,7 +228,7 @@ class QadMBUFFERCommandClass(QadCommandClass):
          self.step = 2     
          return False
          
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA LARGHEZZA (da step = 1)
       elif self.step == 2: # dopo aver atteso un punto o un numero reale si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -269,7 +269,7 @@ class QadMBUFFERCommandClass(QadCommandClass):
 
             return True # fine comando
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA SECONDO PUNTO DELLA LARGHEZZA BUFFER (da step = 2)
       elif self.step == 3: # dopo aver atteso un punto si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica

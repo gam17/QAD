@@ -106,7 +106,7 @@ class QadCIRCLECommandClass(QadCommandClass):
             return True # fine comando
          self.getPointMapTool().layer = currLayer
 
-      #=========================================================================
+      # =========================================================================
       # RICHIESTA PRIMO PUNTO o CENTRO
       if self.step == 0: # inizio del comando
          # imposto il map tool
@@ -128,7 +128,7 @@ class QadCIRCLECommandClass(QadCommandClass):
          self.step = 1
          return False
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA CENTRO
       elif self.step == 1: # dopo aver atteso un punto o enter o una parola chiave si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -199,7 +199,7 @@ class QadCIRCLECommandClass(QadCommandClass):
          
          return False
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA RAGGIO O DIAMETRO O AREA
       elif self.step == 2: # dopo aver atteso un punto o una parola chiave si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -270,7 +270,7 @@ class QadCIRCLECommandClass(QadCommandClass):
             self.isValidPreviousInput = False # per gestire il comando anche in macro                       
          return False
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA DIAMETRO DEL CERCHIO (da step = 2)
       elif self.step == 3: # dopo aver atteso un punto o un numero reale si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -314,7 +314,7 @@ class QadCIRCLECommandClass(QadCommandClass):
          self.isValidPreviousInput = False # per gestire il comando anche in macro     
          return False
       
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA DEL PRIMO PUNTO DEL CERCHIO (da step = 1)
       elif self.step == 4: # dopo aver atteso un punto si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -370,7 +370,7 @@ class QadCIRCLECommandClass(QadCommandClass):
          self.step = 5
          return False
       
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA DEL SECONDO PUNTO DEL CERCHIO (da step = 4)
       elif self.step == 5:  # dopo aver atteso un punto si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -425,7 +425,7 @@ class QadCIRCLECommandClass(QadCommandClass):
          self.step = 6
          return False
       
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA DEL TERZO PUNTO DEL CERCHIO (da step = 5)
       elif self.step == 6:  # dopo aver atteso un punto si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -516,7 +516,7 @@ class QadCIRCLECommandClass(QadCommandClass):
          self.isValidPreviousInput = False # per gestire il comando anche in macro     
          return False
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA DELLA PRIMA ESTREMITA' DIAM DEL CERCHIO (da step = 1)
       elif self.step == 7:  # dopo aver atteso un punto si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -559,7 +559,7 @@ class QadCIRCLECommandClass(QadCommandClass):
          self.step = 8
          return False
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA DELLA SECONDA ESTREMITA' DIAM DEL CERCHIO (da step = 7)
       elif self.step == 8:  # dopo aver atteso un punto si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -620,7 +620,7 @@ class QadCIRCLECommandClass(QadCommandClass):
          return False
 
                  
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA PRIMA TANGENTE (da step = 1)
       elif self.step == 9: # dopo aver atteso un punto si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -672,7 +672,7 @@ class QadCIRCLECommandClass(QadCommandClass):
          self.step = 10
          return False
          
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA SECONDA TANGENTE (da step = 9)
       elif self.step == 10: # dopo aver atteso un punto si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -729,7 +729,7 @@ class QadCIRCLECommandClass(QadCommandClass):
          self.step = 11
          return False
       
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA RAGGIO (da step = 10)
       elif self.step == 11: # dopo aver atteso un punto o un numero reale si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -778,7 +778,7 @@ class QadCIRCLECommandClass(QadCommandClass):
                   
             return True # fine comando
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA SECONDO PUNTO DEL RAGGIO (da step = 11)
       elif self.step == 12: # dopo aver atteso un punto si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -815,7 +815,7 @@ class QadCIRCLECommandClass(QadCommandClass):
             self.showMsg(QadMsg.translate("Command_CIRCLE", "\nThe circle doesn't exist."))
          return True # fine comando
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA AREA DEL CERCHIO (da step = 2)
       elif self.step == 13: # dopo aver atteso un numero si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica

@@ -33,9 +33,9 @@ from ..qad_rubberband import QadRubberBand
 from ..qad_msg import QadMsg
 
 
-#===============================================================================
+# ===============================================================================
 # Qad_polygon_maptool_ModeEnum class.
-#===============================================================================
+# ===============================================================================
 class Qad_polygon_maptool_ModeEnum():
    # si richiede il centro
    ASK_FOR_CENTER_PT = 1     
@@ -46,9 +46,9 @@ class Qad_polygon_maptool_ModeEnum():
    # si richiede il secondo punto dello spigolo
    FIRST_EDGE_PT_KNOWN_ASK_FOR_SECOND_EDGE_PT = 4
 
-#===============================================================================
+# ===============================================================================
 # Qad_polygon_maptool class
-#===============================================================================
+# ===============================================================================
 class Qad_polygon_maptool(QadGetPoint):
     
    def __init__(self, plugIn):

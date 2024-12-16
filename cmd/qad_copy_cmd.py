@@ -102,9 +102,9 @@ class QadCOPYCommandClass(QadCommandClass):
          return self.contextualMenu
 
 
-   #============================================================================
+   # ============================================================================
    # move
-   #============================================================================
+   # ============================================================================
    def move(self, entity, offsetX, offsetY, openForm = True):
       # verifico se l'entità appartiene ad uno stile di quotatura
       if entity.whatIs() == "ENTITY":
@@ -126,9 +126,9 @@ class QadCOPYCommandClass(QadCommandClass):
       return True
 
 
-   #============================================================================
+   # ============================================================================
    # copyGeoms
-   #============================================================================
+   # ============================================================================
    def copyGeoms(self, newPt):
       offsetX = newPt.x() - self.basePt.x()
       offsetY = newPt.y() - self.basePt.y()
@@ -171,9 +171,9 @@ class QadCOPYCommandClass(QadCommandClass):
       self.nOperationsToUndo = self.nOperationsToUndo + 1
 
 
-   #============================================================================
+   # ============================================================================
    # waitForBasePt
-   #============================================================================
+   # ============================================================================
    def waitForBasePt(self):
       # imposto il map tool
       self.getPointMapTool().setMode(Qad_copy_maptool_ModeEnum.NONE_KNOWN_ASK_FOR_BASE_PT)                                
@@ -204,9 +204,9 @@ class QadCOPYCommandClass(QadCommandClass):
                    keyWords, QadInputModeEnum.NONE)      
       self.step = 2      
    
-   #============================================================================
+   # ============================================================================
    # waitForSeries
-   #============================================================================
+   # ============================================================================
    def waitForSeries(self):
       # si appresta ad attendere un numero intero
       msg = QadMsg.translate("Command_COPY", "Number of Items to Array <{0}>: ")
@@ -218,9 +218,9 @@ class QadCOPYCommandClass(QadCommandClass):
                    QadInputModeEnum.NOT_ZERO | QadInputModeEnum.NOT_NEGATIVE)                                      
       self.step = 6        
       
-   #============================================================================
+   # ============================================================================
    # waitForSecondPt
-   #============================================================================
+   # ============================================================================
    def waitForSecondPt(self):
       self.series = False
       self.adjust = False
@@ -257,9 +257,9 @@ class QadCOPYCommandClass(QadCommandClass):
             
       self.step = 3           
 
-   #============================================================================
+   # ============================================================================
    # waitForSecondPtBySeries
-   #============================================================================
+   # ============================================================================
    def waitForSecondPtBySeries(self):
       if self.adjust == False:
          keyWords = QadMsg.translate("Command_COPY", "Fit")
@@ -278,15 +278,15 @@ class QadCOPYCommandClass(QadCommandClass):
                    keyWords, QadInputModeEnum.NOT_NULL)      
       self.step = 7
 
-   #============================================================================
+   # ============================================================================
    # run
-   #============================================================================
+   # ============================================================================
    def run(self, msgMapTool = False, msg = None):
       if self.plugIn.canvas.mapSettings().destinationCrs().isGeographic():
          self.showMsg(QadMsg.translate("QAD", "\nThe coordinate reference system of the project must be a projected coordinate system.\n"))
          return True # fine comando
             
-      #=========================================================================
+      # =========================================================================
       # RICHIESTA SELEZIONE OGGETTI
       if self.step == 0: # inizio del comando
          if self.SSGetClass.run(msgMapTool, msg) == True:
@@ -294,7 +294,7 @@ class QadCOPYCommandClass(QadCommandClass):
             self.step = 1
             return self.run(msgMapTool, msg)
       
-      #=========================================================================
+      # =========================================================================
       # COPIA OGGETTI
       elif self.step == 1:
          if self.SSGetClass.entitySet.count() == 0:
@@ -313,7 +313,7 @@ class QadCOPYCommandClass(QadCommandClass):
          self.getPointMapTool().refreshSnapType() # riagggiorno lo snapType che può essere variato dal maptool di selezione entità                    
          return False
          
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA PUNTO BASE (da step = 1)
       elif self.step == 2: # dopo aver atteso un punto o un numero reale si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -382,7 +382,7 @@ class QadCOPYCommandClass(QadCommandClass):
          
          return False 
          
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA SECONDO PUNTO PER COPIA (da step = 2)
       elif self.step == 3: # dopo aver atteso un punto o un numero reale si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -434,7 +434,7 @@ class QadCOPYCommandClass(QadCommandClass):
          
          return False
                
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA DEL PUNTO DI SPOSTAMENTO (da step = 2)
       elif self.step == 4: # dopo aver atteso un punto o un numero reale si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -458,7 +458,7 @@ class QadCOPYCommandClass(QadCommandClass):
          return True # fine comando
 
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA DELLA MODALITA' (SINGOLA / MULTIPLA) (da step = 2)
       elif self.step == 5: # dopo aver atteso un punto o un numero reale si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -491,7 +491,7 @@ class QadCOPYCommandClass(QadCommandClass):
          self.waitForBasePt()
          return False
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA DELLA SERIE (da step = 3)
       elif self.step == 6: # dopo aver atteso un numero intero si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -514,7 +514,7 @@ class QadCOPYCommandClass(QadCommandClass):
             
          return False
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA SECONDO PUNTO PER COPIA DA SERIE (da step = 6)
       elif self.step == 7: # dopo aver atteso un punto o una parola chiave
          if msgMapTool == True: # il punto arriva da una selezione grafica

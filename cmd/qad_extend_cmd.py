@@ -102,9 +102,9 @@ class QadEXTENDCommandClass(QadCommandClass):
          return self.contextualMenu
 
 
-   #============================================================================
+   # ============================================================================
    # extendFeatures
-   #============================================================================
+   # ============================================================================
    def extendFeatures(self, geom, toExtend):
       # geom è in map coordinates
       LineTempLayer = None
@@ -215,9 +215,9 @@ class QadEXTENDCommandClass(QadCommandClass):
       self.nOperationsToUndo = self.nOperationsToUndo + 1
                                                       
       
-   #============================================================================
+   # ============================================================================
    # waitForObjectSel
-   #============================================================================
+   # ============================================================================
    def waitForObjectSel(self):      
       self.step = 2      
       # imposto il map tool
@@ -249,15 +249,15 @@ class QadEXTENDCommandClass(QadCommandClass):
                    keyWords, QadInputModeEnum.NONE)      
 
 
-   #============================================================================
+   # ============================================================================
    # run
-   #============================================================================
+   # ============================================================================
    def run(self, msgMapTool = False, msg = None):
       if self.plugIn.canvas.mapSettings().destinationCrs().isGeographic():
          self.showMsg(QadMsg.translate("QAD", "\nThe coordinate reference system of the project must be a projected coordinate system.\n"))
          return True # fine comando
 
-      #=========================================================================
+      # =========================================================================
       # RICHIESTA SELEZIONE OGGETTI LIMITI
       if self.step == 0: # inizio del comando
          CurrSettingsMsg = QadMsg.translate("QAD", "\nCurrent settings: ")
@@ -274,7 +274,7 @@ class QadEXTENDCommandClass(QadCommandClass):
             self.step = 1
             return self.run(msgMapTool, msg)        
       
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA SELEZIONE OGGETTI LIMITI
       elif self.step == 1:
          self.limitEntitySet.set(self.SSGetClass.entitySet)
@@ -286,7 +286,7 @@ class QadEXTENDCommandClass(QadCommandClass):
          self.waitForObjectSel()
          return False
       
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA SELEZIONE OGGETTI DA ESTENDERE
       elif self.step == 2:
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -385,7 +385,7 @@ class QadEXTENDCommandClass(QadCommandClass):
                                           
          return False 
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA PUNTO PER MODALITA' INTERCETTA (da step = 2)
       elif self.step == 3: # dopo aver atteso un punto si riavvia il comando
          if self.PLINECommand.run(msgMapTool, msg) == True:
@@ -414,7 +414,7 @@ class QadEXTENDCommandClass(QadCommandClass):
             self.getPointMapTool().refreshSnapType() # aggiorno lo snapType che può essere variato dal maptool di pline                     
          return False
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA PUNTO PER MODALITA' INTERSECA (da step = 2)
       elif self.step == 4: # dopo aver atteso un punto si riavvia il comando
          if self.RECTANGLECommand.run(msgMapTool, msg) == True:            
@@ -443,7 +443,7 @@ class QadEXTENDCommandClass(QadCommandClass):
             self.getPointMapTool().refreshSnapType() # aggiorno lo snapType che può essere variato dal maptool di rectangle                   
          return False
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA DI TIPO DI ESTENSIONE (da step = 2)
       elif self.step == 5: # dopo aver atteso un punto o un numero reale si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica

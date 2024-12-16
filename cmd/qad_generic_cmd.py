@@ -184,9 +184,9 @@ class QadCommandClass(QObject): # derivato da QObject per gestire il metodo send
          text = text + "\n\n" + self.getNote()
       return text
       
-   #============================================================================
+   # ============================================================================
    # funzioni da sovrascrivere con le classi ereditate da questa
-   #============================================================================
+   # ============================================================================
    def getName(self):
       """ impostare il nome del comando in maiuscolo """
       return ""
@@ -650,9 +650,9 @@ class QadOsnapContextualMenuClass(QMenu):
          action.triggered.connect(slot)
 
 
-   #============================================================================
+   # ============================================================================
    # addSnapTypeByPopupMenu
-   #============================================================================
+   # ============================================================================
    def addSnapTypeByPopupMenu(self, _snapType):
       # la funzione deve impostare lo snap ad oggetto solo temporaneamente
       str = snapTypeEnum2Str(_snapType)

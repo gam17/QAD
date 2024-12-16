@@ -31,9 +31,9 @@ from ..qad_entity import QadCacheEntitySetIterator, QadEntityTypeEnum
 from ..qad_multi_geom import fromQadGeomToQgsGeom
 
 
-#===============================================================================
+# ===============================================================================
 # Qad_scale_maptool_ModeEnum class.
-#===============================================================================
+# ===============================================================================
 class Qad_scale_maptool_ModeEnum():
    # noto niente si richiede il punto base
    NONE_KNOWN_ASK_FOR_BASE_PT = 1     
@@ -50,9 +50,9 @@ class Qad_scale_maptool_ModeEnum():
    # noto il primo punto si richiede il secondo punto per la nuova lunghezza
    FIRST_PT_KNOWN_ASK_FOR_SECOND_NEW_LEN_PT = 7     
 
-#===============================================================================
+# ===============================================================================
 # Qad_scale_maptool class
-#===============================================================================
+# ===============================================================================
 class Qad_scale_maptool(QadGetPoint):
     
    def __init__(self, plugIn):
@@ -79,9 +79,9 @@ class Qad_scale_maptool(QadGetPoint):
       self.mode = None    
 
 
-   #============================================================================
+   # ============================================================================
    # scale
-   #============================================================================
+   # ============================================================================
    def scale(self, entity, basePt, scale):
       # verifico se l'entità appartiene ad uno stile di quotatura
       if entity.whatIs() == "ENTITY":
@@ -98,9 +98,9 @@ class Qad_scale_maptool(QadGetPoint):
          self.__highlight.addGeometries(newDimEntity.getSymbolGeometryCollection(), newDimEntity.getSymbolLayer())
 
 
-   #============================================================================
+   # ============================================================================
    # addScaledGeometries
-   #============================================================================
+   # ============================================================================
    def addScaledGeometries(self, scale):
       self.__highlight.reset()
       

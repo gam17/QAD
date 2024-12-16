@@ -31,9 +31,9 @@ from ..qad_entity import QadEntity, QadEntityTypeEnum, QadCacheEntitySetIterator
 from ..qad_multi_geom import fromQadGeomToQgsGeom
 
 
-#===============================================================================
+# ===============================================================================
 # Qad_move_maptool_ModeEnum class.
-#===============================================================================
+# ===============================================================================
 class Qad_move_maptool_ModeEnum():
    # noto niente si richiede il punto base
    NONE_KNOWN_ASK_FOR_BASE_PT = 1     
@@ -41,9 +41,9 @@ class Qad_move_maptool_ModeEnum():
    BASE_PT_KNOWN_ASK_FOR_MOVE_PT = 2     
 
 
-#===============================================================================
+# ===============================================================================
 # Qad_move_maptool class
-#===============================================================================
+# ===============================================================================
 class Qad_move_maptool(QadGetPoint):
     
    def __init__(self, plugIn):
@@ -67,9 +67,9 @@ class Qad_move_maptool(QadGetPoint):
       self.mode = None    
 
    
-   #============================================================================
+   # ============================================================================
    # move
-   #============================================================================
+   # ============================================================================
    def move(self, entity, offsetX, offsetY):
       # verifico se l'entità appartiene ad uno stile di quotatura
       if entity.whatIs() == "ENTITY":

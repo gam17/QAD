@@ -103,9 +103,9 @@ class QadBREAKCommandClass(QadCommandClass):
       self.entSelClass.run(msgMapTool, msg)
 
 
-   #============================================================================
+   # ============================================================================
    # breakFeatures
-   #============================================================================
+   # ============================================================================
    def breakFeatures(self):
       f = self.entSelClass.entity.getFeature()
       if f is None:
@@ -189,7 +189,7 @@ class QadBREAKCommandClass(QadCommandClass):
          self.waitForEntsel(msgMapTool, msg)
          return False # continua
       
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA SELEZIONE DI UN'ENTITA' (da step = 0)
       elif self.step == 1:
          if self.entSelClass.run(msgMapTool, msg) == True:
@@ -220,7 +220,7 @@ class QadBREAKCommandClass(QadCommandClass):
                self.waitForEntsel(msgMapTool, msg)
          return False # continua
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA DEL SECONDO PUNTO DI INTERRUZIONE (da step = 1)
       elif self.step == 2: # dopo aver atteso un punto o una parola chiave si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -251,7 +251,7 @@ class QadBREAKCommandClass(QadCommandClass):
          
          return False 
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA DEL PRIMO PUNTO DI INTERRUZIONE (da step = 2)
       elif self.step == 3: # dopo aver atteso un punto si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -279,7 +279,7 @@ class QadBREAKCommandClass(QadCommandClass):
          
          return False
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA DEL SECONDO PUNTO DI INTERRUZIONE (da step = 3)
       elif self.step == 4: # dopo aver atteso un punto si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica

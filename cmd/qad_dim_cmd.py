@@ -45,14 +45,14 @@ from .. import qad_utils
 from ..qad_multi_geom import getQadGeomAt, getQadGeomPartAt
 from ..qad_geom_relations import getQadGeomClosestPart, QadPerpendicularity, QadIntersections
 
-#============================================================================
+# ============================================================================
 # FUNZIONI GENERICHE - INIZIO
-#============================================================================
+# ============================================================================
 
 
-#============================================================================
+# ============================================================================
 # FUNZIONI GENERICHE - FINE
-#============================================================================
+# ============================================================================
 
 
 # Classe che gestisce il comando DIMLINEAR
@@ -136,18 +136,18 @@ class QadDIMLINEARCommandClass(QadCommandClass):
          return self.contextualMenu
 
    
-   #============================================================================
+   # ============================================================================
    # addDimToLayers
-   #============================================================================
+   # ============================================================================
    def addDimToLayers(self, linePosPt):
       return self.dimStyle.addLinearDimToLayers(self.plugIn, self.dimPt1, self.dimPt2, \
                                                 linePosPt, self.measure, self.preferredAlignment, \
                                                 self.forcedDimLineRot)
    
    
-   #============================================================================
+   # ============================================================================
    # waitForFirstPt
-   #============================================================================
+   # ============================================================================
    def waitForFirstPt(self):
       self.step = 1
       # imposto il map tool
@@ -163,9 +163,9 @@ class QadDIMLINEARCommandClass(QadCommandClass):
                    "", QadInputModeEnum.NONE)
 
    
-   #============================================================================
+   # ============================================================================
    # waitForSecondPt
-   #============================================================================
+   # ============================================================================
    def waitForSecondPt(self):
       self.step = 3
       # imposto il map tool
@@ -175,9 +175,9 @@ class QadDIMLINEARCommandClass(QadCommandClass):
       self.waitForPoint(QadMsg.translate("Command_DIM", "Specify second extension line origin: "))
 
    
-   #============================================================================
+   # ============================================================================
    # waitForEntsel
-   #============================================================================
+   # ============================================================================
    def waitForEntsel(self, msgMapTool, msg):
       if self.entSelClass is not None:
          del self.entSelClass
@@ -192,9 +192,9 @@ class QadDIMLINEARCommandClass(QadCommandClass):
       self.entSelClass.run(msgMapTool, msg)
 
    
-   #============================================================================
+   # ============================================================================
    # waitForDimensionLinePos
-   #============================================================================
+   # ============================================================================
    def waitForDimensionLinePos(self):
       self.step = 4
       # imposto il map tool      
@@ -226,9 +226,9 @@ class QadDIMLINEARCommandClass(QadCommandClass):
                    QadInputModeEnum.NONE)                                      
       
 
-   #============================================================================
+   # ============================================================================
    # run
-   #============================================================================
+   # ============================================================================
    def run(self, msgMapTool = False, msg = None):
       if self.plugIn.canvas.mapSettings().destinationCrs().isGeographic():
          self.showMsg(QadMsg.translate("QAD", "\nThe coordinate reference system of the project must be a projected coordinate system.\n"))
@@ -249,13 +249,13 @@ class QadDIMLINEARCommandClass(QadCommandClass):
          return True # fine comando
 
 
-      #=========================================================================
+      # =========================================================================
       # RICHIESTA SELEZIONE ORIGINE PRIMA LINEA DI ESTENSIONE
       if self.step == 0: # inizio del comando         
          self.waitForFirstPt()
          return False
       
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA ORIGINE PRIMA LINEA DI ESTENSIONE (da step = 0)
       elif self.step == 1:
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -282,7 +282,7 @@ class QadDIMLINEARCommandClass(QadCommandClass):
 
          return False
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA SELEZIONE DI UN'ENTITA' (da step = 1)
       elif self.step == 2:
          if self.entSelClass.run(msgMapTool, msg) == True:
@@ -308,7 +308,7 @@ class QadDIMLINEARCommandClass(QadCommandClass):
          return False # continua
 
          
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA ORIGINE SECONDA LINEA DI ESTENSIONE (da step = 1)
       elif self.step == 3: # dopo aver atteso un punto o un numero reale si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -337,7 +337,7 @@ class QadDIMLINEARCommandClass(QadCommandClass):
          return False 
          
                
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA DELLA POSIZIONE DELLA LINEA DI QUOTA (da step = 2 e 3)
       elif self.step == 4: # dopo aver atteso un punto o un numero reale si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -404,7 +404,7 @@ class QadDIMLINEARCommandClass(QadCommandClass):
          return False
 
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA DEL TESTO (da step = 4)
       elif self.step == 5: # dopo aver atteso una stringa si riavvia il comando
          if type(msg) == unicode:
@@ -417,7 +417,7 @@ class QadDIMLINEARCommandClass(QadCommandClass):
          return False
       
       
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA ROTAZIONE DEL TESTO DI QUOTA (da step = 4)
       elif self.step == 6:
          if self.GetAngleClass.run(msgMapTool, msg) == True:
@@ -429,7 +429,7 @@ class QadDIMLINEARCommandClass(QadCommandClass):
          return False
       
       
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA ROTAZIONE DELLA LINEA DI QUOTA (da step = 4)
       elif self.step == 7:
          if self.GetAngleClass.run(msgMapTool, msg) == True:
@@ -517,17 +517,17 @@ class QadDIMALIGNEDCommandClass(QadCommandClass):
          return self.contextualMenu
 
    
-   #============================================================================
+   # ============================================================================
    # addDimToLayers
-   #============================================================================
+   # ============================================================================
    def addDimToLayers(self, linePosPt):
       return self.dimStyle.addAlignedDimToLayers(self.plugIn, self.dimPt1, self.dimPt2, \
                                                  linePosPt, self.measure)
 
       
-   #============================================================================
+   # ============================================================================
    # waitForFirstPt
-   #============================================================================
+   # ============================================================================
    def waitForFirstPt(self):
       self.step = 1
       # imposto il map tool
@@ -543,9 +543,9 @@ class QadDIMALIGNEDCommandClass(QadCommandClass):
                    "", QadInputModeEnum.NONE)
 
    
-   #============================================================================
+   # ============================================================================
    # waitForSecondPt
-   #============================================================================
+   # ============================================================================
    def waitForSecondPt(self):
       self.step = 3
       # imposto il map tool
@@ -555,9 +555,9 @@ class QadDIMALIGNEDCommandClass(QadCommandClass):
       self.waitForPoint(QadMsg.translate("Command_DIM", "Specify second extension line origin: "))
 
    
-   #============================================================================
+   # ============================================================================
    # waitForEntsel
-   #============================================================================
+   # ============================================================================
    def waitForEntsel(self, msgMapTool, msg):
       if self.entSelClass is not None:
          del self.entSelClass
@@ -572,9 +572,9 @@ class QadDIMALIGNEDCommandClass(QadCommandClass):
       self.entSelClass.run(msgMapTool, msg)
 
    
-   #============================================================================
+   # ============================================================================
    # waitForDimensionLinePos
-   #============================================================================
+   # ============================================================================
    def waitForDimensionLinePos(self):
       self.step = 4
       # imposto il map tool      
@@ -600,9 +600,9 @@ class QadDIMALIGNEDCommandClass(QadCommandClass):
                    QadInputModeEnum.NONE)                                      
       
 
-   #============================================================================
+   # ============================================================================
    # run
-   #============================================================================
+   # ============================================================================
    def run(self, msgMapTool = False, msg = None):
       if self.plugIn.canvas.mapSettings().destinationCrs().isGeographic():
          self.showMsg(QadMsg.translate("QAD", "\nThe coordinate reference system of the project must be a projected coordinate system.\n"))
@@ -623,13 +623,13 @@ class QadDIMALIGNEDCommandClass(QadCommandClass):
          return True # fine comando
 
 
-      #=========================================================================
+      # =========================================================================
       # RICHIESTA SELEZIONE ORIGINE PRIMA LINEA DI ESTENSIONE
       if self.step == 0: # inizio del comando         
          self.waitForFirstPt()
          return False
       
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA ORIGINE PRIMA LINEA DI ESTENSIONE (da step = 0)
       elif self.step == 1:
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -656,7 +656,7 @@ class QadDIMALIGNEDCommandClass(QadCommandClass):
 
          return False
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA SELEZIONE DI UN'ENTITA' (da step = 1)
       elif self.step == 2:
          if self.entSelClass.run(msgMapTool, msg) == True:
@@ -687,7 +687,7 @@ class QadDIMALIGNEDCommandClass(QadCommandClass):
          return False # continua
 
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA ORIGINE SECONDA LINEA DI ESTENSIONE (da step = 1)
       elif self.step == 3: # dopo aver atteso un punto o un numero reale si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -716,7 +716,7 @@ class QadDIMALIGNEDCommandClass(QadCommandClass):
          return False 
          
                
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA DELLA POSIZIONE DELLA LINEA DI QUOTA (da step = 2 e 3)
       elif self.step == 4: # dopo aver atteso un punto o un numero reale si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -761,7 +761,7 @@ class QadDIMALIGNEDCommandClass(QadCommandClass):
          return False
 
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA DEL TESTO (da step = 4)
       elif self.step == 5: # dopo aver atteso una stringa si riavvia il comando
          if type(msg) == unicode:
@@ -774,7 +774,7 @@ class QadDIMALIGNEDCommandClass(QadCommandClass):
          return False
 
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA ROTAZIONE DEL TESTO DI QUOTA (da step = 4)
       elif self.step == 6:
          if self.GetAngleClass.run(msgMapTool, msg) == True:
@@ -787,7 +787,7 @@ class QadDIMALIGNEDCommandClass(QadCommandClass):
 
 
 # QadDIMARCCommandClassStepEnum class.
-#===============================================================================
+# ===============================================================================
 class QadDIMARCCommandClassStepEnum():
    START                = 0 # deve essere = 0 perchè è l'inizio del comando
    ASK_FOR_ENTSEL       = 1 # richiede la selezione di un'entità
@@ -873,9 +873,9 @@ class QadDIMARCCommandClass(QadCommandClass):
          return self.contextualMenu
 
 
-   #============================================================================
+   # ============================================================================
    # setArc
-   #============================================================================
+   # ============================================================================
    def setArc(self, entity, point):
       """
       Setta self.dimArc che definisce l'arco da quotare
@@ -910,9 +910,9 @@ class QadDIMARCCommandClass(QadCommandClass):
          return False
 
 
-   #============================================================================
+   # ============================================================================
    # getPartialPtOnArc
-   #============================================================================
+   # ============================================================================
    def getPartialPtOnArc(self, pt):
       """
       calcola il punto sull'arco più vicino a pt che è un punto scelto dall'utente
@@ -937,9 +937,9 @@ class QadDIMARCCommandClass(QadCommandClass):
       return None
 
 
-   #============================================================================
+   # ============================================================================
    # setPartialArc
-   #============================================================================
+   # ============================================================================
    def setPartialArc(self):
       """
       Calcola l'arco parziale di dimArc che ha i punti finali in dimPt1 e dimPt2
@@ -956,17 +956,17 @@ class QadDIMARCCommandClass(QadCommandClass):
          self.dimPartialArc.setStartAngleByPt(self.dimPt1)
 
 
-   #============================================================================
+   # ============================================================================
    # addDimToLayers
-   #============================================================================
+   # ============================================================================
    def addDimToLayers(self, linePosPt):
       return self.dimStyle.addArcDimToLayers(self.plugIn, self.dimPartialArc, \
                                              linePosPt, self.measure, self.leader)
 
    
-   #============================================================================
+   # ============================================================================
    # waitForEntsel
-   #============================================================================
+   # ============================================================================
    def waitForEntsel(self, msgMapTool, msg):
       if self.entSelClass is not None:
          del self.entSelClass
@@ -982,9 +982,9 @@ class QadDIMARCCommandClass(QadCommandClass):
       self.entSelClass.run(msgMapTool, msg)
 
    
-   #============================================================================
+   # ============================================================================
    # waitForDimensionLinePos
-   #============================================================================
+   # ============================================================================
    def waitForDimensionLinePos(self):
       self.step = QadDIMARCCommandClassStepEnum.ASK_FOR_MAIN_OPTIONS
       # imposto il map tool      
@@ -1018,9 +1018,9 @@ class QadDIMARCCommandClass(QadCommandClass):
                    QadInputModeEnum.NONE)                                      
       
 
-   #============================================================================
+   # ============================================================================
    # waitForFirstPt
-   #============================================================================
+   # ============================================================================
    def waitForFirstPt(self):
       self.step = QadDIMARCCommandClassStepEnum.ASK_FOR_1PT_ARC
       # imposto il map tool
@@ -1032,9 +1032,9 @@ class QadDIMARCCommandClass(QadCommandClass):
       self.waitForPoint(msg)
       
 
-   #============================================================================
+   # ============================================================================
    # waitForSecondPt
-   #============================================================================
+   # ============================================================================
    def waitForSecondPt(self):
       self.step = QadDIMARCCommandClassStepEnum.ASK_FOR_2PT_ARC
       # imposto il map tool
@@ -1046,9 +1046,9 @@ class QadDIMARCCommandClass(QadCommandClass):
       self.waitForPoint(msg)
 
 
-   #============================================================================
+   # ============================================================================
    # run
-   #============================================================================
+   # ============================================================================
    def run(self, msgMapTool = False, msg = None):
       if self.plugIn.canvas.mapSettings().destinationCrs().isGeographic():
          self.showMsg(QadMsg.translate("QAD", "\nThe coordinate reference system of the project must be a projected coordinate system.\n"))
@@ -1072,7 +1072,7 @@ class QadDIMARCCommandClass(QadCommandClass):
          self.waitForEntsel(msgMapTool, msg)
          return False # continua
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA SELEZIONE DI UN'ENTITA'
       if self.step == QadDIMARCCommandClassStepEnum.ASK_FOR_ENTSEL:
          if self.entSelClass.run(msgMapTool, msg) == True:
@@ -1089,7 +1089,7 @@ class QadDIMARCCommandClass(QadCommandClass):
          return False # continua
 
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA DELLA POSIZIONE DELLA LINEA DI QUOTA
       elif self.step == QadDIMARCCommandClassStepEnum.ASK_FOR_MAIN_OPTIONS: # dopo aver atteso un punto o una opzione si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -1141,7 +1141,7 @@ class QadDIMARCCommandClass(QadCommandClass):
          return False
 
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA DEL TESTO (da step = ASK_FOR_MAIN_OPTIONS)
       elif self.step == QadDIMARCCommandClassStepEnum.ASK_FOR_TEXT_VALUE: # dopo aver atteso una stringa si riavvia il comando
          if type(msg) == unicode:
@@ -1154,7 +1154,7 @@ class QadDIMARCCommandClass(QadCommandClass):
          return False
       
       
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA ROTAZIONE DEL TESTO DI QUOTA (da step = ASK_FOR_MAIN_OPTIONS)
       elif self.step == QadDIMARCCommandClassStepEnum.ASK_FOR_TEXT_ROT:
          if self.GetAngleClass.run(msgMapTool, msg) == True:
@@ -1166,7 +1166,7 @@ class QadDIMARCCommandClass(QadCommandClass):
          return False
       
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA DEL PRIMO PUNTO SULL'ARCO (da step = ASK_FOR_MAIN_OPTIONS)
       elif self.step == QadDIMARCCommandClassStepEnum.ASK_FOR_1PT_ARC: # dopo aver atteso un punto o un numero reale si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -1195,7 +1195,7 @@ class QadDIMARCCommandClass(QadCommandClass):
          return False 
       
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA DEL PRIMO PUNTO SULL'ARCO (da step = ASK_FOR_1PT_ARC)
       elif self.step == QadDIMARCCommandClassStepEnum.ASK_FOR_2PT_ARC: # dopo aver atteso un punto o un numero reale si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -1225,9 +1225,9 @@ class QadDIMARCCommandClass(QadCommandClass):
          return False 
 
 
-#===============================================================================
+# ===============================================================================
 # QadDIMRADIUSCommandClassStepEnum class.
-#===============================================================================
+# ===============================================================================
 class QadDIMRADIUSCommandClassStepEnum():
    START                = 0 # deve essere = 0 perchè è l'inizio del comando
    ASK_FOR_ENTSEL       = 1 # richiede la selezione di un'entità
@@ -1307,9 +1307,9 @@ class QadDIMRADIUSCommandClass(QadCommandClass):
          return self.contextualMenu
 
 
-   #============================================================================
+   # ============================================================================
    # setArcOrCircle
-   #============================================================================
+   # ============================================================================
    def setArcOrCircle(self, entity, point):
       """
       Setta self.dimObj che definisce l'arco o il cerchio da quotare
@@ -1339,17 +1339,17 @@ class QadDIMRADIUSCommandClass(QadCommandClass):
          return False
       
 
-   #============================================================================
+   # ============================================================================
    # addDimToLayers
-   #============================================================================
+   # ============================================================================
    def addDimToLayers(self, linePosPt):
       return self.dimStyle.addRadiusDimToLayers(self.plugIn, self.dimObj, \
                                                 linePosPt, self.measure)
 
    
-   #============================================================================
+   # ============================================================================
    # waitForEntsel
-   #============================================================================
+   # ============================================================================
    def waitForEntsel(self, msgMapTool, msg):
       if self.entSelClass is not None:
          del self.entSelClass
@@ -1365,9 +1365,9 @@ class QadDIMRADIUSCommandClass(QadCommandClass):
       self.entSelClass.run(msgMapTool, msg)
       
    
-   #============================================================================
+   # ============================================================================
    # waitForDimensionLinePos
-   #============================================================================
+   # ============================================================================
    def waitForDimensionLinePos(self):
       self.step = QadDIMRADIUSCommandClassStepEnum.ASK_FOR_MAIN_OPTIONS
       # imposto il map tool
@@ -1396,9 +1396,9 @@ class QadDIMRADIUSCommandClass(QadCommandClass):
                    QadInputModeEnum.NONE)                                      
 
 
-   #============================================================================
+   # ============================================================================
    # run
-   #============================================================================
+   # ============================================================================
    def run(self, msgMapTool = False, msg = None):
       if self.plugIn.canvas.mapSettings().destinationCrs().isGeographic():
          self.showMsg(QadMsg.translate("QAD", "\nThe coordinate reference system of the project must be a projected coordinate system.\n"))
@@ -1422,7 +1422,7 @@ class QadDIMRADIUSCommandClass(QadCommandClass):
          self.waitForEntsel(msgMapTool, msg)
          return False # continua
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA SELEZIONE DI UN'ENTITA'
       if self.step == QadDIMRADIUSCommandClassStepEnum.ASK_FOR_ENTSEL:
          if self.entSelClass.run(msgMapTool, msg) == True:
@@ -1439,7 +1439,7 @@ class QadDIMRADIUSCommandClass(QadCommandClass):
          return False # continua
 
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA DELLA POSIZIONE DELLA LINEA DI QUOTA
       elif self.step == QadDIMRADIUSCommandClassStepEnum.ASK_FOR_MAIN_OPTIONS: # dopo aver atteso un punto o una opzione si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -1483,7 +1483,7 @@ class QadDIMRADIUSCommandClass(QadCommandClass):
          return False
 
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA DEL TESTO (da step = ASK_FOR_MAIN_OPTIONS)
       elif self.step == QadDIMRADIUSCommandClassStepEnum.ASK_FOR_TEXT_VALUE: # dopo aver atteso una stringa si riavvia il comando
          if type(msg) == unicode:
@@ -1496,7 +1496,7 @@ class QadDIMRADIUSCommandClass(QadCommandClass):
          return False
       
       
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA ROTAZIONE DEL TESTO DI QUOTA (da step = ASK_FOR_MAIN_OPTIONS)
       elif self.step == QadDIMRADIUSCommandClassStepEnum.ASK_FOR_TEXT_ROT:
          if self.GetAngleClass.run(msgMapTool, msg) == True:

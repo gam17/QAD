@@ -79,7 +79,7 @@ class QadUNDOCommandClass(QadCommandClass):
          self.step = 1
          return False
    
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA NUMERO INTERO (da step = 0)
       elif self.step == 1: # dopo aver atteso un punto o un numero reale si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -132,7 +132,7 @@ class QadUNDOCommandClass(QadCommandClass):
 
          return True
          
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA DI ANNULLARE TUTTO (da step = 1)
       elif self.step == 2: # dopo aver atteso una parola chiave si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica

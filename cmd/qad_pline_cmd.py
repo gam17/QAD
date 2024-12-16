@@ -145,9 +145,9 @@ class QadPLINECommandClass(QadCommandClass):
          return self.polyline.getEndPt()
 
 
-   #============================================================================
+   # ============================================================================
    # WaitForArcMenu
-   #============================================================================
+   # ============================================================================
    def WaitForArcMenu(self):
       # l'opzione CEnter viene tradotta in italiano in "CEntro" nel contesto "WaitForArcMenu"
       # l'opzione Undo viene tradotta in italiano in "ANNulla" nel contesto "WaitForArcMenu"
@@ -187,9 +187,9 @@ class QadPLINECommandClass(QadCommandClass):
       self.step = 101
       return
 
-   #============================================================================
+   # ============================================================================
    # WaitForLineMenu
-   #============================================================================
+   # ============================================================================
    def WaitForLineMenu(self):
       # l'opzione Undo viene tradotta in italiano in "ANnulla" nel contesto "WaitForLineMenu"
       if self.polyline.qty() >= 2:
@@ -219,9 +219,9 @@ class QadPLINECommandClass(QadCommandClass):
                    keyWords, QadInputModeEnum.NONE)
 
 
-   #============================================================================
+   # ============================================================================
    # waitForTracePt
-   #============================================================================
+   # ============================================================================
    def waitForTracePt(self, msgMapTool, msg):
       self.step = 3
       # imposto il map tool
@@ -231,9 +231,9 @@ class QadPLINECommandClass(QadCommandClass):
       self.waitForPoint(QadMsg.translate("Command_PLINE", "Select the object in the trace end point: "))
 
 
-   #============================================================================
+   # ============================================================================
    # addPointToPolyline
-   #============================================================================
+   # ============================================================================
    def addPointToPolyline(self, pt):
       if self.firstVertex is None:
          self.firstVertex = QgsPointXY(pt)
@@ -246,9 +246,9 @@ class QadPLINECommandClass(QadCommandClass):
          self.addLinearObjToPolyline(QadLine().set(self.getLastPt(), pt))
 
 
-   #============================================================================
+   # ============================================================================
    # addLinearObjToPolyline
-   #============================================================================
+   # ============================================================================
    def addLinearObjToPolyline(self, linearObj):
       pts = linearObj.asPolyline()
       tot = len(pts)
@@ -271,9 +271,9 @@ class QadPLINECommandClass(QadCommandClass):
          self.getPointMapTool().setTmpGeometry(self.polyline.asGeom()) # per lo snap aggiungo questa geometria temporanea
 
 
-   #============================================================================
+   # ============================================================================
    # removeLastLinearObjToPolyline
-   #============================================================================
+   # ============================================================================
    def removeLastLinearObjToPolyline(self):
       totLinearObjs = self.polyline.qty()
       if totLinearObjs == 0: return
@@ -297,9 +297,9 @@ class QadPLINECommandClass(QadCommandClass):
       self.getPointMapTool().setStartPoint(lastPt)
             
    
-   #============================================================================
+   # ============================================================================
    # addPointToRubberBand
-   #============================================================================
+   # ============================================================================
    def addPointToRubberBand(self, point, doUpdate = True):
       numberOfVertices = self.rubberBand.numberOfVertices()
          
@@ -313,9 +313,9 @@ class QadPLINECommandClass(QadCommandClass):
          self.rubberBand.addPoint(point, doUpdate)
       
       
-   #============================================================================
+   # ============================================================================
    # removeLastPointToRubberBand
-   #============================================================================
+   # ============================================================================
    def removeLastPointToRubberBand(self):
       self.rubberBand.removeLastPoint()
          
@@ -340,7 +340,7 @@ class QadPLINECommandClass(QadCommandClass):
          self.step = 1
          return False
       
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA PUNTO OPPURE MENU PRINCIPALE
       elif self.step == 1: # dopo aver atteso un punto si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -419,7 +419,7 @@ class QadPLINECommandClass(QadCommandClass):
          
          return False
       
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA "Lunghezza" (da step = 1)
       elif self.step == 2: # dopo aver atteso un punto o un numero reale si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -453,7 +453,7 @@ class QadPLINECommandClass(QadCommandClass):
          return False
 
       
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA "Selezionare l'oggetto nel punto finale di ricalco: " (da step = 1)
       elif self.step == 3:
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -526,7 +526,7 @@ class QadPLINECommandClass(QadCommandClass):
          return False
 
       
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA "Specificare punto finale dell'arco o [Angolo/CEntro/CHiudi/Direzione/LInea/Raggio/Secondo punto/ANNulla]: " (da step = 1)
       elif self.step == 101: # dopo aver atteso un punto o una parola chiave si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -651,7 +651,7 @@ class QadPLINECommandClass(QadCommandClass):
          return False                              
 
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA "Specificare angolo inscritto: " (da step = 101)
       elif self.step == 102: # dopo aver atteso un punto o un numero reale si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -697,7 +697,7 @@ class QadPLINECommandClass(QadCommandClass):
          return False
 
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA "Specificare punto finale dell'arco o [Centro/Raggio]: : " (da step = 102)
       elif self.step == 103: # dopo aver atteso un punto o una parola chiave si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -763,7 +763,7 @@ class QadPLINECommandClass(QadCommandClass):
          return False
 
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA CENTRO DELL'ARCO (da step = 103)
       elif self.step == 104: # dopo aver atteso un punto si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -799,7 +799,7 @@ class QadPLINECommandClass(QadCommandClass):
          return False
 
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA RAGGIO (da step = 103)
       elif self.step == 105: # dopo aver atteso un punto o un numero reale si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -846,7 +846,7 @@ class QadPLINECommandClass(QadCommandClass):
          return False                                          
 
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA SECONDO PUNTO DEL RAGGIO (da step = 105)
       elif self.step == 106: # dopo aver atteso un punto si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -880,7 +880,7 @@ class QadPLINECommandClass(QadCommandClass):
          self.step = 107
 
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA DIREZIONE DELLA CORDA DELL'ARCO (da step = 106 e 107)
       elif self.step == 107: # dopo aver atteso un punto si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -928,7 +928,7 @@ class QadPLINECommandClass(QadCommandClass):
          return False
 
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA CENTRO DELL'ARCO (da step = 101)
       elif self.step == 108: # dopo aver atteso un punto si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -970,7 +970,7 @@ class QadPLINECommandClass(QadCommandClass):
          return False
 
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA "Specificare punto finale dell'arco o [Angolo/Lunghezza corda]: " (da step = 108)
       elif self.step == 109: # dopo aver atteso un punto o una parola chiave si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -1041,7 +1041,7 @@ class QadPLINECommandClass(QadCommandClass):
          return False
 
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA "Specificare angolo inscritto: " (da step = 109)
       elif self.step == 110: # dopo aver atteso un punto o un numero reale si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -1086,7 +1086,7 @@ class QadPLINECommandClass(QadCommandClass):
          return False
 
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA "Specificare lunghezza della corda: " (da step = 109)
       elif self.step == 111: # dopo aver atteso un punto o un numero reale si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -1131,7 +1131,7 @@ class QadPLINECommandClass(QadCommandClass):
          return False
 
      
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA "Specificare direzione tangente per il punto iniziale dell'arco: " (da step = 101)
       elif self.step == 112: # dopo aver atteso un punto o un numero reale si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -1165,7 +1165,7 @@ class QadPLINECommandClass(QadCommandClass):
          return False
 
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA PUNTO FINALE DELL'ARCO (da step = 112)
       elif self.step == 113: # dopo aver atteso un punto si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -1201,7 +1201,7 @@ class QadPLINECommandClass(QadCommandClass):
          return False
 
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA RAGGIO (da step = 101)
       elif self.step == 114: # dopo aver atteso un punto o un numero reale si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -1252,7 +1252,7 @@ class QadPLINECommandClass(QadCommandClass):
          return False                                          
 
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA SECONDO PUNTO DEL RAGGIO (da step = 114)
       elif self.step == 115: # dopo aver atteso un punto si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -1292,7 +1292,7 @@ class QadPLINECommandClass(QadCommandClass):
          return False
       
       
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA "Specificare punto finale dell'arco o [Angolo]: " (da step = 114 o 115)
       elif self.step == 116: # dopo aver atteso un punto o una parola chiave si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -1336,7 +1336,7 @@ class QadPLINECommandClass(QadCommandClass):
          return False                              
       
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA "Specificare angolo inscritto: " (da step = 116)
       elif self.step == 117: # dopo aver atteso un punto o un numero reale si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -1374,7 +1374,7 @@ class QadPLINECommandClass(QadCommandClass):
          return False
 
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA DIREZIONE DELLA CORDA DELL'ARCO (da step = 117)
       elif self.step == 118: # dopo aver atteso un punto si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -1422,7 +1422,7 @@ class QadPLINECommandClass(QadCommandClass):
          return False
       
       
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA SECONDO PUNTO (da step = 101)
       elif self.step == 119: # dopo aver atteso un punto o una parola chiave si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -1453,7 +1453,7 @@ class QadPLINECommandClass(QadCommandClass):
          return False
       
       
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA PUNTO FINALE DELL'ARCO (da step = 119)
       elif self.step == 120: # dopo aver atteso un punto si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica

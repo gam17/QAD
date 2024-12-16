@@ -31,9 +31,9 @@ from ..qad_entity import QadCacheEntitySetIterator, QadEntityTypeEnum
 from ..qad_multi_geom import fromQadGeomToQgsGeom
 
 
-#===============================================================================
+# ===============================================================================
 # Qad_rotate_maptool_ModeEnum class.
-#===============================================================================
+# ===============================================================================
 class Qad_rotate_maptool_ModeEnum():
    # noto niente si richiede il punto base
    NONE_KNOWN_ASK_FOR_BASE_PT = 1     
@@ -50,9 +50,9 @@ class Qad_rotate_maptool_ModeEnum():
    # noto il primo punto si richiede il secondo punto per il nuovo angolo
    FIRST_PT_KNOWN_ASK_FOR_SECOND_NEW_ROTATION_PT = 7     
 
-#===============================================================================
+# ===============================================================================
 # Qad_rotate_maptool class
-#===============================================================================
+# ===============================================================================
 class Qad_rotate_maptool(QadGetPoint):
     
    def __init__(self, plugIn):
@@ -79,9 +79,9 @@ class Qad_rotate_maptool(QadGetPoint):
       self.mode = None    
    
    
-   #============================================================================
+   # ============================================================================
    # rotate
-   #============================================================================
+   # ============================================================================
    def rotate(self, entity, basePt, angle):
       # verifico se l'entità appartiene ad uno stile di quotatura
       if entity.whatIs() == "ENTITY":
@@ -98,9 +98,9 @@ class Qad_rotate_maptool(QadGetPoint):
          self.__highlight.addGeometries(newDimEntity.getSymbolGeometryCollection(), newDimEntity.getSymbolLayer())
    
    
-   #============================================================================
+   # ============================================================================
    # addRotatedGeometries
-   #============================================================================
+   # ============================================================================
    def addRotatedGeometries(self, angle):
       self.__highlight.reset()            
       

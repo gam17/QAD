@@ -40,9 +40,9 @@ from .. import qad_utils
 from .. import qad_layer
 
 
-#===============================================================================
+# ===============================================================================
 # QadMELLIPSECommandClassStepEnum class.
-#===============================================================================
+# ===============================================================================
 class QadELLIPSECommandClassStepEnum():
    ASK_FOR_FIRST_FINAL_AXIS_PT      = 1 # richiede il primo punto finale dell'asse (0 è l'inizio del comando)
    ASK_FOR_SECOND_FINAL_AXIS_PT     = 2 # richiede il secondo punto finale dell'asse
@@ -122,9 +122,9 @@ class QadELLIPSECommandClass(QadCommandClass):
          self.PointMapTool.setRubberBandColor(self.rubberBandBorderColor, self.rubberBandFillColor)
 
          
-   #============================================================================
+   # ============================================================================
    # waitForFirstFinalAxisPt
-   #============================================================================
+   # ============================================================================
    def waitForFirstFinalAxisPt(self):
       self.step = QadELLIPSECommandClassStepEnum.ASK_FOR_FIRST_FINAL_AXIS_PT
       # imposto il map tool
@@ -151,9 +151,9 @@ class QadELLIPSECommandClass(QadCommandClass):
                    keyWords, QadInputModeEnum.NONE)
          
          
-   #============================================================================
+   # ============================================================================
    # waitForSecondFinalAxisPt
-   #============================================================================
+   # ============================================================================
    def waitForSecondFinalAxisPt(self):
       self.step = QadELLIPSECommandClassStepEnum.ASK_FOR_SECOND_FINAL_AXIS_PT
       # imposto il map tool
@@ -164,9 +164,9 @@ class QadELLIPSECommandClass(QadCommandClass):
       self.waitForPoint(QadMsg.translate("Command_ELLIPSE", "Specify other endpoint of axis: "))
 
          
-   #============================================================================
+   # ============================================================================
    # waitForDistanceToOtherAxis
-   #============================================================================
+   # ============================================================================
    def waitForDistanceToOtherAxis(self):
       self.step = QadELLIPSECommandClassStepEnum.ASK_DIST_TO_OTHER_AXIS
       # imposto il map tool
@@ -190,9 +190,9 @@ class QadELLIPSECommandClass(QadCommandClass):
                    keyWords, QadInputModeEnum.NOT_NULL)
 
 
-   #============================================================================
+   # ============================================================================
    # waitForRotationAroundMajorAxis
-   #============================================================================
+   # ============================================================================
    def waitForRotationAroundMajorAxis(self):
       self.step = QadELLIPSECommandClassStepEnum.ASK_ROTATION_ROUND_MAJOR_AXIS
       # imposto il map tool
@@ -208,9 +208,9 @@ class QadELLIPSECommandClass(QadCommandClass):
                    "", QadInputModeEnum.NOT_NULL)
 
 
-   #============================================================================
+   # ============================================================================
    # waitForArea
-   #============================================================================
+   # ============================================================================
    def waitArea(self):
       self.step = QadELLIPSECommandClassStepEnum.ASK_AREA
       # imposto il map tool
@@ -225,9 +225,9 @@ class QadELLIPSECommandClass(QadCommandClass):
                         QadInputModeEnum.NOT_ZERO | QadInputModeEnum.NOT_NEGATIVE)
 
 
-   #============================================================================
+   # ============================================================================
    # waitForStartAngle
-   #============================================================================
+   # ============================================================================
    def waitForStartAngle(self):
       self.step = QadELLIPSECommandClassStepEnum.ASK_START_ANGLE
       # imposto il map tool
@@ -248,9 +248,9 @@ class QadELLIPSECommandClass(QadCommandClass):
                    keyWords, QadInputModeEnum.NOT_NULL)
 
 
-   #============================================================================
+   # ============================================================================
    # waitForEndAngle
-   #============================================================================
+   # ============================================================================
    def waitForEndAngle(self):
       self.step = QadELLIPSECommandClassStepEnum.ASK_END_ANGLE
       # imposto il map tool
@@ -271,9 +271,9 @@ class QadELLIPSECommandClass(QadCommandClass):
                    keyWords, QadInputModeEnum.NOT_NULL)
 
 
-   #============================================================================
+   # ============================================================================
    # waitForIncludedAngle
-   #============================================================================
+   # ============================================================================
    def waitForIncludedAngle(self):
       self.step = QadELLIPSECommandClassStepEnum.ASK_INCLUDED_ANGLE
       # imposto il map tool
@@ -288,9 +288,9 @@ class QadELLIPSECommandClass(QadCommandClass):
                    "", QadInputModeEnum.NOT_NULL)
 
 
-   #============================================================================
+   # ============================================================================
    # waitForStartParameter
-   #============================================================================
+   # ============================================================================
    def waitForStartParameter(self):
       self.step = QadELLIPSECommandClassStepEnum.ASK_START_PARAMETER
       # imposto il map tool
@@ -309,9 +309,9 @@ class QadELLIPSECommandClass(QadCommandClass):
                    keyWords, QadInputModeEnum.NOT_NULL)
 
 
-   #============================================================================
+   # ============================================================================
    # waitForEndParameter
-   #============================================================================
+   # ============================================================================
    def waitForEndParameter(self):
       self.step = QadELLIPSECommandClassStepEnum.ASK_END_PARAMETER
       # imposto il map tool
@@ -332,9 +332,9 @@ class QadELLIPSECommandClass(QadCommandClass):
                    keyWords, QadInputModeEnum.NOT_NULL)
 
 
-   #============================================================================
+   # ============================================================================
    # waitForCenter
-   #============================================================================
+   # ============================================================================
    def waitForCenter(self):
       self.step = QadELLIPSECommandClassStepEnum.ASK_FOR_CENTER
       # imposto il map tool
@@ -343,9 +343,9 @@ class QadELLIPSECommandClass(QadCommandClass):
       self.waitForPoint(QadMsg.translate("Command_ELLIPSE", "Specify center of ellipse: "))
 
 
-   #============================================================================
+   # ============================================================================
    # waitForFirstFocus
-   #============================================================================
+   # ============================================================================
    def waitForFirstFocus(self):
       self.step = QadELLIPSECommandClassStepEnum.ASK_FOR_FIRST_FOCUS
       # imposto il map tool
@@ -354,9 +354,9 @@ class QadELLIPSECommandClass(QadCommandClass):
       self.waitForPoint(QadMsg.translate("Command_ELLIPSE", "Specify first focus point of ellipse: "))
 
 
-   #============================================================================
+   # ============================================================================
    # waitForSecondFocus
-   #============================================================================
+   # ============================================================================
    def waitForSecondFocus(self):
       self.step = QadELLIPSECommandClassStepEnum.ASK_FOR_SECOND_FOCUS
       # imposto il map tool
@@ -366,9 +366,9 @@ class QadELLIPSECommandClass(QadCommandClass):
       self.waitForPoint(QadMsg.translate("Command_ELLIPSE", "Specify second focus point of ellipse: "))
 
 
-   #============================================================================
+   # ============================================================================
    # waitForPtOnEllipse
-   #============================================================================
+   # ============================================================================
    def waitForPtOnEllipse(self):
       self.step = QadELLIPSECommandClassStepEnum.ASK_FOR_PT_ON_ELLIPSE
       # imposto il map tool
@@ -406,7 +406,7 @@ class QadELLIPSECommandClass(QadCommandClass):
          return False # continua
 
          
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA DEL PRIMO PUNTO FINALE DELL'ASSE (da step = 0)
       elif self.step == QadELLIPSECommandClassStepEnum.ASK_FOR_FIRST_FINAL_AXIS_PT: # dopo aver atteso un punto o enter o una parola chiave si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -447,7 +447,7 @@ class QadELLIPSECommandClass(QadCommandClass):
          return False
 
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA DEL SECONDO PUNTO FINALE DELL'ASSE (da step = ASK_FOR_FIRST_FINAL_AXIS_PT)
       elif self.step == QadELLIPSECommandClassStepEnum.ASK_FOR_SECOND_FINAL_AXIS_PT: # dopo aver atteso un punto si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -481,7 +481,7 @@ class QadELLIPSECommandClass(QadCommandClass):
          return False
 
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA DELLA DISTANZA DALL'ALTRO ASSE (da step = ASK_FOR_SECOND_FINAL_AXIS_PT)
       elif self.step == QadELLIPSECommandClassStepEnum.ASK_DIST_TO_OTHER_AXIS: # dopo aver atteso un punto o enter o una parola chiave si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -524,7 +524,7 @@ class QadELLIPSECommandClass(QadCommandClass):
          return False
 
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA DELLA ROTAZIONE INTORNO ALL'ASSE MAGGIORE (da step = ASK_FOR_SECOND_FINAL_AXIS_PT)
       elif self.step == QadELLIPSECommandClassStepEnum.ASK_ROTATION_ROUND_MAJOR_AXIS: # dopo aver atteso un punto o un angolo si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -563,7 +563,7 @@ class QadELLIPSECommandClass(QadCommandClass):
          return False
 
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA DELL'AREA DELL'ELLISSE (da step = ASK_FOR_SECOND_FINAL_AXIS_PT)
       elif self.step == QadELLIPSECommandClassStepEnum.ASK_AREA: # dopo aver atteso un numeroi riavvia il comando
          if msgMapTool == True: # il valore arriva da una selezione grafica
@@ -585,7 +585,7 @@ class QadELLIPSECommandClass(QadCommandClass):
          return False
 
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA DELL'ANGOLO INIZIALE DELL'ARCO DI ELLISSE
       # (da step = ASK_DIST_TO_OTHER_AXIS oppure )
       elif self.step == QadELLIPSECommandClassStepEnum.ASK_START_ANGLE: # dopo aver atteso un punto o un angolo si riavvia il comando
@@ -620,7 +620,7 @@ class QadELLIPSECommandClass(QadCommandClass):
          return False
 
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA DELL'ANGOLO FINALE DELL'ARCO DI ELLISSE (da step = ASK_START_ANGLE)
       elif self.step == QadELLIPSECommandClassStepEnum.ASK_END_ANGLE: # dopo aver atteso un punto o un angolo si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -662,7 +662,7 @@ class QadELLIPSECommandClass(QadCommandClass):
          return False
 
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA DELL'ANGOLO INCLUSO (da step = ASK_END_ANGLE)
       elif self.step == QadELLIPSECommandClassStepEnum.ASK_INCLUDED_ANGLE: # dopo aver atteso un punto o un angolo si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -696,7 +696,7 @@ class QadELLIPSECommandClass(QadCommandClass):
          
          return False
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA DELL'ANGOLO PARAMETRICO INIZIALE DELL'ARCO DI ELLISSE
       # (da step = ASK_START_ANGLE oppure )
       elif self.step == QadELLIPSECommandClassStepEnum.ASK_START_PARAMETER: # dopo aver atteso un punto o un angolo si riavvia il comando
@@ -731,7 +731,7 @@ class QadELLIPSECommandClass(QadCommandClass):
          return False
 
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA DELL'ANGOLO PARAMETRICO FINALE DELL'ARCO DI ELLISSE (da step = ASK_START_PARAMETER)
       elif self.step == QadELLIPSECommandClassStepEnum.ASK_END_PARAMETER: # dopo aver atteso un punto o un angolo si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -773,7 +773,7 @@ class QadELLIPSECommandClass(QadCommandClass):
          return False
 
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA DEL CENTRO DELL'ELLISSE (da step = ASK_FOR_FIRST_FINAL_AXIS_PT)
       elif self.step == QadELLIPSECommandClassStepEnum.ASK_FOR_CENTER: # dopo aver atteso un punto si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -801,7 +801,7 @@ class QadELLIPSECommandClass(QadCommandClass):
          return False
 
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA DEL PRIMO PUNTO DI FUOCO DELL'ELLISSE (da step = ASK_FOR_FIRST_FINAL_AXIS_PT)
       elif self.step == QadELLIPSECommandClassStepEnum.ASK_FOR_FIRST_FOCUS: # dopo aver atteso un punto si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -828,7 +828,7 @@ class QadELLIPSECommandClass(QadCommandClass):
          return False
 
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA DEL SECONDO PUNTO DI FUOCO DELL'ELLISSE (da step = ASK_FOR_FIRST_FOCUS)
       elif self.step == QadELLIPSECommandClassStepEnum.ASK_FOR_SECOND_FOCUS: # dopo aver atteso un punto si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
@@ -855,7 +855,7 @@ class QadELLIPSECommandClass(QadCommandClass):
          return False
 
 
-      #=========================================================================
+      # =========================================================================
       # RISPOSTA ALLA RICHIESTA DI UN PUNTO SULL'ELLISSE (da step = ASK_FOR_SECOND_FOCUS)
       elif self.step == QadELLIPSECommandClassStepEnum.ASK_FOR_PT_ON_ELLIPSE: # dopo aver atteso un punto si riavvia il comando
          if msgMapTool == True: # il punto arriva da una selezione grafica
