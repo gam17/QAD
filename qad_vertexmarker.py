@@ -142,7 +142,7 @@ class QadVertexMarker(QgsMapCanvasItem):
       elif self.__iconType == QadVertexmarkerIconTypeEnum.CIRCLE:
          # cerchio
          # la linea é più sottile
-         pen.setWidth(self.__penWidth / 2)         
+         pen.setWidth(int(self.__penWidth / 2))      
          painter.setPen(pen)
          painter.drawEllipse(QPointF(0, 0), s, s)
          pen.setWidth(self.__penWidth)
@@ -150,7 +150,7 @@ class QadVertexMarker(QgsMapCanvasItem):
       elif self.__iconType == QadVertexmarkerIconTypeEnum.CIRCLE_X:
          # cerchio con al centro una x
          # la linea é più sottile
-         pen.setWidth(self.__penWidth / 2)         
+         pen.setWidth(int(self.__penWidth / 2))     
          painter.setPen(pen)
          painter.drawEllipse(QPointF(0, 0), s, s)
          painter.drawLine(QLineF(-s, -s,  s,  s))
@@ -190,7 +190,7 @@ class QadVertexMarker(QgsMapCanvasItem):
          # un cerchio con una retta tangente sopra
          # la linea é più sottile
          l = s - self.__penWidth
-         pen.setWidth(self.__penWidth / 2)         
+         pen.setWidth(int(self.__penWidth / 2))  
          painter.setPen(pen)
          painter.drawEllipse(QPointF(0, 0), l + 1, l + 1)
          pen.setWidth(self.__penWidth)
@@ -199,7 +199,7 @@ class QadVertexMarker(QgsMapCanvasItem):
       elif self.__iconType == QadVertexmarkerIconTypeEnum.DOUBLE_TRIANGLE:
          # due triangoli uno sull'altro con vertice al centro (clessidra)
          # le linee oblique sono più sottili
-         pen.setWidth(self.__penWidth / 2)
+         pen.setWidth(int(self.__penWidth / 2))
          painter.setPen(pen)
          painter.drawLine(QLineF(-s, -s,  s,  s))
          painter.drawLine(QLineF( s, -s, -s,  s))
@@ -214,7 +214,7 @@ class QadVertexMarker(QgsMapCanvasItem):
          painter.drawLine(QLineF( s,  s, -s,  s))
          painter.drawLine(QLineF(-s,  s, -s, -s))
          # le linee oblique della x sono più sottili
-         pen.setWidth(self.__penWidth / 2)
+         pen.setWidth(int(self.__penWidth / 2))
          painter.setPen(pen)
          painter.drawLine(QLineF(-s, -s,  s,  s))
          painter.drawLine(QLineF(-s,  s,  s, -s))
@@ -231,7 +231,7 @@ class QadVertexMarker(QgsMapCanvasItem):
          painter.drawLine(QLineF(2 * l,  0,  2 * l,  0))
          painter.drawLine(QLineF(4 * l,  0,  4 * l,  0))
          # le linee oblique della x sono più sottili
-         pen.setWidth(self.__penWidth / 2)
+         pen.setWidth(int(self.__penWidth / 2))
          l = s / 2
          painter.setPen(pen)
          painter.drawLine(QLineF(-l, -l,  l,  l))
@@ -244,7 +244,7 @@ class QadVertexMarker(QgsMapCanvasItem):
          painter.drawLine(QLineF(2 * l,  0,  2 * l,  0))
          painter.drawLine(QLineF(4 * l,  0,  4 * l,  0))
          # le linee oblique della x sono più sottili
-         pen.setWidth(self.__penWidth / 2)
+         pen.setWidth(int(self.__penWidth / 2))
          l = s / 2
          painter.setPen(pen)
          painter.drawLine(QLineF(-l, -l,  l,  l))
@@ -266,7 +266,7 @@ class QadVertexMarker(QgsMapCanvasItem):
          # un cerchio con una retta tangente sopra
          # la linea é più sottile
          l = s - self.__penWidth
-         pen.setWidth(self.__penWidth / 2)         
+         pen.setWidth(int(self.__penWidth / 2))     
          painter.setPen(pen)
          painter.drawEllipse(QPointF(0, 0), l + 1, l + 1)
          pen.setWidth(self.__penWidth)
