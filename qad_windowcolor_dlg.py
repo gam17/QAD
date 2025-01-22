@@ -440,8 +440,8 @@ class QadPreview(QWidget):
       painter.setRenderHint(QPainter.Antialiasing)
       
       # PICKBOX
-      x1 = rect.width() / 3
-      y1 = rect.height() - rect.height() / 3
+      x1 = (int) (rect.width() / 3)
+      y1 = (int) (rect.height() - rect.height() / 3)
       color = QColor(self.tempQadVariables.get(QadMsg.translate("Environment variables", "PICKBOXCOLOR")))
       pickSize = 5
       painter.setPen(QPen(color, 1, Qt.SolidLine))
@@ -457,23 +457,23 @@ class QadPreview(QWidget):
       painter.drawLine(x1, y1 + pickSize, x1, y1 + pickSize + cursorSize)
       
       # AUTOTRECK_VECTOR
-      x1 = rect.width() / 3
+      x1 = (int) (rect.width() / 3)
       color = QColor(self.tempQadVariables.get(QadMsg.translate("Environment variables", "AUTOTRECKINGVECTORCOLOR")))
       painter.setPen(QPen(color, 1, Qt.DashLine))
       painter.drawLine(x1, 0, x1, rect.height())
-      painter.drawLine(x1 + rect.height() * 2 / 3, 0, x1 - rect.height() / 3, rect.height())
+      painter.drawLine((int) (x1 + rect.height() * 2 / 3), 0, (int) (x1 - rect.height() / 3), rect.height())
 
       # AUTOSNAP
-      x1 = rect.width() / 3
-      y1 = rect.height() / 3
+      x1 = (int) (rect.width() / 3)
+      y1 = (int) (rect.height() / 3)
       color = QColor(self.tempQadVariables.get(QadMsg.translate("Environment variables", "AUTOSNAPCOLOR")))
       pickSize = 5
       painter.setPen(QPen(color, 2, Qt.SolidLine))
       painter.drawRect(x1 - pickSize, y1 - pickSize, 2 * pickSize, 2 * pickSize)
 
       # DYNAMIC INPUT
-      x1 = rect.width() / 3
-      y1 = rect.height() - rect.height() / 3
+      x1 = (int) (rect.width() / 3)
+      y1 = (int) (rect.height() - rect.height() / 3)
       cursorSize = 20
       fMetrics = painter.fontMetrics()
       msg1 = "12.3456"
@@ -500,7 +500,7 @@ class QadPreview(QWidget):
 
    def paint_COMMAND_LINE(self):
       rect = self.rect()
-      sep = rect.height() * 2 / 3
+      sep = (int) (rect.height() * 2 / 3)
       painter = QPainter(self)
       
       # CMDHISTORYBACKCOLOR
