@@ -749,7 +749,9 @@ class QadDimStyle():
          return False
 
       config = qad_utils.QadRawConfigParser(allow_no_value=True)
-      config.read_file(codecs.open(_path, "r", "utf-8"))
+      file = codecs.open(_path, "r", "utf-8")
+      config.read_file(file)
+      file.close()
       #config.read(_path)
 
       value = config.get("dimension_options", "name")
