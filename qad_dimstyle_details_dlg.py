@@ -711,7 +711,7 @@ class QadDIMSTYLE_DETAILS_Dialog(QDialog, QObject, qad_dimstyle_details_ui.Ui_Di
       elif self.dimStyle.textBlockAdjust == QadDimStyleTextBlocksAdjustEnum.FIRST_TEXT_THEN_BLOCKS:        
          self.textBlockAdjustFirstTextOutside.setChecked(True)
       elif self.dimStyle.textBlockAdjust == QadDimStyleTextBlocksAdjustEnum.BOTH_OUTSIDE_EXT_LINES:        
-         self.textBlockAdjustBothtOutside.setChecked(True)
+         self.textBlockAdjustBothOutside.setChecked(True)
 
       self.blockSuppressionForNoSpace.setChecked(self.dimStyle.blockSuppressionForNoSpace)
       self.onInit = False 
