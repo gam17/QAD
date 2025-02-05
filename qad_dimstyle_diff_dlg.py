@@ -98,7 +98,7 @@ class QadDIMSTYLE_DIFF_Dialog(QDialog, QObject, qad_dimstyle_diff_ui.Ui_DimStyle
    def showAllProps(self, dimStyle):
       if self.tableWidget.model() is not None:
          # Pulisce la tabella
-         self.tableWidget.clearContents()
+         self.tableWidget.clear()
          self.tableWidget.setRowCount(0)
          
       self.tableWidget.setColumnCount(2)
@@ -115,7 +115,7 @@ class QadDIMSTYLE_DIFF_Dialog(QDialog, QObject, qad_dimstyle_diff_ui.Ui_DimStyle
          propDescr = prop[1][0]
          propValue = prop[1][1]
          self.insertProp(propDescr, propValue)
-
+      
       self.tableWidget.sortItems(0)
 
       self.tableWidget.horizontalHeader().setSectionResizeMode(0, QHeaderView.ResizeToContents)
@@ -127,9 +127,9 @@ class QadDIMSTYLE_DIFF_Dialog(QDialog, QObject, qad_dimstyle_diff_ui.Ui_DimStyle
    def showDiffProps(self, dimStyle1, dimStyle2):
       if self.tableWidget.model() is not None:
          # Pulisce la tabella
-         self.tableWidget.clearContents()
+         self.tableWidget.clear()
          self.tableWidget.setRowCount(0)
-         
+      
       self.tableWidget.setColumnCount(3)
       headerLabels = []
       headerLabels.append(QadMsg.translate("DimStyle_Diff_Dialog", "Description"))
@@ -137,7 +137,7 @@ class QadDIMSTYLE_DIFF_Dialog(QDialog, QObject, qad_dimstyle_diff_ui.Ui_DimStyle
       headerLabels.append(dimStyle2.name)
       self.tableWidget.setHorizontalHeaderLabels(headerLabels)
       self.tableWidget.horizontalHeader().show()
-
+      
       self.count = 0
       prop1Items = dimStyle1.getPropList().items() # lista di nome con lista [descrizione, valore]
       props2Dict = dimStyle2.getPropList() # dizionario di nome con lista [descrizione, valore]
@@ -153,12 +153,12 @@ class QadDIMSTYLE_DIFF_Dialog(QDialog, QObject, qad_dimstyle_diff_ui.Ui_DimStyle
             prop2Value = ""
          if unicode(prop1Value) != unicode(prop2Value):
             self.insertProp(propDescr, prop1Value, prop2Value)
-
+      
       self.tableWidget.sortItems(0)
-
+      
       self.tableWidget.horizontalHeader().setSectionResizeMode(0, QHeaderView.ResizeToContents)
+      self.tableWidget.horizontalHeader().setSectionResizeMode(1, QHeaderView.Interactive)
       self.tableWidget.horizontalHeader().setSectionResizeMode(2, QHeaderView.Interactive)
-      self.tableWidget.horizontalHeader().setSectionResizeMode(3, QHeaderView.Interactive)
            
       self.msg.setText(QadMsg.translate("DimStyle_Diff_Dialog", "Found {0} differences: ").format(str(self.count)))
 
@@ -167,16 +167,16 @@ class QadDIMSTYLE_DIFF_Dialog(QDialog, QObject, qad_dimstyle_diff_ui.Ui_DimStyle
       self.tableWidget.insertRow(self.count)
       
       item = QTableWidgetItem(unicode(description))
-      item.setFlags(Qt.NoItemFlags | Qt.ItemIsEnabled | Qt.ItemIsSelectable)
+      item.setFlags(Qt.ItemIsEnabled | Qt.ItemIsSelectable)
       self.tableWidget.setItem(self.count, 0, item)
       
       item = QTableWidgetItem(unicode(val1))
-      item.setFlags(Qt.NoItemFlags | Qt.ItemIsEnabled | Qt.ItemIsSelectable)
+      item.setFlags(Qt.ItemIsEnabled | Qt.ItemIsSelectable)
       self.tableWidget.setItem(self.count, 1, item)
       
       if val2 is not None:
          item = QTableWidgetItem(unicode(val2))
-         item.setFlags(Qt.NoItemFlags | Qt.ItemIsEnabled | Qt.ItemIsSelectable)
+         item.setFlags(Qt.ItemIsEnabled | Qt.ItemIsSelectable)
          self.tableWidget.setItem(self.count, 2, item)
       self.count += 1
       
