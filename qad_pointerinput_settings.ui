@@ -6,19 +6,19 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>272</width>
+    <width>300</width>
     <height>356</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>272</width>
+    <width>300</width>
     <height>356</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>272</width>
+    <width>300</width>
     <height>356</height>
    </size>
   </property>
@@ -30,7 +30,7 @@
     <rect>
      <x>10</x>
      <y>10</y>
-     <width>251</width>
+     <width>281</width>
      <height>181</height>
     </rect>
    </property>
@@ -61,7 +61,7 @@
      <rect>
       <x>10</x>
       <y>60</y>
-      <width>231</width>
+      <width>261</width>
       <height>51</height>
      </rect>
     </property>
@@ -73,7 +73,7 @@
       <rect>
        <x>10</x>
        <y>10</y>
-       <width>211</width>
+       <width>241</width>
        <height>17</height>
       </rect>
      </property>
@@ -89,7 +89,7 @@
       <rect>
        <x>10</x>
        <y>30</y>
-       <width>211</width>
+       <width>241</width>
        <height>17</height>
       </rect>
      </property>
@@ -106,7 +106,7 @@
      <rect>
       <x>10</x>
       <y>120</y>
-      <width>231</width>
+      <width>261</width>
       <height>51</height>
      </rect>
     </property>
@@ -118,7 +118,7 @@
       <rect>
        <x>10</x>
        <y>10</y>
-       <width>211</width>
+       <width>241</width>
        <height>17</height>
       </rect>
      </property>
@@ -134,7 +134,7 @@
       <rect>
        <x>10</x>
        <y>30</y>
-       <width>211</width>
+       <width>241</width>
        <height>17</height>
       </rect>
      </property>
@@ -152,7 +152,7 @@
     <rect>
      <x>10</x>
      <y>210</y>
-     <width>251</width>
+     <width>281</width>
      <height>101</height>
     </rect>
    </property>
@@ -164,7 +164,7 @@
      <rect>
       <x>10</x>
       <y>80</y>
-      <width>231</width>
+      <width>261</width>
       <height>17</height>
      </rect>
     </property>
@@ -180,7 +180,7 @@
      <rect>
       <x>10</x>
       <y>60</y>
-      <width>231</width>
+      <width>261</width>
       <height>17</height>
      </rect>
     </property>
@@ -196,7 +196,7 @@
      <rect>
       <x>10</x>
       <y>20</y>
-      <width>231</width>
+      <width>261</width>
       <height>31</height>
      </rect>
     </property>
@@ -213,8 +213,8 @@
     <rect>
      <x>10</x>
      <y>320</y>
-     <width>251</width>
-     <height>25</height>
+     <width>281</width>
+     <height>30</height>
     </rect>
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout">

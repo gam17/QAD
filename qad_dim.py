@@ -312,7 +312,7 @@ class QadDimStyle():
       self.textPrefix = dimStyle.textPrefix
       self.textSuffix = dimStyle.textSuffix
       self.textSuppressLeadingZeros = dimStyle.textSuppressLeadingZeros
-      self.textDecimaZerosSuppression = dimStyle.textDecimalZerosSuppression
+      self.textDecimalZerosSuppression = dimStyle.textDecimalZerosSuppression
       self.textHeight = dimStyle.textHeight
       self.textVerticalPos = dimStyle.textVerticalPos
       self.textHorizontalPos = dimStyle.textHorizontalPos

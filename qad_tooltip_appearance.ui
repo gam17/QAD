@@ -6,19 +6,19 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>379</width>
+    <width>450</width>
     <height>366</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>379</width>
+    <width>450</width>
     <height>366</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>379</width>
+    <width>450</width>
     <height>366</height>
    </size>
   </property>
@@ -28,7 +28,7 @@
   <widget class="QWidget" name="widget_Preview" native="true">
    <property name="geometry">
     <rect>
-     <x>20</x>
+     <x>10</x>
      <y>20</y>
      <width>191</width>
      <height>71</height>
@@ -38,7 +38,7 @@
   <widget class="QPushButton" name="Button_TooltipColors">
    <property name="geometry">
     <rect>
-     <x>20</x>
+     <x>10</x>
      <y>100</y>
      <width>75</width>
      <height>23</height>
@@ -54,9 +54,9 @@
   <widget class="QGroupBox" name="groupBox">
    <property name="geometry">
     <rect>
-     <x>20</x>
+     <x>10</x>
      <y>130</y>
-     <width>351</width>
+     <width>431</width>
      <height>51</height>
     </rect>
    </property>
@@ -78,7 +78,7 @@
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>351</width>
+      <width>431</width>
       <height>51</height>
      </rect>
     </property>
@@ -103,7 +103,7 @@
       <rect>
        <x>130</x>
        <y>20</y>
-       <width>211</width>
+       <width>291</width>
        <height>22</height>
       </rect>
      </property>
@@ -122,9 +122,9 @@
   <widget class="QGroupBox" name="groupBox_3">
    <property name="geometry">
     <rect>
-     <x>20</x>
+     <x>10</x>
      <y>190</y>
-     <width>351</width>
+     <width>431</width>
      <height>51</height>
     </rect>
    </property>
@@ -136,7 +136,7 @@
      <rect>
       <x>130</x>
       <y>20</y>
-      <width>211</width>
+      <width>291</width>
       <height>22</height>
      </rect>
     </property>
@@ -164,10 +164,10 @@
   <widget class="QWidget" name="horizontalLayoutWidget">
    <property name="geometry">
     <rect>
-     <x>120</x>
+     <x>150</x>
      <y>330</y>
-     <width>251</width>
-     <height>25</height>
+     <width>291</width>
+     <height>30</height>
     </rect>
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout">
@@ -197,9 +197,9 @@
   <widget class="QGroupBox" name="groupBox_4">
    <property name="geometry">
     <rect>
-     <x>20</x>
+     <x>10</x>
      <y>250</y>
-     <width>351</width>
+     <width>431</width>
      <height>71</height>
     </rect>
    </property>
@@ -209,9 +209,9 @@
    <widget class="QRadioButton" name="radio_for_all_tooltips">
     <property name="geometry">
      <rect>
-      <x>20</x>
+      <x>10</x>
       <y>20</y>
-      <width>321</width>
+      <width>411</width>
       <height>17</height>
      </rect>
     </property>
@@ -222,9 +222,9 @@
    <widget class="QRadioButton" name="radio_for_DI_tooltips">
     <property name="geometry">
      <rect>
-      <x>20</x>
+      <x>10</x>
       <y>40</y>
-      <width>321</width>
+      <width>411</width>
       <height>17</height>
      </rect>
     </property>
