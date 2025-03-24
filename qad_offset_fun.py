@@ -37,6 +37,7 @@ from .qad_geom_relations import *
 from .qad_join_fun import selfJoinPolyline
 from .qad_arc import QadArc
 from .qad_polyline import *
+from .qad_variables import QadVariables
 
 
 # ===============================================================================

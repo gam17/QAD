@@ -30,9 +30,6 @@ from qgis.core import *
 from qgis.gui import *
 
 
-from .qad_variables import QadVariables
-
-
 # ===============================================================================
 # getQGISColorForHighlight
 # ===============================================================================

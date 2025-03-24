@@ -124,13 +124,13 @@ class QadCommandsClass():
       self.__cmdObjs.append(QadPOLYGONCommandClass(self.plugIn)) # POLYGON
       self.__cmdObjs.append(QadDIMLINEARCommandClass(self.plugIn)) # DIMLINEAR
       self.__cmdObjs.append(QadDIMALIGNEDCommandClass(self.plugIn)) # DIMALIGNED
-      self.__cmdObjs.append(QadDIMARCCommandClass(self.plugIn)) # DIMALIGNED
-      self.__cmdObjs.append(QadDIMRADIUSCommandClass(self.plugIn)) # DIMALIGNED
+      self.__cmdObjs.append(QadDIMARCCommandClass(self.plugIn)) # DIMARC
+      self.__cmdObjs.append(QadDIMRADIUSCommandClass(self.plugIn)) # DIMRADIUS
       self.__cmdObjs.append(QadDIMSTYLECommandClass(self.plugIn)) # DIMSTYLE
       self.__cmdObjs.append(QadHELPCommandClass(self.plugIn)) # HELP
       self.__cmdObjs.append(QadLENGTHENCommandClass(self.plugIn)) # LENGTHEN
       self.__cmdObjs.append(QadOPTIONSCommandClass(self.plugIn)) # OPTIONS
-      self.__cmdObjs.append(QadMAPMPEDITCommandClass(self.plugIn)) # MAPMEDIT
+      self.__cmdObjs.append(QadMAPMPEDITCommandClass(self.plugIn)) # MAPMPEDIT
       self.__cmdObjs.append(QadJOINCommandClass(self.plugIn)) # JOIN
       self.__cmdObjs.append(QadDISJOINCommandClass(self.plugIn)) # DISJOIN
       self.__cmdObjs.append(QadARRAYCommandClass(self.plugIn)) # ARRAY

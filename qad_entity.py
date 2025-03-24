@@ -34,6 +34,7 @@ from . import qad_layer
 from . import qad_stretch_fun
 from . import qad_utils
 from .qad_multi_geom import *
+from .qad_variables import QadVariables
 
 
 # ===============================================================================

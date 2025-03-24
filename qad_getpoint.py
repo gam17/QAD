@@ -484,6 +484,7 @@ class QadGetPoint(QgsMapTool):
       self.M2P_Mode = True
       self.plugIn.showMsg("\n" + QadMsg.translate("Snap", "First point of mid: "))
 
+
    # ============================================================================
    # refreshSnapType
    # ============================================================================
@@ -1128,6 +1129,7 @@ class QadGetPoint(QgsMapTool):
       else:
          self.entity.clear()
 
+
    # ============================================================================
    # keyPressEvent
    # ============================================================================
@@ -1392,6 +1394,7 @@ class QadGetPoint(QgsMapTool):
 #       QadVariables.set(QadMsg.translate("Environment variables", "OSMODE"), value | _snapType)
 #       QadVariables.save()      
 #       self.refreshSnapType()
+         
          
    def addM2PActionByPopupMenu(self):
       self.plugIn.showEvaluateMsg("_M2P")          

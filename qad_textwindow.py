@@ -23,11 +23,11 @@
 """
 
 
-from qgis.PyQt.QtCore import Qt, QTimer, QPoint
+from qgis.PyQt.QtCore import Qt, QTimer, QPoint, QRect
 from qgis.PyQt.QtGui import QIcon, QColor, QTextCursor, QTextCharFormat, QFont, \
                         QFontMetrics, QStandardItemModel, QStandardItem
-from qgis.PyQt.QtWidgets import QDockWidget, QListView, QAbstractItemView, QApplication, QWidget, QTextEdit
-from qgis.core import QgsPointXY
+from qgis.PyQt.QtWidgets import QDockWidget, QListView, QAbstractItemView, QApplication, QWidget, QTextEdit, QMessageBox
+from qgis.core import QgsPointXY, QgsSettings
 import sys
 import string
 import difflib
@@ -101,12 +101,13 @@ class QadTextWindow(QDockWidget, Ui_QadTextWindow):
 
       title = self.windowTitle()
       self.setWindowTitle(QadMsg.getQADTitle() + " - " + title + " - " + plugin.version())
-
+      
 
    def __del__(self):
       """The destructor."""
 
       self.topLevelChanged['bool'].disconnect(self.onTopLevelChanged)
+                  
       QDockWidget.__del__(self)
 
 
@@ -142,6 +143,37 @@ class QadTextWindow(QDockWidget, Ui_QadTextWindow):
       self.cmdSuggestWindow.show(False)
 
       self.refreshColors()
+
+
+   # ============================================================================
+   # writeDockWidgetSettings
+   # ============================================================================
+   def writeDockWidgetSettings(self):
+      s = QgsSettings()
+      s.setValue("qad/text_window_x", self.x())         
+      s.setValue("qad/text_window_y", self.y())         
+      s.setValue("qad/text_window_width", self.width())         
+      s.setValue("qad/text_window_height", self.height())         
+      s.setValue("qad/text_window_floating", self.isFloating())         
+      s.setValue("qad/text_window_area", self.plugin.iface.mainWindow().dockWidgetArea(self)) 
+      #QMessageBox.warning(None, "titolo" , "altezza: " + str(self.height()))      
+
+   
+   # ============================================================================
+   # readDockWidgetSettings
+   # ============================================================================
+   def readDockWidgetSettings(self):
+      s = QgsSettings()
+      x = s.value("qad/text_window_x", 0, type=int,)         
+      y = s.value("qad/text_window_y", 0, type=int,)         
+      width = s.value("qad/text_window_width", 400, type=int,)    
+      height = s.value("qad/text_window_height", 400, type=int,)         
+      isFloating = s.value("qad/text_window_floating", False, type=bool,)         
+      dockWidgetArea = s.value("qad/text_window_area", Qt.BottomDockWidgetArea, type=int,)
+              
+      #QMessageBox.warning(None, "titolo" , "altezza: " + str(height))
+              
+      return isFloating, QRect(x, y, width, height), dockWidgetArea
 
 
    # ============================================================================
@@ -1019,7 +1051,7 @@ class QadEdit(QTextEdit):
             self.parentWidget().runCommand(cmd)
          else:
             msg = QadMsg.translate("QAD", "\nInvalid command \"{0}\".")
-            self.showErr(msg.format(cmd.encode('ascii','ignore'))) # ripete il prompt
+            self.showErr(msg.format(cmd.encode('utf-8','ignore').decode('utf-8'))) # ripete il prompt
          return
 
       if cmd == "":

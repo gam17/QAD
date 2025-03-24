@@ -34,7 +34,6 @@ from qgis.PyQt.QtWidgets import QDialog, QMessageBox
 
 from . import qad_dimstyle_details_ui
 
-from .qad_variables import QadVariables
 from .qad_dim import QadDimStyle, QadDimStyleArcSymbolPosEnum, \
                      QadDimStyleTxtVerticalPosEnum, QadDimStyleTxtHorizontalPosEnum, \
                      QadDimStyleTxtDirectionEnum, QadDimStyleTxtRotModeEnum, \

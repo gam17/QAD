@@ -22,8 +22,7 @@
 
 
 from PyQt5 import QtCore, QtGui
-from qgis.PyQt.QtWidgets import QWidget, QVBoxLayout
-
+from qgis.PyQt.QtWidgets import QWidget, QVBoxLayout, QMessageBox
 from .qad_msg import QadMsg
 
 

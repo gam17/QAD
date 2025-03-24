@@ -30,7 +30,6 @@ from qgis.PyQt.QtWidgets import QDialog, QMessageBox
 from . import qad_dimstyle_new_ui
 from .qad_dimstyle_details_dlg import QadDIMSTYLE_DETAILS_Dialog
 
-from .qad_variables import QadVariables
 from .qad_dim import QadDimStyle, QadDimStyles
 from .qad_msg import QadMsg, qadShowPluginPDFHelp
 from . import qad_utils

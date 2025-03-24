@@ -34,8 +34,6 @@ from qgis.gui import *
 
 from .qad_gripcolor_ui import Ui_GripColor_Dialog
 
-
-from .qad_variables import QadVariables
 from .qad_msg import QadMsg, qadShowPluginPDFHelp
 from . import qad_utils
 

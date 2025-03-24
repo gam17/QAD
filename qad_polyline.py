@@ -1436,8 +1436,10 @@ class QadPolyline():
 
    # ===============================================================================
    # getGeomBetween2Pts
+   # considerPolylineAsOpened serve per evitare che in caso di polilinea chiusa ritorni il percorso più breve per andare da startPt a endPt.
+   # vedi break su rettangolo (su layer linestring)
    # ===============================================================================
-   def getGeomBetween2Pts(self, startPt, endPt):
+   def getGeomBetween2Pts(self, startPt, endPt, considerPolylineAsOpened = False):
       """
       Ritorna una sotto geometria che parte dal punto startPt e finisce al punto endPt seguendo il tracciato della geometria.
       Se la polilinea è chiusa ritorna il percorso più breve per andare da startPt a endPt.
@@ -1466,7 +1468,7 @@ class QadPolyline():
          i = i + 1
       
       if ok1:
-         if self.isClosed() == False: return result1
+         if self.isClosed() == False or considerPolylineAsOpened == True: return result1
       else:
          # se non trovata la fine ed è una polilinea chiusa, riparto dall'inizio
          if self.isClosed():
@@ -1553,11 +1555,11 @@ class QadPolyline():
          dist1 = self.getDistanceFromStart(firstPt)
          dist2 = self.getDistanceFromStart(secondPt)
          if dist1 < dist2:
-            g1 = self.getGeomBetween2Pts(self.getStartPt(), firstPt)
-            g2 = self.getGeomBetween2Pts(secondPt, self.getEndPt())
+            g1 = self.getGeomBetween2Pts(self.getStartPt(), firstPt, True)
+            g2 = self.getGeomBetween2Pts(secondPt, self.getEndPt(), True)
          else:
-            g1 = self.getGeomBetween2Pts(self.getStartPt(), secondPt)
-            g2 = self.getGeomBetween2Pts(firstPt, self.getEndPt())
+            g1 = self.getGeomBetween2Pts(self.getStartPt(), secondPt, True)
+            g2 = self.getGeomBetween2Pts(firstPt, self.getEndPt(), True)
             
          if self.isClosed(): # se é chiusa
             g2.appendPolyline(g1)

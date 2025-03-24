@@ -692,8 +692,10 @@ def isTextLayer(layer):
    for symbol in renderer.symbols(context):
       if symbol.opacity() > 0.1: # 1 for opaque, 0 for invisible
          return False
-   # deve avere etichette
+   # deve avere etichette   
    if layer.labeling() is None:
+      return False
+   if layer.labelsEnabled() == False:
       return False
    
    # verifico che ci sia almeno un campo come etichetta

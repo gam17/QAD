@@ -110,7 +110,7 @@ def qadShowPluginPDFHelp(section = "", filename = "QAD"):
             return
       
    if section != "":
-      helpfile = helpfile + "#" + urllib.parse.quote(section.encode('utf-8'))
+      helpfile = helpfile + "#" + urllib.parse.quote(section.encode('utf-8').decode('utf-8'))
 
    webbrowser.open_new(helpfile)
    
@@ -154,7 +154,7 @@ def qadShowPluginHelp(section = "", filename = "index", packageName = None):
       url = "file:///"+helpfile
 
       if section != "":
-         url = url + "#" + urllib.parse.quote(section.encode('utf-8'))
+         url = url + "#" + urllib.parse.quote(section.encode('utf-8').decode('utf-8'))
 
       # la funzione QDesktopServices.openUrl in windows non apre la sezione
       if platform.system() == "Windows":

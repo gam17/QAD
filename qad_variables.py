@@ -1109,7 +1109,7 @@ class QadVariablesClass():
       """
       Ritorna la lista dei nomi delle variabili 
       """
-      return self.__VariableValuesDict.keys()
+      return list(self.__VariableValuesDict.keys())
 
 
    def set(self, VarName, varValue):

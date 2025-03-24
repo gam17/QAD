@@ -3268,7 +3268,7 @@ class QadDimStyle():
       """
       intPts = QadIntersections.infinityLineWithArc(QadLine().set(pt, arc.center), arc)
       if len(intPts) == 1:
-         return [pt, intPts[0]]
+         return QadLine().set(pt, intPts[0])
       elif len(intPts) == 2:
          # scelgo il più vicino
          if qad_utils.getDistance(pt, intPts[0]) < qad_utils.getDistance(pt, intPts[1]):

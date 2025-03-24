@@ -26,8 +26,8 @@
 
 from qgis.PyQt.QtCore import Qt, QObject, QTranslator, qVersion, QCoreApplication, QSettings
 from qgis.PyQt.QtGui import QIcon, QKeySequence
-from qgis.PyQt.QtWidgets import QAction, QMenu, QToolButton, QShortcut, QMessageBox
-from qgis.core import QgsPointXY, QgsProject, QgsMapLayer
+from qgis.PyQt.QtWidgets import QAction, QMenu, QToolButton, QShortcut, QMessageBox, QWIDGETSIZE_MAX
+from qgis.core import QgsPointXY, QgsProject, QgsMapLayer, QgsSettings, QgsApplication
 from qgis.gui import QgsGui
 # Initialize Qt resources from file qad_rc.py
 from .qad_rc import *
@@ -424,7 +424,7 @@ class Qad(QObject):
       
       self.TextWindow = None
       
-      # inizializzzione sul caricamento del progetto
+      # inizializzazione sul caricamento del progetto
       self.initOnProjectLoaded()
 
       # QadMapTool va creato dopo aver inizializzato self.QadCommands e self.canvas e self.initOnProjectLoaded()
@@ -628,7 +628,20 @@ class Qad(QObject):
       # Inizializzo la finestra di testo
       self.TextWindow = QadTextWindow(self)
       self.TextWindow.initGui()
-      self.iface.addDockWidget(Qt.BottomDockWidgetArea, self.TextWindow)
+      
+      isFloating, dockGeometry, dockWidgetArea = self.TextWindow.readDockWidgetSettings()
+      self.TextWindow.setFloating(isFloating) 
+      if isFloating == False:
+         # ugly hack, but only way to set dock size correctly for Qt < 5.6
+         self.TextWindow.setFixedSize(dockGeometry.size())
+         self.iface.addDockWidget(dockWidgetArea, self.TextWindow)
+         self.TextWindow.resize(dockGeometry.size())
+         QgsApplication.processEvents() # required!
+         self.TextWindow.setFixedSize(QWIDGETSIZE_MAX, QWIDGETSIZE_MAX);
+      else:
+         self.TextWindow.setGeometry(dockGeometry)
+         self.iface.addDockWidget(dockWidgetArea, self.TextWindow)
+      
 
       # aggiungo i segnali di aggiunta e rimozione di layer per collegare ogni layer
       # all'evento <layerModified> per sapere se la modifica fatta su quel layer
@@ -645,6 +658,7 @@ class Qad(QObject):
 
       self.showTextWindow(QadVariables.get(QadMsg.translate("Environment variables", "SHOWTEXTWINDOW"), True))
       self.setStandardMapTool()
+      #QMessageBox.warning(None, "titolo" , 'altezza dopo addDockWidget ' + str(self.TextWindow.height()))
 
 
    def unload(self):
@@ -668,11 +682,14 @@ class Qad(QObject):
          del self.dimToolBar
       if self.menu is not None:
          del self.menu
+         
       if self.TextWindow is not None:
-         self.TextWindow.setVisible(False)
+         self.TextWindow.writeDockWidgetSettings()
+         self.TextWindow.setVisible(False)         
          self.iface.removeDockWidget(self.TextWindow)
          del self.TextWindow
          self.TextWindow = None
+         
       if self.tool:
          if self.canvas.mapTool() == self.tool:
             self.canvas.unsetMapTool(self.tool)
