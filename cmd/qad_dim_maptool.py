@@ -27,7 +27,6 @@ import math
 
 
 from .. import qad_utils
-from ..qad_variables import QadVariables
 from ..qad_getpoint import QadGetPoint, QadGetPointDrawModeEnum
 from ..qad_dim import QadDimStyleAlignmentEnum
 from ..qad_rubberband import QadRubberBand
@@ -75,7 +74,7 @@ class Qad_dim_maptool(QadGetPoint):
       self.preferredAlignment = QadDimStyleAlignmentEnum.HORIZONTAL # allineamento della linea di quota
       self.forcedDimLineAlignment = None # allineamento della linea di quota forzato
       self.forcedDimLineRot = 0.0 # rotazione della linea di quota forzato
-      self.leader = None # per disegnare la linea direttrice nella quotatura arco
+      self.leader = False # per disegnare la linea direttrice nella quotatura arco
       
       self.__rubberBand = QadRubberBand(self.canvas)      
 
@@ -205,7 +204,8 @@ class Qad_dim_maptool(QadGetPoint):
          dimEntity, textOffsetRect = self.dimStyle.getArcDimFeatures(self.canvas, \
                                                                      self.dimArc, \
                                                                      self.tmpPoint, \
-                                                                     self.measure)
+                                                                     self.measure,
+                                                                     self.leader)
       # noto l'oggetto da quotare (arco o cerchio) si richiede la posizione della linea di quota raggio
       elif self.mode == Qad_dim_maptool_ModeEnum.OBJ_KNOWN_ASK_FOR_RADIUS_DIM_LINE_POS:
          dimObj = self.dimCircle if (self.dimCircle is not None) else self.dimArc

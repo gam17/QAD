@@ -113,8 +113,10 @@ class QadCommandClass(QObject): # derivato da QObject per gestire il metodo send
          self.plugIn.mainAction.setChecked(True)     
 
 
-   def waitForPoint(self, msg = QadMsg.translate("QAD", "Specify point: "), \
+   def waitForPoint(self, msg = None, \
                     default = None, inputMode = QadInputModeEnum.NOT_NULL):
+      if msg is None:
+          msg = QadMsg.translate("QAD", "Specify point: ")
       self.setMapTool(self.getPointMapTool())
       # setto l'input via finestra di testo
       self.showInputMsg(msg, QadInputTypeEnum.POINT2D, default, "", inputMode)

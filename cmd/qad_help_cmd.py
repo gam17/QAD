@@ -92,6 +92,8 @@ class QadSUPPORTERSCommandClass(QadCommandClass):
       QadCommandClass.__init__(self, plugIn)
         
    def run(self, msgMapTool = False, msg = None):
-      self.showMsg("\nYour mac address is " + getMacAddress() + ". QAD installation path is " + getQADPath())
+      msg1 = QadMsg.translate("Command_SUPPORTERS", "Your mac address is")
+      msg2 = QadMsg.translate("Command_SUPPORTERS", "QAD installation path is")
+      self.showMsg("\n" + msg1 + " " + getMacAddress() + ". " + msg2 + " " + getQADPath())
       qadShowSupportersPage()       
       return True

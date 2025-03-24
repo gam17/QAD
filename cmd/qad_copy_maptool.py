@@ -107,16 +107,20 @@ class Qad_copy_maptool(QadGetPoint):
          
          if self.seriesLen > 0: # devo fare una serie
             if self.adjust == True:
-               offsetX = offsetX / (self.seriesLen - 1)
-               offsetY = offsetY / (self.seriesLen - 1)
-
-            deltaX = offsetX
-            deltaY = offsetY
+               offsetXToApply = offsetX / (self.seriesLen - 1)
+               offsetYToApply = offsetY / (self.seriesLen - 1)
+            else:
+               offsetXToApply = offsetX
+               offsetYToApply = offsetY
+               
+            deltaX = offsetXToApply
+            deltaY = offsetYToApply
                
             for i in range(1, self.seriesLen, 1):
                self.move(entity, deltaX, deltaY)
-               deltaX = deltaX + offsetX
-               deltaY = deltaY + offsetY     
+               deltaX = deltaX + offsetXToApply
+               deltaY = deltaY + offsetYToApply
+                  
          else:
             self.move(entity, offsetX, offsetY)
 

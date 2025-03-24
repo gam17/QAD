@@ -43,7 +43,7 @@ from ..qad_rubberband import createRubberBand
 from ..qad_dim import QadDimStyles
 from ..qad_multi_geom import getQadGeomAt, fromQgsGeomToQadGeom
 from ..qad_geom_relations import getQadGeomClosestPart, getQadGeomBetween2Pts
-
+from ..qad_variables import QadVariables
 
 # Classe che gestisce il comando PLINE
 class QadPLINECommandClass(QadCommandClass):

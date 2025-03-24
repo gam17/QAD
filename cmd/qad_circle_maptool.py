@@ -27,7 +27,6 @@ from qgis.core import QgsWkbTypes
 
 
 from .. import qad_utils
-from ..qad_variables import QadVariables
 from ..qad_getpoint import QadGetPoint, QadGetPointDrawModeEnum, QadGetPointSelectionModeEnum
 from ..qad_circle import QadCircle
 from ..qad_circle_fun import *

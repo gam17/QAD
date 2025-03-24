@@ -27,7 +27,6 @@ from qgis.core import QgsWkbTypes, QgsGeometry
 
 
 from .. import qad_utils
-from ..qad_variables import QadVariables
 from ..qad_getpoint import QadGetPoint, QadGetPointDrawModeEnum, QadGetPointSelectionModeEnum
 from ..qad_highlight import QadHighlight
 from ..qad_dim import QadDimStyles

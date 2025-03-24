@@ -27,7 +27,6 @@ from qgis.core import QgsCoordinateTransform, QgsGeometry, QgsProject, QgsWkbTyp
 
 
 from .. import qad_utils
-from ..qad_variables import QadVariables
 from ..qad_getpoint import QadGetPoint, QadGetPointDrawModeEnum
 from ..qad_line import QadLine
 from ..qad_polyline import QadPolyline
@@ -237,12 +236,19 @@ class Qad_arc_maptool(QadGetPoint):
          else: # significa che è usato per disegnare un poligono
             pline = QadPolyline()
             pline.append(arc)
-            line = QadLine()
-            line.set(arc.getEndPt(), self.endVertex)
-            pline.append(line)
-            line = QadLine()
-            line.set(self.endVertex, arc.getStartPt())
-            pline.append(line)
+            
+            if self.endVertex is not None:
+               line = QadLine()
+               line.set(arc.getEndPt(), self.endVertex)
+               pline.append(line)
+               line = QadLine()
+               line.set(self.endVertex, arc.getStartPt())
+               pline.append(line)
+            else:
+               line = QadLine()
+               line.set(arc.getEndPt(), arc.getStartPt())
+               pline.append(line)
+               
             if self.layer is not None:
                g = pline.asGeom(self.layer.wkbType())
             else:

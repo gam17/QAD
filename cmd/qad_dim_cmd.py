@@ -990,6 +990,7 @@ class QadDIMARCCommandClass(QadCommandClass):
       # imposto il map tool      
       self.getPointMapTool().dimArc = self.dimPartialArc
       self.getPointMapTool().dimStyle = self.dimStyle
+      self.getPointMapTool().leader = self.leader
       self.getPointMapTool().setMode(Qad_dim_maptool_ModeEnum.FIRST_SECOND_PT_KNOWN_ASK_FOR_ARC_DIM_LINE_POS)
       
       # si appresta ad attendere un punto o una parola chiave

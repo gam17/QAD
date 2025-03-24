@@ -24,7 +24,7 @@
 
 
 # Import the PyQt and QGIS libraries
-from qgis.core import QgsGeometry, QgsFeature, QgsWkbTypes, QgsPointXY
+from qgis.core import QgsGeometry, QgsFeature, QgsWkbTypes, QgsPointXY, QgsVectorLayerUtils
 from qgis.PyQt.QtGui import QIcon
 
 
@@ -103,17 +103,19 @@ class QadINSERTCommandClass(QadCommandClass):
    def addFeature(self, layer):
       pt = QadPoint(self.insPt)
       g = self.mapToLayerCoordinates(layer, pt.asGeom(layer.wkbType()))
-      f = QgsFeature()
-      f.setGeometry(g)
+      f = QgsVectorLayerUtils.createFeature(layer, g, {}, layer.createExpressionContext())
+      # f = QgsFeature()
+      #f.setGeometry(g)
       # Add attribute fields to feature.
-      fields = layer.fields()
-      f.setFields(fields)
+      #fields = layer.fields()
+      #f.setFields(fields)
       
-      # assegno i valori di default
-      provider = layer.dataProvider()
-      for field in fields.toList():
-         i = fields.indexFromName(field.name())
-         f[field.name()] = provider.defaultValue(i)
+      # # assegno i valori di default
+      # provider = layer.dataProvider()
+      # for field in fields.toList():
+      #    i = fields.indexFromName(field.name())
+      #    f[field.name()] = provider.defaultValue(i)
+      
       
       # se la scala dipende da un campo 
       scaleFldName = qad_layer.get_symbolScaleFieldName(layer)

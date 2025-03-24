@@ -24,7 +24,7 @@
 
 
 # Import the PyQt and QGIS libraries
-from qgis.core import QgsGeometry, QgsFeature, QgsFields, QgsField, QgsWkbTypes, QgsPointXY
+from qgis.core import QgsGeometry, QgsFeature, QgsFields, QgsField, QgsWkbTypes, QgsPointXY, QgsVectorLayerUtils
 from qgis.PyQt.QtCore import QVariant
 from qgis.PyQt.QtGui import QIcon
 
@@ -109,17 +109,7 @@ class QadTEXTCommandClass(QadCommandClass):
    def addFeature(self, layer):
       pt = QadPoint(self.insPt)
       g = self.mapToLayerCoordinates(layer, pt.asGeom(layer.wkbType()))
-      f = QgsFeature()
-      f.setGeometry(g)
-      # Add attribute fields to feature.
-      fields = layer.fields()
-      f.setFields(fields)
-      
-      # assegno i valori di default
-      provider = layer.dataProvider()
-      for field in fields.toList():
-         i = fields.indexFromName(field.name())
-         f[field.name()] = provider.defaultValue(i)
+      f = QgsVectorLayerUtils.createFeature(layer, g, {}, layer.createExpressionContext())
       
       # se l'altezza testo dipende da un solo campo 
       sizeFldNames = qad_label.get_labelSizeFieldNames(layer)

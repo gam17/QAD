@@ -24,7 +24,7 @@
 
 
 # Import the PyQt and QGIS libraries
-from qgis.core import QgsGeometry, QgsFeature, QgsWkbTypes
+from qgis.core import QgsGeometry, QgsFeature, QgsWkbTypes, QgsVectorLayerUtils
 from qgis.PyQt.QtGui import QIcon
 
 
@@ -34,7 +34,6 @@ from ..qad_getpoint import QadGetPointDrawModeEnum
 from .qad_entsel_cmd import QadEntSelClass
 from .qad_getdist_cmd import QadGetDistClass
 from ..qad_textwindow import QadInputTypeEnum, QadInputModeEnum
-from ..qad_variables import QadVariables
 from .. import qad_utils
 from .. import qad_layer
 from ..qad_dim import QadDimStyles
@@ -162,17 +161,7 @@ class QadMEASURECommandClass(QadCommandClass):
    def addFeature(self, layer, insPt, rot, openForm = True):
       transformedPoint = self.mapToLayerCoordinates(layer, insPt)
       g = QgsGeometry.fromPointXY(transformedPoint)
-      f = QgsFeature()
-      f.setGeometry(g)
-      # Add attribute fields to feature.
-      fields = layer.fields()
-      f.setFields(fields)
-      
-      # assegno i valori di default
-      provider = layer.dataProvider()
-      for field in fields.toList():
-         i = fields.indexFromName(field.name())
-         f[field.name()] = provider.defaultValue(i)
+      f = QgsVectorLayerUtils.createFeature(layer, g, {}, layer.createExpressionContext())
       
       # se la scala dipende da un campo 
       scaleFldName = qad_layer.get_symbolScaleFieldName(layer)
