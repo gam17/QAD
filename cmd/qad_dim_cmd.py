@@ -25,7 +25,7 @@
 
 # Import the PyQt and QGIS libraries
 from qgis.PyQt.QtGui import QIcon
-from qgis.core import QgsCoordinateTransform, QgsPointXY
+from qgis.core import QgsPointXY
 import math
 
 

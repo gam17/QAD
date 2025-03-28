@@ -24,7 +24,7 @@
 
 
 from qgis.PyQt.QtGui import QIcon
-from qgis.PyQt.QtCore import QVariant
+from qgis.PyQt.QtCore import QVariant, QMetaType
 from qgis.core import *
 import qgis.utils
 
@@ -348,7 +348,7 @@ class QadPEDITCommandClass(QadCommandClass):
       vectorLayer = createMemoryLayer("QAD_SelfJoinLines", "LineString", crs)
       
       provider = vectorLayer.dataProvider()
-      provider.addAttributes([QgsField('index', QVariant.Int, 'Int')])
+      provider.addAttributes([QgsField('index', QMetaType.Int, 'Int')])
       vectorLayer.updateFields()
 
       if vectorLayer.startEditing() == False:

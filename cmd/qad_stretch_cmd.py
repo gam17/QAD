@@ -25,7 +25,7 @@
 
 # Import the PyQt and QGIS libraries
 from qgis.PyQt.QtGui import QIcon
-from qgis.core import QgsPointXY, QgsCoordinateTransform, QgsGeometry, QgsRectangle
+from qgis.core import QgsPointXY, QgsGeometry, QgsRectangle
 
 
 from ..qad_line import QadLine

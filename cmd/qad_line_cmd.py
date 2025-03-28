@@ -25,7 +25,7 @@
 
 # Import the PyQt and QGIS libraries
 from qgis.PyQt.QtGui import QIcon
-from qgis.core import QgsWkbTypes, QgsGeometry, QgsCoordinateTransform
+from qgis.core import QgsWkbTypes, QgsGeometry
 
 
 from ..qad_getpoint import QadGetPointDrawModeEnum
