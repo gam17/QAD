@@ -1220,9 +1220,9 @@ class QadGeomBoundingBoxCache():
       self.cacheLayer = createMemoryLayer("QadLayerCacheArea", "Polygon", qgis.utils.iface.mapCanvas().mapSettings().destinationCrs())
       
       provider = self.cacheLayer.dataProvider()
-      provider.addAttributes([QgsField("geom_at", QVariant.Int, "Int")]) # codice della geometria
-      provider.addAttributes([QgsField("sub_geom_at", QVariant.Int, "Int")]) # codice della sotto geometria
-      provider.addAttributes([QgsField("part_at", QVariant.Int, "Int")]) # codice della parte
+      provider.addAttributes([QgsField("geom_at", QMetaType.Int, "Int")]) # codice della geometria
+      provider.addAttributes([QgsField("sub_geom_at", QMetaType.Int, "Int")]) # codice della sotto geometria
+      provider.addAttributes([QgsField("part_at", QMetaType.Int, "Int")]) # codice della parte
       self.cacheLayer.updateFields()
       
       if provider.capabilities() & QgsVectorDataProvider.CreateSpatialIndex:

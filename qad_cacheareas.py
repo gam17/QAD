@@ -63,7 +63,7 @@ class QadLayerCacheGeoms():
       self.cacheLayer = createMemoryLayer("QadLayerCacheArea", getStrLayerGeomType(self.layer), self.layer.crs())
       
       provider = self.cacheLayer.dataProvider()
-      provider.addAttributes([QgsField("index", QVariant.Int, "Int")])
+      provider.addAttributes([QgsField("index", QMetaType.Int, "Int")])
       self.cacheLayer.updateFields()
       
       if provider.capabilities() & QgsVectorDataProvider.CreateSpatialIndex:

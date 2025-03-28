@@ -22,7 +22,7 @@
  ***************************************************************************/
 """
 
-from qgis.PyQt.QtCore import QVariant, QDir
+from qgis.PyQt.QtCore import QVariant, QDir, QMetaType
 from qgis.PyQt.QtGui  import QCursor, QPixmap, QColor, QFont, QPalette
 from qgis.PyQt.QtWidgets import QToolTip, QMessageBox, QApplication
 from qgis.core import *
@@ -247,8 +247,8 @@ def isNumericField(field):
    La funzione verifica che il campo di tipo QgsField sia numerico
    """
    fldType = field.type()
-   if fldType == QVariant.Double or fldType == QVariant.LongLong or fldType == QVariant.Int or \
-      fldType == QVariant.ULongLong or fldType == QVariant.UInt:
+   if fldType == QMetaType.Double or fldType == QMetaType.LongLong or fldType == QMetaType.Int or \
+      fldType == QMetaType.ULongLong or fldType == QMetaType.UInt:
       return True
    else:
       return False

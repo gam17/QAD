@@ -24,7 +24,7 @@
 
 from qgis.PyQt.QtCore import QPointF, QRectF
 from qgis.PyQt.QtGui import QPen, QColor, QBrush
-from qgis.core import QgsPointXY, QgsWkbTypes, QgsCoordinateTransform, QgsGeometry
+from qgis.core import QgsPointXY, QgsWkbTypes, QgsGeometry
 from qgis.gui import QgsMapCanvasItem
 
 from .qad_multi_geom import * 
@@ -548,7 +548,7 @@ class QadEntityGripPoints(QgsMapCanvasItem):
       for gp in self.gripPoints:
          f.setId(i)
          f.setGeometry(QgsGeometry.fromPointXY(gp.getPoint()))
-         index.insertFeature(f)
+         index.addFeature(f)
          i = i + 1
          
       return index
