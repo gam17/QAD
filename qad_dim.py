@@ -749,187 +749,187 @@ class QadDimStyle():
          return False
 
       config = qad_utils.QadRawConfigParser(allow_no_value=True)
-      file = codecs.open(_path, "r", "utf-8")
-      config.read_file(file)
-      file.close()
-      #config.read(_path)
+      # file = codecs.open(_path, "r", "utf-8")
+      # config.read_file(file)
+      # file.close()
+      config.read(_path)
 
-      value = config.get("dimension_options", "name")
+      value = config.get("dimension_options", "name", fallback = None)
       if value is not None:
          self.name = value
-      value = config.get("dimension_options", "description")
+      value = config.get("dimension_options", "description", fallback = None)
       if value is not None:
          self.description = value
-      value = config.get("dimension_options", "dimType")
+      value = config.get("dimension_options", "dimType", fallback = None)
       if value is not None:
          self.dimType = value
                            
       # testo di quota
-      value = config.get("dimension_options", "textPrefix")
+      value = config.get("dimension_options", "textPrefix", fallback = None)
       if value is not None:
          self.textPrefix = value
-      value = config.get("dimension_options", "textSuffix")
+      value = config.get("dimension_options", "textSuffix", fallback = None)
       if value is not None:
          self.textSuffix = value
-      value = config.getboolean("dimension_options", "textSuppressLeadingZeros")
+      value = config.getboolean("dimension_options", "textSuppressLeadingZeros", fallback = None)
       if value is not None:
          self.textSuppressLeadingZeros = value
-      value = config.getboolean("dimension_options", "textDecimalZerosSuppression")
+      value = config.getboolean("dimension_options", "textDecimalZerosSuppression", fallback = None)
       if value is not None:
          self.textDecimalZerosSuppression = value
-      value = config.getfloat("dimension_options", "textHeight")
+      value = config.getfloat("dimension_options", "textHeight", fallback = None)
       if value is not None:
          self.textHeight = value
-      value = config.getint("dimension_options", "textVerticalPos")
+      value = config.getint("dimension_options", "textVerticalPos", fallback = None)
       if value is not None:
          self.textVerticalPos = value
-      value = config.getint("dimension_options", "textHorizontalPos")
+      value = config.getint("dimension_options", "textHorizontalPos", fallback = None)
       if value is not None:
          self.textHorizontalPos = value
-      value = config.getfloat("dimension_options", "textOffsetDist")
+      value = config.getfloat("dimension_options", "textOffsetDist", fallback = None)
       if value is not None:
          self.textOffsetDist = value
-      value = config.getint("dimension_options", "textRotMode")
+      value = config.getint("dimension_options", "textRotMode", fallback = None)
       if value is not None:
          self.textRotMode = value
-      value = config.getfloat("dimension_options", "textForcedRot")
+      value = config.getfloat("dimension_options", "textForcedRot", fallback = None)
       if value is not None:
          self.textForcedRot = value
-      value = config.getint("dimension_options", "textDecimals")
+      value = config.getint("dimension_options", "textDecimals", fallback = None)
       if value is not None:
          self.textDecimals = value
-      value = config.get("dimension_options", "textDecimalSep")
+      value = config.get("dimension_options", "textDecimalSep", fallback = None)
       if value is not None:
          self.textDecimalSep = value
-      value = config.get("dimension_options", "textFont")
+      value = config.get("dimension_options", "textFont", fallback = None)
       if value is not None:
          self.textFont = value
-      value = config.get("dimension_options", "textColor")
+      value = config.get("dimension_options", "textColor", fallback = None)
       if value is not None:
          self.textColor = value
-      value = config.getint("dimension_options", "textDirection")
+      value = config.getint("dimension_options", "textDirection", fallback = None)
       if value is not None:
          self.textDirection = value
-      value = config.getint("dimension_options", "arcSymbPos")
+      value = config.getint("dimension_options", "arcSymbPos", fallback = None)
       if value is not None:
          self.arcSymbPos = value
 
       # linee di quota
-      value = config.getboolean("dimension_options", "dimLine1Show")
+      value = config.getboolean("dimension_options", "dimLine1Show", fallback = None)
       if value is not None:
          self.dimLine1Show = value
-      value = config.getboolean("dimension_options", "dimLine2Show")
+      value = config.getboolean("dimension_options", "dimLine2Show", fallback = None)
       if value is not None:
          self.dimLine2Show = value
-      value = config.get("dimension_options", "dimLineLineType")
+      value = config.get("dimension_options", "dimLineLineType", fallback = None)
       if value is not None:
          self.dimLineLineType = value
-      value = config.get("dimension_options", "dimLineColor")
+      value = config.get("dimension_options", "dimLineColor", fallback = None)
       if value is not None:
          self.dimLineColor = value
-      value = config.getfloat("dimension_options", "dimLineSpaceOffset")
+      value = config.getfloat("dimension_options", "dimLineSpaceOffset", fallback = None)
       if value is not None:
          self.dimLineSpaceOffset = value
-      value = config.getfloat("dimension_options", "dimLineOffsetExtLine")
+      value = config.getfloat("dimension_options", "dimLineOffsetExtLine", fallback = None)
       if value is not None:
          self.dimLineOffsetExtLine = value
 
       # simboli per linee di quota
-      value = config.get("dimension_options", "block1Name")
+      value = config.get("dimension_options", "block1Name", fallback = None)
       if value is not None:
          self.block1Name = value
-      value = config.get("dimension_options", "block2Name")
+      value = config.get("dimension_options", "block2Name", fallback = None)
       if value is not None:
          self.block2Name = value
-      value = config.get("dimension_options", "blockLeaderName")
+      value = config.get("dimension_options", "blockLeaderName", fallback = None)
       if value is not None:
          self.blockLeaderName = value
-      value = config.getfloat("dimension_options", "blockWidth")
+      value = config.getfloat("dimension_options", "blockWidth", fallback = None)
       if value is not None:
          self.blockWidth = value
-      value = config.getfloat("dimension_options", "blockScale")
+      value = config.getfloat("dimension_options", "blockScale", fallback = None)
       if value is not None:
          self.blockScale = value
-      value = config.getboolean("dimension_options", "blockSuppressionForNoSpace")
+      value = config.getboolean("dimension_options", "blockSuppressionForNoSpace", fallback = None)
       if value is not None:
          self.blockSuppressionForNoSpace = value
-      value = config.getfloat("dimension_options", "centerMarkSize")
+      value = config.getfloat("dimension_options", "centerMarkSize", fallback = None)
       if value is not None:
          self.centerMarkSize = value
 
       # adattamento del testo e delle frecce
-      value = config.getint("dimension_options", "textBlockAdjust")
+      value = config.getint("dimension_options", "textBlockAdjust", fallback = None)
       if value is not None:
          self.textBlockAdjust = value
 
       # linee di estensione
-      value = config.getboolean("dimension_options", "extLine1Show")
+      value = config.getboolean("dimension_options", "extLine1Show", fallback = None)
       if value is not None:
          self.extLine1Show = value
-      value = config.getboolean("dimension_options", "extLine2Show")
+      value = config.getboolean("dimension_options", "extLine2Show", fallback = None)
       if value is not None:
          self.extLine2Show = value
-      value = config.get("dimension_options", "extLine1LineType")
+      value = config.get("dimension_options", "extLine1LineType", fallback = None)
       if value is not None:
          self.extLine1LineType = value
-      value = config.get("dimension_options", "extLine2LineType")
+      value = config.get("dimension_options", "extLine2LineType", fallback = None)
       if value is not None:
          self.extLine2LineType = value
-      value = config.get("dimension_options", "extLineColor")
+      value = config.get("dimension_options", "extLineColor", fallback = None)
       if value is not None:
          self.extLineColor = value
-      value = config.getfloat("dimension_options", "extLineOffsetDimLine")
+      value = config.getfloat("dimension_options", "extLineOffsetDimLine", fallback = None)
       if value is not None:
          self.extLineOffsetDimLine = value
-      value = config.getfloat("dimension_options", "extLineOffsetOrigPoints")
+      value = config.getfloat("dimension_options", "extLineOffsetOrigPoints", fallback = None)
       if value is not None:
          self.extLineOffsetOrigPoints = value
-      value = config.getboolean("dimension_options", "extLineIsFixedLen")
+      value = config.getboolean("dimension_options", "extLineIsFixedLen", fallback = None)
       if value is not None:
          self.extLineIsFixedLen = value
-      value = config.getfloat("dimension_options", "extLineFixedLen")
+      value = config.getfloat("dimension_options", "extLineFixedLen", fallback = None)
       if value is not None:
          self.extLineFixedLen = value
 
       # layer e loro caratteristiche
-      value = config.get("dimension_options", "textualLayerName")
+      value = config.get("dimension_options", "textualLayerName", fallback = None)
       if value is not None:
          self.textualLayerName = value
-      value = config.get("dimension_options", "linearLayerName")
+      value = config.get("dimension_options", "linearLayerName", fallback = None)
       if value is not None:
          self.linearLayerName = value
-      value = config.get("dimension_options", "symbolLayerName")
+      value = config.get("dimension_options", "symbolLayerName", fallback = None)
       if value is not None:
          self.symbolLayerName = value
             
-      value = config.get("dimension_options", "componentFieldName")
+      value = config.get("dimension_options", "componentFieldName", fallback = None)
       if value is not None:
          self.componentFieldName = value
-      value = config.get("dimension_options", "symbolFieldName")
+      value = config.get("dimension_options", "symbolFieldName", fallback = None)
       if value is not None:
          self.symbolFieldName = value
-      value = config.get("dimension_options", "lineTypeFieldName")
+      value = config.get("dimension_options", "lineTypeFieldName", fallback = None)
       if value is not None:
          self.lineTypeFieldName = value
-      value = config.get("dimension_options", "colorFieldName")
+      value = config.get("dimension_options", "colorFieldName", fallback = None)
       if value is not None:
          self.colorFieldName = value
-      value = config.get("dimension_options", "idFieldName")
+      value = config.get("dimension_options", "idFieldName", fallback = None)
       if value is not None:
          self.idFieldName = value
-      value = config.get("dimension_options", "idParentFieldName")
+      value = config.get("dimension_options", "idParentFieldName", fallback = None)
       if value is not None:
          self.idParentFieldName = value
-      value = config.get("dimension_options", "dimStyleFieldName")
+      value = config.get("dimension_options", "dimStyleFieldName", fallback = None)
       if value is not None:
          self.dimStyleFieldName = value
-      value = config.get("dimension_options", "dimTypeFieldName")
+      value = config.get("dimension_options", "dimTypeFieldName", fallback = None)
       if value is not None:
          self.dimTypeFieldName = value
-      value = config.get("dimension_options", "scaleFieldName")
+      value = config.get("dimension_options", "scaleFieldName", fallback = None)
       if value is not None:
          self.scaleFieldName = value
-      value = config.get("dimension_options", "rotFieldName")
+      value = config.get("dimension_options", "rotFieldName", fallback = None)
       if value is not None:
          self.rotFieldName = value
       

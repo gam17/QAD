@@ -2400,30 +2400,6 @@ class QadRawConfigParser(configparser.RawConfigParser):
                  allow_no_value=False):
       configparser.RawConfigParser.__init__(self, defaults, dict_type, allow_no_value)
       
-   def get(self, section, option, default = None):
-      try:
-         return configparser.RawConfigParser.get(self, section, option)
-      except:
-         return default
-
-   def getint(self, section, option, default = None):
-      try:
-         return configparser.RawConfigParser.getint(self, section, option)
-      except:
-         return default
-
-   def getfloat(self, section, option, default = None):
-      try:
-         return configparser.RawConfigParser.getfloat(self, section, option)
-      except:
-         return default
-
-   def getboolean(self, section, option, default = None):
-      try:
-         return configparser.RawConfigParser.getboolean(self, section, option)
-      except:
-         return default
-
    def write(self, fp):
       """Fixed for Unicode output"""
       if self._defaults:
