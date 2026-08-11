@@ -101,7 +101,7 @@ class QadWindowColorDialog(QDialog, QObject, qad_windowcolor_ui.Ui_WindowColor_D
             item = items[0]
             if item is not None:
                index = self.listView_Context.model().indexFromItem(item)
-               self.listView_Context.selectionModel().setCurrentIndex(index, QItemSelectionModel.SelectCurrent)
+               self.listView_Context.selectionModel().setCurrentIndex(index, QItemSelectionModel.SelectionFlag.SelectCurrent)
 
                if elementEnum != QadColorElementEnum.NONE:
                   # elementi
@@ -113,7 +113,7 @@ class QadWindowColorDialog(QDialog, QObject, qad_windowcolor_ui.Ui_WindowColor_D
                      item = items[0]
                      if item is not None:
                         index = self.listView_Element.model().indexFromItem(item)         
-                        self.listView_Element.selectionModel().setCurrentIndex(index, QItemSelectionModel.SelectCurrent)
+                        self.listView_Element.selectionModel().setCurrentIndex(index, QItemSelectionModel.SelectionFlag.SelectCurrent)
 
 
    # ============================================================================
@@ -416,7 +416,7 @@ class QadWindowColorDialog(QDialog, QObject, qad_windowcolor_ui.Ui_WindowColor_D
 # QadPreview class.
 # ===============================================================================
 class QadPreview(QWidget):
-   def __init__(self, plugIn, parent, tempQadVariables, context, windowFlags = Qt.Widget):
+   def __init__(self, plugIn, parent, tempQadVariables, context, windowFlags = Qt.WindowType.Widget):
       self.plugIn = plugIn
       self.context = context
       self.tempQadVariables = tempQadVariables
@@ -437,20 +437,20 @@ class QadPreview(QWidget):
       rect = self.rect()
       painter = QPainter(self)
       painter.fillRect(rect, self.plugIn.canvas.canvasColor())
-      painter.setRenderHint(QPainter.Antialiasing)
+      painter.setRenderHint(QPainter.RenderHint.Antialiasing)
       
       # PICKBOX
       x1 = (int) (rect.width() / 3)
       y1 = (int) (rect.height() - rect.height() / 3)
       color = QColor(self.tempQadVariables.get(QadMsg.translate("Environment variables", "PICKBOXCOLOR")))
       pickSize = 5
-      painter.setPen(QPen(color, 1, Qt.SolidLine))
+      painter.setPen(QPen(color, 1, Qt.PenStyle.SolidLine))
       painter.drawRect(x1 - pickSize, y1 - pickSize, 2 * pickSize, 2 * pickSize)
 
       # CROSSHAIRS
       color = QColor(self.tempQadVariables.get(QadMsg.translate("Environment variables", "CURSORCOLOR")))
       cursorSize = 20
-      painter.setPen(QPen(color, 1, Qt.SolidLine))
+      painter.setPen(QPen(color, 1, Qt.PenStyle.SolidLine))
       painter.drawLine(x1 - pickSize, y1, x1 - pickSize - cursorSize, y1)
       painter.drawLine(x1 + pickSize, y1, x1 + pickSize + cursorSize, y1)
       painter.drawLine(x1, y1 - pickSize, x1, y1 - pickSize - cursorSize)
@@ -459,7 +459,7 @@ class QadPreview(QWidget):
       # AUTOTRECK_VECTOR
       x1 = (int) (rect.width() / 3)
       color = QColor(self.tempQadVariables.get(QadMsg.translate("Environment variables", "AUTOTRECKINGVECTORCOLOR")))
-      painter.setPen(QPen(color, 1, Qt.DashLine))
+      painter.setPen(QPen(color, 1, Qt.PenStyle.DashLine))
       painter.drawLine(x1, 0, x1, rect.height())
       painter.drawLine((int) (x1 + rect.height() * 2 / 3), 0, (int) (x1 - rect.height() / 3), rect.height())
 
@@ -468,7 +468,7 @@ class QadPreview(QWidget):
       y1 = (int) (rect.height() / 3)
       color = QColor(self.tempQadVariables.get(QadMsg.translate("Environment variables", "AUTOSNAPCOLOR")))
       pickSize = 5
-      painter.setPen(QPen(color, 2, Qt.SolidLine))
+      painter.setPen(QPen(color, 2, Qt.PenStyle.SolidLine))
       painter.drawRect(x1 - pickSize, y1 - pickSize, 2 * pickSize, 2 * pickSize)
 
       # DYNAMIC INPUT
@@ -477,10 +477,10 @@ class QadPreview(QWidget):
       cursorSize = 20
       fMetrics = painter.fontMetrics()
       msg1 = "12.3456"
-      sz1 = fMetrics.size(Qt.TextSingleLine, msg1 + "__")
+      sz1 = fMetrics.size(Qt.TextFlag.TextSingleLine, msg1 + "__")
       dynInputRect1 = QRectF(x1 + cursorSize, y1 + cursorSize, sz1.width(), sz1.height() + 2) 
       msg2 = "78.9012"
-      sz2 = fMetrics.size(Qt.TextSingleLine, msg2 + "__")
+      sz2 = fMetrics.size(Qt.TextFlag.TextSingleLine, msg2 + "__")
       dynInputRect2 = QRectF(dynInputRect1.right() + sz1.height() / 3, dynInputRect1.top(), sz2.width(), sz2.height() + 2) 
       # DYNAMIC INPUT COMMAND DESCR BACKGROUND
       color = QColor(self.tempQadVariables.get(QadMsg.translate("Environment variables", "DYNEDITBACKCOLOR")))
@@ -488,12 +488,12 @@ class QadPreview(QWidget):
       painter.fillRect(dynInputRect2, color)
       # DYNAMIC INPUT COMMAND DESCR BORDER
       color = QColor(self.tempQadVariables.get(QadMsg.translate("Environment variables", "DYNEDITBORDERCOLOR")))
-      painter.setPen(QPen(color, 1, Qt.SolidLine))
+      painter.setPen(QPen(color, 1, Qt.PenStyle.SolidLine))
       painter.drawRect(dynInputRect1)
       painter.drawRect(dynInputRect2)
       # DYNAMIC INPUT COMMAND DESCR FOREGROUND
       color = QColor(self.tempQadVariables.get(QadMsg.translate("Environment variables", "DYNEDITFORECOLOR")))
-      painter.setPen(QPen(color, 1, Qt.SolidLine))
+      painter.setPen(QPen(color, 1, Qt.PenStyle.SolidLine))
       painter.drawText(dynInputRect1, msg1)
       painter.drawText(dynInputRect2, msg2)
       
@@ -510,7 +510,7 @@ class QadPreview(QWidget):
       # CMDHISTORYFORECOLOR
       color = QColor(self.tempQadVariables.get(QadMsg.translate("Environment variables", "CMDHISTORYFORECOLOR")))
       painter.setPen(QPen(color))
-      painter.drawText(QRectF(0, 0, rect.width(), sep), Qt.AlignCenter, QadMsg.translate("QAD", "Command: "))
+      painter.drawText(QRectF(0, 0, rect.width(), sep), Qt.AlignmentFlag.AlignCenter, QadMsg.translate("QAD", "Command: "))
       
       # CMDLINEBACKCOLOR
       color = QColor(self.tempQadVariables.get(QadMsg.translate("Environment variables", "CMDLINEBACKCOLOR")))
@@ -519,5 +519,5 @@ class QadPreview(QWidget):
       # CMDLINEFORECOLOR
       color = QColor(self.tempQadVariables.get(QadMsg.translate("Environment variables", "CMDLINEFORECOLOR")))
       painter.setPen(QPen(color))
-      painter.drawText(QRectF(0, sep, rect.width(), rect.height() - sep), Qt.AlignCenter, QadMsg.translate("QAD", "Command: "))
+      painter.drawText(QRectF(0, sep, rect.width(), rect.height() - sep), Qt.AlignmentFlag.AlignCenter, QadMsg.translate("QAD", "Command: "))
 

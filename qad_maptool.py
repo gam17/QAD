@@ -64,7 +64,7 @@ class QadMapTool(QgsMapTool):
       self.plugIn = plugIn
       self.iface = self.plugIn.iface
       self.canvas = self.plugIn.iface.mapCanvas()      
-      self.cursor = QCursor(Qt.BlankCursor)
+      self.cursor = QCursor(Qt.CursorShape.BlankCursor)
       self.__csrRubberBand = QadCursorRubberBand(self.canvas, QadCursorTypeEnum.BOX | QadCursorTypeEnum.CROSS)
       self.entitySet = QadEntitySet()
       self.entitySetGripPoints = QadEntitySetGripPoints(plugIn)
@@ -174,11 +174,11 @@ class QadMapTool(QgsMapTool):
    # canvasPressEvent
    # ============================================================================
    def canvasPressEvent(self, event):
-      if event.button() == Qt.RightButton:
+      if event.button() == Qt.MouseButton.RightButton:
          self.startDateTimeForRightClick = datetime.datetime.now()
-      elif event.button() == Qt.LeftButton:
+      elif event.button() == Qt.MouseButton.LeftButton:
          # verifico se tasto shift premuto
-         shiftKey = True if event.modifiers() & Qt.ShiftModifier else False
+         shiftKey = True if event.modifiers() & Qt.KeyboardModifier.ShiftModifier else False
          # posizione corrente del mouse
          point = self.toMapCoordinates(event.pos())
          # leggo il punto grip che si interseca alla posizione del mouse
@@ -271,7 +271,7 @@ class QadMapTool(QgsMapTool):
    # canvasReleaseEvent
    # ============================================================================
    def canvasReleaseEvent(self, event):
-      if event.button() == Qt.RightButton:
+      if event.button() == Qt.MouseButton.RightButton:
          shortCutMenu = QadVariables.get(QadMsg.translate("Environment variables", "SHORTCUTMENU"))
          if shortCutMenu == 0:
             # equivale a premere INVIO
@@ -337,7 +337,9 @@ class QadMapTool(QgsMapTool):
    # ============================================================================
    def wheelEvent(self, event):
       QgsMapTool.wheelEvent(self, event)
-      self.__csrRubberBand.moveEvent(self.toMapCoordinates(event.pos()))
+      # QWheelEvent.pos() e' stato rimosso in Qt6: si usa position() (disponibile da Qt 5.14)
+      pos = event.position().toPoint() if hasattr(event, "position") else event.pos()
+      self.__csrRubberBand.moveEvent(self.toMapCoordinates(pos))
 
 
    # ============================================================================

@@ -72,7 +72,7 @@ class QadCursorRubberBand():
          self.__crosshairRubberBandDw.setColor(csrColor)
          self.__crosshairRubberBandUp = QgsRubberBand(mapCanvas, QgsWkbTypes.LineGeometry)
          self.__crosshairRubberBandUp.setColor(csrColor)
-         screenRect = QApplication.desktop().screenGeometry(mapCanvas)
+         screenRect = (mapCanvas.screen() if mapCanvas.screen() is not None else QApplication.primaryScreen()).geometry()
          self.__halfScreenSize = max(screenRect.height(), screenRect.width())
          if csrSize < 100:
             self.__halfScreenSize = self.__halfScreenSize / 2
@@ -86,7 +86,7 @@ class QadCursorRubberBand():
       if cursorType & QadCursorTypeEnum.APERTURE:
          self.__apertureRubberBand = QgsRubberBand(mapCanvas, QgsWkbTypes.LineGeometry)
          self.__apertureRubberBand.setColor(QColor(QadVariables.get(QadMsg.translate("Environment variables", "PICKBOXCOLOR"))))
-         self.__apertureRubberBand.setLineStyle(Qt.DotLine)
+         self.__apertureRubberBand.setLineStyle(Qt.PenStyle.DotLine)
          self.__apertureSize = QadVariables.get(QadMsg.translate("Environment variables", "APERTURE"))
       else:
          self.__apertureRubberBand = None
@@ -304,7 +304,7 @@ def createRubberBand(mapCanvas, geometryType = QgsWkbTypes.LineGeometry, alterna
    rb = QgsRubberBand(mapCanvas, geometryType)
    
    if alternativeBand:
-      rb.setLineStyle(Qt.DotLine)
+      rb.setLineStyle(Qt.PenStyle.DotLine)
 
    if borderColor is None:
       borderColor = getQGISColorForRubberBand(geometryType, alternativeBand)
@@ -440,4 +440,3 @@ class QadRubberBand():
       self.__rubberBandPoint.setWidth(width)
       self.__rubberBandLine.setWidth(width)
       self.__rubberBandPolygon.setWidth(width)
-   

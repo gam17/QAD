@@ -123,39 +123,39 @@ class QadDSETTINGSDialog(QDialog, QObject, qad_dsettings_ui.Ui_DSettings_Dialog)
    def accept_osnap_tab(self):
       # Memorizzo il valore di OSMODE
       newOSMODE = 0
-      if self.checkBox_CENP.checkState() == Qt.Checked:
+      if self.checkBox_CENP.checkState() == Qt.CheckState.Checked:
          newOSMODE = newOSMODE | QadSnapTypeEnum.CEN
-      if self.checkBox_ENDP.checkState() == Qt.Checked:
+      if self.checkBox_ENDP.checkState() == Qt.CheckState.Checked:
          newOSMODE = newOSMODE | QadSnapTypeEnum.END
-      if self.checkBox_END_PLINE.checkState() == Qt.Checked:
+      if self.checkBox_END_PLINE.checkState() == Qt.CheckState.Checked:
          newOSMODE = newOSMODE | QadSnapTypeEnum.END_PLINE
-      if self.checkBox_EXTP.checkState() == Qt.Checked:
+      if self.checkBox_EXTP.checkState() == Qt.CheckState.Checked:
          newOSMODE = newOSMODE | QadSnapTypeEnum.EXT
-      if self.checkBox_INTP.checkState() == Qt.Checked:
+      if self.checkBox_INTP.checkState() == Qt.CheckState.Checked:
          newOSMODE = newOSMODE | QadSnapTypeEnum.INT
-      if self.checkBox_MIDP.checkState() == Qt.Checked:
+      if self.checkBox_MIDP.checkState() == Qt.CheckState.Checked:
          newOSMODE = newOSMODE | QadSnapTypeEnum.MID
-      if self.checkBox_NODP.checkState() == Qt.Checked:
+      if self.checkBox_NODP.checkState() == Qt.CheckState.Checked:
          newOSMODE = newOSMODE | QadSnapTypeEnum.NOD
-      if self.checkBox_QUADP.checkState() == Qt.Checked:
+      if self.checkBox_QUADP.checkState() == Qt.CheckState.Checked:
          newOSMODE = newOSMODE | QadSnapTypeEnum.QUA
       #if self.checkBox_INSP.checkState() == Qt.Checked:
       #   newOSMODE = newOSMODE | QadSnapTypeEnum.INS
       #if self.checkBox_INTAPP.checkState() == Qt.Checked:
       #   newOSMODE = newOSMODE | QadSnapTypeEnum.APP
-      if self.checkBox_NEARP.checkState() == Qt.Checked:
+      if self.checkBox_NEARP.checkState() == Qt.CheckState.Checked:
          newOSMODE = newOSMODE | QadSnapTypeEnum.NEA
-      if self.checkBox_PARALP.checkState() == Qt.Checked:
+      if self.checkBox_PARALP.checkState() == Qt.CheckState.Checked:
          newOSMODE = newOSMODE | QadSnapTypeEnum.PAR
-      if self.checkBox_PERP.checkState() == Qt.Checked:
+      if self.checkBox_PERP.checkState() == Qt.CheckState.Checked:
          newOSMODE = newOSMODE | QadSnapTypeEnum.PER
-      if self.checkBox_PROGRESP.checkState() == Qt.Checked:
+      if self.checkBox_PROGRESP.checkState() == Qt.CheckState.Checked:
          newOSMODE = newOSMODE | QadSnapTypeEnum.PR
-      if self.checkBox_TANP.checkState() == Qt.Checked:
+      if self.checkBox_TANP.checkState() == Qt.CheckState.Checked:
          newOSMODE = newOSMODE | QadSnapTypeEnum.TAN
-      if self.checkBox_EXT_INT.checkState() == Qt.Checked:
+      if self.checkBox_EXT_INT.checkState() == Qt.CheckState.Checked:
          newOSMODE = newOSMODE | QadSnapTypeEnum.EXT_INT
-      if self.checkBox_IsOsnapON.checkState() == Qt.Unchecked:
+      if self.checkBox_IsOsnapON.checkState() == Qt.CheckState.Unchecked:
          newOSMODE = newOSMODE | QadSnapTypeEnum.DISABLE
       QadVariables.set(QadMsg.translate("Environment variables", "OSMODE"), newOSMODE)
 
@@ -166,7 +166,7 @@ class QadDSETTINGSDialog(QDialog, QObject, qad_dsettings_ui.Ui_DSettings_Dialog)
       
       # Memorizzo il valore di AUTOSNAP
       AutoSnap = QadVariables.get(QadMsg.translate("Environment variables", "AUTOSNAP"))      
-      if self.checkBox_ObjectSnapTracking.checkState() == Qt.Checked:
+      if self.checkBox_ObjectSnapTracking.checkState() == Qt.CheckState.Checked:
          AutoSnap = AutoSnap | QadAUTOSNAPEnum.OBJ_SNAP_TRACKING
       elif AutoSnap & QadAUTOSNAPEnum.OBJ_SNAP_TRACKING:
          AutoSnap = AutoSnap - QadAUTOSNAPEnum.OBJ_SNAP_TRACKING
@@ -267,7 +267,7 @@ class QadDSETTINGSDialog(QDialog, QObject, qad_dsettings_ui.Ui_DSettings_Dialog)
    def accept_polar_tab(self):
       # Memorizzo il valore di AUTOSNAP
       AutoSnap = QadVariables.get(QadMsg.translate("Environment variables", "AUTOSNAP"))
-      if self.checkBox_PolarPickPoint.checkState() == Qt.Checked:
+      if self.checkBox_PolarPickPoint.checkState() == Qt.CheckState.Checked:
          AutoSnap = AutoSnap | QadAUTOSNAPEnum.POLAR_TRACKING
       elif AutoSnap & QadAUTOSNAPEnum.POLAR_TRACKING:
          AutoSnap = AutoSnap - QadAUTOSNAPEnum.POLAR_TRACKING
@@ -311,7 +311,7 @@ class QadDSETTINGSDialog(QDialog, QObject, qad_dsettings_ui.Ui_DSettings_Dialog)
 
 
    def CheckAdditionalAngles(self):
-      if self.checkBox_AdditionaltAngles.checkState() == Qt.Checked:
+      if self.checkBox_AdditionaltAngles.checkState() == Qt.CheckState.Checked:
          self.pushButton_DelAngle.setEnabled(True)
          self.listView_AdditionalAngles.setEnabled(True)
       else:
@@ -381,25 +381,25 @@ class QadDSETTINGSDialog(QDialog, QObject, qad_dsettings_ui.Ui_DSettings_Dialog)
 
    def Button_DI_DimensionInputSettings_Pressed(self):
       Form = QadDIMINPUTDialog(self.plugIn, self)
-      Form.exec_()
+      Form.exec()
 
    
    def Button_DI_PointerInputSettings_Pressed(self):
       Form = QadPOINTERINPUTDialog(self.plugIn, self)
-      Form.exec_()
+      Form.exec()
 
 
    def Button_DI_TootipAppearance_Pressed(self):
       Form = QadTOOLTIPAPPEARANCEDialog(self.plugIn, self)
-      Form.exec_()
+      Form.exec()
 
 
    def accept_dynamic_input_tab(self):
       # Memorizzo il valore di DYNMODE = Attiva e disattiva le funzioni di input dinamico
       dynMode = 0
-      if self.checkBox_DI_EnableInputPointer.checkState() == Qt.Checked:
+      if self.checkBox_DI_EnableInputPointer.checkState() == Qt.CheckState.Checked:
          dynMode = dynMode + 1
-      if self.checkBox_DI_EnableDimPointer.checkState() == Qt.Checked:
+      if self.checkBox_DI_EnableDimPointer.checkState() == Qt.CheckState.Checked:
          dynMode = dynMode + 2
       
       if QadVariables.get(QadMsg.translate("Environment variables", "DYNMODE")) < 0:
@@ -407,7 +407,7 @@ class QadDSETTINGSDialog(QDialog, QObject, qad_dsettings_ui.Ui_DSettings_Dialog)
       QadVariables.set(QadMsg.translate("Environment variables", "DYNMODE"), dynMode)
             
       # Memorizzo il valore di DYNPROMPT = Controlla la visualizzazione dei messaggi di richiesta nelle descrizioni di input dinamico
-      dynPrompt = 1 if self.checkBox_DI_ShowPrompt.checkState() == Qt.Checked else 0
+      dynPrompt = 1 if self.checkBox_DI_ShowPrompt.checkState() == Qt.CheckState.Checked else 0
       QadVariables.set(QadMsg.translate("Environment variables", "DYNPROMPT"), dynPrompt)
 
 
@@ -415,7 +415,7 @@ class QadDSETTINGSDialog(QDialog, QObject, qad_dsettings_ui.Ui_DSettings_Dialog)
    # Funzioni generiche
    def eventFilter(self, obj, event):
       if event is not None:
-         if event.type() == QEvent.FocusOut:
+         if event.type() == QEvent.Type.FocusOut:
             if obj == self.lineEdit_ProgrDistance:
                return not self.lineEdit_ProgrDistance_Validation()
             elif obj == self.comboBox_increment_angle:
@@ -520,13 +520,13 @@ class QadDIMINPUTDialog(QDialog, QObject, qad_dimensioninput_settings_ui.Ui_DimI
 
       # Memorizzo il valore di DYNDIGRIP = Controlla la visualizzazione delle quote dinamiche durante la modifica dello stiramento dei grip
       dynDiGrip = 0
-      if self.checkResultingDim.checkState() == Qt.Checked:
+      if self.checkResultingDim.checkState() == Qt.CheckState.Checked:
          dynDiGrip = dynDiGrip + 1
-      if self.checkLengthChange.checkState() == Qt.Checked:
+      if self.checkLengthChange.checkState() == Qt.CheckState.Checked:
          dynDiGrip = dynDiGrip + 2
-      if self.checkAbsoluteAngle.checkState() == Qt.Checked:
+      if self.checkAbsoluteAngle.checkState() == Qt.CheckState.Checked:
          dynDiGrip = dynDiGrip + 4
-      if self.checkAngleChange.checkState() == Qt.Checked:
+      if self.checkAngleChange.checkState() == Qt.CheckState.Checked:
          dynDiGrip = dynDiGrip + 8
       QadVariables.set(QadMsg.translate("Environment variables", "DYNDIGRIP"), dynDiGrip)
       
@@ -718,7 +718,7 @@ class QadTOOLTIPAPPEARANCEDialog(QDialog, QObject, qad_tooltip_appearance_ui.Ui_
 
    def eventFilter(self, obj, event):
       if event is not None:
-         if event.type() == QEvent.FocusOut:
+         if event.type() == QEvent.Type.FocusOut:
             if obj == self.edit_size:
                return not self.lineEdit_TOOLTIPSIZE_Validation()
             elif obj == self.edit_transparency:
@@ -731,7 +731,7 @@ class QadTOOLTIPAPPEARANCEDialog(QDialog, QObject, qad_tooltip_appearance_ui.Ui_
    def Button_TooltipColors_Pressed(self):
       Form = QadWindowColorDialog(self.plugIn, self, QadColorContextEnum.MODEL_SPACE_2D, QadColorElementEnum.DI_COMMAND_DESCR)
       
-      if Form.exec_() == QDialog.Accepted:
+      if Form.exec() == QDialog.DialogCode.Accepted:
          # copio i valori dei colori in QadVariables
          self.ColorVariables = Form.getSysVariableList()
 
@@ -778,22 +778,22 @@ class QadTOOLTIPAPPEARANCEDialog(QDialog, QObject, qad_tooltip_appearance_ui.Ui_
 # QadPreview class.
 # ===============================================================================
 class QadPreview(QWidget):
-   def __init__(self, plugIn, parent, size, transparency, windowFlags = Qt.Widget):
+   def __init__(self, plugIn, parent, size, transparency, windowFlags = Qt.WindowType.Widget):
       self.plugIn = plugIn
       self.size = size
       self.transparency = transparency
       QWidget.__init__(self, parent, windowFlags)
       
       self.edit1 = QTextEdit(self)
-      self.edit1.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
-      self.edit1.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+      self.edit1.setVerticalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
+      self.edit1.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
       self.edit1.insertPlainText("12.3456")
       self.edit1.setReadOnly(True)
       
       self.edit2 = QTextEdit(self)
-      self.edit2.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
-      self.edit2.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
-      self.edit2.setSizePolicy(QSizePolicy.Minimum, QSizePolicy.Fixed)      
+      self.edit2.setVerticalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
+      self.edit2.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
+      self.edit2.setSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Fixed)      
       self.edit2.insertPlainText("78.9012")
       self.edit2.setReadOnly(True)
 
@@ -849,7 +849,7 @@ class QadPreview(QWidget):
       rect = self.rect()
       painter = QPainter(self)
       painter.fillRect(rect, self.plugIn.canvas.canvasColor())
-      painter.setRenderHint(QPainter.Antialiasing)
+      painter.setRenderHint(QPainter.RenderHint.Antialiasing)
       
       foregroundColor = QColor(QadVariables.get(QadMsg.translate("Environment variables", "DYNEDITFORECOLOR")))
       backGroundColor = QColor(QadVariables.get(QadMsg.translate("Environment variables", "DYNEDITBACKCOLOR")))
@@ -858,18 +858,18 @@ class QadPreview(QWidget):
       font_size = 8 + self.size
       height = font_size + 15
 
-      selectionColor = QColor(Qt.white)
+      selectionColor = QColor(Qt.GlobalColor.white)
       selectionBackGroundColor = QColor(51, 153, 255) # azzurro (R=51 G=153 B=255)
       self.setEdit(self.edit1, foregroundColor, backGroundColor, borderColor, selectionColor, selectionBackGroundColor, opacity)
       fm = QFontMetrics(self.edit1.currentFont())
-      width1 = fm.width(self.edit1.toPlainText() + "__") + 2
+      width1 = fm.horizontalAdvance(self.edit1.toPlainText() + "__") + 2
 
       self.edit1.resize(width1, height)
       self.edit1.selectAll() # seleziono tutto il testo
 
       self.setEdit(self.edit2, foregroundColor, backGroundColor, borderColor, backGroundColor, foregroundColor, opacity)
       fm = QFontMetrics(self.edit2.currentFont())
-      width2 = fm.width(self.edit2.toPlainText() + "__") + 2
+      width2 = fm.horizontalAdvance(self.edit2.toPlainText() + "__") + 2
       self.edit2.resize(width2, height)
       
       offset = int(height / 3)

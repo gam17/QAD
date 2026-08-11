@@ -146,8 +146,8 @@ def setMapCanvasToolTip(msg):
    else:
       font_size = QFont().pointSize()
       p = QPalette()
-      fColor = p.color(QPalette.Inactive, QPalette.ToolTipText)
-      bColor = p.color(QPalette.Inactive, QPalette.ToolTipBase)
+      fColor = p.color(QPalette.ColorGroup.Inactive, QPalette.ColorRole.ToolTipText)
+      bColor = p.color(QPalette.ColorGroup.Inactive, QPalette.ColorRole.ToolTipBase)
 
    toolTipFont = QToolTip.font()
    if toolTipFont.pointSize() != font_size:
@@ -155,10 +155,10 @@ def setMapCanvasToolTip(msg):
       QToolTip.setFont(toolTipFont)
 
    toolTipPalette = QToolTip.palette()
-   if toolTipPalette.color(QPalette.Inactive, QPalette.ToolTipText) != fColor or \
-      toolTipPalette.color(QPalette.Inactive, QPalette.ToolTipBase) != bColor:
-      toolTipPalette.setColor(QPalette.Inactive, QPalette.ToolTipText, fColor)
-      toolTipPalette.setColor(QPalette.Inactive, QPalette.ToolTipBase, bColor)
+   if toolTipPalette.color(QPalette.ColorGroup.Inactive, QPalette.ColorRole.ToolTipText) != fColor or \
+      toolTipPalette.color(QPalette.ColorGroup.Inactive, QPalette.ColorRole.ToolTipBase) != bColor:
+      toolTipPalette.setColor(QPalette.ColorGroup.Inactive, QPalette.ColorRole.ToolTipText, fColor)
+      toolTipPalette.setColor(QPalette.ColorGroup.Inactive, QPalette.ColorRole.ToolTipBase, bColor)
       QToolTip.setPalette(toolTipPalette)
 
    QToolTip.showText(pt, msg)
@@ -247,8 +247,8 @@ def isNumericField(field):
    La funzione verifica che il campo di tipo QgsField sia numerico
    """
    fldType = field.type()
-   if fldType == QMetaType.Double or fldType == QMetaType.LongLong or fldType == QMetaType.Int or \
-      fldType == QMetaType.ULongLong or fldType == QMetaType.UInt:
+   if fldType == QMetaType.Type.Double or fldType == QMetaType.Type.LongLong or fldType == QMetaType.Type.Int or \
+      fldType == QMetaType.Type.ULongLong or fldType == QMetaType.Type.UInt:
       return True
    else:
       return False
@@ -464,6 +464,11 @@ def str2QgsPoint(s, lastPoint = None, currenPoint = None, oneNumberAllowed = Tru
             return None
          
          angle = getAngleBy2Pts(lastPoint, currenPoint)
+         # se la modalita' ORTO e' attiva, l'angolo (derivato dalla posizione del cursore)
+         # viene arrotondato all'asse ortogonale piu' vicino (entrata diretta della distanza)
+         if QadVariables.get(QadMsg.translate("Environment variables", "ORTHOMODE")) == 1:
+            halfPi = math.pi / 2
+            angle = (round(angle / halfPi) % 4) * halfPi
          coords = getPolarPointByPtAngle(lastPoint, angle, dist)     
          return QgsPointXY(coords[0], coords[1])
 

@@ -181,7 +181,7 @@ class Qad(QObject):
    # version
    # ============================================================================
    def version(self):
-      return "3.0.8" # allinea con metadata.txt alla sez [general] voce "version"
+      return "3.0.9" # allinea con metadata.txt alla sez [general] voce "version"
    
    
    def setLastPointAndSegmentAng(self, point, segmentAng = None):
@@ -462,35 +462,35 @@ class Qad(QObject):
          mt.keyPressEvent(keyEvent)
 
    def send_a_toTxtWindow(self):
-      self.keyPressEvent(QKeyEvent(QEvent.KeyPress, Qt.Key_A, Qt.NoModifier, "a"))
+      self.keyPressEvent(QKeyEvent(QEvent.Type.KeyPress, Qt.Key.Key_A, Qt.KeyboardModifier.NoModifier, "a"))
    def send_A_toTxtWindow(self):
-      self.keyPressEvent(QKeyEvent(QEvent.KeyPress, Qt.Key_A, Qt.NoModifier, "A"))
+      self.keyPressEvent(QKeyEvent(QEvent.Type.KeyPress, Qt.Key.Key_A, Qt.KeyboardModifier.NoModifier, "A"))
    def send_c_toTxtWindow(self):
-      self.keyPressEvent(QKeyEvent(QEvent.KeyPress, Qt.Key_C, Qt.NoModifier, "c"))
+      self.keyPressEvent(QKeyEvent(QEvent.Type.KeyPress, Qt.Key.Key_C, Qt.KeyboardModifier.NoModifier, "c"))
    def send_C_toTxtWindow(self):
-      self.keyPressEvent(QKeyEvent(QEvent.KeyPress, Qt.Key_C, Qt.NoModifier, "C"))
+      self.keyPressEvent(QKeyEvent(QEvent.Type.KeyPress, Qt.Key.Key_C, Qt.KeyboardModifier.NoModifier, "C"))
    def send_d_toTxtWindow(self):
-      self.keyPressEvent(QKeyEvent(QEvent.KeyPress, Qt.Key_D, Qt.NoModifier, "d"))
+      self.keyPressEvent(QKeyEvent(QEvent.Type.KeyPress, Qt.Key.Key_D, Qt.KeyboardModifier.NoModifier, "d"))
    def send_D_toTxtWindow(self):
-      self.keyPressEvent(QKeyEvent(QEvent.KeyPress, Qt.Key_D, Qt.NoModifier, "D"))
+      self.keyPressEvent(QKeyEvent(QEvent.Type.KeyPress, Qt.Key.Key_D, Qt.KeyboardModifier.NoModifier, "D"))
    def send_p_toTxtWindow(self):
-      self.keyPressEvent(QKeyEvent(QEvent.KeyPress, Qt.Key_P, Qt.NoModifier, "p"))
+      self.keyPressEvent(QKeyEvent(QEvent.Type.KeyPress, Qt.Key.Key_P, Qt.KeyboardModifier.NoModifier, "p"))
    def send_P_toTxtWindow(self):
-      self.keyPressEvent(QKeyEvent(QEvent.KeyPress, Qt.Key_P, Qt.NoModifier, "P"))
+      self.keyPressEvent(QKeyEvent(QEvent.Type.KeyPress, Qt.Key.Key_P, Qt.KeyboardModifier.NoModifier, "P"))
    def send_x_toTxtWindow(self):
-      self.keyPressEvent(QKeyEvent(QEvent.KeyPress, Qt.Key_X, Qt.NoModifier, "x"))
+      self.keyPressEvent(QKeyEvent(QEvent.Type.KeyPress, Qt.Key.Key_X, Qt.KeyboardModifier.NoModifier, "x"))
    def send_X_toTxtWindow(self):
-      self.keyPressEvent(QKeyEvent(QEvent.KeyPress, Qt.Key_X, Qt.NoModifier, "X"))
+      self.keyPressEvent(QKeyEvent(QEvent.Type.KeyPress, Qt.Key.Key_X, Qt.KeyboardModifier.NoModifier, "X"))
    def send_y_toTxtWindow(self):
-      self.keyPressEvent(QKeyEvent(QEvent.KeyPress, Qt.Key_Y, Qt.NoModifier, "y"))
+      self.keyPressEvent(QKeyEvent(QEvent.Type.KeyPress, Qt.Key.Key_Y, Qt.KeyboardModifier.NoModifier, "y"))
    def send_Y_toTxtWindow(self):
-      self.keyPressEvent(QKeyEvent(QEvent.KeyPress, Qt.Key_Y, Qt.NoModifier, "Y"))
+      self.keyPressEvent(QKeyEvent(QEvent.Type.KeyPress, Qt.Key.Key_Y, Qt.KeyboardModifier.NoModifier, "Y"))
    def send_F3_toTxtWindow(self):
-      self.keyPressEvent(QKeyEvent(QEvent.KeyPress, Qt.Key_F3, Qt.NoModifier))
+      self.keyPressEvent(QKeyEvent(QEvent.Type.KeyPress, Qt.Key.Key_F3, Qt.KeyboardModifier.NoModifier))
    def send_Backspace_toTxtWindow(self):
-      self.keyPressEvent(QKeyEvent(QEvent.KeyPress, Qt.Key_Backspace, Qt.NoModifier))
+      self.keyPressEvent(QKeyEvent(QEvent.Type.KeyPress, Qt.Key.Key_Backspace, Qt.KeyboardModifier.NoModifier))
    def send_Delete_toTxtWindow(self):
-      self.keyPressEvent(QKeyEvent(QEvent.KeyPress, Qt.Key_Delete, Qt.NoModifier))
+      self.keyPressEvent(QKeyEvent(QEvent.Type.KeyPress, Qt.Key.Key_Delete, Qt.KeyboardModifier.NoModifier))
 
 
    # ============================================================================
@@ -1274,7 +1274,7 @@ class Qad(QObject):
    
    def createHelpToolButton(self):
       helpToolButton = QToolButton(self.toolBar)
-      helpToolButton.setPopupMode(QToolButton.MenuButtonPopup)
+      helpToolButton.setPopupMode(QToolButton.ToolButtonPopupMode.MenuButtonPopup)
       helpToolButton.setMenu(self.helpMenu)
       helpToolButton.setDefaultAction(self.helpMenu.actions()[0]) # prima voce di menu
       helpToolButton.triggered.connect(self.helpToolButtonTriggered)
@@ -1285,7 +1285,7 @@ class Qad(QObject):
    
    def createArcToolButton(self):
       arcToolButton = QToolButton(self.toolBar)
-      arcToolButton.setPopupMode(QToolButton.MenuButtonPopup)
+      arcToolButton.setPopupMode(QToolButton.ToolButtonPopupMode.MenuButtonPopup)
       arcToolButton.setMenu(self.arcMenu)
       arcToolButton.setDefaultAction(self.arcMenu.actions()[0]) # prima voce di menu
       arcToolButton.triggered.connect(self.arcToolButtonTriggered)
@@ -1296,7 +1296,7 @@ class Qad(QObject):
 
    def createArrayToolButton(self):
       arrayToolButton = QToolButton(self.toolBar)
-      arrayToolButton.setPopupMode(QToolButton.MenuButtonPopup)
+      arrayToolButton.setPopupMode(QToolButton.ToolButtonPopupMode.MenuButtonPopup)
       arrayToolButton.setMenu(self.arrayMenu)
       arrayToolButton.setDefaultAction(self.arrayMenu.actions()[0]) # prima voce di menu
       arrayToolButton.triggered.connect(self.arrayToolButtonTriggered)
@@ -1307,7 +1307,7 @@ class Qad(QObject):
 
    def createBreakToolButton(self):
       breakToolButton = QToolButton(self.toolBar)
-      breakToolButton.setPopupMode(QToolButton.MenuButtonPopup)
+      breakToolButton.setPopupMode(QToolButton.ToolButtonPopupMode.MenuButtonPopup)
       breakToolButton.setMenu(self.breakMenu)
       breakToolButton.setDefaultAction(self.breakMenu.actions()[0]) # prima voce di menu
       breakToolButton.triggered.connect(self.breakToolButtonTriggered)
@@ -1318,7 +1318,7 @@ class Qad(QObject):
    
    def createCircleToolButton(self):
       circleToolButton = QToolButton(self.toolBar)
-      circleToolButton.setPopupMode(QToolButton.MenuButtonPopup)
+      circleToolButton.setPopupMode(QToolButton.ToolButtonPopupMode.MenuButtonPopup)
       circleToolButton.setMenu(self.circleMenu)
       circleToolButton.setDefaultAction(self.circleMenu.actions()[0]) # prima voce di menu
       circleToolButton.triggered.connect(self.circleToolButtonTriggered)
@@ -1329,7 +1329,7 @@ class Qad(QObject):
    
    def createEllipseToolButton(self):
       ellipseToolButton = QToolButton(self.toolBar)
-      ellipseToolButton.setPopupMode(QToolButton.MenuButtonPopup)
+      ellipseToolButton.setPopupMode(QToolButton.ToolButtonPopupMode.MenuButtonPopup)
       ellipseToolButton.setMenu(self.ellipseMenu)
       ellipseToolButton.setDefaultAction(self.ellipseMenu.actions()[0]) # prima voce di menu
       ellipseToolButton.triggered.connect(self.ellipseToolButtonTriggered)
@@ -2173,33 +2173,33 @@ class Qad(QObject):
       # ritorna True se la funzione li ha gestiti altrimenti ritorna False e quindi l'evento keyPressed va gestito altrove
       
       # Se é stato premuto il tasto CTRL (o META) + 9 oppure il tasto F2
-      if (((e.modifiers() & Qt.ControlModifier) or (e.modifiers() & Qt.MetaModifier)) and e.key() == Qt.Key_9) or \
-         e.key() == Qt.Key_F2:
+      if (((e.modifiers() & Qt.KeyboardModifier.ControlModifier) or (e.modifiers() & Qt.KeyboardModifier.MetaModifier)) and e.key() == Qt.Key.Key_9) or \
+         e.key() == Qt.Key.Key_F2:
          # Accendo o spengo la finestra di testo
          if self.TextWindow is not None:
             self.TextWindow.toggleShow()
          return True
 
       # Se é stato premuto il tasto F3
-      if e.key() == Qt.Key_F3:
+      if e.key() == Qt.Key.Key_F3:
          # Attivo o disattivo lo snap
          self.toggleOsMode()
          return True
 
       # Se é stato premuto il tasto F8
-      if e.key() == Qt.Key_F8:
+      if e.key() == Qt.Key.Key_F8:
          # Attivo o disattivo la modalità ortogonale
          self.toggleOrthoMode()
          return True
 
       # Se é stato premuto il tasto F12
-      if e.key() == Qt.Key_F12:
+      if e.key() == Qt.Key.Key_F12:
          # Attivo o disattivo l'input dinamico
          self.toggleDynamicInput()
          return True
       
       # Se é stato premuto il tasto ESC
-      if e.key() == Qt.Key_Escape:
+      if e.key() == Qt.Key.Key_Escape:
          # interrompo il comando corrente
          self.abortCommand()
          self.clearCurrentObjsSelection()
@@ -2209,13 +2209,13 @@ class Qad(QObject):
          return True
 
       # Se é stato premuto il tasto F10
-      if e.key() == Qt.Key_F10:
+      if e.key() == Qt.Key.Key_F10:
          # Attivo o disattivo il modo polare
          self.togglePolarMode()
          return True
 
       # Se é stato premuto il tasto F11
-      if e.key() == Qt.Key_F11:
+      if e.key() == Qt.Key.Key_F11:
          # Attivo o disattivo il puntamento snap ad oggetto
          self.toggleObjectSnapTracking()
          return True

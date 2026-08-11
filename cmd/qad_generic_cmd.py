@@ -706,7 +706,7 @@ class QadOsnapContextualMenuClass(QMenu):
 
    def showDSettingsByPopUpMenu(self):
       d = QadDSETTINGSDialog(self.plugIn)
-      d.exec_()
+      d.exec()
       self.plugIn.refreshCommandMapToolSnapType()
       self.plugIn.refreshCommandMapToolAutoSnap()
       self.plugIn.refreshCommandMapToolDynamicInput()

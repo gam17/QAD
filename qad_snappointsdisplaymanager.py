@@ -234,19 +234,19 @@ class QadSnapPointsDisplayManager():
                yMax = boundBox.yMaximum()
 
                upperIntersX = qad_utils.getXOnInfinityLine(self.__startPoint, point, yMax)
-               if upperIntersX > xMax or upperIntersX < xMin:
+               if upperIntersX is None or upperIntersX > xMax or upperIntersX < xMin:
                   upperIntersX = None
                                                            
                lowerIntersX = qad_utils.getXOnInfinityLine(self.__startPoint, point, yMin)
-               if lowerIntersX > xMax or lowerIntersX < xMin:
+               if lowerIntersX is None or lowerIntersX > xMax or lowerIntersX < xMin:
                   lowerIntersX = None
                   
                leftIntersY  = qad_utils.getYOnInfinityLine(self.__startPoint, point, xMin)
-               if leftIntersY > yMax or leftIntersY < yMin:
+               if leftIntersY is None or leftIntersY > yMax or leftIntersY < yMin:
                   leftIntersY = None
 
                rightIntersY = qad_utils.getYOnInfinityLine(self.__startPoint, point, xMax)
-               if rightIntersY > yMax or rightIntersY < yMin:
+               if rightIntersY is None or rightIntersY > yMax or rightIntersY < yMin:
                   rightIntersY = None
 
                p1 = None
@@ -339,7 +339,7 @@ class QadSnapPointsDisplayManager():
       """
       lineMarker = createRubberBand(self.__mapCanvas, QgsWkbTypes.LineGeometry, True)
       lineMarker.setColor(self.__color)
-      lineMarker.setLineStyle(Qt.DashLine)
+      lineMarker.setLineStyle(Qt.PenStyle.DashLine)
       lineMarker.addPoint(pt1, False)
       lineMarker.addPoint(pt2, True)      
       return lineMarker
@@ -410,7 +410,7 @@ class QadSnapPointsDisplayManager():
       """
       lineMarker = createRubberBand(self.__mapCanvas, QgsWkbTypes.LineGeometry, True)
       lineMarker.setColor(self.__color)
-      lineMarker.setLineStyle(Qt.DotLine)
+      lineMarker.setLineStyle(Qt.PenStyle.DotLine)
       points = linearObj.asPolyline()
       if points is None:
          return None
@@ -422,4 +422,3 @@ class QadSnapPointsDisplayManager():
       lineMarker.addPoint(points[i], True)
       return lineMarker
 
-      

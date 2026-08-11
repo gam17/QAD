@@ -21,7 +21,7 @@
 """
 
 
-from PyQt5 import QtCore, QtGui
+from qgis.PyQt import QtCore, QtGui
 from qgis.PyQt.QtWidgets import QWidget, QVBoxLayout, QMessageBox
 from .qad_msg import QadMsg
 
@@ -29,7 +29,7 @@ from .qad_msg import QadMsg
 class Ui_QadTextWindow(object):
     def setupUi(self, QadTextWindow):
         #QadTextWindow.setObjectName("QadTextWindow")
-        QadTextWindow.setWindowModality(QtCore.Qt.NonModal)
+        QadTextWindow.setWindowModality(QtCore.Qt.WindowModality.NonModal)
         QadTextWindow.setEnabled(True)
         QadTextWindow.resize(642, 193)
         QadTextWindow.setMinimumSize(100, 20)
@@ -44,13 +44,13 @@ class Ui_QadTextWindow(object):
 class Ui_QadCmdSuggestWindow(object):
     def setupUi(self, QadCmdSuggestWindow):
         QadCmdSuggestWindow.setObjectName("QadCmdsListWindow")
-        QadCmdSuggestWindow.setWindowModality(QtCore.Qt.NonModal)
+        QadCmdSuggestWindow.setWindowModality(QtCore.Qt.WindowModality.NonModal)
         QadCmdSuggestWindow.setEnabled(True)
         self.dockWidgetContents = QWidget()
         self.dockWidgetContents.setObjectName("QadCmdsListWindowDockWidgetContents")
         self.vboxlayout = QVBoxLayout(self.dockWidgetContents)
         self.vboxlayout.setObjectName("QadCmdsListWindowVBoxLayout")
-        self.vboxlayout.setMargin(0)
+        self.vboxlayout.setContentsMargins(0, 0, 0, 0)
         QadCmdSuggestWindow.setLayout(self.vboxlayout)        
         QtCore.QMetaObject.connectSlotsByName(QadCmdSuggestWindow)
 

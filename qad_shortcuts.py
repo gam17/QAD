@@ -65,31 +65,31 @@ class QadShortcuts():
             self.sManager.setObjectKeySequence(obj, QKeySequence().toString()) # lo annulla
 
       # rimuove gli shortcut e le action relative ai caratteri F2, F3, F8, F12, ESC
-      seq = QKeySequence(Qt.Key_F2)
+      seq = QKeySequence(Qt.Key.Key_F2)
       obj = self.sManager.objectForSequence(seq)
       if obj is not None:
          self.objList.append([obj, seq])
          self.sManager.setObjectKeySequence(obj, QKeySequence().toString()) # lo annulla
 
-      seq = QKeySequence(Qt.Key_F3)
+      seq = QKeySequence(Qt.Key.Key_F3)
       obj = self.sManager.objectForSequence(seq)
       if obj is not None:
          self.objList.append([obj, seq])
          self.sManager.setObjectKeySequence(obj, QKeySequence().toString()) # lo annulla
            
-      seq = QKeySequence(Qt.Key_F8)
+      seq = QKeySequence(Qt.Key.Key_F8)
       obj = self.sManager.objectForSequence(seq)
       if obj is not None:
          self.objList.append([obj, seq])
          self.sManager.setObjectKeySequence(obj, QKeySequence().toString()) # lo annulla
 
-      seq = QKeySequence(Qt.Key_F12)
+      seq = QKeySequence(Qt.Key.Key_F12)
       obj = self.sManager.objectForSequence(seq)
       if obj is not None:
          self.objList.append([obj, seq])
          self.sManager.setObjectKeySequence(obj, QKeySequence().toString()) # lo annulla
 
-      seq = QKeySequence(Qt.Key_Escape)
+      seq = QKeySequence(Qt.Key.Key_Escape)
       obj = self.sManager.objectForSequence(seq)
       if obj is not None:
          self.objList.append([obj, seq])

@@ -348,7 +348,7 @@ class QadPEDITCommandClass(QadCommandClass):
       vectorLayer = createMemoryLayer("QAD_SelfJoinLines", "LineString", crs)
       
       provider = vectorLayer.dataProvider()
-      provider.addAttributes([QgsField('index', QMetaType.Int, 'Int')])
+      provider.addAttributes([QgsField('index', QMetaType.Type.Int, 'Int')])
       vectorLayer.updateFields()
 
       if vectorLayer.startEditing() == False:

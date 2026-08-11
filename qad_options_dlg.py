@@ -170,7 +170,7 @@ class QadOPTIONSDialog(QDialog, QObject, Ui_Options_Dialog):
 
    def accept_display_tab(self):
       # Memorizzo il valore di SHOWTEXTWINDOW
-      newSHOWTEXTWINDOW = True if self.checkBox_SHOWTEXTWINDOW.checkState() == Qt.Checked else False
+      newSHOWTEXTWINDOW = True if self.checkBox_SHOWTEXTWINDOW.checkState() == Qt.CheckState.Checked else False
       self.tempQadVariables.set(QadMsg.translate("Environment variables", "SHOWTEXTWINDOW"), newSHOWTEXTWINDOW)
 
       # Memorizzo il valore di CMDINPUTHISTORYMAX
@@ -180,15 +180,15 @@ class QadOPTIONSDialog(QDialog, QObject, Ui_Options_Dialog):
 
       # Memorizzo il valore di INPUTSEARCHOPTIONS
       newInputSearchOptions = 0
-      if self.checkBox_INPUTSEARCHOPTIONS_ON.checkState() == Qt.Checked:
+      if self.checkBox_INPUTSEARCHOPTIONS_ON.checkState() == Qt.CheckState.Checked:
          newInputSearchOptions = newInputSearchOptions | QadINPUTSEARCHOPTIONSEnum.ON
-      if self.checkBox_INPUTSEARCHOPTIONS_AUTOCOMPLETE.checkState() == Qt.Checked:
+      if self.checkBox_INPUTSEARCHOPTIONS_AUTOCOMPLETE.checkState() == Qt.CheckState.Checked:
          newInputSearchOptions = newInputSearchOptions | QadINPUTSEARCHOPTIONSEnum.AUTOCOMPLETE
-      if self.checkBox_INPUTSEARCHOPTIONS_DISPLAY_LIST.checkState() == Qt.Checked:
+      if self.checkBox_INPUTSEARCHOPTIONS_DISPLAY_LIST.checkState() == Qt.CheckState.Checked:
          newInputSearchOptions = newInputSearchOptions | QadINPUTSEARCHOPTIONSEnum.DISPLAY_LIST
-      if self.checkBox_INPUTSEARCHOPTIONS_DISPLAY_ICON.checkState() == Qt.Checked:
+      if self.checkBox_INPUTSEARCHOPTIONS_DISPLAY_ICON.checkState() == Qt.CheckState.Checked:
          newInputSearchOptions = newInputSearchOptions | QadINPUTSEARCHOPTIONSEnum.DISPLAY_ICON
-      if self.checkBox_INPUTSEARCHOPTIONS_EXCLUDE_SYS_VAR.checkState() == Qt.Checked:
+      if self.checkBox_INPUTSEARCHOPTIONS_EXCLUDE_SYS_VAR.checkState() == Qt.CheckState.Checked:
          newInputSearchOptions = newInputSearchOptions | QadINPUTSEARCHOPTIONSEnum.EXCLUDE_SYS_VAR
       self.tempQadVariables.set(QadMsg.translate("Environment variables", "INPUTSEARCHOPTIONS"), newInputSearchOptions)
 
@@ -234,7 +234,7 @@ class QadOPTIONSDialog(QDialog, QObject, Ui_Options_Dialog):
 
 
    def checkBox_INPUTSEARCHOPTIONS_ON_clicked(self):
-      value = True if self.checkBox_INPUTSEARCHOPTIONS_ON.checkState() == Qt.Checked else False
+      value = True if self.checkBox_INPUTSEARCHOPTIONS_ON.checkState() == Qt.CheckState.Checked else False
       self.checkBox_INPUTSEARCHOPTIONS_AUTOCOMPLETE.setEnabled(value)
       self.checkBox_INPUTSEARCHOPTIONS_DISPLAY_LIST.setEnabled(value)
       self.checkBox_INPUTSEARCHOPTIONS_DISPLAY_ICON.setEnabled(value)
@@ -327,7 +327,7 @@ class QadOPTIONSDialog(QDialog, QObject, Ui_Options_Dialog):
    def Button_TextWindowColor_clicked(self):
       Form = QadWindowColorDialog(self.plugIn, self, QadColorContextEnum.COMMAND_LINE, QadColorElementEnum.COMMAND_HISTORY_BACKGROUND)
       
-      if Form.exec_() == QDialog.Accepted:
+      if Form.exec() == QDialog.DialogCode.Accepted:
          # copio i valori dei colori in self.tempQadVariables
          variables = Form.getSysVariableList()
          for variable in variables:
@@ -350,7 +350,7 @@ class QadOPTIONSDialog(QDialog, QObject, Ui_Options_Dialog):
       self.checkBox_shortcutmenu_clicked()
 
    def checkBox_shortcutmenu_clicked(self):
-      if self.checkBox_shortcutmenu.checkState() == Qt.Checked:
+      if self.checkBox_shortcutmenu.checkState() == Qt.CheckState.Checked:
          self.button_rightclick.setEnabled(True)
       else:
          self.button_rightclick.setEnabled(False)
@@ -358,7 +358,7 @@ class QadOPTIONSDialog(QDialog, QObject, Ui_Options_Dialog):
    
    def button_rightclick_clicked(self):
       Form = QadRightClickDialog(self.plugIn, self)
-      if Form.exec_() == QDialog.Accepted:
+      if Form.exec() == QDialog.DialogCode.Accepted:
          # copio i valori dei colori in self.tempQadVariables
          variables = Form.getSysVariableList()
          for variable in variables:
@@ -367,7 +367,7 @@ class QadOPTIONSDialog(QDialog, QObject, Ui_Options_Dialog):
 
 
    def accept_user_preferences_tab(self):
-      if self.checkBox_shortcutmenu.checkState() == Qt.Unchecked:
+      if self.checkBox_shortcutmenu.checkState() == Qt.CheckState.Unchecked:
          self.tempQadVariables.set(QadMsg.translate("Environment variables", "SHORTCUTMENU"), 0)
       elif self.tempQadVariables.get(QadMsg.translate("Environment variables", "SHORTCUTMENU")) == 0:
          self.tempQadVariables.set(QadMsg.translate("Environment variables", "SHORTCUTMENU"), 11) # inizializzo questo default
@@ -429,7 +429,7 @@ class QadOPTIONSDialog(QDialog, QObject, Ui_Options_Dialog):
 
    def button_DraftingTooltipSettings_clicked(self):
       Form = QadTOOLTIPAPPEARANCEDialog(self.plugIn, self)
-      if Form.exec_() == QDialog.Accepted:
+      if Form.exec() == QDialog.DialogCode.Accepted:
          # copio i valori dei colori in self.tempQadVariables
          variables = Form.getSysVariableList()
          for variable in variables:
@@ -440,17 +440,17 @@ class QadOPTIONSDialog(QDialog, QObject, Ui_Options_Dialog):
       # AUTOSNAP
       autoSnap = self.tempQadVariables.get(QadMsg.translate("Environment variables", "AUTOSNAP"))
       
-      if self.checkBox_AUTOSNAP_DISPLAY_MARK.checkState() == Qt.Checked:
+      if self.checkBox_AUTOSNAP_DISPLAY_MARK.checkState() == Qt.CheckState.Checked:
          autoSnap = autoSnap | QadAUTOSNAPEnum.DISPLAY_MARK # aggiungo i bit
       else:
          autoSnap = autoSnap &~ QadAUTOSNAPEnum.DISPLAY_MARK # tolgo il bit
       
-      if self.checkBox_AUTOSNAP_MAGNET.checkState() == Qt.Checked:
+      if self.checkBox_AUTOSNAP_MAGNET.checkState() == Qt.CheckState.Checked:
          autoSnap = autoSnap | QadAUTOSNAPEnum.MAGNET # aggiungo i bit
       else:
          autoSnap = autoSnap &~ QadAUTOSNAPEnum.MAGNET # tolgo il bit
       
-      if self.checkBox_AUTOSNAP_DISPLAY_TOOLTIPS.checkState() == Qt.Checked:
+      if self.checkBox_AUTOSNAP_DISPLAY_TOOLTIPS.checkState() == Qt.CheckState.Checked:
          autoSnap = autoSnap | QadAUTOSNAPEnum.DISPLAY_TOOLTIPS # aggiungo i bit
       else:
          autoSnap = autoSnap &~ QadAUTOSNAPEnum.DISPLAY_TOOLTIPS # tolgo il bit
@@ -458,7 +458,7 @@ class QadOPTIONSDialog(QDialog, QObject, Ui_Options_Dialog):
       self.tempQadVariables.set(QadMsg.translate("Environment variables", "AUTOSNAP"), autoSnap)
       
       # APBOX
-      newAPBOX = 1 if self.checkBox_APBOX.checkState() == Qt.Checked else 0
+      newAPBOX = 1 if self.checkBox_APBOX.checkState() == Qt.CheckState.Checked else 0
       self.tempQadVariables.set(QadMsg.translate("Environment variables", "APBOX"), newAPBOX)
 
       # AUTOSNAPSIZE
@@ -493,7 +493,7 @@ class QadOPTIONSDialog(QDialog, QObject, Ui_Options_Dialog):
    def Button_AutoSnapWindowColor_clicked(self):
       Form = QadWindowColorDialog(self.plugIn, self, QadColorContextEnum.MODEL_SPACE_2D, QadColorElementEnum.AUTOSNAP_MARKER)
       
-      if Form.exec_() == QDialog.Accepted:
+      if Form.exec() == QDialog.DialogCode.Accepted:
          # copio i valori dei colori in self.tempQadVariables
          variables = Form.getSysVariableList()
          for variable in variables:
@@ -571,23 +571,23 @@ class QadOPTIONSDialog(QDialog, QObject, Ui_Options_Dialog):
       self.tempQadVariables.set(QadMsg.translate("Environment variables", "PICKBOX"), self.horizontalSlider_PICKBOX.value())
 
       # PICKFIRST
-      pickFirst = 1 if self.checkBox_PICKFIRST.checkState() == Qt.Checked else 0
+      pickFirst = 1 if self.checkBox_PICKFIRST.checkState() == Qt.CheckState.Checked else 0
       self.tempQadVariables.set(QadMsg.translate("Environment variables", "PICKFIRST"), pickFirst)
 
       # PICKADD
-      pickAdd = 0 if self.checkBox_PICKADD.checkState() == Qt.Checked else 1
+      pickAdd = 0 if self.checkBox_PICKADD.checkState() == Qt.CheckState.Checked else 1
       self.tempQadVariables.set(QadMsg.translate("Environment variables", "PICKADD"), pickAdd)
 
       # GRIPSIZE
       self.tempQadVariables.set(QadMsg.translate("Environment variables", "GRIPSIZE"), self.horizontalSlider_GRIPSIZE.value())
 
       # GRIPS
-      grips = 1 if self.checkBox_GRIPS.checkState() == Qt.Checked else 0
+      grips = 1 if self.checkBox_GRIPS.checkState() == Qt.CheckState.Checked else 0
       self.tempQadVariables.set(QadMsg.translate("Environment variables", "GRIPS"), grips)
 
       # GRIPMULTIFUNCTIONAL
       gripMultiFunctional = self.tempQadVariables.get(QadMsg.translate("Environment variables", "GRIPMULTIFUNCTIONAL"))
-      if self.checkBox_GRIPMULTIFUNCTIONAL_ON_DYNAMIC_MENU_AND_HOT_GRIPT.checkState() == Qt.Checked:
+      if self.checkBox_GRIPMULTIFUNCTIONAL_ON_DYNAMIC_MENU_AND_HOT_GRIPT.checkState() == Qt.CheckState.Checked:
          gripMultiFunctional = gripMultiFunctional | QadGRIPMULTIFUNCTIONALEnum.ON_DYNAMIC_MENU_AND_HOT_GRIPT # aggiungo i bit
       else:
          gripMultiFunctional = gripMultiFunctional &~ QadGRIPMULTIFUNCTIONALEnum.ON_DYNAMIC_MENU_AND_HOT_GRIPT # tolgo i bit
@@ -599,7 +599,7 @@ class QadOPTIONSDialog(QDialog, QObject, Ui_Options_Dialog):
 
 
    def checkBox_GRIPS_ON_clicked(self):
-      value = True if self.checkBox_GRIPS.checkState() == Qt.Checked else False
+      value = True if self.checkBox_GRIPS.checkState() == Qt.CheckState.Checked else False
       self.checkBox_GRIPMULTIFUNCTIONAL_ON_DYNAMIC_MENU_AND_HOT_GRIPT.setEnabled(value)
       self.lineEdit_GRIPOBJLIMIT.setEnabled(value)
       self.label_GRIPOBJLIMIT.setEnabled(value)
@@ -632,7 +632,7 @@ class QadOPTIONSDialog(QDialog, QObject, Ui_Options_Dialog):
                                 self.tempQadVariables.get(QadMsg.translate("Environment variables", "GRIPHOVER")), \
                                 self.tempQadVariables.get(QadMsg.translate("Environment variables", "GRIPCONTOUR")))
       
-      if Form.exec_() == QDialog.Accepted:
+      if Form.exec() == QDialog.DialogCode.Accepted:
          self.tempQadVariables.set(QadMsg.translate("Environment variables", "GRIPCOLOR"), Form.gripColor)
          self.tempQadVariables.set(QadMsg.translate("Environment variables", "GRIPHOT"), Form.gripHot)
          self.tempQadVariables.set(QadMsg.translate("Environment variables", "GRIPHOVER"), Form.gripHover)
@@ -709,7 +709,7 @@ class QadOPTIONSDialog(QDialog, QObject, Ui_Options_Dialog):
    
    def eventFilter(self, obj, event):
       if event is not None:
-         if event.type() == QEvent.FocusOut:
+         if event.type() == QEvent.Type.FocusOut:
             if obj == self.lineEdit_CMDINPUTHISTORYMAX:
                return not self.lineEdit_CMDINPUTHISTORYMAX_Validation()
             elif obj == self.lineEdit_INPUTSEARCHDELAY:
@@ -755,9 +755,9 @@ class QadOPTIONSDialog(QDialog, QObject, Ui_Options_Dialog):
 
 
    def ButtonBOX_Apply(self, button):
-      if self.buttonBox.standardButton(button) == QDialogButtonBox.Apply:
+      if self.buttonBox.standardButton(button) == QDialogButtonBox.StandardButton.Apply:
          self.apply()
-      elif self.buttonBox.standardButton(button) == QDialogButtonBox.Cancel:
+      elif self.buttonBox.standardButton(button) == QDialogButtonBox.StandardButton.Cancel:
          self.close()
       
       return True
@@ -784,7 +784,7 @@ class QadOPTIONSDialog(QDialog, QObject, Ui_Options_Dialog):
 # QadPreviewAutoSnapMarker class.
 # ===============================================================================
 class QadPreviewAutoSnapMarker(QWidget):
-   def __init__(self, plugIn, color, parent = None, windowFlags = Qt.Widget):
+   def __init__(self, plugIn, color, parent = None, windowFlags = Qt.WindowType.Widget):
       self.plugIn = plugIn
       self.color = color
       self.size = 0
@@ -801,7 +801,7 @@ class QadPreviewAutoSnapMarker(QWidget):
       x1 = center.x() - size
       y1 = center.y() - size
       dblSize = size * 2 + 1
-      painter.setRenderHint(QPainter.Antialiasing)
+      painter.setRenderHint(QPainter.RenderHint.Antialiasing)
       painter.setPen(QPen(self.color, 2))
       #painter.setPen(QPen(self.color, 12, Qt.DashDotLine, Qt.RoundCap))
       #painter.drawLine(x1, y1, x2, y2)
@@ -812,7 +812,7 @@ class QadPreviewAutoSnapMarker(QWidget):
 # QadPreviewAperture class.
 # ===============================================================================
 class QadPreviewAperture(QWidget):
-   def __init__(self, plugIn, color, cursorColor, parent = None, windowFlags = Qt.Widget):
+   def __init__(self, plugIn, color, cursorColor, parent = None, windowFlags = Qt.WindowType.Widget):
       self.plugIn = plugIn
       self.color = color
       self.cursorColor = cursorColor
@@ -830,11 +830,11 @@ class QadPreviewAperture(QWidget):
       x1 = center.x() - size
       y1 = center.y() - size
       dblSize = size * 2 + 1
-      painter.setRenderHint(QPainter.Antialiasing)
+      painter.setRenderHint(QPainter.RenderHint.Antialiasing)
       painter.setPen(QPen(self.cursorColor, 1))
       painter.drawLine(center.x(), 0, center.x(), rect.height())
       painter.drawLine(0, center.y(), rect.width(), center.y())
-      painter.setPen(QPen(self.color, 1, Qt.DotLine))
+      painter.setPen(QPen(self.color, 1, Qt.PenStyle.DotLine))
       painter.drawRect(x1, y1, dblSize, dblSize)
 
 
@@ -842,7 +842,7 @@ class QadPreviewAperture(QWidget):
 # QadPreviewPickBox class.
 # ===============================================================================
 class QadPreviewPickBox(QWidget):
-   def __init__(self, plugIn, color, parent = None, windowFlags = Qt.Widget):
+   def __init__(self, plugIn, color, parent = None, windowFlags = Qt.WindowType.Widget):
       self.plugIn = plugIn
       self.color = color
       self.size = 0
@@ -860,7 +860,7 @@ class QadPreviewPickBox(QWidget):
       y1 = center.y() - size
       dblSize = size * 2 + 1
       
-      painter.setRenderHint(QPainter.Antialiasing)
+      painter.setRenderHint(QPainter.RenderHint.Antialiasing)
       painter.setPen(QPen(self.color, 1))
       painter.drawRect(x1, y1, dblSize, dblSize)
 
@@ -869,7 +869,7 @@ class QadPreviewPickBox(QWidget):
 # QadPreviewGripSize class.
 # ===============================================================================
 class QadPreviewGripSize(QWidget):
-   def __init__(self, plugIn, fillColor, borderColor, parent = None, windowFlags = Qt.Widget):
+   def __init__(self, plugIn, fillColor, borderColor, parent = None, windowFlags = Qt.WindowType.Widget):
       self.plugIn = plugIn
       self.fillColor = fillColor
       self.borderColor = borderColor
@@ -888,8 +888,7 @@ class QadPreviewGripSize(QWidget):
       y1 = center.y() - size
       dblSize = size * 2 + 1
       
-      painter.setRenderHint(QPainter.Antialiasing)
+      painter.setRenderHint(QPainter.RenderHint.Antialiasing)
       painter.fillRect(x1, y1, dblSize, dblSize, self.fillColor)
       painter.setPen(QPen(self.borderColor, 1))
       painter.drawRect(x1, y1, dblSize, dblSize)
-      

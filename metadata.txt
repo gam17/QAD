@@ -12,9 +12,10 @@ name=QAD
 email=gam17@riseup.net
 author=gam17
 qgisMinimumVersion=3.40
+supportsQt6=True
 description=Quantum Aided Design: cad like commands in QGIS
 about=Quantum Aided Design: cad like commands in QGIS
-version=3.0.8
+version=3.0.9
 tracker=https://github.com/gam17/QAD/issues
 repository=https://github.com/gam17/QAD
 
@@ -35,6 +36,6 @@ experimental=False
 # deprecated flag (applies to the whole plugin, not just a single version
 deprecated=False
 
-qgisMaximumVersion=3.99
+qgisMaximumVersion=4.99
 
    

@@ -108,13 +108,13 @@ class QadDynamicEdit(QTextEdit):
       self.font_size = 8 + QadVariables.get(QadMsg.translate("Environment variables", "TOOLTIPSIZE"))
       height = self.font_size + 15
 
-      self.setTextInteractionFlags(Qt.TextEditorInteraction)
+      self.setTextInteractionFlags(Qt.TextInteractionFlag.TextEditorInteraction)
       self.setMinimumSize(height, height)
       self.setMaximumHeight(height)
       self.setUndoRedoEnabled(False)
       self.setAcceptRichText(False)
-      self.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
-      self.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+      self.setVerticalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
+      self.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
       self.error = False # indica se il valore contenuto nella edit è errato
       self.lockedPos = False # indica se la posizione della edit è bloccata
 
@@ -168,7 +168,7 @@ class QadDynamicEdit(QTextEdit):
 
       # se è in stato di errore il bordo deve essere rosso largo 2 pixel
       if self.error:
-         c = QColor(Qt.red)
+         c = QColor(Qt.GlobalColor.red)
          rgbStrBorderColor = "border-color: " + fmt.format(str(c.red()), str(c.green()), str(c.blue()), str(opacity)) + ";"
          fmtBorder = "border:2px;border-style:solid;"
       else:
@@ -242,8 +242,8 @@ class QadDynamicEdit(QTextEdit):
    def selectAllText(self):
       # seleziono tutto il testo
       cursor = self.textCursor()
-      cursor.movePosition(QTextCursor.End, QTextCursor.MoveAnchor)
-      cursor.movePosition(QTextCursor.Start, QTextCursor.KeepAnchor)
+      cursor.movePosition(QTextCursor.MoveOperation.End, QTextCursor.MoveMode.MoveAnchor)
+      cursor.movePosition(QTextCursor.MoveOperation.Start, QTextCursor.MoveMode.KeepAnchor)
       self.setTextCursor(cursor)
 
 
@@ -256,12 +256,12 @@ class QadDynamicEdit(QTextEdit):
       sep = msg.rfind("\n")
       if sep >= 0:
          newMsg = msg[sep + 1:]
-         cursor.movePosition(QTextCursor.Start, QTextCursor.MoveAnchor)
-         cursor.movePosition(QTextCursor.End, QTextCursor.KeepAnchor)
+         cursor.movePosition(QTextCursor.MoveOperation.Start, QTextCursor.MoveMode.MoveAnchor)
+         cursor.movePosition(QTextCursor.MoveOperation.End, QTextCursor.MoveMode.KeepAnchor)
       else:
          newMsg = msg
-         cursor.movePosition(QTextCursor.Start, QTextCursor.MoveAnchor)
-         cursor.movePosition(QTextCursor.End, QTextCursor.KeepAnchor)
+         cursor.movePosition(QTextCursor.MoveOperation.Start, QTextCursor.MoveMode.MoveAnchor)
+         cursor.movePosition(QTextCursor.MoveOperation.End, QTextCursor.MoveMode.KeepAnchor)
 
       self.setTextCursor(cursor)
       self.insertPlainText(newMsg)
@@ -285,7 +285,7 @@ class QadDynamicInputCmdLineEdit(QadDynamicEdit):
    
    def __init__(self, QadDynamicInputObj):
       QadDynamicEdit.__init__(self, QadDynamicInputObj)
-      self.setSizePolicy(QSizePolicy.Minimum, QSizePolicy.Fixed)
+      self.setSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Fixed)
              
       self.historyIndex = 0
 
@@ -390,12 +390,12 @@ class QadDynamicInputCmdLineEdit(QadDynamicEdit):
          ptEditRect = QPoint(editRect.left(), editRect.top())
          if self.parentWidget():
             ptEditRect = self.parentWidget().mapToGlobal(QPoint(editRect.left(), editRect.top()))
-         ptUp = QApplication.desktop().mapFromGlobal(ptEditRect)
+         ptUp = QPoint(ptEditRect)  # coordinate globali (QDesktopWidget rimosso in Qt6)
          
          spaceUp = ptUp.y() if ptUp.y() - dataHeight < 0 else dataHeight
 
          ptDown = QPoint(ptUp.x(), ptUp.y() + editRect.height())
-         desktopRect = QApplication.desktop().screenGeometry()
+         desktopRect = QApplication.primaryScreen().geometry()
          spaceDown = desktopRect.height() - ptDown.y() if ptDown.y() + dataHeight > desktopRect.height() else dataHeight
 
          # verifico se c'è più spazio sopra o sotto la finestra
@@ -413,7 +413,7 @@ class QadDynamicInputCmdLineEdit(QadDynamicEdit):
             else:
                pt.setX(desktopRect.width() - dataWidth)
             
-         pt = QApplication.desktop().mapToGlobal(pt)
+         pt = QPoint(pt)  # già in coordinate globali (QDesktopWidget rimosso in Qt6)
          self.cmdSuggestWindow.move(pt)
          self.cmdSuggestWindow.resize(dataWidth, dataHeight)
             
@@ -454,8 +454,8 @@ class QadDynamicInputCmdLineEdit(QadDynamicEdit):
          self.insertPlainText(cmdName[filterLen:])
       else:
          self.insertPlainText("")
-      cursor.movePosition(QTextCursor.End, QTextCursor.MoveAnchor)
-      cursor.movePosition(QTextCursor.Left, QTextCursor.KeepAnchor, len(cmdName) - filterLen)
+      cursor.movePosition(QTextCursor.MoveOperation.End, QTextCursor.MoveMode.MoveAnchor)
+      cursor.movePosition(QTextCursor.MoveOperation.Left, QTextCursor.MoveMode.KeepAnchor, len(cmdName) - filterLen)
       self.setTextCursor(cursor)
       self.refreshWidth()
 
@@ -501,33 +501,33 @@ class QadDynamicInputCmdLineEdit(QadDynamicEdit):
       
       # if Up or Down is pressed
       if self.isVisibleCmdSuggestWindow() and \
-         (e.key() == Qt.Key_Down or e.key() == Qt.Key_Up or e.key() == Qt.Key_PageDown or e.key() == Qt.Key_PageUp or
-          e.key() == Qt.Key_End or e.key() == Qt.Key_Home):
+         (e.key() == Qt.Key.Key_Down or e.key() == Qt.Key.Key_Up or e.key() == Qt.Key.Key_PageDown or e.key() == Qt.Key.Key_PageUp or
+          e.key() == Qt.Key.Key_End or e.key() == Qt.Key.Key_Home):
          self.cmdSuggestWindow.keyPressEvent(e)
          return
       else:  # nascondo la finestra di suggerimento
          self.lockedPos = False
          self.showCmdSuggestWindow(False)
 
-      if e.key() == Qt.Key_Escape:
+      if e.key() == Qt.Key.Key_Escape:
          cmdsHistory = self.plugIn.cmdsHistory
          self.historyIndex = len(cmdsHistory)
          self.QadDynamicInputObj.abort()
          return
       
       # if Return or Space is pressed, then perform the commands
-      if e.key() == Qt.Key_Return or e.key() == Qt.Key_Space or e.key == Qt.Key_Enter:
+      if e.key() == Qt.Key.Key_Return or e.key() == Qt.Key.Key_Space or e.key == Qt.Key.Key_Enter:
          self.entered()
          return
       # if Up or Down is pressed
-      elif e.key() == Qt.Key_Down:
+      elif e.key() == Qt.Key.Key_Down:
          self.showNextCmd()
          return # per non far comparire la finestra di suggerimento
-      elif e.key() == Qt.Key_Up:
+      elif e.key() == Qt.Key.Key_Up:
          self.showPreviousCmd()
          return # per non far comparire la finestra di suggerimento
       else:
-         if (e.key() != Qt.Key_Tab and e.key() != Qt.Key_Backtab) or \
+         if (e.key() != Qt.Key.Key_Tab and e.key() != Qt.Key.Key_Backtab) or \
             e.text() != "":
             # all other keystrokes get sent to the input line
             QTextEdit.keyPressEvent(self, e)
@@ -613,7 +613,7 @@ class QadDynamicInputEdit(QadDynamicEdit):
     
    def __init__(self, QadDynamicInputObj):
       QadDynamicEdit.__init__(self, QadDynamicInputObj)
-      self.setSizePolicy(QSizePolicy.Minimum, QSizePolicy.Fixed)
+      self.setSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Fixed)
 
       # il default è un numero reale non nullo 
       self.inputMode = QadInputModeEnum.NOT_NULL
@@ -633,7 +633,7 @@ class QadDynamicInputEdit(QadDynamicEdit):
       height = self.height() - 4
       self.LockedIcon = QLabel(self)
       self.LockedIcon.resize(height, height)
-      self.LockedIcon.setSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
+      self.LockedIcon.setSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Fixed)
       self.LockedIcon.setStyleSheet("border:0px;"); # senza bordo
       pixmap = QPixmap(":/plugins/qad/icons/locked.svg").scaled(height, height)
       self.LockedIcon.setPixmap(pixmap)
@@ -733,20 +733,20 @@ class QadDynamicInputEdit(QadDynamicEdit):
       if self.plugIn.shortCutManagement(e): # se è stata gestita una sequenza di tasti scorciatoia
          return
       
-      if e.key() == Qt.Key_Tab:
+      if e.key() == Qt.Key.Key_Tab:
          if self.checkValid() is not None:
             # mi sposto sulla edit successiva
             self.QadDynamicInputObj.setNextCurrentEdit()
          else: # valore errato
             pass
          
-      elif e.key() == Qt.Key_Backtab:
+      elif e.key() == Qt.Key.Key_Backtab:
          if self.checkValid() is not None:
             self.QadDynamicInputObj.setPrevCurrentEdit()
          else: # valore errato
             pass
          
-      elif e.key() == Qt.Key_Return or e.key == Qt.Key_Enter:
+      elif e.key() == Qt.Key.Key_Return or e.key == Qt.Key.Key_Enter:
          self.QadDynamicInputObj.keyPressEvent(e) # lo faccio gestire da QadDynamicInputObj
 #          if self.isLockedValue() == True:
 #             value = self.toPlainText()
@@ -758,11 +758,11 @@ class QadDynamicInputEdit(QadDynamicEdit):
 #          else:
 #             self.QadDynamicInputObj.keyPressEvent(e) # lo faccio gestire da QadDynamicInputObj
             
-      elif (e.key() == Qt.Key_Down or e.key() == Qt.Key_Up or e.key() == Qt.Key_PageDown or e.key() == Qt.Key_PageUp or \
-            e.key() == Qt.Key_End or e.key() == Qt.Key_Home):
+      elif (e.key() == Qt.Key.Key_Down or e.key() == Qt.Key.Key_Up or e.key() == Qt.Key.Key_PageDown or e.key() == Qt.Key.Key_PageUp or \
+            e.key() == Qt.Key.Key_End or e.key() == Qt.Key.Key_Home):
          pass # al momento si è deciso di non mostrare il menu delle opzioni del comando attivo da qui
       
-      elif e.key() == Qt.Key_Comma: # ","
+      elif e.key() == Qt.Key.Key_Comma: # ","
          self.QadDynamicInputObj.keyPressEvent(e) # lo faccio gestire da QadDynamicInputObj
 
       # se non si tratta di stringa e si tratta di un carattere speciale
@@ -770,7 +770,7 @@ class QadDynamicInputEdit(QadDynamicEdit):
            (e.text() == "@" or e.text() == "#" or e.text() == "<"):
             self.QadDynamicInputObj.keyPressEvent(e) # lo faccio gestire da QadDynamicInputObj
                   
-      elif e.key() == Qt.Key_Escape:
+      elif e.key() == Qt.Key.Key_Escape:
          self.QadDynamicInputObj.abort()
                         
       elif e.text() != "":
@@ -791,11 +791,11 @@ class QadDynamicInputEdit(QadDynamicEdit):
    # ============================================================================
    def focusInEvent(self, e):
       # cambio il colore
-      foregroundColor = QColor(Qt.black)
-      backGroundColor = QColor(Qt.white)
+      foregroundColor = QColor(Qt.GlobalColor.black)
+      backGroundColor = QColor(Qt.GlobalColor.white)
       borderColor = QColor(QadVariables.get(QadMsg.translate("Environment variables", "DYNEDITBORDERCOLOR")))
       opacity = 100 - QadVariables.get(QadMsg.translate("Environment variables", "TOOLTIPTRANSPARENCY"))
-      selectionColor = QColor(Qt.white)
+      selectionColor = QColor(Qt.GlobalColor.white)
       selectionBackGroundColor = QColor(51, 153, 255) # azzurro (R=51 G=153 B=255)
       self.setColors(foregroundColor, backGroundColor, borderColor, selectionColor, selectionBackGroundColor, opacity)
       self.selectAllText() # seleziono tutto il testo
@@ -813,8 +813,8 @@ class QadDynamicInputEdit(QadDynamicEdit):
       self.setColors(foregroundColor, backGroundColor, borderColor, backGroundColor, foregroundColor, opacity)
       # seleziono il testo
       cursor = self.textCursor()
-      cursor.movePosition(QTextCursor.End, QTextCursor.MoveAnchor)
-      cursor.movePosition(QTextCursor.End, QTextCursor.KeepAnchor)
+      cursor.movePosition(QTextCursor.MoveOperation.End, QTextCursor.MoveMode.MoveAnchor)
+      cursor.movePosition(QTextCursor.MoveOperation.End, QTextCursor.MoveMode.KeepAnchor)
       self.setTextCursor(cursor)
  
 
@@ -898,7 +898,7 @@ class QadDynamicInputEdit(QadDynamicEdit):
       
       lineMarker = createRubberBand(self.canvas, QgsWkbTypes.LineGeometry, True)
       lineMarker.setColor(self.lineMarkerColor)
-      lineMarker.setLineStyle(Qt.DotLine)
+      lineMarker.setLineStyle(Qt.PenStyle.DotLine)
       if points is None:
          return None
       tot = len(points)
@@ -2012,7 +2012,7 @@ class QadDynamicCmdInput(QadDynamicInput):
       if self.currentEdit is None:
          return
                
-      if e.key() == Qt.Key_Return or e.key == Qt.Key_Enter:
+      if e.key() == Qt.Key.Key_Return or e.key == Qt.Key.Key_Enter:
          msg = self.resStr if self.refreshResult() == True else "" # ricalcolo il risultato e lo uso in formato stringa
          self.showEvaluateMsg(msg)
       else:
@@ -3030,6 +3030,15 @@ class QadDynamicEditInput(QadDynamicInput):
    # ============================================================================
    # refreshResult
    # ============================================================================
+   def getOrthoAdjustedAngle(self, angle):
+      # se la modalita' ORTO e' attiva, arrotonda l'angolo (calcolato dalla posizione del mouse)
+      # all'asse ortogonale piu' vicino, in modo che la distanza digitata rispetti l'orto
+      if QadVariables.get(QadMsg.translate("Environment variables", "ORTHOMODE")) == 1:
+         halfPi = math.pi / 2
+         angle = (round(angle / halfPi) % 4) * halfPi
+      return angle
+
+
    def refreshResult(self, mousePos = None):
       # calcola il risultato e restituisce True se l'operazione ha successo
       # a seconda del contesto può essere un punto -> self.resPt o un valore (numero, stringa, bool...) -> self.resValue
@@ -3126,8 +3135,12 @@ class QadDynamicEditInput(QadDynamicInput):
                   angle = self.edits[QadDynamicInputEditEnum.EDIT_Y].checkValid() # ritorna il valore se valido
                   if angle is None:
                      angle = qad_utils.getAngleBy2Pts(prevPt, point, 0) # senza tolleranza
+                     if relative and self.edits[QadDynamicInputEditEnum.EDIT_X].isLockedValue():
+                        angle = self.getOrthoAdjustedAngle(angle) # rispetta la modalita' ORTO
                else:
                   angle = qad_utils.getAngleBy2Pts(prevPt, point, 0) # senza tolleranza
+                  if relative and self.edits[QadDynamicInputEditEnum.EDIT_X].isLockedValue():
+                     angle = self.getOrthoAdjustedAngle(angle) # rispetta la modalita' ORTO
                   
                if relative:
                   pt = qad_utils.getPolarPointByPtAngle(prevPt, angle, dist)
@@ -3151,10 +3164,14 @@ class QadDynamicEditInput(QadDynamicInput):
                               
                if self.edits[QadDynamicInputEditEnum.EDIT_ANG_PREV_PT].isLockedValue() == False:
                   angle = qad_utils.getAngleBy2Pts(self.prevPoint, point, 0) # senza tolleranza
+                  if self.edits[QadDynamicInputEditEnum.EDIT_DIST_PREV_PT].isLockedValue():
+                     angle = self.getOrthoAdjustedAngle(angle) # rispetta la modalita' ORTO
                else:
                   angle = self.edits[QadDynamicInputEditEnum.EDIT_ANG_PREV_PT].checkValid() # ritorna il valore in radianti se valido               
                   if angle is None:
                      angle = qad_utils.getAngleBy2Pts(self.prevPoint, point, 0) # senza tolleranza
+                     if self.edits[QadDynamicInputEditEnum.EDIT_DIST_PREV_PT].isLockedValue():
+                        angle = self.getOrthoAdjustedAngle(angle) # rispetta la modalita' ORTO
                   else: 
                      angleMouse = qad_utils.getAngleBy2Pts(self.prevPoint, point, 0) # senza tolleranza
                      # se il mouse forma un angolo tra 180 e 360 allora l'angolo digitato va sottratto a 360 gradi 
@@ -3380,7 +3397,7 @@ class QadDynamicEditInput(QadDynamicInput):
    def keyPressEvent(self, e):
       if self.currentEdit is None:
          return
-      if e.key() == Qt.Key_Comma: # ","
+      if e.key() == Qt.Key.Key_Comma: # ","
          # se il risultato può essere un punto
          if self.inputType & QadInputTypeEnum.POINT2D or self.inputType & QadInputTypeEnum.POINT2D: 
             self.forcedCoordWidgetVisib = True # editaz forzata delle coordinate
@@ -3420,7 +3437,7 @@ class QadDynamicEditInput(QadDynamicInput):
                self.edits[QadDynamicInputEditEnum.EDIT_X].showMsg(coord)
             self.show(True)
                
-      elif e.key() == Qt.Key_Return or e.key == Qt.Key_Enter:
+      elif e.key() == Qt.Key.Key_Return or e.key == Qt.Key.Key_Enter:
          # se non c'è alcun widget con valore bloccato
          if self.anyLockedValueEdit() == False:
             msg = ""
