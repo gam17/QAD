@@ -60,5 +60,5 @@ class QadOPTIONSCommandClass(QadCommandClass):
             
    def run(self, msgMapTool = False, msg = None):
       Form = QadOPTIONSDialog(self.plugIn)
-      Form.exec_()
+      Form.exec()
       return True

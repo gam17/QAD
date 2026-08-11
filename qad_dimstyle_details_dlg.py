@@ -847,8 +847,8 @@ class QadDIMSTYLE_DETAILS_Dialog(QDialog, QObject, qad_dimstyle_details_ui.Ui_Di
       if errMsg is not None:
          errMsg += QadMsg.translate("DimStyle_Details_Dialog", "\nDo you want to accepts these settings ?")
          res = QMessageBox.question(self, QadMsg.getQADTitle(), errMsg, \
-                                 QMessageBox.Yes | QMessageBox.No)
-         if res == QMessageBox.No:
+                                 QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No)
+         if res == QMessageBox.StandardButton.No:
             return
 
       self.plugIn.dimStyleLastUsedTabIndex = self.tabWidget.currentIndex()
@@ -862,7 +862,7 @@ class QadPreviewDim(QgsMapCanvas):
    def __init__(self, parent, plugIn):
       QgsMapCanvas.__init__(self, parent)
       self.plugIn = plugIn
-      self.setAttribute(Qt.WA_DeleteOnClose)
+      self.setAttribute(Qt.WidgetAttribute.WA_DeleteOnClose)
 
       self.iface = self.plugIn.iface
       self.layerId2canvasLayer = {}

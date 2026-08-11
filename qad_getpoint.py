@@ -225,13 +225,13 @@ class QadGetPoint(QgsMapTool):
       if self.__drawMode == QadGetPointDrawModeEnum.ELASTIC_LINE:
          self.refreshOrthoMode() # setto il default
          self.__RubberBand = createRubberBand(self.canvas, QgsWkbTypes.LineGeometry)
-         self.__RubberBand.setLineStyle(Qt.DotLine)
+         self.__RubberBand.setLineStyle(Qt.PenStyle.DotLine)
       elif self.__drawMode == QadGetPointDrawModeEnum.ELASTIC_RECTANGLE:
          self.rectangleCrossingSelectionColor = getColorForCrossingSelectionArea()
          self.rectangleWindowSelectionColor = getColorForWindowSelectionArea()
             
          self.__RubberBand = createRubberBand(self.canvas, QgsWkbTypes.PolygonGeometry, False, None, self.rectangleCrossingSelectionColor)
-         self.__RubberBand.setLineStyle(Qt.DotLine)
+         self.__RubberBand.setLineStyle(Qt.PenStyle.DotLine)
          
 
    # ============================================================================
@@ -633,9 +633,9 @@ class QadGetPoint(QgsMapTool):
       self.__csrRubberBand = QadCursorRubberBand(self.canvas, cursorType)
       
       if cursorType == QadCursorTypeEnum.NONE:
-         self.__cursor = QCursor(Qt.ArrowCursor)
+         self.__cursor = QCursor(Qt.CursorShape.ArrowCursor)
       else:
-         self.__cursor = QCursor(Qt.BlankCursor)
+         self.__cursor = QCursor(Qt.CursorShape.BlankCursor)
       self.__cursorType = cursorType
       
 
@@ -787,9 +787,9 @@ class QadGetPoint(QgsMapTool):
          self.__csrRubberBand.moveEvent(self.tmpPoint)
 
       # tasto shift premuto durante il movimento del mouse
-      self.tmpShiftKey = True if event.modifiers() & Qt.ShiftModifier else False
+      self.tmpShiftKey = True if event.modifiers() & Qt.KeyboardModifier.ShiftModifier else False
       # tasto ctrl premuto durante il movimento del mouse
-      self.tmpCtrlKey = True if event.modifiers() & Qt.ControlModifier else False
+      self.tmpCtrlKey = True if event.modifiers() & Qt.KeyboardModifier.ControlModifier else False
       
       # se l'obiettivo é selezionare un punto
       if self.getSelectionMode() == QadGetPointSelectionModeEnum.POINT_SELECTION or \
@@ -986,19 +986,19 @@ class QadGetPoint(QgsMapTool):
    # ============================================================================
    def canvasPressEvent(self, event):
       # tasto shift premuto durante il click del mouse
-      self.shiftKey = True if event.modifiers() & Qt.ShiftModifier else False
+      self.shiftKey = True if event.modifiers() & Qt.KeyboardModifier.ShiftModifier else False
 
       # tasto ctrl premuto durante il click del mouse
-      self.ctrlKey = True if event.modifiers() & Qt.ControlModifier else False
+      self.ctrlKey = True if event.modifiers() & Qt.KeyboardModifier.ControlModifier else False
 
       # volevo mettere questo evento nel canvasReleaseEvent
       # ma il tasto destro non genera quel tipo di evento
-      if event.button() == Qt.RightButton:
+      if event.button() == Qt.MouseButton.RightButton:
          self.startDateTimeForRightClick = datetime.datetime.now()
          self.rightButton = True
          return # esco qui per non contiuare il comando dal maptool
       
-      if event.button() == Qt.LeftButton:
+      if event.button() == Qt.MouseButton.LeftButton:
          self.rightButton = False
               
          if self.getSelectionMode() == QadGetPointSelectionModeEnum.ENTITY_SELECTION_DYNAMIC or \
@@ -1045,10 +1045,10 @@ class QadGetPoint(QgsMapTool):
    # canvasReleaseEvent
    # ============================================================================
    def canvasReleaseEvent(self, event):
-      if event.button() == Qt.RightButton:
+      if event.button() == Qt.MouseButton.RightButton:
          self.rightButton = True
          # Se é stato premuto il tasto CTRL (o META)
-         if ((event.modifiers() & Qt.ControlModifier) or (event.modifiers() & Qt.MetaModifier)):
+         if ((event.modifiers() & Qt.KeyboardModifier.ControlModifier) or (event.modifiers() & Qt.KeyboardModifier.MetaModifier)):
             self.displayOsnapPopupMenu(event.pos())
             return # esco qui per non contiuare il comando dal maptool
 
@@ -1089,7 +1089,7 @@ class QadGetPoint(QgsMapTool):
       
       # se l'obiettivo é selezionare un rettangolo
       if self.getDrawMode() == QadGetPointDrawModeEnum.ELASTIC_RECTANGLE:                 
-         if event.button() == Qt.LeftButton:
+         if event.button() == Qt.MouseButton.LeftButton:
             p1 = self.__RubberBand.getPoint(0, 0)
             # se il mouse é in una posizione diversa dal punto iniziale del rettangolo
             if p1 != self.toMapCoordinates(event.pos()):
@@ -1105,10 +1105,10 @@ class QadGetPoint(QgsMapTool):
                   self.__QadSnapper.setProgressDistance(self.__oldSnapProgrDist)
                    
                # tasto shift premuto durante il click del mouse
-               self.shiftKey = True if event.modifiers() & Qt.ShiftModifier else False
+               self.shiftKey = True if event.modifiers() & Qt.KeyboardModifier.ShiftModifier else False
          
                # tasto ctrl premuto durante il click del mouse
-               self.ctrlKey = True if event.modifiers() & Qt.ControlModifier else False
+               self.ctrlKey = True if event.modifiers() & Qt.KeyboardModifier.ControlModifier else False
                
                self.plugIn.QadCommands.continueCommandFromMapTool()
                #self.plugIn.setStandardMapTool()
@@ -1444,7 +1444,7 @@ class QadGetPoint(QgsMapTool):
    # ============================================================================
    def showDSettingsByPopUpMenu(self):
       d = QadDSETTINGSDialog(self.plugIn, QadDSETTINGSTabIndexEnum.OBJECT_SNAP)
-      d.exec_()
+      d.exec()
       self.refreshSnapType()
       self.refreshAutoSnap()
       self.setPolarAngOffset(self.plugIn.lastSegmentAng)

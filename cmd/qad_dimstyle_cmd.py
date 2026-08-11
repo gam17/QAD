@@ -66,5 +66,5 @@ class QadDIMSTYLECommandClass(QadCommandClass):
          self.showMsg(QadMsg.translate("QAD", "\nThe coordinate reference system of the project must be a projected coordinate system.\n"))
          return True # fine comando
       Form = QadDIMSTYLEDialog(self.plugIn)
-      Form.exec_()
+      Form.exec()
       return True

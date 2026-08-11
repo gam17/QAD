@@ -58,7 +58,7 @@ class QadRightClickDialog(QDialog, QObject, Ui_RightClick_Dialog):
    
    def eventFilter(self, obj, event):
       if event is not None:
-         if event.type() == QEvent.FocusOut:
+         if event.type() == QEvent.Type.FocusOut:
             if obj == self.lineEdit_duration:
                return not self.lineEdit_SHORTCUTMENUDURATION_Validation()
 
@@ -70,7 +70,7 @@ class QadRightClickDialog(QDialog, QObject, Ui_RightClick_Dialog):
    # timeSensitive_clicked
    # ============================================================================
    def timeSensitive_clicked(self):
-      if self.checkBox_timeSensitive.checkState() == Qt.Checked:
+      if self.checkBox_timeSensitive.checkState() == Qt.CheckState.Checked:
          self.lineEdit_duration.setEnabled(True)
          self.groupBox_default.setEnabled(False)
          self.groupBox_command.setEnabled(False)
@@ -154,7 +154,7 @@ class QadRightClickDialog(QDialog, QObject, Ui_RightClick_Dialog):
          shortCutMenu = shortCutMenu | 8
 
       # 16 = Enables the display of a shortcut menu when the right button on the pointing device is held down long enough
-      if self.checkBox_timeSensitive.checkState() == Qt.Checked:
+      if self.checkBox_timeSensitive.checkState() == Qt.CheckState.Checked:
          shortCutMenu = shortCutMenu | 16
 
       return shortCutMenu

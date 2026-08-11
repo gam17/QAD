@@ -248,7 +248,7 @@ class QadCommandsClass():
          if command != QadMsg.translate("Command_list", "SUPPORTERS"):
             if incrementDailyCmdCounter() > self.plugIn.maxDailyCmdCounter:
                if QMessageBox.question(None, "QAD", QadMsg.translate("QAD", "QAD lets you run 200 commands per day free of popups. Donations help us to fund software development, documentation, translation and bug-fixing efforts. Do you want to donate ?"), \
-                                       QMessageBox.Yes, QMessageBox.No) == QMessageBox.Yes:
+                                       QMessageBox.StandardButton.Yes, QMessageBox.StandardButton.No) == QMessageBox.StandardButton.Yes:
                   command = "_SUPPORTERS";
 #                if QMessageBox.critical(None, "QAD", QadMsg.translate("QAD", "You have run out of daily commands available for this version of QAD, your reasonable donation will allow us to adapt the product to your needs. Do you want to donate ?"), \
 #                                        QMessageBox.Yes, QMessageBox.No) == QMessageBox.Yes:
@@ -315,7 +315,7 @@ class QadCommandsClass():
          if args[0] != QadMsg.translate("Command_list", "SUPPORTERS"):
             if incrementDailyCmdCounter() > self.plugIn.maxDailyCmdCounter:
                if QMessageBox.question(None, "QAD", QadMsg.translate("QAD", "QAD lets you run 200 commands per day free of popups. Donations help us to fund software development, documentation, translation and bug-fixing efforts. Do you want to donate ?"), \
-                                       QMessageBox.Yes, QMessageBox.No) == QMessageBox.Yes:
+                                       QMessageBox.StandardButton.Yes, QMessageBox.StandardButton.No) == QMessageBox.StandardButton.Yes:
                   args[0] = "_SUPPORTERS";               
 #                if QMessageBox.critical(None, "QAD", QadMsg.translate("QAD", "You have run out of daily commands available for this version of QAD, your reasonable donation will allow us to adapt the product to your needs. Do you want to donate ?"), \
 #                                        QMessageBox.Yes, QMessageBox.No) == QMessageBox.Yes:

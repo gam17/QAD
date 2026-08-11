@@ -63,7 +63,7 @@ class QadLayerCacheGeoms():
       self.cacheLayer = createMemoryLayer("QadLayerCacheArea", getStrLayerGeomType(self.layer), self.layer.crs())
       
       provider = self.cacheLayer.dataProvider()
-      provider.addAttributes([QgsField("index", QMetaType.Int, "Int")])
+      provider.addAttributes([QgsField("index", QMetaType.Type.Int, "Int")])
       self.cacheLayer.updateFields()
       
       if provider.capabilities() & QgsVectorDataProvider.CreateSpatialIndex:
@@ -448,4 +448,4 @@ def getStrLayerGeomType(layer):
       elif gType == QgsWkbTypes.PolygonGeometry:
          return "MultiPolygon"
 
-   return "NoGeometry"     
+   return "NoGeometry"
